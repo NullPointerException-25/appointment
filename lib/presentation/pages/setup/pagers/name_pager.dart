@@ -1,10 +1,10 @@
+import 'package:appointments_manager/controllers/setup/setup_controller.dart';
 import 'package:appointments_manager/utils/assets.dart';
 import 'package:appointments_manager/utils/colors.dart';
-import 'package:appointments_manager/utils/fonts.dart';
+import 'package:appointments_manager/utils/translations.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
-
-import '../setup_controller.dart';
 
 class NamePager extends StatelessWidget {
   const NamePager({super.key});
@@ -18,27 +18,30 @@ class NamePager extends StatelessWidget {
             children: [
               const SizedBox(height: 20),
               Expanded(
-                child: LottieBuilder.asset(
-                  LottieAssets.abstract
-                ),
+                child: LottieBuilder.asset(LottieAssets.abstract),
               ),
               const SizedBox(height: 20),
-              Text("What's your name?", style: Theme.of(context).textTheme.titleMedium),
+              Text(Translator.whatsYourName,
+                  style: Theme.of(context).textTheme.titleMedium),
               const SizedBox(height: 20),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: TextField(
+                  controller: SetupController.to.nameController,
                   style: const TextStyle(fontSize: 16),
-               onChanged: (value) => SetupController.to.name.value = value,
+                  onChanged: (value) => SetupController.to.name.value = value,
                   decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Theme.of(context).primaryColorDark),
+                      borderSide:
+                          BorderSide(color: Theme.of(context).primaryColorDark),
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    hintText: "Name",
-                    hintStyle:  TextStyle(fontSize: 16, color: Theme.of(context).hintColor),
+                    hintText: Translator.name.tr,
+                    hintStyle: TextStyle(
+                        fontSize: 16, color: Theme.of(context).hintColor),
                     border: OutlineInputBorder(
-                      borderSide: BorderSide(color: Theme.of(context).primaryColorLight),
+                      borderSide: BorderSide(
+                          color: Theme.of(context).primaryColorLight),
                       borderRadius: BorderRadius.circular(10),
                     ),
                   ),
@@ -56,14 +59,16 @@ class NamePager extends StatelessWidget {
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Theme.of(context).colorScheme.secondary,
-                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 10),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    textStyle:  TextStyle(fontSize: 16, color: ThemeColors.white),
+                    textStyle:
+                        const TextStyle(fontSize: 16, color: ThemeColors.white),
                   ),
                   onPressed: SetupController.to.nextStep,
-                  child: const Text("Next"),
+                  child: Text(Translator.next.tr),
                 ),
               ),
             ),

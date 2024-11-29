@@ -1,11 +1,14 @@
-import 'package:appointments_manager/controllers/setup/pagers/name_pager.dart';
+
 import 'package:appointments_manager/controllers/setup/setup_controller.dart';
+import 'package:appointments_manager/presentation/pages/setup/pagers/email_pager.dart';
+import 'package:appointments_manager/presentation/pages/setup/pagers/image_pager.dart';
+import 'package:appointments_manager/presentation/pages/setup/pagers/name_pager.dart';
+import 'package:appointments_manager/utils/translations.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hugeicons/hugeicons.dart';
 import 'package:mesh_gradient/mesh_gradient.dart';
 
-import '../../../controllers/setup/pagers/image_pager.dart';
 
 class SetupPage extends StatelessWidget {
   const SetupPage({super.key});
@@ -55,7 +58,7 @@ class SetupPage extends StatelessWidget {
                                     color: Theme.of(context).primaryColor,
                                   ))
                             : const SizedBox(width: 48,),
-                            Text("Let's get started",
+                            Text(Translator.letsGetStarted.tr,
                                 style: Theme.of(context).textTheme.titleLarge),
                             const SizedBox(
                               width: 48,
@@ -69,9 +72,10 @@ class SetupPage extends StatelessWidget {
                           allowImplicitScrolling: false,
                           controller: SetupController.to.pageController,
                           physics: const NeverScrollableScrollPhysics(),
-                          children: [
+                          children: const [
                             NamePager(),
                             ImagePager(),
+                            EmailPager()
                           ],
                         ),
                       ),

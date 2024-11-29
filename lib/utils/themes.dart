@@ -94,6 +94,7 @@ final ThemeData lightTheme = ThemeData(
   primaryColorDark: ThemeColors.darkBlue,
   brightness: Brightness.light,
   hintColor: ThemeColors.black.withOpacity(0.5),
+
   actionIconTheme: ActionIconThemeData(
     backButtonIconBuilder: (context) => const Icon(
         HugeIcons.strokeRoundedArrowLeft02,
@@ -119,7 +120,6 @@ final ThemeData lightTheme = ThemeData(
   dividerColor: Colors.white54,
   colorScheme: ColorScheme.fromSwatch(primarySwatch: ThemeColors.primary)
       .copyWith(surface: ThemeColors.white, secondary: ThemeColors.lightBlue, ),
-  iconTheme: const IconThemeData(color: ThemeColors.black),
 );
 
 final ThemeData darkTheme = ThemeData(
@@ -210,6 +210,7 @@ final ThemeData darkTheme = ThemeData(
   primaryColor: ThemeColors.white,
   primaryColorLight: ThemeColors.white,
   primaryColorDark: ThemeColors.darkBlue,
+  cardColor: ThemeColors.black,
   brightness: Brightness.dark,
   hintColor: ThemeColors.white.withOpacity(0.5),
   actionIconTheme: ActionIconThemeData(
@@ -242,5 +243,4 @@ final ThemeData darkTheme = ThemeData(
   iconButtonTheme:  IconButtonThemeData(style: ButtonStyle(
     iconColor: WidgetStateProperty.all(ThemeColors.white),
   )),
-  iconTheme: const IconThemeData(color: ThemeColors.white),
 );
