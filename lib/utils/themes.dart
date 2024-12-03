@@ -91,7 +91,7 @@ final ThemeData lightTheme = ThemeData(
   primaryColor: ThemeColors.lightBlue,
   primaryColorLight: ThemeColors.lightBlue,
   cardColor: ThemeColors.white,
-  primaryColorDark: ThemeColors.darkBlue,
+  primaryColorDark: ThemeColors.darkerBlue,
   brightness: Brightness.light,
   hintColor: ThemeColors.black.withOpacity(0.5),
 

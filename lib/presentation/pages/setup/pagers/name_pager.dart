@@ -13,7 +13,7 @@ class NamePager extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Expanded(
+        Flexible(
           child: Column(
             children: [
               const SizedBox(height: 20),
@@ -27,6 +27,7 @@ class NamePager extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: TextField(
+                  onSubmitted: (_) => SetupController.to.nextStep(),
                   controller: SetupController.to.nameController,
                   style: const TextStyle(fontSize: 16),
                   onChanged: (value) => SetupController.to.name.value = value,

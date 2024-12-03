@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "187136770481",
+    "project_id": "appointment-manager-5e9f7",
+    "storage_bucket": "appointment-manager-5e9f7.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:187136770481:android:5c760504d956ba7ccf7d90",
+        "android_client_info": {
+          "package_name": "com.sublimesoftwares.appointments_manager"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBo5_Wf4Q7H8-FcouzI6NyqMBGZnHu26MI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

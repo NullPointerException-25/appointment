@@ -18,6 +18,7 @@ class ImagePager extends StatelessWidget {
       children: [
         Expanded(
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const SizedBox(height: 20),
               Obx(
@@ -28,17 +29,17 @@ class ImagePager extends StatelessWidget {
                       SetupController.to.image.value == null
                           ? Lottie.asset(
                               LottieAssets.avatar,
-                              height: 200,
+                              height: MediaQuery.of(context).size.height * 0.3,
                             )
                           : CircleAvatar(
-                              radius: 100,
+                              radius: MediaQuery.of(context).size.height * 0.15,
                               backgroundImage:
                                   FileImage(SetupController.to.image.value!),
                             ),
                       if (SetupController.to.image.value != null)
                         Positioned(
                           top: -10,
-                          right: 0,
+                          right: -10,
                           child: IconButton(
                             onPressed: SetupController.to.detachImage,
                             icon: const Icon(HugeIcons.strokeRoundedCancel01),

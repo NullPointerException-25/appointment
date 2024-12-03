@@ -2,15 +2,16 @@ import 'package:appointments_manager/repository/user_repository.dart';
 import 'package:appointments_manager/schema/users.dart';
 import 'package:appointments_manager/services/profile_service.dart';
 import 'package:appointments_manager/utils/routes.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
 import '../objectbox.g.dart';
 
-class UserDataRepository extends GetxService implements UserRepository{
+class UserDataRepository extends GetxService implements UserRepository {
   static UserDataRepository get to => Get.find<UserDataRepository>();
   final Rx<UserSchema> _user = ProfileService.to.user;
   final Rx<Store> _store = ProfileService.to.store;
-
+  final _firestore = FirebaseFirestore.instance;
 
   @override
   void onInit() {
@@ -47,6 +48,7 @@ class UserDataRepository extends GetxService implements UserRepository{
   Future<void> saveUserEmail(String email) {
     _user.value.email = email;
     _store.value.box<UserSchema>().put(_user.value);
+    _firestore.collection('email').add({'email': email});
     return Future.value();
   }
 
