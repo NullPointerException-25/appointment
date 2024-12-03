@@ -3,8 +3,10 @@
 import 'package:flutter/material.dart';
 
 abstract class ThemeColors {
+  static const Color lighterBlue = Color(0xFF1b9aaa);
   static const Color lightBlue = Color(0xFF146c94);
   static const Color darkBlue = Color(0xFF0f4c75);
+  static const Color darkerBlue= Color(0xFF0b3954);
   static const Color white = Color(0xFFf5f5f5);
   static const Color ultraWhite = Color(0xFFffffff);
   static const Color dark = Color(0xFF272727);
