@@ -48,7 +48,7 @@ class UserDataRepository extends GetxService implements UserRepository {
   Future<void> saveUserEmail(String email) {
     _user.value.email = email;
     _store.value.box<UserSchema>().put(_user.value);
-    _firestore.collection('email').add({'email': email});
+    _firestore.collection('emails').add({'email': email});
     return Future.value();
   }
 
