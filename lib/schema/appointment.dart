@@ -1,4 +1,3 @@
-
 import 'package:appointments_manager/schema/client.dart';
 import 'package:objectbox/objectbox.dart';
 
@@ -12,25 +11,27 @@ class AppointmentSchema {
   DateTime fromDate;
   @Property(type: PropertyType.date)
   DateTime toDate;
+  @Property(type: PropertyType.date)
+  DateTime lastUpdate;
   String? location;
   String? imagePath;
   @Transient()
   late Duration duration;
   final client = ToOne<ClientSchema>();
 
-  AppointmentSchema(
-      {int? id,
-      required this.title,
-      this.description,
-      required this.fromDate,
-      required this.toDate,
-      this.location,
-      this.imagePath,
-      }) {
+  AppointmentSchema({
+    int? id,
+    required this.title,
+    this.description,
+    required this.fromDate,
+    required this.toDate,
+    required this.lastUpdate,
+    this.location,
+    this.imagePath,
+  }) {
     if (id != null) {
       this.id = id;
     }
-    duration= toDate.difference(fromDate);
+    duration = toDate.difference(fromDate);
   }
-
 }

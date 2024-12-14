@@ -50,12 +50,12 @@ class SetupController extends GetxController {
   }
 
   void _saveUserChanges() {
-    UserDataRepositoryLocal.to.saveUserName(name.value);
-    UserDataRepositoryLocal.to.saveUserEmail(email.value);
+    UserDataRepositoryImpLocal.to.saveUserName(name.value);
+    UserDataRepositoryImpLocal.to.saveUserEmail(email.value);
     if (image.value != null) {
-      UserDataRepositoryLocal.to.saveUserImage(image.value!.path);
+      UserDataRepositoryImpLocal.to.saveUserImage(image.value!.path);
     }
-    UserDataRepositoryLocal.to.setSetupComplete();
+    UserDataRepositoryImpLocal.to.setSetupComplete();
   }
 
   void previousStep() {

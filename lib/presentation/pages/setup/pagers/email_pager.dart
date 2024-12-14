@@ -35,7 +35,7 @@ class EmailPager extends StatelessWidget {
                       if (value == null || value.isEmpty) {
                         return Translator.pleaseEnterSomeText.tr;
                       }
-                      if(!GetUtils.isEmail(value)){
+                      if(!GetUtils.isEmail(value.trim())){
                         return Translator.pleaseEnterAValidEmail.tr;
                       }
                       return null;
