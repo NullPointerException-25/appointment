@@ -5,10 +5,10 @@ import 'package:appointments_manager/utils/routes.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
-import '../objectbox.g.dart';
+import '../../objectbox.g.dart';
 
-class UserDataRepository extends GetxService implements UserRepository {
-  static UserDataRepository get to => Get.find<UserDataRepository>();
+class UserDataRepositoryLocal extends GetxService implements UserRepository {
+  static UserDataRepositoryLocal get to => Get.find<UserDataRepositoryLocal>();
   final Rx<UserSchema> _user = ProfileService.to.user;
   final Rx<Store> _store = ProfileService.to.store;
   final _firestore = FirebaseFirestore.instance;

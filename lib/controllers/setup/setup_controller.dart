@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:appointments_manager/data/user_data_repository.dart';
+import 'package:appointments_manager/data/local/user_data_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -50,12 +50,12 @@ class SetupController extends GetxController {
   }
 
   void _saveUserChanges() {
-    UserDataRepository.to.saveUserName(name.value);
-    UserDataRepository.to.saveUserEmail(email.value);
+    UserDataRepositoryLocal.to.saveUserName(name.value);
+    UserDataRepositoryLocal.to.saveUserEmail(email.value);
     if (image.value != null) {
-      UserDataRepository.to.saveUserImage(image.value!.path);
+      UserDataRepositoryLocal.to.saveUserImage(image.value!.path);
     }
-    UserDataRepository.to.setSetupComplete();
+    UserDataRepositoryLocal.to.setSetupComplete();
   }
 
   void previousStep() {

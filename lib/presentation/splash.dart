@@ -1,4 +1,4 @@
-import 'package:appointments_manager/data/user_data_repository.dart';
+import 'package:appointments_manager/data/local/user_data_repository.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -30,7 +30,7 @@ class _SplashPageState extends State<SplashPage> {
       if(kIsWeb){
         return;
       }
-      Get.put(UserDataRepository());
+      Get.put(UserDataRepositoryLocal());
     });
   }
 }

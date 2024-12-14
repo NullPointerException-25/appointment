@@ -1,3 +1,6 @@
+import 'package:appointments_manager/presentation/pages/home/widgets/welcome_home.dart';
+import 'package:appointments_manager/utils/global_values.dart';
+import 'package:calendar_view/calendar_view.dart';
 import 'package:flutter/material.dart';
 
 class HomePager extends StatelessWidget {
@@ -5,22 +8,46 @@ class HomePager extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
-      slivers: [
-        SliverList(
-          delegate: SliverChildBuilderDelegate(
-                (BuildContext context, int index) {
+    return Container(
+      color: Theme.of(context).colorScheme.surface,
+      height: double.infinity,
+      width: double.infinity,
+      child: CustomScrollView(
+        slivers: [
+          const SliverToBoxAdapter(child: WelcomeHomeSection()),
+          SliverList(delegate: SliverChildBuilderDelegate(
+            (context, index) {
               return Container(
-                color: Theme.of(context).colorScheme.surface,
-                child: const Center(
-                  child: Text('Appointments'),
+                margin: const EdgeInsets.all(kPaddingM),
+                padding: const EdgeInsets.all(kPaddingM),
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.surface,
+                  borderRadius: BorderRadius.circular(20),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Theme.of(context).colorScheme.onSurface.withOpacity(0.1),
+                      blurRadius: 10,
+                      offset: const Offset(0, 5),
+                    ),
+                  ],
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Appointments',
+                      style: Theme.of(context).textTheme.headlineMedium,
+                    ),
+                    const SizedBox(height: kPaddingM),
+                    const Text('Appointments list'),
+                  ],
                 ),
               );
             },
-            childCount: 100,
-          ),
-        ),
-      ],
+            childCount: 5,
+          )),
+        ],
+      ),
     );
   }
 }

@@ -18,6 +18,8 @@ class HomeController extends GetxController {
     _getUser();
   }
 
+
+
   static HomeController get to {
     try {
       return Get.find<HomeController>();

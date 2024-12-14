@@ -31,7 +31,7 @@ class HomePage extends GetResponsiveView<HomeController> {
               ];
             },
             body: PageView(
-              physics: const NeverScrollableScrollPhysics(),
+            //  physics: const NeverScrollableScrollPhysics(),
               controller: controller.pageController,
               children: [
                 const HomePager(),

@@ -23,6 +23,8 @@ class Translator extends Translations {
           'Please enter a valid email': 'Please enter a valid email',
           'Email': 'Email',
           "Finish": "Finish",
+           "Welcome": "Welcome back,",
+          "Today's total appointments": "Today's total appointments",
         },
         'es': {
           'title': 'Gestor de Citas',
@@ -48,5 +50,7 @@ class Translator extends Translations {
   static String get pleaseEnterAValidEmail => "Please enter a valid email";
   static String get email => "Email";
   static String get finish => "Finish";
+  static String get welcome => "Welcome";
+  static String get todaysTotalAppointments => "Today's total appointments";
 
 }

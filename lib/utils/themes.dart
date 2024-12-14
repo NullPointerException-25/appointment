@@ -120,7 +120,7 @@ final ThemeData lightTheme = ThemeData(
   dividerColor: Colors.white54,
   colorScheme: ColorScheme.fromSwatch(primarySwatch: ThemeColors.primary)
       .copyWith(surface: ThemeColors.white, secondary: ThemeColors.lightBlue,
-    onPrimary: ThemeColors.lightBlue,),
+    onPrimary: ThemeColors.lightBlue, onSecondary: ThemeColors.lighterBlue),
   iconTheme: const IconThemeData(color: ThemeColors.white),
 );
 
@@ -231,6 +231,7 @@ final ThemeData darkTheme = ThemeData(
       surface: ThemeColors.black,
       brightness: Brightness.dark,
       onPrimary: ThemeColors.dark,
+      onSecondary: ThemeColors.dark,
       secondary: ThemeColors.darkBlue),
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(

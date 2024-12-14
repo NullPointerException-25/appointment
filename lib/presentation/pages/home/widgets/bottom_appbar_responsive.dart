@@ -36,7 +36,7 @@ class BottomAppbarResponsive extends GetView<HomeController> {
             },
           ),
           IconButton(
-            icon: const Icon(HugeIcons.strokeRoundedUser),
+            icon: const Icon(HugeIcons.strokeRoundedUserGroup),
             onPressed: () {
               controller.changePage(3);
             },

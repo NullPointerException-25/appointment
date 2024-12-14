@@ -41,10 +41,96 @@
         }
       ],
       "relations": []
+    },
+    {
+      "id": "2:2",
+      "lastPropertyId": "8:3243169049260169194",
+      "name": "AppointmentSchema",
+      "properties": [
+        {
+          "id": "1:1041093188041554710",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:1267434973082294849",
+          "name": "title",
+          "type": 9
+        },
+        {
+          "id": "3:1692645781020504580",
+          "name": "description",
+          "type": 9
+        },
+        {
+          "id": "4:6720896875027876540",
+          "name": "fromDate",
+          "type": 10
+        },
+        {
+          "id": "5:460293130038424918",
+          "name": "toDate",
+          "type": 10
+        },
+        {
+          "id": "6:1696551445031536441",
+          "name": "location",
+          "type": 9
+        },
+        {
+          "id": "7:451209253968500541",
+          "name": "imagePath",
+          "type": 9
+        },
+        {
+          "id": "8:3243169049260169194",
+          "name": "clientId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "1:4926836268027029998",
+          "relationTarget": "ClientSchema"
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "3:3",
+      "lastPropertyId": "5:6208101607098084767",
+      "name": "ClientSchema",
+      "properties": [
+        {
+          "id": "1:6567084803305177525",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:1381537634197575030",
+          "name": "name",
+          "type": 9
+        },
+        {
+          "id": "3:1497414768281481271",
+          "name": "email",
+          "type": 9
+        },
+        {
+          "id": "4:5451938718300269445",
+          "name": "phone",
+          "type": 9
+        },
+        {
+          "id": "5:6208101607098084767",
+          "name": "imagePath",
+          "type": 9
+        }
+      ],
+      "relations": []
     }
   ],
-  "lastEntityId": "1:1",
-  "lastIndexId": "0:0",
+  "lastEntityId": "3:3",
+  "lastIndexId": "1:4926836268027029998",
   "lastRelationId": "0:0",
   "lastSequenceId": "0:0",
   "modelVersion": 5,
