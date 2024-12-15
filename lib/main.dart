@@ -1,12 +1,12 @@
-import 'package:appointments_manager/presentation/pages/home/binding.dart';
-import 'package:appointments_manager/presentation/pages/home/home.dart';
-import 'package:appointments_manager/presentation/pages/setup/setup.dart';
-import 'package:appointments_manager/presentation/splash.dart';
-import 'package:appointments_manager/services/object_box_service.dart';
-import 'package:appointments_manager/services/profile_service.dart';
-import 'package:appointments_manager/utils/routes.dart';
-import 'package:appointments_manager/utils/themes.dart';
-import 'package:appointments_manager/utils/translations.dart';
+import 'package:appointments_manager/core/services/object_box_service.dart';
+import 'package:appointments_manager/core/services/profile_service.dart';
+import 'package:appointments_manager/core/utils/routes.dart';
+import 'package:appointments_manager/core/utils/themes.dart';
+import 'package:appointments_manager/core/utils/translations.dart';
+import 'package:appointments_manager/features/user/presentation/pages/setup.dart';
+import 'package:appointments_manager/home/presentation/bindings/binding.dart';
+import 'package:appointments_manager/home/presentation/pages/home.dart';
+import 'package:appointments_manager/splash/presentation/pages/splash.dart';
 import 'package:calendar_view/calendar_view.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -57,9 +57,9 @@ class MyApp extends StatelessWidget {
         themeMode: ThemeMode.system,
         getPages: [
           GetPage(
-            name: Routes.home,
-            page: () => HomePage(),
-            binding: HomeBinding()),
+              name: Routes.home,
+              page: () => HomePage(),
+              binding: HomeBinding()),
           GetPage(name: Routes.setup, page: () => SetupPage()),
           GetPage(name: Routes.splash, page: () => const SplashPage()),
         ],

@@ -14,9 +14,9 @@ import 'package:objectbox/internal.dart'
 import 'package:objectbox/objectbox.dart' as obx;
 import 'package:objectbox_flutter_libs/objectbox_flutter_libs.dart';
 
-import 'schema/appointment.dart';
-import 'schema/client.dart';
-import 'schema/users.dart';
+import 'features/user/data/models/users_model.dart';
+import 'features/appointment/data/models/appointment.dart';
+import 'features/client/data/models/client.dart';
 
 export 'package:objectbox/objectbox.dart'; // so that callers only have to import this file
 
@@ -123,8 +123,8 @@ final _entities = <obx_int.ModelEntity>[
       ]),
   obx_int.ModelEntity(
       id: const obx_int.IdUid(3, 1),
-      name: 'UserSchema',
-      lastPropertyId: const obx_int.IdUid(7, 8865586706154070390),
+      name: 'UserModel',
+      lastPropertyId: const obx_int.IdUid(9, 249219285888371299),
       flags: 0,
       properties: <obx_int.ModelProperty>[
         obx_int.ModelProperty(
@@ -161,6 +161,16 @@ final _entities = <obx_int.ModelEntity>[
             id: const obx_int.IdUid(7, 8865586706154070390),
             name: 'isSetupComplete',
             type: 1,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(8, 1203890603581925110),
+            name: 'imageUrl',
+            type: 9,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(9, 249219285888371299),
+            name: 'remoteId',
+            type: 9,
             flags: 0)
       ],
       relations: <obx_int.ModelRelation>[],
@@ -341,22 +351,21 @@ obx_int.ModelDefinition getObjectBoxModel() {
                   (AppointmentSchema srcObject) => srcObject.client));
           return object;
         }),
-    UserSchema: obx_int.EntityDefinition<UserSchema>(
+    UserModel: obx_int.EntityDefinition<UserModel>(
         model: _entities[2],
-        toOneRelations: (UserSchema object) => [],
-        toManyRelations: (UserSchema object) => {},
-        getId: (UserSchema object) => object.id,
-        setId: (UserSchema object, int id) {
+        toOneRelations: (UserModel object) => [],
+        toManyRelations: (UserModel object) => {},
+        getId: (UserModel object) => object.id,
+        setId: (UserModel object, int id) {
           object.id = id;
         },
-        objectToFB: (UserSchema object, fb.Builder fbb) {
-          final imagePathOffset = object.imagePath == null
-              ? null
-              : fbb.writeString(object.imagePath!);
+        objectToFB: (UserModel object, fb.Builder fbb) {
+          final imagePathOffset = fbb.writeString(object.imagePath);
           final nameOffset = fbb.writeString(object.name);
-          final emailOffset =
-              object.email == null ? null : fbb.writeString(object.email!);
-          fbb.startTable(8);
+          final emailOffset = fbb.writeString(object.email);
+          final imageUrlOffset = fbb.writeString(object.imageUrl);
+          final remoteIdOffset = fbb.writeString(object.remoteId);
+          fbb.startTable(10);
           fbb.addInt64(0, object.id);
           fbb.addOffset(1, imagePathOffset);
           fbb.addOffset(2, nameOffset);
@@ -364,6 +373,8 @@ obx_int.ModelDefinition getObjectBoxModel() {
           fbb.addBool(4, object.isCurrentUser);
           fbb.addInt64(5, object.lastUpdate.millisecondsSinceEpoch);
           fbb.addBool(6, object.isSetupComplete);
+          fbb.addOffset(7, imageUrlOffset);
+          fbb.addOffset(8, remoteIdOffset);
           fbb.finish(fbb.endTable());
           return object.id;
         },
@@ -375,20 +386,26 @@ obx_int.ModelDefinition getObjectBoxModel() {
           final nameParam = const fb.StringReader(asciiOptimization: true)
               .vTableGet(buffer, rootOffset, 8, '');
           final emailParam = const fb.StringReader(asciiOptimization: true)
-              .vTableGetNullable(buffer, rootOffset, 10);
+              .vTableGet(buffer, rootOffset, 10, '');
           final imagePathParam = const fb.StringReader(asciiOptimization: true)
-              .vTableGetNullable(buffer, rootOffset, 6);
+              .vTableGet(buffer, rootOffset, 6, '');
           final isCurrentUserParam =
               const fb.BoolReader().vTableGet(buffer, rootOffset, 12, false);
           final isSetupCompleteParam =
               const fb.BoolReader().vTableGet(buffer, rootOffset, 16, false);
-          final object = UserSchema(
+          final imageUrlParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGet(buffer, rootOffset, 18, '');
+          final remoteIdParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGet(buffer, rootOffset, 20, '');
+          final object = UserModel(
               id: idParam,
               name: nameParam,
               email: emailParam,
               imagePath: imagePathParam,
               isCurrentUser: isCurrentUserParam,
-              isSetupComplete: isSetupCompleteParam)
+              isSetupComplete: isSetupCompleteParam,
+              imageUrl: imageUrlParam,
+              remoteId: remoteIdParam)
             ..lastUpdate = DateTime.fromMillisecondsSinceEpoch(
                 const fb.Int64Reader().vTableGet(buffer, rootOffset, 14, 0));
 
@@ -470,33 +487,41 @@ class ClientSchema_ {
           AppointmentSchema_.client);
 }
 
-/// [UserSchema] entity fields to define ObjectBox queries.
-class UserSchema_ {
-  /// See [UserSchema.id].
+/// [UserModel] entity fields to define ObjectBox queries.
+class UserModel_ {
+  /// See [UserModel.id].
   static final id =
-      obx.QueryIntegerProperty<UserSchema>(_entities[2].properties[0]);
+      obx.QueryIntegerProperty<UserModel>(_entities[2].properties[0]);
 
-  /// See [UserSchema.imagePath].
+  /// See [UserModel.imagePath].
   static final imagePath =
-      obx.QueryStringProperty<UserSchema>(_entities[2].properties[1]);
+      obx.QueryStringProperty<UserModel>(_entities[2].properties[1]);
 
-  /// See [UserSchema.name].
+  /// See [UserModel.name].
   static final name =
-      obx.QueryStringProperty<UserSchema>(_entities[2].properties[2]);
+      obx.QueryStringProperty<UserModel>(_entities[2].properties[2]);
 
-  /// See [UserSchema.email].
+  /// See [UserModel.email].
   static final email =
-      obx.QueryStringProperty<UserSchema>(_entities[2].properties[3]);
+      obx.QueryStringProperty<UserModel>(_entities[2].properties[3]);
 
-  /// See [UserSchema.isCurrentUser].
+  /// See [UserModel.isCurrentUser].
   static final isCurrentUser =
-      obx.QueryBooleanProperty<UserSchema>(_entities[2].properties[4]);
+      obx.QueryBooleanProperty<UserModel>(_entities[2].properties[4]);
 
-  /// See [UserSchema.lastUpdate].
+  /// See [UserModel.lastUpdate].
   static final lastUpdate =
-      obx.QueryDateProperty<UserSchema>(_entities[2].properties[5]);
+      obx.QueryDateProperty<UserModel>(_entities[2].properties[5]);
 
-  /// See [UserSchema.isSetupComplete].
+  /// See [UserModel.isSetupComplete].
   static final isSetupComplete =
-      obx.QueryBooleanProperty<UserSchema>(_entities[2].properties[6]);
+      obx.QueryBooleanProperty<UserModel>(_entities[2].properties[6]);
+
+  /// See [UserModel.imageUrl].
+  static final imageUrl =
+      obx.QueryStringProperty<UserModel>(_entities[2].properties[7]);
+
+  /// See [UserModel.remoteId].
+  static final remoteId =
+      obx.QueryStringProperty<UserModel>(_entities[2].properties[8]);
 }
