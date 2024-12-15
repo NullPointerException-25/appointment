@@ -101,8 +101,8 @@
     },
     {
       "id": "3:1",
-      "lastPropertyId": "7:8865586706154070390",
-      "name": "UserSchema",
+      "lastPropertyId": "9:249219285888371299",
+      "name": "UserModel",
       "properties": [
         {
           "id": "1:4359905876601394740",
@@ -139,6 +139,16 @@
           "id": "7:8865586706154070390",
           "name": "isSetupComplete",
           "type": 1
+        },
+        {
+          "id": "8:1203890603581925110",
+          "name": "imageUrl",
+          "type": 9
+        },
+        {
+          "id": "9:249219285888371299",
+          "name": "remoteId",
+          "type": 9
         }
       ],
       "relations": []
