@@ -3,6 +3,8 @@ import 'package:appointments_manager/core/services/profile_service.dart';
 import 'package:appointments_manager/core/utils/routes.dart';
 import 'package:appointments_manager/core/utils/themes.dart';
 import 'package:appointments_manager/core/utils/translations.dart';
+import 'package:appointments_manager/features/client/presentation/bindings/create_client_binding.dart';
+import 'package:appointments_manager/features/client/presentation/pages/create_client.dart';
 import 'package:appointments_manager/features/user/presentation/pages/setup.dart';
 import 'package:appointments_manager/home/presentation/bindings/binding.dart';
 import 'package:appointments_manager/home/presentation/pages/home.dart';
@@ -62,6 +64,10 @@ class MyApp extends StatelessWidget {
               binding: HomeBinding()),
           GetPage(name: Routes.setup, page: () => SetupPage()),
           GetPage(name: Routes.splash, page: () => const SplashPage()),
+          GetPage(
+              name: Routes.newClient,
+              page: () => const CreateClientPage(),
+              binding: CreateClientBinding()),
         ],
         initialRoute: Routes.splash,
       ),

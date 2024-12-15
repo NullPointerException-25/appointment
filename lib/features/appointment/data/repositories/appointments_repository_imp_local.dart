@@ -35,10 +35,10 @@ class AppointmentsRepositoryImpLocal extends GetxService
 
   @override
   Future<List<AppointmentSchema>> getAllAppointmentsFromClient(
-      ClientSchema client,
+      ClientModel client,
       {int limit = 10,
       int offset = 0}) async {
-    final clientBox = store.value?.box<ClientSchema>().get(client.id);
+    final clientBox = store.value?.box<ClientModel>().get(client.id);
     return clientBox?.linkAppointments.getRange(offset, limit).toList()??[];
   }
 

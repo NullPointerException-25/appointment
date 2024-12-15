@@ -291,19 +291,19 @@ obx_int.ModelDefinition getObjectBoxModel() {
           object.client.attach(store);
           return object;
         }),
-    ClientSchema: obx_int.EntityDefinition<ClientSchema>(
+    ClientModel: obx_int.EntityDefinition<ClientModel>(
         model: _entities[1],
-        toOneRelations: (ClientSchema object) => [],
-        toManyRelations: (ClientSchema object) => {
+        toOneRelations: (ClientModel object) => [],
+        toManyRelations: (ClientModel object) => {
               obx_int.RelInfo<AppointmentSchema>.toOneBacklink(9, object.id,
                       (AppointmentSchema srcObject) => srcObject.client):
                   object.linkAppointments
             },
-        getId: (ClientSchema object) => object.id,
-        setId: (ClientSchema object, int id) {
+        getId: (ClientModel object) => object.id,
+        setId: (ClientModel object, int id) {
           object.id = id;
         },
-        objectToFB: (ClientSchema object, fb.Builder fbb) {
+        objectToFB: (ClientModel object, fb.Builder fbb) {
           final nameOffset = fbb.writeString(object.name);
           final emailOffset =
               object.email == null ? null : fbb.writeString(object.email!);
@@ -337,14 +337,14 @@ obx_int.ModelDefinition getObjectBoxModel() {
               .vTableGetNullable(buffer, rootOffset, 10);
           final imagePathParam = const fb.StringReader(asciiOptimization: true)
               .vTableGetNullable(buffer, rootOffset, 12);
-          final object = ClientSchema(
+          final object = ClientModel(
               id: idParam,
               name: nameParam,
               email: emailParam,
               lastUpdate: lastUpdateParam,
               phone: phoneParam,
               imagePath: imagePathParam);
-          obx_int.InternalToManyAccess.setRelInfo<ClientSchema>(
+          obx_int.InternalToManyAccess.setRelInfo<ClientModel>(
               object.linkAppointments,
               store,
               obx_int.RelInfo<AppointmentSchema>.toOneBacklink(9, object.id,
@@ -451,39 +451,39 @@ class AppointmentSchema_ {
       obx.QueryStringProperty<AppointmentSchema>(_entities[0].properties[7]);
 
   /// See [AppointmentSchema.client].
-  static final client = obx.QueryRelationToOne<AppointmentSchema, ClientSchema>(
+  static final client = obx.QueryRelationToOne<AppointmentSchema, ClientModel>(
       _entities[0].properties[8]);
 }
 
-/// [ClientSchema] entity fields to define ObjectBox queries.
+/// [ClientModel] entity fields to define ObjectBox queries.
 class ClientSchema_ {
-  /// See [ClientSchema.id].
+  /// See [ClientModel.id].
   static final id =
-      obx.QueryIntegerProperty<ClientSchema>(_entities[1].properties[0]);
+      obx.QueryIntegerProperty<ClientModel>(_entities[1].properties[0]);
 
-  /// See [ClientSchema.name].
+  /// See [ClientModel.name].
   static final name =
-      obx.QueryStringProperty<ClientSchema>(_entities[1].properties[1]);
+      obx.QueryStringProperty<ClientModel>(_entities[1].properties[1]);
 
-  /// See [ClientSchema.email].
+  /// See [ClientModel.email].
   static final email =
-      obx.QueryStringProperty<ClientSchema>(_entities[1].properties[2]);
+      obx.QueryStringProperty<ClientModel>(_entities[1].properties[2]);
 
-  /// See [ClientSchema.phone].
+  /// See [ClientModel.phone].
   static final phone =
-      obx.QueryStringProperty<ClientSchema>(_entities[1].properties[3]);
+      obx.QueryStringProperty<ClientModel>(_entities[1].properties[3]);
 
-  /// See [ClientSchema.imagePath].
+  /// See [ClientModel.imagePath].
   static final imagePath =
-      obx.QueryStringProperty<ClientSchema>(_entities[1].properties[4]);
+      obx.QueryStringProperty<ClientModel>(_entities[1].properties[4]);
 
-  /// See [ClientSchema.lastUpdate].
+  /// See [ClientModel.lastUpdate].
   static final lastUpdate =
-      obx.QueryDateProperty<ClientSchema>(_entities[1].properties[5]);
+      obx.QueryDateProperty<ClientModel>(_entities[1].properties[5]);
 
-  /// see [ClientSchema.linkAppointments]
+  /// see [ClientModel.linkAppointments]
   static final linkAppointments =
-      obx.QueryBacklinkToMany<AppointmentSchema, ClientSchema>(
+      obx.QueryBacklinkToMany<AppointmentSchema, ClientModel>(
           AppointmentSchema_.client);
 }
 
