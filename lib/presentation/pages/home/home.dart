@@ -2,6 +2,7 @@ import 'package:appointments_manager/controllers/home/home_controller.dart';
 import 'package:appointments_manager/presentation/pages/home/pagers/home.dart';
 import 'package:appointments_manager/presentation/pages/home/widgets/appbar.dart';
 import 'package:appointments_manager/presentation/pages/home/widgets/bottom_appbar_responsive.dart';
+import 'package:appointments_manager/presentation/pages/home/widgets/circular_home_floating_action_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hugeicons/hugeicons.dart';
@@ -12,11 +13,10 @@ class HomePage extends GetResponsiveView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        floatingActionButton: FloatingActionButton(
-          shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.all(Radius.circular(100))),
-          onPressed: () {},
-          child: const Icon(HugeIcons.strokeRoundedAdd01),
+        floatingActionButton: SizedBox(
+          height: 72,
+          width: 72,
+          child: CircularHomeFloatingActionButton(),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         bottomNavigationBar: const BottomAppbarResponsive(),
