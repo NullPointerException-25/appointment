@@ -55,15 +55,15 @@
           "type": 11,
           "flags": 520,
           "indexId": "1:7900870585069514014",
-          "relationTarget": "ClientSchema"
+          "relationTarget": "ClientModel"
         }
       ],
       "relations": []
     },
     {
       "id": "2:3",
-      "lastPropertyId": "6:6007920042929438378",
-      "name": "ClientSchema",
+      "lastPropertyId": "7:853334162452125539",
+      "name": "ClientModel",
       "properties": [
         {
           "id": "1:5555597257152232090",
@@ -95,6 +95,11 @@
           "id": "6:6007920042929438378",
           "name": "lastUpdate",
           "type": 10
+        },
+        {
+          "id": "7:853334162452125539",
+          "name": "urlImage",
+          "type": 9
         }
       ],
       "relations": []

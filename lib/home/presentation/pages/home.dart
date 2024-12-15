@@ -11,50 +11,58 @@ class HomePage extends GetResponsiveView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        floatingActionButton: SizedBox(
-          height: 72,
-          width: 72,
-          child: CircularHomeFloatingActionButton(),
-        ),
-        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        bottomNavigationBar: const BottomAppbarResponsive(),
-        backgroundColor: Theme.of(context).colorScheme.surface,
-        body: SafeArea(
-          child: NestedScrollView(
-            floatHeaderSlivers: true,
-            headerSliverBuilder:
-                (BuildContext context, bool innerBoxIsScrolled) {
-              return [
-                const HomeAppBar(),
-              ];
-            },
-            body: PageView(
-            //  physics: const NeverScrollableScrollPhysics(),
-              controller: controller.pageController,
-              children: [
-                const HomePager(),
-                Container(
-                  color: Theme.of(context).colorScheme.surface,
-                  child: const Center(
-                    child: Text('Calendar'),
+    return Stack(
+      children: [
+        Scaffold(
+          floatingActionButton: const SizedBox(
+              height: 72,
+              width: 72,
+              ),
+          floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+          backgroundColor: Theme.of(context).colorScheme.surface,
+          bottomNavigationBar: const BottomAppbarResponsive(),
+          body: SafeArea(
+            child: NestedScrollView(
+              floatHeaderSlivers: true,
+              headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+                return [
+                  const HomeAppBar(),
+                ];
+              },
+              body: PageView(
+                controller: controller.pageController,
+                children: [
+                  const HomePager(),
+                  Container(
+                    color: Theme.of(context).colorScheme.surface,
+                    child: const Center(
+                      child: Text('Calendar'),
+                    ),
                   ),
-                ),
-                Container(
-                  color: Theme.of(context).colorScheme.surface,
-                  child: const Center(
-                    child: Text('Notifications'),
+                  Container(
+                    color: Theme.of(context).colorScheme.surface,
+                    child: const Center(
+                      child: Text('Notifications'),
+                    ),
                   ),
-                ),
-                Container(
-                  color: Theme.of(context).colorScheme.surface,
-                  child: const Center(
-                    child: Text('Profile'),
+                  Container(
+                    color: Theme.of(context).colorScheme.surface,
+                    child: const Center(
+                      child: Text('Profile'),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
-        ));
+        ),
+        Align(
+          alignment: Alignment.bottomCenter,
+            child: Padding(
+              padding: const EdgeInsets.only(bottom:44.0),
+              child: const CircularHomeFloatingActionButton(),
+            )),
+      ],
+    );
   }
 }

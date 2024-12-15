@@ -14,9 +14,9 @@ import 'package:objectbox/internal.dart'
 import 'package:objectbox/objectbox.dart' as obx;
 import 'package:objectbox_flutter_libs/objectbox_flutter_libs.dart';
 
-import 'features/user/data/models/users_model.dart';
 import 'features/appointment/data/models/appointment.dart';
 import 'features/client/data/models/client.dart';
+import 'features/user/data/models/users_model.dart';
 
 export 'package:objectbox/objectbox.dart'; // so that callers only have to import this file
 
@@ -73,14 +73,14 @@ final _entities = <obx_int.ModelEntity>[
             type: 11,
             flags: 520,
             indexId: const obx_int.IdUid(1, 7900870585069514014),
-            relationTarget: 'ClientSchema')
+            relationTarget: 'ClientModel')
       ],
       relations: <obx_int.ModelRelation>[],
       backlinks: <obx_int.ModelBacklink>[]),
   obx_int.ModelEntity(
       id: const obx_int.IdUid(2, 3),
-      name: 'ClientSchema',
-      lastPropertyId: const obx_int.IdUid(6, 6007920042929438378),
+      name: 'ClientModel',
+      lastPropertyId: const obx_int.IdUid(7, 853334162452125539),
       flags: 0,
       properties: <obx_int.ModelProperty>[
         obx_int.ModelProperty(
@@ -112,6 +112,11 @@ final _entities = <obx_int.ModelEntity>[
             id: const obx_int.IdUid(6, 6007920042929438378),
             name: 'lastUpdate',
             type: 10,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(7, 853334162452125539),
+            name: 'urlImage',
+            type: 9,
             flags: 0)
       ],
       relations: <obx_int.ModelRelation>[],
@@ -305,20 +310,18 @@ obx_int.ModelDefinition getObjectBoxModel() {
         },
         objectToFB: (ClientModel object, fb.Builder fbb) {
           final nameOffset = fbb.writeString(object.name);
-          final emailOffset =
-              object.email == null ? null : fbb.writeString(object.email!);
-          final phoneOffset =
-              object.phone == null ? null : fbb.writeString(object.phone!);
-          final imagePathOffset = object.imagePath == null
-              ? null
-              : fbb.writeString(object.imagePath!);
-          fbb.startTable(7);
+          final emailOffset = fbb.writeString(object.email);
+          final phoneOffset = fbb.writeString(object.phone);
+          final imagePathOffset = fbb.writeString(object.imagePath);
+          final urlImageOffset = fbb.writeString(object.urlImage);
+          fbb.startTable(8);
           fbb.addInt64(0, object.id);
           fbb.addOffset(1, nameOffset);
           fbb.addOffset(2, emailOffset);
           fbb.addOffset(3, phoneOffset);
           fbb.addOffset(4, imagePathOffset);
           fbb.addInt64(5, object.lastUpdate.millisecondsSinceEpoch);
+          fbb.addOffset(6, urlImageOffset);
           fbb.finish(fbb.endTable());
           return object.id;
         },
@@ -329,17 +332,20 @@ obx_int.ModelDefinition getObjectBoxModel() {
               const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
           final nameParam = const fb.StringReader(asciiOptimization: true)
               .vTableGet(buffer, rootOffset, 6, '');
+          final urlImageParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGet(buffer, rootOffset, 16, '');
           final emailParam = const fb.StringReader(asciiOptimization: true)
-              .vTableGetNullable(buffer, rootOffset, 8);
+              .vTableGet(buffer, rootOffset, 8, '');
           final lastUpdateParam = DateTime.fromMillisecondsSinceEpoch(
               const fb.Int64Reader().vTableGet(buffer, rootOffset, 14, 0));
           final phoneParam = const fb.StringReader(asciiOptimization: true)
-              .vTableGetNullable(buffer, rootOffset, 10);
+              .vTableGet(buffer, rootOffset, 10, '');
           final imagePathParam = const fb.StringReader(asciiOptimization: true)
-              .vTableGetNullable(buffer, rootOffset, 12);
+              .vTableGet(buffer, rootOffset, 12, '');
           final object = ClientModel(
               id: idParam,
               name: nameParam,
+              urlImage: urlImageParam,
               email: emailParam,
               lastUpdate: lastUpdateParam,
               phone: phoneParam,
@@ -456,7 +462,7 @@ class AppointmentSchema_ {
 }
 
 /// [ClientModel] entity fields to define ObjectBox queries.
-class ClientSchema_ {
+class ClientModel_ {
   /// See [ClientModel.id].
   static final id =
       obx.QueryIntegerProperty<ClientModel>(_entities[1].properties[0]);
@@ -480,6 +486,10 @@ class ClientSchema_ {
   /// See [ClientModel.lastUpdate].
   static final lastUpdate =
       obx.QueryDateProperty<ClientModel>(_entities[1].properties[5]);
+
+  /// See [ClientModel.urlImage].
+  static final urlImage =
+      obx.QueryStringProperty<ClientModel>(_entities[1].properties[6]);
 
   /// see [ClientModel.linkAppointments]
   static final linkAppointments =

@@ -1,3 +1,4 @@
+import 'package:appointments_manager/home/presentation/controllers/home_controller.dart';
 import 'package:circular_menu/circular_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:hugeicons/hugeicons.dart';
@@ -22,7 +23,9 @@ class CircularHomeFloatingActionButton extends StatelessWidget {
         boxShadow: const [],
         color: Theme.of(context).colorScheme.primary,
         icon: HugeIcons.strokeRoundedUserAdd01,
-        onTap: () {},
+        onTap: () {
+          HomeController.to.goToCreateClientPage();
+        },
       ),
       CircularMenuItem(
         color: Theme.of(context).colorScheme.primary,
