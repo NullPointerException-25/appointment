@@ -1,0 +1,41 @@
+import 'package:circular_menu/circular_menu.dart';
+import 'package:flutter/material.dart';
+import 'package:hugeicons/hugeicons.dart';
+
+class CircularHomeFloatingActionButton extends StatelessWidget {
+  const CircularHomeFloatingActionButton({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return CircularMenu(
+      toggleButtonAnimatedIconData: AnimatedIcons.menu_close,
+        animationDuration: const Duration(milliseconds: 300),
+        toggleButtonColor: Theme.of(context).colorScheme.primary,
+        toggleButtonSize: 32,
+        curve: Curves.linear,
+        reverseCurve: Curves.easeInOut,
+        endingAngleInRadian: (315*6.28)/360, // 315 degrees
+        startingAngleInRadian: (225*6.28)/360, // 225 degrees
+        toggleButtonBoxShadow: const [],
+        items: [
+      CircularMenuItem(
+        boxShadow: const [],
+        color: Theme.of(context).colorScheme.primary,
+        icon: HugeIcons.strokeRoundedUserAdd01,
+        onTap: () {},
+      ),
+      CircularMenuItem(
+        color: Theme.of(context).colorScheme.primary,
+        icon: HugeIcons.strokeRoundedCalendarAdd01,
+        boxShadow: const [],
+        onTap: () {},
+      ),
+      CircularMenuItem(
+        boxShadow: const [],
+        color: Theme.of(context).colorScheme.primary,
+        icon: HugeIcons.strokeRoundedFileAdd,
+        onTap: () {},
+      ),
+    ]);
+  }
+}

@@ -119,7 +119,9 @@ final ThemeData lightTheme = ThemeData(
   ),
   dividerColor: Colors.white54,
   colorScheme: ColorScheme.fromSwatch(primarySwatch: ThemeColors.primary)
-      .copyWith(surface: ThemeColors.white, secondary: ThemeColors.lightBlue, ),
+      .copyWith(surface: ThemeColors.white, secondary: ThemeColors.lightBlue,
+    onPrimary: ThemeColors.lightBlue, onSecondary: ThemeColors.lighterBlue),
+  iconTheme: const IconThemeData(color: ThemeColors.white),
 );
 
 final ThemeData darkTheme = ThemeData(
@@ -226,8 +228,10 @@ final ThemeData darkTheme = ThemeData(
   ),
   dividerColor: Colors.black54,
   colorScheme: ColorScheme.fromSwatch(primarySwatch: ThemeColors.primary).copyWith(
-      surface: ThemeColors.dark,
+      surface: ThemeColors.black,
       brightness: Brightness.dark,
+      onPrimary: ThemeColors.dark,
+      onSecondary: ThemeColors.dark,
       secondary: ThemeColors.darkBlue),
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
@@ -243,4 +247,5 @@ final ThemeData darkTheme = ThemeData(
   iconButtonTheme:  IconButtonThemeData(style: ButtonStyle(
     iconColor: WidgetStateProperty.all(ThemeColors.white),
   )),
+  iconTheme: const IconThemeData(color: ThemeColors.white),
 );

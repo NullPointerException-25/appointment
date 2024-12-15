@@ -1,4 +1,6 @@
-import 'package:appointments_manager/data/user_data_repository.dart';
+import 'package:appointments_manager/data/local/appointments_repository_imp_local.dart';
+import 'package:appointments_manager/data/local/clients_repository_imp_local.dart';
+import 'package:appointments_manager/data/local/user_data_repository.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -27,10 +29,15 @@ class _SplashPageState extends State<SplashPage> {
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 1), () {
-      if(kIsWeb){
-        return;
+      if(!kIsWeb){
+        //Set up Repositories for mobile and desktop
+        Get.put(UserDataRepositoryImpLocal());
+        Get.put(ClientsRepositoryImpLocal());
+        Get.put(AppointmentsRepositoryImpLocal());
       }
-      Get.put(UserDataRepository());
+      //Set up other Repositories for web only
+
+
     });
   }
 }

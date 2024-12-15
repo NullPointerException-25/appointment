@@ -12,6 +12,7 @@ class UserSchema {
   String name;
   String? email;
   bool isCurrentUser;
+  DateTime lastUpdate= DateTime.now();
   bool isSetupComplete;
 
   @Transient()

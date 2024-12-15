@@ -4,38 +4,139 @@
   "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
   "entities": [
     {
-      "id": "1:1",
-      "lastPropertyId": "6:2334729558029385467",
-      "name": "UserSchema",
+      "id": "1:2",
+      "lastPropertyId": "9:7617349162006730990",
+      "name": "AppointmentSchema",
       "properties": [
         {
-          "id": "1:3435480109224490087",
+          "id": "1:3717834262775929084",
           "name": "id",
           "type": 6,
           "flags": 1
         },
         {
-          "id": "2:3730736141402421141",
+          "id": "2:8490447078486864820",
+          "name": "title",
+          "type": 9
+        },
+        {
+          "id": "3:8145614914489207244",
+          "name": "description",
+          "type": 9
+        },
+        {
+          "id": "4:1734301670390868762",
+          "name": "fromDate",
+          "type": 10
+        },
+        {
+          "id": "5:5440451931260295761",
+          "name": "toDate",
+          "type": 10
+        },
+        {
+          "id": "6:5375064600237580625",
+          "name": "lastUpdate",
+          "type": 10
+        },
+        {
+          "id": "7:877759975389265884",
+          "name": "location",
+          "type": 9
+        },
+        {
+          "id": "8:2435066323877104109",
           "name": "imagePath",
           "type": 9
         },
         {
-          "id": "3:4268937227030012046",
+          "id": "9:7617349162006730990",
+          "name": "clientId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "1:7900870585069514014",
+          "relationTarget": "ClientSchema"
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "2:3",
+      "lastPropertyId": "6:6007920042929438378",
+      "name": "ClientSchema",
+      "properties": [
+        {
+          "id": "1:5555597257152232090",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:3204969529432121208",
           "name": "name",
           "type": 9
         },
         {
-          "id": "4:734087605394478676",
+          "id": "3:1931603103080843960",
           "name": "email",
           "type": 9
         },
         {
-          "id": "5:6894936549535744608",
+          "id": "4:6049600247455947164",
+          "name": "phone",
+          "type": 9
+        },
+        {
+          "id": "5:4414747151987861419",
+          "name": "imagePath",
+          "type": 9
+        },
+        {
+          "id": "6:6007920042929438378",
+          "name": "lastUpdate",
+          "type": 10
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "3:1",
+      "lastPropertyId": "7:8865586706154070390",
+      "name": "UserSchema",
+      "properties": [
+        {
+          "id": "1:4359905876601394740",
+          "name": "id",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:1712312824777077428",
+          "name": "imagePath",
+          "type": 9
+        },
+        {
+          "id": "3:303102462384224252",
+          "name": "name",
+          "type": 9
+        },
+        {
+          "id": "4:3290830076114544379",
+          "name": "email",
+          "type": 9
+        },
+        {
+          "id": "5:4675380094038512335",
           "name": "isCurrentUser",
           "type": 1
         },
         {
-          "id": "6:2334729558029385467",
+          "id": "6:2961562627451087569",
+          "name": "lastUpdate",
+          "type": 10
+        },
+        {
+          "id": "7:8865586706154070390",
           "name": "isSetupComplete",
           "type": 1
         }
@@ -43,8 +144,8 @@
       "relations": []
     }
   ],
-  "lastEntityId": "1:1",
-  "lastIndexId": "0:0",
+  "lastEntityId": "3:1",
+  "lastIndexId": "1:7900870585069514014",
   "lastRelationId": "0:0",
   "lastSequenceId": "0:0",
   "modelVersion": 5,
