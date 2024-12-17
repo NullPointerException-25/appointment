@@ -19,12 +19,14 @@ class ImagePickerFormField extends FormField<File?> {
       return GestureDetector(
         onTap: () async {
           if(state.value != null) {
-            state.didChange(null);
+             onSaved(null);
+              state.didChange(null);
             return;
           }
           final image = await ImagePicker().pickImage(source: ImageSource.gallery);
           if (image != null) {
             state.didChange(File(image.path));
+            onSaved(File(image.path));
           }
         },
         child: Container(
@@ -36,20 +38,16 @@ class ImagePickerFormField extends FormField<File?> {
           child: Row(
             mainAxisAlignment:MainAxisAlignment.center,
             children: [
-              Icon(
+              const Icon(
                 HugeIcons.strokeRoundedImage01,
                 size: kIconSizeXS,
-                color: Theme.of(state.context).brightness == Brightness.dark
-                    ? ThemeColors.white
-                    : ThemeColors.dark,
+                color: ThemeColors.white,
               ),
               const SizedBox(width: 10),
               Text(state.value != null ? Translator.unSelectImage.tr : Translator.selectImage.tr,
-                style: TextStyle(
+                style: const  TextStyle(
                   fontSize: kFontSizeS,
-                  color: Theme.of(state.context).brightness == Brightness.dark
-                      ? ThemeColors.white
-                      : ThemeColors.dark,
+                  color: ThemeColors.white
                 ),
               ),
             ],

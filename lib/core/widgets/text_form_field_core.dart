@@ -1,5 +1,6 @@
 import 'package:appointments_manager/core/utils/colors.dart';
 import 'package:appointments_manager/core/utils/fonts.dart';
+import 'package:appointments_manager/core/utils/global_values.dart';
 import 'package:flutter/material.dart';
 
 class TextFormFieldCore extends StatelessWidget {
@@ -23,6 +24,7 @@ class TextFormFieldCore extends StatelessWidget {
       this.maxLines,
       this.minLines,
       this.expands,
+      this.maxLength,
       this.autofillHints,
       this.contentPadding});
 
@@ -46,13 +48,16 @@ class TextFormFieldCore extends StatelessWidget {
   final bool? expands;
   final EdgeInsetsGeometry? contentPadding;
   final String? autofillHints;
+  final int? maxLength;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      maxLength: maxLength,
       validator: validator,
       style: TextStyle(
         fontFamily: FontFamily.montserrat,
+        fontSize: kFontSizeM,
         color: Theme.of(context).brightness == Brightness.dark
             ? ThemeColors.white
             : ThemeColors.dark,
@@ -81,7 +86,7 @@ class TextFormFieldCore extends StatelessWidget {
         ),
         labelStyle: TextStyle(
           fontFamily: FontFamily.montserrat,
-          fontWeight: FontWeight.w500,
+          fontWeight: FontWeight.w300,
           color: Theme.of(context).brightness == Brightness.dark
               ? ThemeColors.white.withOpacity(0.9)
               : ThemeColors.dark.withOpacity(0.5),
@@ -106,6 +111,13 @@ class TextFormFieldCore extends StatelessWidget {
                 : ThemeColors.dark,
           ),
         ),
+        counterStyle: TextStyle(
+          fontFamily: FontFamily.montserrat,
+          fontSize: kFontSizeS,
+          color: Theme.of(context).brightness == Brightness.dark
+              ? ThemeColors.white
+              : ThemeColors.dark,
+        ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10),
           borderSide: BorderSide(
@@ -120,6 +132,29 @@ class TextFormFieldCore extends StatelessWidget {
             color: Theme.of(context).brightness == Brightness.dark
                 ? ThemeColors.white.withOpacity(0.5)
                 : ThemeColors.dark.withOpacity(0.5),
+          ),
+        ),
+        errorStyle: TextStyle(
+          fontFamily: FontFamily.montserrat,
+          fontSize: kFontSizeS,
+          color: Theme.of(context).brightness == Brightness.dark
+              ? ThemeColors.errorRed
+              : ThemeColors.errorRed,
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: BorderSide(
+            color: Theme.of(context).brightness == Brightness.dark
+                ? ThemeColors.errorRed
+                : ThemeColors.errorRed,
+          ),
+        ),
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10),
+          borderSide: BorderSide(
+            color: Theme.of(context).brightness == Brightness.dark
+                ? ThemeColors.errorRed
+                : ThemeColors.errorRed,
           ),
         ),
       ),

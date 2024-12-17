@@ -1,13 +1,15 @@
 import 'package:appointments_manager/core/utils/colors.dart';
 import 'package:appointments_manager/core/utils/global_values.dart';
 import 'package:appointments_manager/core/utils/translations.dart';
+import 'package:appointments_manager/features/client/presentation/controllers/create_client_controller.dart';
 import 'package:appointments_manager/features/client/presentation/widgets/create_client_form.dart';
 import 'package:appointments_manager/features/client/presentation/widgets/create_client_preview_card.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import 'package:hugeicons/hugeicons.dart';
 
-class CreateClientPage extends StatelessWidget {
+class CreateClientPage extends GetView<CreateClientController> {
   const CreateClientPage({super.key});
 
   @override
@@ -21,7 +23,7 @@ class CreateClientPage extends StatelessWidget {
                 slivers: [
                   SliverAppBar(
                     title: Text(
-                      'Create Client',
+                      Translator.createClient.tr,
                       style: TextStyle(
                           color: Theme.of(context).brightness == Brightness.dark
                               ? ThemeColors.white
@@ -59,7 +61,11 @@ class CreateClientPage extends StatelessWidget {
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.all(kPaddingM),
-                    child: ElevatedButton(onPressed: (){}, child: Center(child: Text(Translator.save.tr))),
+                    child: ElevatedButton(onPressed: (){
+                      if(controller.formKey.currentState!.validate()){
+                        controller.formKey.currentState!.save();
+                      }
+                    }, child: Center(child: Text(Translator.save.tr))),
                 ),
                 ),
               ],

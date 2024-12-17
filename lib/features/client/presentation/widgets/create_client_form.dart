@@ -6,12 +6,10 @@ import 'package:appointments_manager/core/widgets/text_form_field_core.dart';
 import 'package:appointments_manager/features/client/presentation/controllers/create_client_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import 'package:hugeicons/hugeicons.dart';
 
 class CreateClientForm extends GetView<CreateClientController> {
    CreateClientForm({super.key});
-  final formKey = GlobalKey<FormState>();
   final focusNodeName = FocusNode();
   final focusNodeEmail = FocusNode();
   final focusNodePhone = FocusNode();
@@ -20,6 +18,7 @@ class CreateClientForm extends GetView<CreateClientController> {
   @override
   Widget build(BuildContext context) {
     return Form(
+      key: controller.formKey,
       child: Column(
         children: [
           Row(
@@ -34,6 +33,7 @@ class CreateClientForm extends GetView<CreateClientController> {
             ],
           ),
           TextFormFieldCore(
+            maxLength: 30,
             onChanged: (value) {
               controller.name.value = value;
             },
@@ -63,14 +63,26 @@ class CreateClientForm extends GetView<CreateClientController> {
             ),
           ),
           const SizedBox(
-            height: 20,
+            height: kPaddingS,
           ),
           TextFormFieldCore(
+            maxLength: 15,
             focusNode: focusNodePhone,
             onFieldSubmitted: (value) {
               FocusScope.of(context).requestFocus(focusNodeEmail);
               Scrollable.ensureVisible(focusNodeEmail.context!, duration: const Duration(milliseconds: 500));
 
+            },
+            validator: (value) {
+              if(value!=null){
+                if (!value.trim().isPhoneNumber) {
+                  return Translator.enterValidPhone.tr;
+                }
+              }
+              return null;
+            },
+            onChanged: (value) {
+              controller.phone.value = value;
             },
             prefixIcon: Icon(
               HugeIcons.strokeRoundedTelephone,
@@ -86,13 +98,25 @@ class CreateClientForm extends GetView<CreateClientController> {
             hintText: Translator.phone.tr,
           ),
           const SizedBox(
-            height: 20,
+            height: kPaddingS,
           ),
           TextFormFieldCore(
+            maxLength: 50,
             focusNode: focusNodeEmail,
             onFieldSubmitted: (value) {
               FocusScope.of(context).requestFocus(focusNodeDescription);
               Scrollable.ensureVisible(focusNodeDescription.context!, duration: const Duration(milliseconds: 500));
+            },
+            onChanged: (value) {
+              controller.email.value = value;
+            },
+            validator: (value) {
+              if(value!=null){
+                if (!value.trim().isEmail) {
+                  return Translator.pleaseEnterAValidEmail.tr;
+                }
+              }
+              return null;
             },
             prefixIcon: Icon(
               HugeIcons.strokeRoundedMail01,
@@ -108,9 +132,13 @@ class CreateClientForm extends GetView<CreateClientController> {
             autofillHints: AutofillHints.email,
           ),
           const SizedBox(
-            height: 20,
+            height: kPaddingS,
           ),
           TextFormFieldCore(
+            maxLength: 300,
+            onChanged: (value) {
+              controller.description.value = value;
+            },
             focusNode: focusNodeDescription,
             minLines: 3,
             hintText:
