@@ -32,6 +32,8 @@ class Translator extends Translations {
           "save": "Save",
           "create_client": "Create Client",
           "descriptionHint": "Give a general description of the client or any other information you want to keep",
+          "unSelectImage": "Unselect Image",
+          "selectImage": "Select Image",
         },
         'es': {
           'title': 'Gestor de Citas',
@@ -64,6 +66,8 @@ class Translator extends Translations {
   static String get description => "description";
   static String get phone => "phone";
   static String get createClient => "create_client";
+  static String get unSelectImage => "unSelectImage";
+  static String get selectImage => "selectImage";
 
 
 

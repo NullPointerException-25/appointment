@@ -1,6 +1,8 @@
 import 'package:appointments_manager/core/utils/colors.dart';
 import 'package:appointments_manager/core/utils/global_values.dart';
+import 'package:appointments_manager/core/utils/translations.dart';
 import 'package:flutter/material.dart';
+import 'package:get/utils.dart';
 import 'package:hugeicons/hugeicons.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
@@ -42,7 +44,7 @@ class ImagePickerFormField extends FormField<File?> {
                     : ThemeColors.dark,
               ),
               const SizedBox(width: 10),
-              Text(state.value != null ? 'Change Image' : 'Select Image',
+              Text(state.value != null ? Translator.unSelectImage.tr : Translator.selectImage.tr,
                 style: TextStyle(
                   fontSize: kFontSizeS,
                   color: Theme.of(state.context).brightness == Brightness.dark

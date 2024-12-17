@@ -3,11 +3,13 @@ import 'package:appointments_manager/core/utils/global_values.dart';
 import 'package:appointments_manager/core/utils/translations.dart';
 import 'package:appointments_manager/core/widgets/image_picker_form_field_core.dart';
 import 'package:appointments_manager/core/widgets/text_form_field_core.dart';
+import 'package:appointments_manager/features/client/presentation/controllers/create_client_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import 'package:hugeicons/hugeicons.dart';
 
-class CreateClientForm extends StatelessWidget {
+class CreateClientForm extends GetView<CreateClientController> {
    CreateClientForm({super.key});
   final formKey = GlobalKey<FormState>();
   final focusNodeName = FocusNode();
@@ -26,20 +28,28 @@ class CreateClientForm extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: kPaddingS),
                 child: ImagePickerFormField(onSaved: (value) {
-                  print(value);
+                  controller.image.value = value;
                 }),
               ),
             ],
           ),
           TextFormFieldCore(
+            onChanged: (value) {
+              controller.name.value = value;
+            },
             focusNode: focusNodeName,
             onFieldSubmitted: (value) {
               FocusScope.of(context).requestFocus(focusNodePhone);
               Scrollable.ensureVisible(focusNodePhone.context!, duration: const Duration(milliseconds: 500));
 
             },
+            validator: (value) {
+              if (value!.isEmpty) {
+                return Translator.pleaseEnterSomeText.tr;
+              }
+              return null;
+            },
             autofillHints: AutofillHints.name,
-            autofocus: true,
             maxLines: 1,
             hintText: Translator.name.tr,
             labelText: Translator.name.tr,
