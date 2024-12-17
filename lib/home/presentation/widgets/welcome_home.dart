@@ -15,7 +15,7 @@ class WelcomeHomeSection extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(kPaddingM),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(kCornerRadiusM),
         child: AnimatedMeshGradient(
           colors: [
             ThemeColors.lightBlue,

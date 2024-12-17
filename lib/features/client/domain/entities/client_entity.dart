@@ -7,12 +7,14 @@ class ClientEntity extends CoreEntity<ClientModel> {
   String phone;
   String localImagePath;
   String urlImage;
+  String description;
 
   ClientEntity({
     int id = 0,
     super.remoteId = "",
     DateTime? lastUpdate,
     required this.name,
+    this.description = "",
     this.urlImage = "",
     this.email = "",
     this.phone = "",
@@ -31,6 +33,8 @@ class ClientEntity extends CoreEntity<ClientModel> {
       imagePath: localImagePath,
       urlImage: urlImage,
       lastUpdate: lastUpdate,
+      description: description,
+      remoteId: remoteId,
     );
   }
 }

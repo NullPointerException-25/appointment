@@ -15,6 +15,30 @@ const double kCornerRadiusL = 20.0;
 const double kCornerRadiusXL = 25.0;
 const double kCornerRadiusXXL = 30.0;
 
+const double kSpacing = 10.0;
+const double kSpacingS = 5.0;
+const double kSpacingM = 15.0;
+const double kSpacingL = 20.0;
+const double kSpacingXL = 25.0;
+const double kSpacingXXL = 30.0;
+
+const double kIconSize = 24.0;
+const double kIconSizeXS = 16.0;
+const double kIconSizeS = 20.0;
+const double kIconSizeM = 30.0;
+const double kIconSizeL = 40.0;
+const double kIconSizeXL = 50.0;
+const double kIconSizeXXL = 60.0;
+
+const double kFontSize = 14.0;
+const double kFontSizeS = 12.0;
+const double kFontSizeM = 16.0;
+const double kFontSizeL = 18.0;
+const double kFontSizeXL = 20.0;
+const double kFontSizeXXL = 24.0;
+
+
+
 
 class ResponsiveMedia {
   BuildContext context;
