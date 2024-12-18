@@ -17,7 +17,7 @@ class AppointmentSchema {
   String? imagePath;
   @Transient()
   late Duration duration;
-  final client = ToOne<ClientSchema>();
+  final client = ToOne<ClientModel>();
 
   AppointmentSchema({
     int? id,

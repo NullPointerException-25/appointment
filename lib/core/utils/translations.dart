@@ -3,6 +3,7 @@
 import 'package:get/get.dart';
 
 class Translator extends Translations {
+
   static String get appName => 'Appointments Manager';
   @override
   Map<String, Map<String, String>> get keys => {
@@ -25,6 +26,16 @@ class Translator extends Translations {
           "Finish": "Finish",
            "Welcome": "Welcome back,",
           "Today's total appointments": "Today's total appointments",
+          "name": "Name",
+          "email": "Email",
+          "phone": "Phone",
+          "description": "Description",
+          "save": "Save",
+          "create_client": "Create Client",
+          "descriptionHint": "Give a general description of the client or any other information you want to keep",
+          "unSelectImage": "Unselect Image",
+          "selectImage": "Select Image",
+          "enterValidPhone": "Please enter a valid phone number",
         },
         'es': {
           'title': 'Gestor de Citas',
@@ -52,5 +63,15 @@ class Translator extends Translations {
   static String get finish => "Finish";
   static String get welcome => "Welcome";
   static String get todaysTotalAppointments => "Today's total appointments";
+  static String get save => "Save";
+  static String get descriptionHint => "descriptionHint";
+  static String get description => "description";
+  static String get phone => "phone";
+  static String get createClient => "create_client";
+  static String get unSelectImage => "unSelectImage";
+  static String get selectImage => "selectImage";
+  static String get enterValidPhone => "enterValidPhone";
+
+
 
 }

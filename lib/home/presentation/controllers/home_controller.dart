@@ -1,4 +1,5 @@
 import 'package:appointments_manager/core/services/profile_service.dart';
+import 'package:appointments_manager/core/utils/routes.dart';
 import 'package:appointments_manager/features/user/data/models/users_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -17,6 +18,15 @@ class HomeController extends GetxController {
     super.onInit();
     _getUser();
   }
+
+  void goToCreateClientPage(){
+    Get.toNamed(Routes.newClient);
+  }
+
+  void goToCreateAppointmentPage(){
+    //Get.toNamed(Routes.newAppointment);
+  }
+
 
 
 

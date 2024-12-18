@@ -10,6 +10,7 @@ class BottomAppbarResponsive extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
+      clipBehavior: Clip.none,
       notchMargin: 8,
       shape: const CircularNotchedRectangle(),
       color: Theme.of(context).colorScheme.onPrimary,

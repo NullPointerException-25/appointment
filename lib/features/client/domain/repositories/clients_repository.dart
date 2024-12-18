@@ -1,9 +1,9 @@
-import 'package:appointments_manager/features/client/data/models/client.dart';
 
-abstract class ClientsRepository<T> {
-  Future<void> saveClient(ClientSchema client);
-  Future<ClientSchema?> getClientById(int id);
-  Future<List<ClientSchema>> getAllClients();
-  Future<void> deleteClient(ClientSchema client);
-  Future<List<ClientSchema>> getClientsByQuery(T query);
+import 'package:appointments_manager/features/client/domain/entities/client_entity.dart';
+
+abstract class ClientsRepository {
+  Future<void> saveClient(ClientEntity client);
+  Future<ClientEntity?> getClientById(int id);
+  Future<List<ClientEntity>> getAllClients();
+  Future<void> deleteClient(ClientEntity client);
 }

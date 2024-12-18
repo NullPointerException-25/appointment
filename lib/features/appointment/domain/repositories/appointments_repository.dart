@@ -7,7 +7,7 @@ abstract class AppointmentsRepository<T> {
   Future<AppointmentSchema?> getAppointment(int id);
 
   Future<List<AppointmentSchema>> getAllAppointmentsFromClient(
-      ClientSchema client,
+      ClientModel client,
       {int limit = 10,
       int offset = 0});
 

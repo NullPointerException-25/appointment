@@ -5,31 +5,35 @@ import 'package:get/get.dart';
 import 'package:objectbox/objectbox.dart';
 
 @Entity(uid: 3)
-class ClientSchema {
+class ClientModel {
   @Id()
   int id = 0;
   String name;
-  String? email;
-  String? phone;
-  String? imagePath;
+  String email;
+  String phone;
+  String imagePath;
+  String urlImage;
+  String description;
+  String remoteId;
   @Property(type: PropertyType.date)
   DateTime lastUpdate= DateTime.now();
   @Backlink("client")
   final linkAppointments = ToMany<AppointmentSchema>();
-  @Transient()
-  Rxn<File> file = Rxn<File>();
 
-  ClientSchema({
+  ClientModel({
     int? id,
+    this.description="",
     required this.name,
-    this.email,
+     this.urlImage="",
+    this.email="",
     required this.lastUpdate,
-    this.phone,
-    this.imagePath,
+    this.phone="",
+    this.imagePath="",
+    this.remoteId=""
   }) {
     if (id != null) {
       this.id = id;
     }
-    file.value = imagePath != null ? File(imagePath!) : null;
+
   }
 }

@@ -11,6 +11,9 @@ abstract class ThemeColors {
   static const Color ultraWhite = Color(0xFFffffff);
   static const Color dark = Color(0xFF272727);
   static const Color black = Color(0xFF19191a);
+  static const Color error = Color(0xFFFF9800);
+  static const Color errorLight = Color(0xFFFFA726);
+  static const Color errorRed = Color(0xFFD32F2F);
   static const MaterialColor primary = MaterialColor(
     0xFF146c94,
     <int, Color>{
