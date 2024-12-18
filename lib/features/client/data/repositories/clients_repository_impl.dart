@@ -8,7 +8,7 @@ class ClientsRepositoryImpl extends GetxService implements ClientsRepository{
   late final LocalClientDataSource _localClientDataSource;
 
   ClientsRepositoryImpl(){
-    Get.put<LocalClientDataSource>(LocalClientDataSource());
+   _localClientDataSource=  Get.put<LocalClientDataSource>(LocalClientDataSource());
   }
   @override
   Future<void> deleteClient(ClientEntity client) async {

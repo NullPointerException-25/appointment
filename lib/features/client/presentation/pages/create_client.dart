@@ -42,16 +42,15 @@ class CreateClientPage extends GetView<CreateClientController> {
                     ],
                   ),
                   const SliverToBoxAdapter(
-                      child: Padding(
-                        padding: EdgeInsets.only(top: kPaddingM, left: kPaddingM, right: kPaddingM),
-                        child: CreateClientPreviewCard(),
-                      ),
-                  ),
-                   SliverPadding(
-                    padding:  const EdgeInsets.symmetric(horizontal: 20),
-                    sliver: SliverToBoxAdapter(
-                      child: CreateClientForm()
+                    child: Padding(
+                      padding: EdgeInsets.only(
+                          top: kPaddingM, left: kPaddingM, right: kPaddingM),
+                      child: CreateClientPreviewCard(),
                     ),
+                  ),
+                  SliverPadding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20),
+                    sliver: SliverToBoxAdapter(child: CreateClientForm()),
                   ),
                 ],
               ),
@@ -61,12 +60,12 @@ class CreateClientPage extends GetView<CreateClientController> {
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.all(kPaddingM),
-                    child: ElevatedButton(onPressed: (){
-                      if(controller.formKey.currentState!.validate()){
-                        controller.formKey.currentState!.save();
-                      }
-                    }, child: Center(child: Text(Translator.save.tr))),
-                ),
+                    child: ElevatedButton(
+                        onPressed: () {
+                          controller.save();
+                        },
+                        child: Center(child: Text(Translator.save.tr))),
+                  ),
                 ),
               ],
             ),
