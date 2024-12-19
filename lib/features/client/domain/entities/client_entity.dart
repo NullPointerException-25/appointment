@@ -1,4 +1,5 @@
-import 'package:appointments_manager/core/entities/entity.dart';
+
+import 'package:appointments_manager/core/abstractions/entity.dart';
 import 'package:appointments_manager/features/client/data/models/client.dart';
 
 class ClientEntity extends CoreEntity<ClientModel> {

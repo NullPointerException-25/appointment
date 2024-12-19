@@ -1,4 +1,4 @@
-abstract class CoreEntity<model> {
+abstract class CoreEntity<Model> {
   final int localId;
   final String remoteId;
   final DateTime lastUpdate;
@@ -10,5 +10,5 @@ abstract class CoreEntity<model> {
     required this.lastUpdate,
   });
 
-  model toModel();
+  Model toModel();
 }
