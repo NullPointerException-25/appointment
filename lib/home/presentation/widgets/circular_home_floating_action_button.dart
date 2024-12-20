@@ -10,7 +10,7 @@ class CircularHomeFloatingActionButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return CircularMenu(
       toggleButtonAnimatedIconData: AnimatedIcons.menu_close,
-        animationDuration: const Duration(milliseconds: 300),
+        animationDuration: const Duration(milliseconds: 200),
         toggleButtonColor: Theme.of(context).colorScheme.primary,
         toggleButtonSize: 32,
         curve: Curves.linear,

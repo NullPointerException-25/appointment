@@ -3,19 +3,46 @@ import 'package:appointments_manager/features/client/domain/entities/client_quer
 import 'package:appointments_manager/features/client/domain/usecases/get_clients_by_params.dart';
 import 'package:get/get.dart';
 
-class ClientQueryController extends GetxController{
+class ClientQueryController extends GetxController {
   static ClientQueryController get to => Get.find<ClientQueryController>();
-  final RxList<ClientEntity> clients= RxList<ClientEntity>();
-  final Rx<ClientQueryParamsDto> params= Rx(ClientQueryParamsDto());
-
+  final RxList<ClientEntity> clients = RxList<ClientEntity>();
+  final Rx<ClientQueryParamsDto> _params = Rx<ClientQueryParamsDto>(
+      ClientQueryParamsDto());
+  final RxnString name = RxnString(null);
+  final RxBool descending = RxBool(false);
+  final RxBool orderByDate = RxBool(false);
+  int _limit = 10;
+  int _offset = 0;
 
   @override
   void onInit() {
     super.onInit();
-    getClientsByParams();
+    _getClientsByParams();
   }
 
-  void getClientsByParams() async{
-    clients.addAll(await GetClientsByParamsUseCase(queryParams: params.value).perform());
+  void _getClientsByParams() async {
+    clients.addAll(
+        await GetClientsByParamsUseCase(queryParams: _params.value).perform());
   }
+
+  void searchClients() {
+    clients.clear();
+    _limit = 10;
+    _offset = 0;
+    _params.value = ClientQueryParamsDto(
+      limit: _limit,
+      offset: _offset,
+      descending: descending.value,
+      orderByDate: orderByDate.value,
+      filterByName: name.value
+    );
+    _getClientsByParams();
+  }
+
+  void fetchMoreClients(){
+    _params.value=_params.value.copyWith(offset: clients.length+1);
+    _getClientsByParams();
+  }
+
+
 }

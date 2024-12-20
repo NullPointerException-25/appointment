@@ -1,6 +1,9 @@
 
+import 'dart:io';
+
 import 'package:appointments_manager/core/abstractions/entity.dart';
 import 'package:appointments_manager/features/client/data/models/client.dart';
+import 'package:get/get.dart';
 
 class ClientEntity extends CoreEntity<ClientModel> {
   String name;
@@ -9,6 +12,7 @@ class ClientEntity extends CoreEntity<ClientModel> {
   String localImagePath;
   String urlImage;
   String description;
+  Rxn<File> image= Rxn<File>();
 
   ClientEntity({
     int id = 0,
@@ -22,7 +26,9 @@ class ClientEntity extends CoreEntity<ClientModel> {
     this.localImagePath = "",
   }) : super(
             localId: id,
-            lastUpdate: lastUpdate ?? DateTime.now());
+            lastUpdate: lastUpdate ?? DateTime.now()){
+    image.value= localImagePath.isNotEmpty? File(localImagePath):null;
+  }
 
   @override
   ClientModel toModel() {
