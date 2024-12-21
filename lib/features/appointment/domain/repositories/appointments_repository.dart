@@ -2,20 +2,20 @@ import 'package:appointments_manager/features/appointment/data/models/appointmen
 import 'package:appointments_manager/features/client/data/models/client.dart';
 
 abstract class AppointmentsRepository<T> {
-  Future<void> saveAppointment(AppointmentSchema appointment);
+  Future<void> saveAppointment(AppointmentModel appointment);
 
-  Future<AppointmentSchema?> getAppointment(int id);
+  Future<AppointmentModel?> getAppointment(int id);
 
-  Future<List<AppointmentSchema>> getAllAppointmentsFromClient(
+  Future<List<AppointmentModel>> getAllAppointmentsFromClient(
       ClientModel client,
       {int limit = 10,
       int offset = 0});
 
-  Future<List<AppointmentSchema>> getAllAppointmentsBetweenDates(
+  Future<List<AppointmentModel>> getAllAppointmentsBetweenDates(
       DateTime from, DateTime to);
 
-  Future<void> deleteAppointment(AppointmentSchema appointment);
+  Future<void> deleteAppointment(AppointmentModel appointment);
 
-  Future<List<AppointmentSchema>> getAllAppointments();
-  Future<List<AppointmentSchema>> getAppointmentsByQuery(T query);
+  Future<List<AppointmentModel>> getAllAppointments();
+  Future<List<AppointmentModel>> getAppointmentsByQuery(T query);
 }

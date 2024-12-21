@@ -6,35 +6,35 @@ import 'package:appointments_manager/features/client/data/models/client.dart';
 import 'package:get/get.dart';
 
 class AppointmentsRepositoryImpLocal extends GetxService
-    implements AppointmentsRepository<QueryBuilder<AppointmentSchema>> {
+    implements AppointmentsRepository<QueryBuilder<AppointmentModel>> {
   final store = ObjectBoxService.to.store;
 
   @override
-  Future<void> deleteAppointment(AppointmentSchema appointment) async {
-    store.value?.box<AppointmentSchema>().remove(appointment.id);
+  Future<void> deleteAppointment(AppointmentModel appointment) async {
+    store.value?.box<AppointmentModel>().remove(appointment.id);
     return;
   }
 
   @override
-  Future<List<AppointmentSchema>> getAllAppointments() async {
-    return store.value?.box<AppointmentSchema>().getAll() ?? [];
+  Future<List<AppointmentModel>> getAllAppointments() async {
+    return store.value?.box<AppointmentModel>().getAll() ?? [];
   }
 
   @override
-  Future<List<AppointmentSchema>> getAllAppointmentsBetweenDates(
+  Future<List<AppointmentModel>> getAllAppointmentsBetweenDates(
       DateTime from, DateTime to) async {
     return await store.value
-            ?.box<AppointmentSchema>()
-            .query(AppointmentSchema_.fromDate
+            ?.box<AppointmentModel>()
+            .query(AppointmentModel_.fromDate
                 .greaterOrEqualDate(from)
-                .and(AppointmentSchema_.toDate.lessOrEqualDate(to)))
+                .and(AppointmentModel_.toDate.lessOrEqualDate(to)))
             .build()
             .findAsync() ??
         [];
   }
 
   @override
-  Future<List<AppointmentSchema>> getAllAppointmentsFromClient(
+  Future<List<AppointmentModel>> getAllAppointmentsFromClient(
       ClientModel client,
       {int limit = 10,
       int offset = 0}) async {
@@ -43,19 +43,19 @@ class AppointmentsRepositoryImpLocal extends GetxService
   }
 
   @override
-  Future<AppointmentSchema?> getAppointment(int id) async {
-    return store.value?.box<AppointmentSchema>().get(id);
+  Future<AppointmentModel?> getAppointment(int id) async {
+    return store.value?.box<AppointmentModel>().get(id);
   }
 
   @override
-  Future<List<AppointmentSchema>> getAppointmentsByQuery(
-      QueryBuilder<AppointmentSchema> query) async {
+  Future<List<AppointmentModel>> getAppointmentsByQuery(
+      QueryBuilder<AppointmentModel> query) async {
     return await query.build().findAsync();
   }
 
   @override
-  Future<void> saveAppointment(AppointmentSchema appointment) {
-    store.value?.box<AppointmentSchema>().put(appointment);
+  Future<void> saveAppointment(AppointmentModel appointment) {
+    store.value?.box<AppointmentModel>().put(appointment);
     return Future.value();
   }
 }

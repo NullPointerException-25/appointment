@@ -2,32 +2,30 @@ import 'package:appointments_manager/features/client/data/models/client.dart';
 import 'package:objectbox/objectbox.dart';
 
 @Entity(uid: 2)
-class AppointmentSchema {
+class AppointmentModel {
   @Id()
   int id = 0;
-  String title;
-  String? description;
+  String remoteId;
   @Property(type: PropertyType.date)
   DateTime fromDate;
   @Property(type: PropertyType.date)
   DateTime toDate;
   @Property(type: PropertyType.date)
   DateTime lastUpdate;
-  String? location;
-  String? imagePath;
   @Transient()
   late Duration duration;
   final client = ToOne<ClientModel>();
 
-  AppointmentSchema({
+  @Backlink("fields")
+  final fields = ToMany<AppointmentModel>(); 
+
+
+  AppointmentModel({
     int? id,
-    required this.title,
-    this.description,
+    this.remoteId="",
     required this.fromDate,
     required this.toDate,
     required this.lastUpdate,
-    this.location,
-    this.imagePath,
   }) {
     if (id != null) {
       this.id = id;

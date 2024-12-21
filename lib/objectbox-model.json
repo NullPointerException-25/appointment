@@ -5,24 +5,14 @@
   "entities": [
     {
       "id": "1:2",
-      "lastPropertyId": "9:7617349162006730990",
-      "name": "AppointmentSchema",
+      "lastPropertyId": "10:6491931774257631868",
+      "name": "AppointmentModel",
       "properties": [
         {
           "id": "1:3717834262775929084",
           "name": "id",
           "type": 6,
           "flags": 1
-        },
-        {
-          "id": "2:8490447078486864820",
-          "name": "title",
-          "type": 9
-        },
-        {
-          "id": "3:8145614914489207244",
-          "name": "description",
-          "type": 9
         },
         {
           "id": "4:1734301670390868762",
@@ -40,29 +30,24 @@
           "type": 10
         },
         {
-          "id": "7:877759975389265884",
-          "name": "location",
-          "type": 9
-        },
-        {
-          "id": "8:2435066323877104109",
-          "name": "imagePath",
-          "type": 9
-        },
-        {
           "id": "9:7617349162006730990",
           "name": "clientId",
           "type": 11,
           "flags": 520,
           "indexId": "1:7900870585069514014",
           "relationTarget": "ClientModel"
+        },
+        {
+          "id": "10:6491931774257631868",
+          "name": "remoteId",
+          "type": 9
         }
       ],
       "relations": []
     },
     {
       "id": "2:3",
-      "lastPropertyId": "7:853334162452125539",
+      "lastPropertyId": "9:5411359128605285278",
       "name": "ClientModel",
       "properties": [
         {
@@ -99,6 +84,16 @@
         {
           "id": "7:853334162452125539",
           "name": "urlImage",
+          "type": 9
+        },
+        {
+          "id": "8:7928134130994065322",
+          "name": "description",
+          "type": 9
+        },
+        {
+          "id": "9:5411359128605285278",
+          "name": "remoteId",
           "type": 9
         }
       ],
@@ -167,7 +162,12 @@
   "modelVersionParserMinimum": 5,
   "retiredEntityUids": [],
   "retiredIndexUids": [],
-  "retiredPropertyUids": [],
+  "retiredPropertyUids": [
+    8490447078486864820,
+    8145614914489207244,
+    877759975389265884,
+    2435066323877104109
+  ],
   "retiredRelationUids": [],
   "version": 1
 }

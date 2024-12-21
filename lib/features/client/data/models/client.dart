@@ -18,7 +18,7 @@ class ClientModel {
   @Property(type: PropertyType.date)
   DateTime lastUpdate= DateTime.now();
   @Backlink("client")
-  final linkAppointments = ToMany<AppointmentSchema>();
+  final linkAppointments = ToMany<AppointmentModel>();
 
   ClientModel({
     int? id,
