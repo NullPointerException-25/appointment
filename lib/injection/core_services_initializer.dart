@@ -13,7 +13,7 @@ class CoreServicesInitializer {
     if(!kIsWeb){
       //Set up Repositories for mobile and desktop
       Get.put(UserDataRepositoryImpLocal());
-      Get.put(ClientsRepositoryImpl());
+      Get.put(LocalClientsRepositoryImpl.init());
       Get.put(AppointmentsRepositoryImpLocal());
     }
     //Set up other Repositories for web only

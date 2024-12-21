@@ -1,10 +1,8 @@
-
-
 import 'package:get/get.dart';
 
 class Translator extends Translations {
-
   static String get appName => 'Appointments Manager';
+
   @override
   Map<String, Map<String, String>> get keys => {
         'en': {
@@ -24,7 +22,7 @@ class Translator extends Translations {
           'Please enter a valid email': 'Please enter a valid email',
           'Email': 'Email',
           "Finish": "Finish",
-           "Welcome": "Welcome back,",
+          "Welcome": "Welcome back,",
           "Today's total appointments": "Today's total appointments",
           "name": "Name",
           "email": "Email",
@@ -32,10 +30,17 @@ class Translator extends Translations {
           "description": "Description",
           "save": "Save",
           "create_client": "Create Client",
-          "descriptionHint": "Give a general description of the client or any other information you want to keep",
+          "descriptionHint":
+              "Give a general description of the client or any other information you want to keep",
           "unSelectImage": "Unselect Image",
           "selectImage": "Select Image",
           "enterValidPhone": "Please enter a valid phone number",
+          "filters": "Filters",
+          "viewProfile": "View profile",
+          "quickCall": "Quick call",
+          "scheduleAppointment": "Schedule appointment",
+          "clientsNotFound":"Your clients must be here, but at least we found a cat",
+          "addClient": "Add a client",
         },
         'es': {
           'title': 'Gestor de Citas',
@@ -46,32 +51,67 @@ class Translator extends Translations {
       };
 
   static String get title => 'title';
+
   static String get setup => 'setup';
+
   static String get home => 'home';
+
   static String get login => 'login';
+
   static String get letsGetStarted => "Let's get started";
+
   static String get whatsYourName => "What's your name?";
+
   static String get name => "Name";
+
   static String get next => "Next";
+
   static String get continueWithoutImage => "Continue without image";
+
   static String get noThanks => "No, thanks";
+
   static String get chooseYouProfileImage => "Choose you profile image";
-  static String get receiveEmailsOfNewFeatures => "Receive emails of new features?";
+
+  static String get receiveEmailsOfNewFeatures =>
+      "Receive emails of new features?";
+
   static String get pleaseEnterSomeText => "Please enter some text";
+
   static String get pleaseEnterAValidEmail => "Please enter a valid email";
+
   static String get email => "Email";
+
   static String get finish => "Finish";
+
   static String get welcome => "Welcome";
+
   static String get todaysTotalAppointments => "Today's total appointments";
+
   static String get save => "Save";
+
   static String get descriptionHint => "descriptionHint";
+
   static String get description => "description";
+
   static String get phone => "phone";
+
   static String get createClient => "create_client";
+
   static String get unSelectImage => "unSelectImage";
+
   static String get selectImage => "selectImage";
+
   static String get enterValidPhone => "enterValidPhone";
 
+  static String get filters => "filters";
 
+  static String get scheduleAppointment => "scheduleAppointment";
 
+  static String get quickCall => "quickCall";
+
+  static String get viewProfile => "viewProfile";
+
+  static String get clientsNotFound=>"clientsNotFound";
+
+  static String get addClient=>"addClient";
 }

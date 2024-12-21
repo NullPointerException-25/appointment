@@ -5,6 +5,6 @@ import 'package:get/instance_manager.dart';
 class CreateClientBinding extends Bindings{
   @override
   void dependencies() {
-    Get.lazyPut(() => CreateClientController(repository: ClientsRepositoryImpl.to));
+    Get.lazyPut(() => CreateClientController());
   }
 }
