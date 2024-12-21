@@ -2,11 +2,12 @@ import 'package:appointments_manager/core/utils/colors.dart';
 import 'package:appointments_manager/core/utils/global_values.dart';
 import 'package:appointments_manager/core/utils/translations.dart';
 import 'package:appointments_manager/features/client/domain/entities/client_entity.dart';
+import 'package:appointments_manager/features/client/presentation/controllers/client_query_controller.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_utils/src/extensions/internacionalization.dart';
+import 'package:get/get.dart';
 import 'package:hugeicons/hugeicons.dart';
 
-class ClientListItem extends StatelessWidget {
+class ClientListItem extends GetView<ClientQueryController> {
   const ClientListItem({super.key, required this.client});
 
   final ClientEntity client;
@@ -56,7 +57,9 @@ class ClientListItem extends StatelessWidget {
         childrenPadding: const EdgeInsets.symmetric(horizontal: kPaddingL),
         children: [
           InkWell(
-            onTap: () {},
+            onTap: () {
+              controller.goToClientDetailsPage(client);
+            },
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: kPaddingS),
               child: Row(
