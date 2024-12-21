@@ -1,5 +1,6 @@
+import 'package:appointments_manager/features/client/presentation/pagers/clients_home_pager.dart';
 import 'package:appointments_manager/home/presentation/controllers/home_controller.dart';
-import 'package:appointments_manager/home/presentation/pagers/home.dart';
+import 'package:appointments_manager/home/presentation/pagers/home_pager.dart';
 import 'package:appointments_manager/home/presentation/widgets/appbar.dart';
 import 'package:appointments_manager/home/presentation/widgets/bottom_appbar_responsive.dart';
 import 'package:appointments_manager/home/presentation/widgets/circular_home_floating_action_button.dart';
@@ -45,22 +46,17 @@ class HomePage extends GetResponsiveView<HomeController> {
                       child: Text('Notifications'),
                     ),
                   ),
-                  Container(
-                    color: Theme.of(context).colorScheme.surface,
-                    child: const Center(
-                      child: Text('Profile'),
-                    ),
-                  ),
+                  const ClientsHomePager(),
                 ],
               ),
             ),
           ),
         ),
-        Align(
+        const Align(
           alignment: Alignment.bottomCenter,
             child: Padding(
-              padding: const EdgeInsets.only(bottom:44.0),
-              child: const CircularHomeFloatingActionButton(),
+              padding:  EdgeInsets.only(bottom:44.0),
+              child:  CircularHomeFloatingActionButton(),
             )),
       ],
     );

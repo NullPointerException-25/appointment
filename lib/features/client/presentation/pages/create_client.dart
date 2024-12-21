@@ -2,11 +2,10 @@ import 'package:appointments_manager/core/utils/colors.dart';
 import 'package:appointments_manager/core/utils/global_values.dart';
 import 'package:appointments_manager/core/utils/translations.dart';
 import 'package:appointments_manager/features/client/presentation/controllers/create_client_controller.dart';
+import 'package:appointments_manager/features/client/presentation/widgets/client_card.dart';
 import 'package:appointments_manager/features/client/presentation/widgets/create_client_form.dart';
-import 'package:appointments_manager/features/client/presentation/widgets/create_client_preview_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_utils/src/extensions/internacionalization.dart';
 import 'package:hugeicons/hugeicons.dart';
 
 class CreateClientPage extends GetView<CreateClientController> {
@@ -41,11 +40,11 @@ class CreateClientPage extends GetView<CreateClientController> {
                       ),
                     ],
                   ),
-                  const SliverToBoxAdapter(
+                   SliverToBoxAdapter(
                     child: Padding(
-                      padding: EdgeInsets.only(
+                      padding: const EdgeInsets.only(
                           top: kPaddingM, left: kPaddingM, right: kPaddingM),
-                      child: CreateClientPreviewCard(),
+                      child: ClientCard<CreateClientController>(controller: controller)
                     ),
                   ),
                   SliverPadding(
