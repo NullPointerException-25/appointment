@@ -4,10 +4,9 @@ import 'package:get/get.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as p;
 
+class ObjectBoxService extends GetxService {
+  late final Rx<Store> store;
 
-
-class ObjectBoxService extends GetxService{
-  late final Rx<Store>? store;
   static ObjectBoxService get to => Get.find<ObjectBoxService>();
 
   @override
@@ -18,10 +17,11 @@ class ObjectBoxService extends GetxService{
 
   Future<ObjectBoxService> init(int profile) async {
     final docsDir = await getApplicationDocumentsDirectory();
-    if(store!=null){
-      store!.value=await openStore(directory: p.join(docsDir.path, "user$profile"));
-    } else {
-      store = Rx<Store>(await openStore(directory: p.join(docsDir.path, "user$profile")));
+    final directory = p.join(docsDir.path, "user$profile");
+    try {
+      store = Rx<Store>(await openStore(directory: directory));
+    } catch (e) {
+      store.value = await openStore(directory: directory);
     }
     return this;
   }
