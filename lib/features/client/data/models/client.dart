@@ -1,23 +1,24 @@
-import 'dart:io';
 
-import 'package:appointments_manager/core/abstractions/entity.dart';
 import 'package:appointments_manager/core/abstractions/model.dart';
 import 'package:appointments_manager/features/appointment/data/models/appointment.dart';
 import 'package:appointments_manager/features/client/domain/entities/client_entity.dart';
-import 'package:get/get.dart';
+import 'package:appointments_manager/objectbox.g.dart';
 import 'package:objectbox/objectbox.dart';
 
 @Entity(uid: 3)
 class ClientModel extends CoreModel<ClientEntity> {
+  @override
   @Id()
-  int id = 0;
+  int localId = 0;
   String name;
   String email;
   String phone;
   String imagePath;
   String urlImage;
   String description;
+  @override
   String remoteId;
+  @override
   @Property(type: PropertyType.date)
   DateTime lastUpdate = DateTime.now();
   @Backlink("client")
@@ -32,11 +33,7 @@ class ClientModel extends CoreModel<ClientEntity> {
       required this.lastUpdate,
       this.phone = "",
       this.imagePath = "",
-      this.remoteId = ""}) {
-    if (id != null) {
-      this.id = id;
-    }
-  }
+      this.remoteId = ""});
 
   @override
   ClientEntity toEntity() {
@@ -45,10 +42,11 @@ class ClientModel extends CoreModel<ClientEntity> {
         localImagePath: imagePath,
         description: description,
         phone: phone,
-        id: id,
+        localId: localId,
         lastUpdate: lastUpdate,
         remoteId: remoteId,
         urlImage: urlImage,
         email: email);
   }
+
 }

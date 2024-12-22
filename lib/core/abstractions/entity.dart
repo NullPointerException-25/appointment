@@ -1,14 +1,9 @@
 abstract class CoreEntity<Model> {
-  final int localId;
-  final String remoteId;
-  final DateTime lastUpdate;
+   int get localId;
+   String get remoteId;
+   DateTime get lastUpdate;
 
-
-  CoreEntity({
-    required this.localId,
-    required this.remoteId,
-    required this.lastUpdate,
-  });
+  CoreEntity(); 
 
   Model toModel();
 }

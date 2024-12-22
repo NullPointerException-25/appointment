@@ -6,6 +6,12 @@ import 'package:appointments_manager/features/client/data/models/client.dart';
 import 'package:get/get.dart';
 
 class ClientEntity extends CoreEntity<ClientModel> {
+  @override
+  int localId;
+  @override
+  String remoteId;
+  @override
+  late DateTime lastUpdate;
   String name;
   String email;
   String phone;
@@ -15,8 +21,8 @@ class ClientEntity extends CoreEntity<ClientModel> {
   Rxn<File> image= Rxn<File>();
 
   ClientEntity({
-    int id = 0,
-    super.remoteId = "",
+    this.localId = 0,
+    this.remoteId = "",
     DateTime? lastUpdate,
     required this.name,
     this.description = "",
@@ -24,10 +30,11 @@ class ClientEntity extends CoreEntity<ClientModel> {
     this.email = "",
     this.phone = "",
     this.localImagePath = "",
-  }) : super(
-            localId: id,
-            lastUpdate: lastUpdate ?? DateTime.now()){
+  }) {
     image.value= localImagePath.isNotEmpty? File(localImagePath):null;
+
+      this.lastUpdate=lastUpdate??DateTime.now();
+
   }
 
   @override
@@ -44,4 +51,5 @@ class ClientEntity extends CoreEntity<ClientModel> {
       remoteId: remoteId,
     );
   }
+
 }

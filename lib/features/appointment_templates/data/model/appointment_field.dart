@@ -1,35 +1,34 @@
-import 'package:appointments_manager/features/appointment/data/models/appointment.dart';
+import 'package:appointments_manager/core/abstractions/model.dart';
+import 'package:appointments_manager/features/appointment_templates/domain/entities/appointment_field_entity.dart';
 import 'package:objectbox/objectbox.dart';
 
 @Entity(uid: 6)
-class AppointmentFieldModel {
+class AppointmentFieldModel extends CoreModel<AppointmentFieldEntity> {
+  @override
   @Id()
-  int id;
+  int localId;
   final String title;
-  final int _formFieldType;
-  final bool isRequired;
-  final fields = ToMany<AppointmentModel>();
+  late int formFieldType;
+  @override
+  @Property(type: PropertyType.date)
+  late DateTime lastUpdate;
+  @override
+  String remoteId;
 
-  @Transient()
-  final Map<int, FormFieldType> _formFieldTypeEnum={
-    0: FormFieldType.unknown,
-    1: FormFieldType.number,
-    2: FormFieldType.shortText,
-    3: FormFieldType.largeText,
-    4: FormFieldType.date,
-    5: FormFieldType.imageList
-  };
+  AppointmentFieldModel(this.title, this.formFieldType,
+      {this.localId = 0, this.remoteId = "", DateTime? lastUpdate}) {
+    this.lastUpdate = lastUpdate ?? DateTime.now();
+  }
 
-  FormFieldType get formFieldTypeEnum => _formFieldTypeEnum[_formFieldType]?? FormFieldType.unknown;
-
-  AppointmentFieldModel(this.title, this._formFieldType, [this.isRequired=false, this.id=0]);
+  @override
+  AppointmentFieldEntity toEntity() {
+    return AppointmentFieldEntity(
+        title: title,
+        fieldType: formFieldType,
+        lastUpdate: lastUpdate,
+        remoteId: remoteId,
+        localId: localId);
+  }
 }
 
-enum FormFieldType {
-  number,
-  shortText,
-  largeText,
-  date,
-  imageList,
-  unknown
-}
+enum FormFieldType { number, shortText, largeText, date, imageList, unknown }
