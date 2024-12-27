@@ -52,6 +52,8 @@ dependencies:
   cloud_firestore: ^5.5.0
   circular_menu: ^4.0.0
   dotlottie_loader: ^0.0.4
+  jiffy: ^6.3.2
+  flutter_typeahead: ^5.2.0
 
 dev_dependencies:
   flutter_test:

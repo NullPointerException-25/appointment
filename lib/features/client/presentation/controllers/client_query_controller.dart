@@ -31,8 +31,18 @@ class ClientQueryController extends GetxController {
   void goToClientDetailsPage(ClientEntity client) {
     Get.toNamed(Routes.client,
         parameters: {
-         if(!kIsWeb) "localId": client.localId.toString(),
-          if(client.remoteId.isNotEmpty)"remoteId": client.remoteId
+          if (!kIsWeb) "localId": client.localId.toString(),
+          if (client.remoteId.isNotEmpty) "remoteId": client.remoteId
+        },
+        arguments: client);
+  }
+
+  void goToCreateAppointment(ClientEntity client) {
+    Get.toNamed(Routes.newAppointment,
+        parameters: {
+          if (!kIsWeb) "clientLocalId": client.localId.toString(),
+          if (client.remoteId.isNotEmpty)
+            "clientRemoteId": client.remoteId.toString()
         },
         arguments: client);
   }

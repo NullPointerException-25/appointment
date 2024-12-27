@@ -31,7 +31,7 @@ class HomeController extends GetxController {
   }
 
   void goToCreateAppointmentPage(){
-    //Get.toNamed(Routes.newAppointment);
+     Get.toNamed(Routes.newAppointment);
   }
 
 

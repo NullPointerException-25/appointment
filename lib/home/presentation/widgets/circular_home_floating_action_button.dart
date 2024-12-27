@@ -1,7 +1,6 @@
 import 'package:appointments_manager/home/presentation/controllers/home_controller.dart';
 import 'package:circular_menu/circular_menu.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:hugeicons/hugeicons.dart';
 
 class CircularHomeFloatingActionButton extends StatefulWidget{
@@ -47,7 +46,9 @@ class _CircularHomeFloatingActionButtonState extends State<CircularHomeFloatingA
             color: Theme.of(context).colorScheme.primary,
             icon: HugeIcons.strokeRoundedCalendarAdd01,
             boxShadow: const [],
-            onTap: () {},
+            onTap: () {
+              HomeController.to.goToCreateAppointmentPage();
+            },
           ),
           CircularMenuItem(
             boxShadow: const [],

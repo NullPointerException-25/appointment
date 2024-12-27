@@ -56,7 +56,6 @@ class HomePage extends GetResponsiveView<HomeController> {
           ),
         ),
         Obx(() {
-          debugPrint(controller.isCircularMenuOpened.value.toString());
           return Align(
             alignment: Alignment.bottomCenter,
             child: GestureDetector(

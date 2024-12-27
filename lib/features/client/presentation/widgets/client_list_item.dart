@@ -44,7 +44,7 @@ class ClientListItem extends GetView<ClientQueryController> {
                 color: Theme.of(context).brightness == Brightness.dark
                     ? ThemeColors.white
                     : ThemeColors.dark,
-                size: kIconSizeL,
+                size: kIconSizeM,
               ),
         title: Text(
           client.name,
@@ -101,7 +101,9 @@ class ClientListItem extends GetView<ClientQueryController> {
             ),
           ),
           InkWell(
-            onTap: () {},
+            onTap: () {
+              controller.goToCreateAppointment(client);
+            },
             child: Padding(
               padding: const EdgeInsets.symmetric(vertical: kPaddingS),
               child: Row(

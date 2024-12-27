@@ -46,7 +46,7 @@ class ClientsHomePager extends GetView<ClientQueryController> {
             return SliverList.builder(
                 itemCount: controller.clients.length,
                 itemBuilder: (context, index) {
-                  final client = controller.clients[0];
+                  final client = controller.clients[index];
                   return ClientListItem(client: client);
                 });
           },

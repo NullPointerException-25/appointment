@@ -3,6 +3,8 @@ import 'package:appointments_manager/core/services/profile_service.dart';
 import 'package:appointments_manager/core/utils/routes.dart';
 import 'package:appointments_manager/core/utils/themes.dart';
 import 'package:appointments_manager/core/utils/translations.dart';
+import 'package:appointments_manager/features/appointment/presentation/bindings/create_appointment_binding.dart';
+import 'package:appointments_manager/features/appointment/presentation/pages/new_appointment.dart';
 import 'package:appointments_manager/features/client/presentation/bindings/clients_details_binding.dart';
 import 'package:appointments_manager/features/client/presentation/bindings/create_client_binding.dart';
 import 'package:appointments_manager/features/client/presentation/bindings/query_clients_binding.dart';
@@ -16,9 +18,11 @@ import 'package:calendar_view/calendar_view.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:jiffy/jiffy.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 import 'firebase_options.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initServices();
@@ -32,6 +36,7 @@ initServices() async {
   await Get.putAsync(() => ProfileService().init());
   await Get.putAsync(
       () => ObjectBoxService().init(ProfileService.to.profile.value));
+
 }
 
 class MyApp extends StatelessWidget {
@@ -74,6 +79,11 @@ class MyApp extends StatelessWidget {
               name: Routes.newClient,
               page: () => const CreateClientPage(),
               binding: CreateClientBinding()),
+          GetPage(
+              name: Routes.newAppointment,
+              page: () => const CreateAppointmentPage(),
+              binding: CreateAppointmentBinding()
+          )
         ],
         initialRoute: Routes.splash,
       ),

@@ -26,7 +26,8 @@ class TextFormFieldCore extends StatelessWidget {
       this.expands,
       this.maxLength,
       this.autofillHints,
-      this.contentPadding});
+      this.contentPadding,
+        this.onTap});
 
   final TextEditingController? controller;
   final String? hintText;
@@ -49,10 +50,12 @@ class TextFormFieldCore extends StatelessWidget {
   final EdgeInsetsGeometry? contentPadding;
   final String? autofillHints;
   final int? maxLength;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onTap: onTap,
       maxLength: maxLength,
       validator: validator,
       style: TextStyle(

@@ -41,6 +41,9 @@ class Translator extends Translations {
           "scheduleAppointment": "Schedule appointment",
           "clientsNotFound":"Your clients must be here, but at least we found a cat",
           "addClient": "Add a client",
+          "minutes": "@minutes minutes",
+          "hourMinutes": "@hours hours and @minutes minutes",
+          "hour": "@hours hours"
         },
         'es': {
           'title': 'Gestor de Citas',
@@ -114,4 +117,10 @@ class Translator extends Translations {
   static String get clientsNotFound=>"clientsNotFound";
 
   static String get addClient=>"addClient";
+
+  static String get minutes => "minutes";
+
+  static String get hourMinutes => "hourMinutes";
+
+  static String get hour => "hour";
 }
