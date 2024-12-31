@@ -7,23 +7,28 @@ import 'package:get/get.dart';
 
 class AppointmentsRepositoryImpLocal extends GetxService
     implements AppointmentsRepository<QueryBuilder<AppointmentModel>> {
-  final store = ObjectBoxService.to.store!;
+  late final Rx<Store> _store;
+  static AppointmentsRepositoryImpLocal get to => Get.find<AppointmentsRepositoryImpLocal>();
+
+  AppointmentsRepositoryImpLocal(ObjectBoxService objectBoxService){
+    _store = objectBoxService.store;
+  }
 
   @override
   Future<void> deleteAppointment(AppointmentModel appointment) async {
-    store.value.box<AppointmentModel>().remove(appointment.localId);
+    _store.value.box<AppointmentModel>().remove(appointment.localId);
     return;
   }
 
   @override
   Future<List<AppointmentModel>> getAllAppointments() async {
-    return store.value.box<AppointmentModel>().getAll();
+    return _store.value.box<AppointmentModel>().getAll();
   }
 
   @override
   Future<List<AppointmentModel>> getAllAppointmentsBetweenDates(
       DateTime from, DateTime to) async {
-    return await store.value
+    return await _store.value
             .box<AppointmentModel>()
             .query(AppointmentModel_.fromDate
                 .greaterOrEqualDate(from)
@@ -37,13 +42,13 @@ class AppointmentsRepositoryImpLocal extends GetxService
       ClientModel client,
       {int limit = 10,
       int offset = 0}) async {
-    final clientBox = store.value.box<ClientModel>().get(client.localId);
+    final clientBox = _store.value.box<ClientModel>().get(client.localId);
     return clientBox?.linkAppointments.getRange(offset, limit).toList()??[];
   }
 
   @override
   Future<AppointmentModel?> getAppointment(int id) async {
-    return store.value.box<AppointmentModel>().get(id);
+    return _store.value.box<AppointmentModel>().get(id);
   }
 
   @override
@@ -54,7 +59,7 @@ class AppointmentsRepositoryImpLocal extends GetxService
 
   @override
   Future<void> saveAppointment(AppointmentModel appointment) {
-    store.value.box<AppointmentModel>().put(appointment);
+    _store.value.box<AppointmentModel>().put(appointment);
     return Future.value();
   }
 }

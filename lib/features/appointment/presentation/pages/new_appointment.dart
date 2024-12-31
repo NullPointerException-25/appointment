@@ -70,11 +70,7 @@ class CreateAppointmentPage extends GetView<CreateAppointmentController> {
                           : ThemeColors.dark,
                     ),
                     onTap: () {
-                      showDatePicker(
-                          context: context,
-                          firstDate: DateTime.now(),
-                          lastDate:
-                              DateTime.now().add(const Duration(days: 365)));
+                      controller.setDateTime();
                     },
                   ),
                   const SizedBox(

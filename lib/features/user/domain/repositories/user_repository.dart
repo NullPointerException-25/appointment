@@ -2,6 +2,7 @@
 import 'package:appointments_manager/features/user/data/models/users_model.dart';
 
 abstract class UserRepository {
+
   Future<void> saveUserName(String name);
   Future<void> saveUserEmail(String email);
   Future<void> saveUserImage(String imagePath);

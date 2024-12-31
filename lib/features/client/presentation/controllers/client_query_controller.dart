@@ -1,5 +1,4 @@
 import 'package:appointments_manager/core/utils/routes.dart';
-import 'package:appointments_manager/features/client/data/models/client.dart';
 import 'package:appointments_manager/features/client/domain/entities/client_entity.dart';
 import 'package:appointments_manager/features/client/domain/entities/client_query_params.dart';
 import 'package:appointments_manager/features/client/domain/usecases/get_clients_by_params.dart';
@@ -24,8 +23,9 @@ class ClientQueryController extends GetxController {
   }
 
   void _getClientsByParams() async {
-    clients.addAll(
-        await GetClientsByParamsUseCase(queryParams: _params.value).perform());
+    clients.addAll(await GetClientsByParamsUseCase(
+            queryParams: _params.value)
+        .perform());
   }
 
   void goToClientDetailsPage(ClientEntity client) {

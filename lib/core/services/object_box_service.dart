@@ -4,6 +4,9 @@ import 'package:get/get.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as p;
 
+/// Use [ObjectBoxService.to._store] to access the store,
+/// This service manages the ObjectBox store for the specific user profile.
+/// Whenever the profile changes, the store is updated, there´s no need to manually close the store for any child service.
 class ObjectBoxService extends GetxService {
   late final Rx<Store> store;
 

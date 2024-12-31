@@ -9,10 +9,14 @@ import '../../../../objectbox.g.dart';
 
 class UserDataRepositoryImpLocal extends GetxService implements UserRepository {
   static UserDataRepositoryImpLocal get to => Get.find<UserDataRepositoryImpLocal>();
-  final Rx<UserModel> _user = ProfileService.to.user;
-  final Rx<Store> _store = ProfileService.to.store;
-  final _firestore = FirebaseFirestore.instance;
+  late final Rx<UserModel> _user;
+  late final Rx<Store> _store;
+  late final _firestore = FirebaseFirestore.instance;
 
+  UserDataRepositoryImpLocal(ProfileService profileService){
+    _user = profileService.user;
+    _store = profileService.store;
+  }
   @override
   void onInit() {
     super.onInit();

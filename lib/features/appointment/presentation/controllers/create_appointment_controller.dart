@@ -1,17 +1,11 @@
-import 'dart:async';
-
-import 'package:appointments_manager/core/services/object_box_service.dart';
 import 'package:appointments_manager/core/utils/translations.dart';
 import 'package:appointments_manager/features/client/domain/entities/client_entity.dart';
 import 'package:appointments_manager/features/client/domain/entities/client_query_params.dart';
 import 'package:appointments_manager/features/client/domain/usecases/get_clients_by_params.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/get_core.dart';
-import 'package:get/get_instance/src/extension_instance.dart';
-import 'package:get/get_rx/src/rx_types/rx_types.dart';
-import 'package:get/get_state_manager/src/simple/get_controllers.dart';
-import 'package:get/get_utils/src/extensions/internacionalization.dart';
+import 'package:jiffy/jiffy.dart';
 
 class CreateAppointmentController extends GetxController {
   static CreateAppointmentController get to =>
@@ -24,6 +18,8 @@ class CreateAppointmentController extends GetxController {
   final durationTextController = TextEditingController();
   final sliderValue = 1.0.obs;
   final selectedDurationString = "".obs;
+  final selectedClient = Rxn<ClientEntity>();
+  DateTime? _selectedDateTime;
 
   @override
   void onInit() {
@@ -45,11 +41,43 @@ class CreateAppointmentController extends GetxController {
         await GetClientsByParamsUseCase(queryParams: _params.value).perform();
   }
 
+  void selectClient(ClientEntity client) {
+    selectedClient.value = client;
+    clientNameSearchTextController.text = client.name;
+  }
+
+  void createAppointment() {
+    // CreateAppointmentUseCase().perform();
+  }
+
+  void setDateTime() async {
+    final dateTime = await showDatePicker(
+        context: Get.context!,
+        firstDate: DateTime.now(),
+        lastDate: DateTime.now().add(const Duration(days: 365)));
+    if (dateTime == null) {
+      return;
+    }
+    final time = await showTimePicker(
+      context: Get.context!,
+      initialTime: const TimeOfDay(hour: 0, minute: 0),
+    );
+    if(time == null) {
+      return;
+    }
+    dateTime.add(Duration(hours: time.hour, minutes: time.minute));
+    _selectedDateTime = dateTime;
+    startDateTimeTextController.text =Jiffy.parse(dateTime.toIso8601String()).yMMMMEEEEdjm;
+  }
+
   int get optionsLength => _intToDuration.length;
 
   void setInitialDuration(int index) {
-  selectedDurationString.value=_durationTextMap[_intToDuration[index]!.inMinutes]!;
+    selectedDurationString.value =
+        _durationTextMap[_intToDuration[index]!.inMinutes]!;
   }
+
+  void addNewField() {}
 
   final Map<int, String> _durationTextMap = {
     15: Translator.minutes.trParams({"minutes": "15"}),
@@ -64,7 +92,6 @@ class CreateAppointmentController extends GetxController {
     300: Translator.hour.trParams({"hours": "5"}),
     360: Translator.hour.trParams({"hours": "6"}),
     420: Translator.hour.trParams({"hours": "7"}),
-
   };
 
   final Map<int, Duration> _intToDuration = {

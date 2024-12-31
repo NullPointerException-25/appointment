@@ -1,3 +1,5 @@
+import 'package:appointments_manager/core/services/object_box_service.dart';
+import 'package:appointments_manager/core/services/profile_service.dart';
 import 'package:appointments_manager/features/appointment/data/repositories/appointments_repository_imp_local.dart';
 import 'package:appointments_manager/features/client/data/repositories/clients_repository_impl.dart';
 import 'package:appointments_manager/features/user/data/repositories/user_repository_impl.dart';
@@ -14,9 +16,9 @@ class CoreServicesInitializer {
      Jiffy.setLocale(Get.deviceLocale?.languageCode??"en");
     if(!kIsWeb){
       //Set up Repositories for mobile and desktop
-      Get.put(UserDataRepositoryImpLocal());
+      Get.put(UserDataRepositoryImpLocal(ProfileService.to));
       Get.put(LocalClientsRepositoryImpl.init());
-      Get.put(AppointmentsRepositoryImpLocal());
+      Get.put(AppointmentsRepositoryImpLocal(ObjectBoxService.to));
     }
     //Set up other Repositories for web only
   }
