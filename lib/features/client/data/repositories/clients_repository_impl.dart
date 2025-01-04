@@ -9,7 +9,8 @@ class LocalClientsRepositoryImpl extends GetxService implements ClientsRepositor
   late final LocalClientDataSource _localClientDataSource;
 
   LocalClientsRepositoryImpl._(){
-   _localClientDataSource=  Get.put<LocalClientDataSource>(LocalClientDataSource());
+   _localClientDataSource=  Get.put(LocalClientDataSource());
+   //TODO: Add initialization logic outside the constructor
   }
 
   static LocalClientsRepositoryImpl init(){

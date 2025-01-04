@@ -8,6 +8,6 @@ abstract class UserRepository {
   Future<void> saveUserImage(String imagePath);
   Future<void> saveUser(UserModel user);
   Future<UserModel> getUser();
-   checkUserSetup(UserModel user);
   Future<void> setSetupComplete();
+  Future<void> saveProfileImage(String imagePath);
 }

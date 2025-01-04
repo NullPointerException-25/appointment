@@ -1,80 +1,60 @@
-import 'package:appointments_manager/core/services/profile_service.dart';
-import 'package:appointments_manager/core/utils/routes.dart';
+
+import 'package:appointments_manager/features/user/data/datasource/local_user_datasource.dart';
 import 'package:appointments_manager/features/user/domain/repositories/user_repository.dart';
 import 'package:appointments_manager/features/user/data/models/users_model.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get.dart';
 
-import '../../../../objectbox.g.dart';
 
 class UserDataRepositoryImpLocal extends GetxService implements UserRepository {
   static UserDataRepositoryImpLocal get to => Get.find<UserDataRepositoryImpLocal>();
-  late final Rx<UserModel> _user;
-  late final Rx<Store> _store;
-  late final _firestore = FirebaseFirestore.instance;
+  late final LocalUserDatasource _localUserDatasource;
 
-  UserDataRepositoryImpLocal(ProfileService profileService){
-    _user = profileService.user;
-    _store = profileService.store;
-  }
-  @override
-  void onInit() {
-    super.onInit();
-    checkUserSetup(_user.value);
-    ever(_user, checkUserSetup);
+
+  UserDataRepositoryImpLocal({LocalUserDatasource? localDatasource}){
+    _localUserDatasource = localDatasource?? LocalUserDatasource.to;
   }
 
- @override
-  String checkUserSetup(UserModel user) {
-    if(!user.isSetupComplete){
-      Get.offAllNamed(Routes.setup);
-      return (Routes.setup);
-    }
-    Get.offAllNamed(Routes.home);
-    return (Routes.home);
-  }
+
+
 
   @override
   Future<UserModel> getUser() async {
-    return _user.value;
+    return await _localUserDatasource.getUser();
   }
 
   @override
-  Future<void> saveUser(UserModel user) {
-    _user.value.email = user.email;
-    _user.value.imagePath = user.imagePath;
-    _user.value.name = user.name;
-    _store.value.box<UserModel>().put(_user.value);
+  Future<void> saveUser(UserModel user) async {
+    _localUserDatasource.saveUser(user);
     return Future.value();
   }
 
   @override
-  Future<void> saveUserEmail(String email) {
-    _user.value.email = email;
-    _store.value.box<UserModel>().put(_user.value);
-    _firestore.collection('emails').add({'email': email});
-    return Future.value();
+  Future<void> saveUserEmail(String email) async {
+    await _localUserDatasource.saveUserEmail(email);
+    return;
   }
 
   @override
-  Future<void> saveUserImage(String imagePath) {
-    _user.value.imagePath = imagePath;
-    _store.value.box<UserModel>().put(_user.value);
-    return Future.value();
+  Future<void> saveUserImage(String imagePath) async  {
+    await _localUserDatasource.saveUserImage(imagePath);
+    return;
   }
 
   @override
-  Future<void> saveUserName(String name) {
-    _user.value.name = name;
-    _store.value.box<UserModel>().put(_user.value);
-    return Future.value();
+  Future<void> saveUserName(String name) async {
+     await _localUserDatasource.saveUserName(name);
+    return;
   }
 
   @override
-  Future<void> setSetupComplete() {
-    _user.value.isSetupComplete = true;
-    _store.value.box<UserModel>().put(_user.value);
-    _user.value= _store.value.box<UserModel>().get(_user.value.id)!;
-    return Future.value();
+  Future<void> setSetupComplete() async {
+    await _localUserDatasource.setSetupComplete();
+    return;
+  }
+
+  @override
+  Future<void> saveProfileImage(String imagePath) async {
+    await _localUserDatasource.saveUserImage(imagePath);
+    return;
   }
 }

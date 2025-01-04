@@ -5,7 +5,7 @@ import 'package:appointments_manager/objectbox.g.dart';
 import 'package:get/get.dart';
 
 class LocalClientDataSource extends GetxService{
-  final _store = ObjectBoxService.to.store!;
+  final _store = ObjectBoxService.to.store;
 
   static LocalClientDataSource get to => Get.find<LocalClientDataSource>();
 
@@ -14,10 +14,10 @@ class LocalClientDataSource extends GetxService{
   }
 
   Future<List<ClientModel>> getClients({ClientQueryParamsDto? query}) async {
-    Query<ClientModel>? preQuery= query?.toObjectBoxQuery(_store.value!);
+    Query<ClientModel>? preQuery= query?.toObjectBoxQuery(_store.value);
     if(preQuery!=null){
       return await preQuery.findAsync();
     }
-    return  await _store.value!.box<ClientModel>().getAllAsync();
+    return  await _store.value.box<ClientModel>().getAllAsync();
   }
 }
