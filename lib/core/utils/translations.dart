@@ -43,7 +43,14 @@ class Translator extends Translations {
           "addClient": "Add a client",
           "minutes": "@minutes minutes",
           "hourMinutes": "@hours hours and @minutes minutes",
-          "hour": "@hours hours"
+          "hour": "@hours hours",
+          "newAppointment": "New appointment",
+          "noClientsFound": "No clients found",
+          "tapToAddClient": "Tap to add a client",
+          "newClient": "New client",
+          "clientName": "Client name",
+          "appointmentsDate": "Appointment date",
+
         },
         'es': {
           'title': 'Gestor de Citas',
@@ -123,4 +130,16 @@ class Translator extends Translations {
   static String get hourMinutes => "hourMinutes";
 
   static String get hour => "hour";
+
+  static String get newAppointment => "newAppointment";
+
+  static String get noClientsFound => "noClientsFound";
+
+  static String get tapToAddClient => "tapToAddClient";
+
+  static String get newClient => "newClient";
+
+  static String get clientName => "clientName";
+
+  static String get appointmentsDate => "appointmentsDate";
 }

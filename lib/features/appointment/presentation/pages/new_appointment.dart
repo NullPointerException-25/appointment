@@ -1,7 +1,10 @@
 import 'package:appointments_manager/core/utils/colors.dart';
 import 'package:appointments_manager/core/utils/global_values.dart';
+import 'package:appointments_manager/core/utils/translations.dart';
 import 'package:appointments_manager/core/widgets/text_form_field_core.dart';
 import 'package:appointments_manager/features/appointment/presentation/controllers/create_appointment_controller.dart';
+import 'package:appointments_manager/features/appointment/presentation/widgets/client_searcher_textfield.dart';
+import 'package:appointments_manager/features/appointment/presentation/widgets/duration_slider.dart';
 import 'package:appointments_manager/features/client/domain/entities/client_entity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
@@ -18,7 +21,7 @@ class CreateAppointmentPage extends GetView<CreateAppointmentController> {
         slivers: [
           SliverAppBar(
             title: Text(
-              "New appointment",
+              Translator.newAppointment.tr,
               style: TextStyle(
                 color: Theme.of(context).brightness == Brightness.dark
                     ? ThemeColors.white
@@ -31,38 +34,15 @@ class CreateAppointmentPage extends GetView<CreateAppointmentController> {
               padding: const EdgeInsets.all(kPaddingM),
               child: Column(
                 children: [
-                  Obx(
-                    () => TypeAheadField<ClientEntity>(
-                      controller: controller.clientNameSearchTextController,
-                      itemBuilder: (context, value) => ListTile(
-                        title: Text(value.name),
-                      ),
-                      onSelected: (value) {},
-                      emptyBuilder: (context) {
-                        return const SizedBox();
-                      },
-                      builder: (context, controller, focusNode) =>
-                          TextFormFieldCore(
-                              prefixIcon: HugeIcon(
-                                  icon: HugeIcons.strokeRoundedUser,
-                                  color: Theme.of(context).brightness ==
-                                          Brightness.dark
-                                      ? ThemeColors.white
-                                      : ThemeColors.dark),
-                              textInputAction: TextInputAction.next,
-                              controller: controller,
-                              focusNode: focusNode,
-                              hintText: "Client name"),
-                      suggestionsCallback: (search) => controller.clients,
-                    ),
-                  ),
+                  const ClientSearcherTextField(),
                   const SizedBox(
                     height: kPaddingS,
                   ),
                   TextFormFieldCore(
+                    controller: controller.startDateTimeTextController,
                     readOnly: true,
-                    hintText: "Appointment day",
-                    labelText: "Appointment day",
+                    hintText: Translator.appointmentsDate.tr,
+                    labelText: Translator.appointmentsDate.tr,
                     prefixIcon: Icon(
                       HugeIcons.strokeRoundedCalendar01,
                       color: Theme.of(context).brightness == Brightness.dark
@@ -86,21 +66,7 @@ class CreateAppointmentPage extends GetView<CreateAppointmentController> {
                   const SizedBox(
                     height: kPaddingS,
                   ),
-                  Obx(
-                    () => Slider(
-                      value: controller.sliderValue.value,
-                      min: 1,
-                      max: controller.optionsLength.toDouble(),
-                      divisions: controller.optionsLength - 1,
-                      thumbColor: ThemeColors.lightBlue,
-                      secondaryActiveColor: ThemeColors.lightBlue,
-                      inactiveColor: ThemeColors.lighterBlue,
-                      activeColor: ThemeColors.darkBlue,
-                      onChanged: (value) {
-                        controller.sliderValue.value = value;
-                      },
-                    ),
-                  ),
+                  const DurationSlider(),
                   Obx(
                     () => Padding(
                       padding: const EdgeInsets.all(kPaddingS),

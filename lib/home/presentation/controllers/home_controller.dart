@@ -46,6 +46,10 @@ class HomeController extends GetxController {
   }
 
   void _getUser() async {
-    user.value = ProfileService.to.user.value;
+    try {
+      user.value= ProfileService.to.user.value;
+    } catch (e) {
+     // Get.snackbar("Error", e.toString());
+    }
   }
 }

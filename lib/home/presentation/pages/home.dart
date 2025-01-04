@@ -59,6 +59,7 @@ class HomePage extends GetResponsiveView<HomeController> {
           return Align(
             alignment: Alignment.bottomCenter,
             child: GestureDetector(
+              key: const Key('circular_menu'),
               onTap: () {
                 controller.circularMenuKey.currentState!.reverseAnimation();
                 controller.isCircularMenuOpened.value = false;

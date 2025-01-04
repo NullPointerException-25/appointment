@@ -32,7 +32,7 @@ class CreateAppointmentController extends GetxController {
     );
   }
 
-  void fetchClients() async {
+  Future<void> fetchClients() async {
     if (clientNameSearchTextController.text.isNotEmpty) {
       _params.value = _params.value
           .copyWith(filterByName: clientNameSearchTextController.text);
