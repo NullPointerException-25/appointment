@@ -4,18 +4,16 @@ import 'package:appointments_manager/features/client/domain/entities/client_quer
 import 'package:appointments_manager/features/client/domain/repositories/clients_repository.dart';
 import 'package:get/get.dart';
 
-class LocalClientsRepositoryImpl extends GetxService implements ClientsRepository{
-  static LocalClientsRepositoryImpl get to => Get.find<LocalClientsRepositoryImpl>();
+class LocalClientsRepositoryImpl extends GetxService
+    implements ClientsRepository {
+  static LocalClientsRepositoryImpl get to =>
+      Get.find<LocalClientsRepositoryImpl>();
   late final LocalClientDataSource _localClientDataSource;
 
-  LocalClientsRepositoryImpl._(){
-   _localClientDataSource=  Get.put(LocalClientDataSource());
-   //TODO: Add initialization logic outside the constructor
+  LocalClientsRepositoryImpl({LocalClientDataSource? localClientDataSource}) {
+    _localClientDataSource = localClientDataSource ?? LocalClientDataSource.to;
   }
 
-  static LocalClientsRepositoryImpl init(){
-      return LocalClientsRepositoryImpl._();
-  }
   @override
   Future<void> deleteClient(ClientEntity client) async {
     //Throw unimplemented error
@@ -23,8 +21,9 @@ class LocalClientsRepositoryImpl extends GetxService implements ClientsRepositor
   }
 
   @override
-  Future<List<ClientEntity>> getAllClients({ClientQueryParamsDto? query}) async {
-    final clients=  await _localClientDataSource.getClients(query: query);
+  Future<List<ClientEntity>> getAllClients(
+      {ClientQueryParamsDto? query}) async {
+    final clients = await _localClientDataSource.getClients(query: query);
     return clients.map((e) => e.toEntity()).toList();
   }
 
@@ -32,7 +31,6 @@ class LocalClientsRepositoryImpl extends GetxService implements ClientsRepositor
   Future<ClientEntity?> getClientById(int id) async {
     throw UnimplementedError();
   }
-
 
   @override
   Future<void> saveClient(ClientEntity client) async {

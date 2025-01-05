@@ -31,8 +31,7 @@ class AppointmentFieldEntity extends CoreEntity<AppointmentFieldModel> {
         title,
         _formFieldTypeMap.entries
                 .firstWhere((element) => element.value == fieldType)
-                .key ??
-            0,
+                .key,
         localId: localId,
         lastUpdate: lastUpdate,
         remoteId: remoteId);

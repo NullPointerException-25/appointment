@@ -5,9 +5,8 @@ import 'package:appointments_manager/core/widgets/text_form_field_core.dart';
 import 'package:appointments_manager/features/appointment/presentation/controllers/create_appointment_controller.dart';
 import 'package:appointments_manager/features/appointment/presentation/widgets/client_searcher_textfield.dart';
 import 'package:appointments_manager/features/appointment/presentation/widgets/duration_slider.dart';
-import 'package:appointments_manager/features/client/domain/entities/client_entity.dart';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_typeahead/flutter_typeahead.dart';
 import 'package:get/get.dart';
 import 'package:hugeicons/hugeicons.dart';
 
