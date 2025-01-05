@@ -1,12 +1,12 @@
-import 'package:appointments_manager/core/services/profile_service.dart';
 import 'package:appointments_manager/core/utils/routes.dart';
-import 'package:appointments_manager/features/user/data/models/users_model.dart';
+import 'package:appointments_manager/features/user/domain/entities/user_entity.dart';
+import 'package:appointments_manager/features/user/domain/usecases/get_user.dart';
 import 'package:circular_menu/circular_menu.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class HomeController extends GetxController {
-  final Rxn<UserModel> user = Rxn<UserModel>();
+  final Rxn<UserEntity> user = Rxn<UserEntity>();
   final PageController pageController = PageController();
 
   final RxBool isCircularMenuOpened= RxBool(false);
@@ -46,10 +46,7 @@ class HomeController extends GetxController {
   }
 
   void _getUser() async {
-    try {
-      user.value= ProfileService.to.user.value;
-    } catch (e) {
-     // Get.snackbar("Error", e.toString());
-    }
+   final user=await GetUserUseCase().perform();
+    this.user.value=user;
   }
 }
