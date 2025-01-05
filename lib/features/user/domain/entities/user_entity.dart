@@ -1,30 +1,34 @@
 import 'dart:io';
 
+import 'package:appointments_manager/core/abstractions/entity.dart';
 import 'package:appointments_manager/features/user/data/models/users_model.dart';
 import 'package:get/get.dart';
 
-class UserEntity {
-   final int localId;
+class UserEntity extends CoreEntity<UserModel> {
+   @override
+  final int localId;
    late Rxn<File> localImage;
    late Rxn<File> remoteImage;
    String imageUrl;
    String name;
     String email;
     bool isCurrentUser;
-    DateTime lastUpdate;
+    @override
+  DateTime lastUpdate;
     bool isSetupComplete;
-    String remoteId;
+    @override
+  String remoteId;
 
 
     UserEntity(
-        {required this.localId,
+        {this.localId=0,
         required this.name,
-        required this.email,
-        required this.isCurrentUser,
-        required this.isSetupComplete,
-        required this.remoteId,
+         this.email="",
+         this.isCurrentUser=true,
+         this.isSetupComplete=false,
+         this.remoteId="",
         required this.lastUpdate,
-        required this.imageUrl,
+         this.imageUrl="",
         String imagePath = ""}) {
       if (imagePath.isNotEmpty) {
         localImage = Rxn<File>(File(imagePath));
@@ -50,4 +54,18 @@ class UserEntity {
         imagePath: model.imagePath,
       );
     }
+
+  @override
+  UserModel toModel() {
+    return UserModel(
+      id: localId,
+      name: name,
+      email: email,
+      isCurrentUser: isCurrentUser,
+      isSetupComplete: isSetupComplete,
+      remoteId: remoteId,
+      imageUrl: imageUrl,
+      imagePath: localImage.value?.path ?? "",
+    );
+  }
 }

@@ -10,8 +10,8 @@ class AppointmentsRepositoryImpLocal extends GetxService
   late final Rx<Store> _store;
   static AppointmentsRepositoryImpLocal get to => Get.find<AppointmentsRepositoryImpLocal>();
 
-  AppointmentsRepositoryImpLocal(ObjectBoxService objectBoxService){
-    _store = objectBoxService.store;
+  AppointmentsRepositoryImpLocal({ObjectBoxService? objectBoxService}){
+    _store = objectBoxService?.store??ObjectBoxService.to.store;
   }
 
   @override

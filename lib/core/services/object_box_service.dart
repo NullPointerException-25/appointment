@@ -12,6 +12,7 @@ class ObjectBoxService extends GetxService {
 
   static ObjectBoxService get to => Get.find<ObjectBoxService>();
 
+  String get profileFolder => "user${ProfileService.to.profile.value}";
   @override
   void onInit() {
     super.onInit();
@@ -20,7 +21,7 @@ class ObjectBoxService extends GetxService {
 
   Future<ObjectBoxService> init(int profile) async {
     final docsDir = await getApplicationDocumentsDirectory();
-    final directory = p.join(docsDir.path, "user$profile");
+    final directory = p.join(docsDir.path, profileFolder);
     try {
       store = Rx<Store>(await openStore(directory: directory));
     } catch (e) {
