@@ -1,7 +1,7 @@
 import 'package:appointments_manager/features/appointment/data/models/appointment.dart';
 import 'package:appointments_manager/features/client/data/models/client.dart';
 
-abstract class AppointmentsRepository<T> {
+abstract class AppointmentsRepository {
   Future<void> saveAppointment(AppointmentModel appointment);
 
   Future<AppointmentModel?> getAppointment(int id);
@@ -17,5 +17,4 @@ abstract class AppointmentsRepository<T> {
   Future<void> deleteAppointment(AppointmentModel appointment);
 
   Future<List<AppointmentModel>> getAllAppointments();
-  Future<List<AppointmentModel>> getAppointmentsByQuery(T query);
 }

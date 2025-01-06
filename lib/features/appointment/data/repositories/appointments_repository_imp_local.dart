@@ -1,65 +1,53 @@
-import 'package:appointments_manager/core/services/object_box_service.dart';
-import 'package:appointments_manager/objectbox.g.dart';
+import 'package:appointments_manager/features/appointment/data/datasource/local_appointments_datasource.dart';
 import 'package:appointments_manager/features/appointment/domain/repositories/appointments_repository.dart';
 import 'package:appointments_manager/features/appointment/data/models/appointment.dart';
 import 'package:appointments_manager/features/client/data/models/client.dart';
 import 'package:get/get.dart';
 
 class AppointmentsRepositoryImpLocal extends GetxService
-    implements AppointmentsRepository<QueryBuilder<AppointmentModel>> {
-  late final Rx<Store> _store;
+    implements AppointmentsRepository {
+  late final LocalAppointmentsDatasource _localAppointmentsDatasource;
   static AppointmentsRepositoryImpLocal get to => Get.find<AppointmentsRepositoryImpLocal>();
 
-  AppointmentsRepositoryImpLocal({ObjectBoxService? objectBoxService}){
-    _store = objectBoxService?.store??ObjectBoxService.to.store;
+  AppointmentsRepositoryImpLocal({LocalAppointmentsDatasource? localAppointmentsDatasource}){
+    _localAppointmentsDatasource = localAppointmentsDatasource??LocalAppointmentsDatasource.to;
   }
 
   @override
-  Future<void> deleteAppointment(AppointmentModel appointment) async {
-    _store.value.box<AppointmentModel>().remove(appointment.localId);
-    return;
+  Future<void> deleteAppointment(AppointmentModel appointment) {
+    // TODO: implement deleteAppointment
+    throw UnimplementedError();
   }
 
   @override
-  Future<List<AppointmentModel>> getAllAppointments() async {
-    return _store.value.box<AppointmentModel>().getAll();
+  Future<List<AppointmentModel>> getAllAppointments() {
+    // TODO: implement getAllAppointments
+    throw UnimplementedError();
   }
 
   @override
-  Future<List<AppointmentModel>> getAllAppointmentsBetweenDates(
-      DateTime from, DateTime to) async {
-    return await _store.value
-            .box<AppointmentModel>()
-            .query(AppointmentModel_.fromDate
-                .greaterOrEqualDate(from)
-                .and(AppointmentModel_.toDate.lessOrEqualDate(to)))
-            .build()
-            .findAsync();
+  Future<List<AppointmentModel>> getAllAppointmentsBetweenDates(DateTime from, DateTime to) {
+    // TODO: implement getAllAppointmentsBetweenDates
+    throw UnimplementedError();
   }
 
   @override
-  Future<List<AppointmentModel>> getAllAppointmentsFromClient(
-      ClientModel client,
-      {int limit = 10,
-      int offset = 0}) async {
-    final clientBox = _store.value.box<ClientModel>().get(client.localId);
-    return clientBox?.linkAppointments.getRange(offset, limit).toList()??[];
+  Future<List<AppointmentModel>> getAllAppointmentsFromClient(ClientModel client, {int limit = 10, int offset = 0}) {
+    // TODO: implement getAllAppointmentsFromClient
+    throw UnimplementedError();
   }
 
   @override
-  Future<AppointmentModel?> getAppointment(int id) async {
-    return _store.value.box<AppointmentModel>().get(id);
+  Future<AppointmentModel?> getAppointment(int id) {
+    // TODO: implement getAppointment
+    throw UnimplementedError();
   }
 
   @override
-  Future<List<AppointmentModel>> getAppointmentsByQuery(
-      QueryBuilder<AppointmentModel> query) async {
-    return await query.build().findAsync();
-  }
-
-  @override
-  Future<void> saveAppointment(AppointmentModel appointment) {
-    _store.value.box<AppointmentModel>().put(appointment);
+  Future<void> saveAppointment(AppointmentModel appointment)  {
+    _localAppointmentsDatasource.saveAppointment(appointment);
     return Future.value();
   }
+
+
 }

@@ -16,11 +16,8 @@ class AppointmentModel extends CoreModel<AppointmentEntity>{
   @override
   @Property(type: PropertyType.date)
   DateTime lastUpdate;
-  @Transient()
-  late Duration duration;
   final client = ToOne<ClientModel>();
-
-  final fields = ToMany<AppointmentModel>(); 
+  //final fields = ToMany<AppointmentModel>();
 
 
   AppointmentModel({
@@ -33,7 +30,6 @@ class AppointmentModel extends CoreModel<AppointmentEntity>{
     if (id != null) {
       localId = id;
     }
-    duration = toDate.difference(fromDate);
   }
 
   @override
@@ -44,6 +40,7 @@ class AppointmentModel extends CoreModel<AppointmentEntity>{
        fromDate: fromDate,
        toDate: toDate,
        localId: localId,
+       client: client.target!.toEntity(),
      );
   }
 }

@@ -50,6 +50,7 @@ class Translator extends Translations {
           "newClient": "New client",
           "clientName": "Client name",
           "appointmentsDate": "Appointment date",
+          "addANewField": "Add a new field",
 
         },
         'es': {
@@ -142,4 +143,6 @@ class Translator extends Translations {
   static String get clientName => "clientName";
 
   static String get appointmentsDate => "appointmentsDate";
+
+  static String get addANewField => "addANewField";
 }

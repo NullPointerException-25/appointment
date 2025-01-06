@@ -1,4 +1,5 @@
 import 'package:appointments_manager/core/utils/translations.dart';
+import 'package:appointments_manager/features/appointment/domain/usecases/create_appointment_use_case.dart';
 import 'package:appointments_manager/features/client/domain/entities/client_entity.dart';
 import 'package:appointments_manager/features/client/domain/entities/client_query_params.dart';
 import 'package:appointments_manager/features/client/domain/usecases/get_clients_by_params.dart';
@@ -19,15 +20,16 @@ class CreateAppointmentController extends GetxController {
   final selectedDurationString = "".obs;
   final selectedClient = Rxn<ClientEntity>();
   DateTime? _selectedDateTime;
+  final clientNameSearchFocusNode = FocusNode();
 
   @override
   void onInit() {
     super.onInit();
     fetchClients();
-    setInitialDuration(4);
+    setDuration(1);
     ever(
       sliderValue,
-      (callback) => setInitialDuration(callback.toInt()),
+      (callback) => setDuration(callback.toInt()),
     );
   }
 
@@ -35,7 +37,11 @@ class CreateAppointmentController extends GetxController {
     if (clientNameSearchTextController.text.isNotEmpty) {
       _params.value = _params.value
           .copyWith(filterByName: clientNameSearchTextController.text);
+      clients.value =
+          await GetClientsByParamsUseCase(queryParams: _params.value).perform();
+      return;
     }
+    _params.value = ClientQueryParamsDto();
     clients.value =
         await GetClientsByParamsUseCase(queryParams: _params.value).perform();
   }
@@ -43,10 +49,16 @@ class CreateAppointmentController extends GetxController {
   void selectClient(ClientEntity client) {
     selectedClient.value = client;
     clientNameSearchTextController.text = client.name;
+    clientNameSearchFocusNode.unfocus();
   }
 
   void createAppointment() {
-    // CreateAppointmentUseCase().perform();
+    if (selectedClient.value == null || _selectedDateTime == null) {
+      return;
+    }
+    CreateAppointmentUseCase(selectedClient.value!, _selectedDateTime!,
+            _intToDuration[sliderValue.toInt()]!)
+        .perform();
   }
 
   void setDateTime() async {
@@ -61,17 +73,18 @@ class CreateAppointmentController extends GetxController {
       context: Get.context!,
       initialTime: const TimeOfDay(hour: 0, minute: 0),
     );
-    if(time == null) {
+    if (time == null) {
       return;
     }
-    dateTime.add(Duration(hours: time.hour, minutes: time.minute));
-    _selectedDateTime = dateTime;
-    startDateTimeTextController.text =Jiffy.parse(dateTime.toIso8601String()).yMMMMEEEEdjm;
+    _selectedDateTime =
+        dateTime.add(Duration(hours: time.hour, minutes: time.minute));
+    startDateTimeTextController.text =
+        Jiffy.parse(_selectedDateTime!.toIso8601String()).yMMMMEEEEdjm;
   }
 
   int get optionsLength => _intToDuration.length;
 
-  void setInitialDuration(int index) {
+  void setDuration(int index) {
     selectedDurationString.value =
         _durationTextMap[_intToDuration[index]!.inMinutes]!;
   }

@@ -5,9 +5,10 @@ import 'package:get/get.dart';
 
 class LocalAppointmentsDatasource extends GetxService{
  late final Rx<Store> _store;
+ static LocalAppointmentsDatasource get to => Get.find<LocalAppointmentsDatasource>();
 
-  LocalAppointmentsDatasource(ObjectBoxService objectBoxService){
-    _store=objectBoxService.store;
+  LocalAppointmentsDatasource({ObjectBoxService? objectBoxService}){
+    _store=objectBoxService?.store?? ObjectBoxService.to.store;
   }
 
   void saveAppointment(AppointmentModel appointment){

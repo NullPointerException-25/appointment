@@ -1,3 +1,4 @@
+import 'package:appointments_manager/features/appointment/data/datasource/local_appointments_datasource.dart';
 import 'package:appointments_manager/features/appointment/data/repositories/appointments_repository_imp_local.dart';
 import 'package:appointments_manager/features/client/data/datasource/local_client_data_source.dart';
 import 'package:appointments_manager/features/client/data/repositories/clients_repository_impl.dart';
@@ -18,7 +19,7 @@ class CoreServicesInitializer {
   CoreServicesInitializer._() {
      Jiffy.setLocale(Get.deviceLocale?.languageCode??"en");
     if(!kIsWeb){
-      //Set up Repositories for mobile and desktop
+      //Set up Repositories and services for mobile and desktop
 
       //User
           //Datasources
@@ -34,6 +35,8 @@ class CoreServicesInitializer {
           //Repositories
           Get.put(LocalClientsRepositoryImpl());
       //Appointments
+          //Datasources
+          Get.put(LocalAppointmentsDatasource());
           //Repositories
           Get.put(AppointmentsRepositoryImpLocal());
     }
