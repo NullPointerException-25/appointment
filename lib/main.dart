@@ -14,7 +14,6 @@ import 'package:appointments_manager/features/user/presentation/pages/setup.dart
 import 'package:appointments_manager/home/presentation/bindings/binding.dart';
 import 'package:appointments_manager/home/presentation/pages/home.dart';
 import 'package:appointments_manager/splash/presentation/pages/splash.dart';
-import 'package:calendar_view/calendar_view.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -43,9 +42,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CalendarControllerProvider(
-      controller: EventController(),
-      child: GetMaterialApp(
+    return GetMaterialApp(
         builder: (context, child) => ResponsiveBreakpoints.builder(
           child: child!,
           breakpoints: [
@@ -85,7 +82,6 @@ class MyApp extends StatelessWidget {
           )
         ],
         initialRoute: Routes.splash,
-      ),
-    );
+      );
   }
 }

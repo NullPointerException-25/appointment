@@ -1,7 +1,7 @@
 import 'package:appointments_manager/core/abstractions/usecases.dart';
 import 'package:appointments_manager/features/user/data/repositories/user_repository_firebase_analytics_impl.dart';
 
-class SaveEmailForNewsUseCase extends Usecases {
+class SaveEmailForNewsUseCase extends UseCase {
   final String email;
   late final UserRepositoryFirebaseAnalyticsImpl _firebaseRepository;
 

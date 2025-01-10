@@ -5,11 +5,11 @@ import 'package:appointments_manager/features/client/domain/entities/client_quer
 import 'package:appointments_manager/features/client/domain/repositories/clients_repository.dart';
 import 'package:flutter/foundation.dart';
 
-class GetClientsByParamsUseCase extends Usecases<List<ClientEntity>> {
+class GetClientsByParamsUseCase extends UseCase<List<ClientEntity>> {
 
   late final ClientQueryParamsDto? _queryParams;
   late final LocalClientsRepositoryImpl _clientsRepositoryLocal;
-  late final ClientsRepository? _clientsRepositoryRemote;
+  //late final ClientsRepository? _clientsRepositoryRemote;
   /// This is the local repository that will be used to get the clients, if not provided it will use the default LocalClientsRepositoryImpl.
   /// Avoid injecting the repository directly at the constructor, instead use the repository instance that is already available in the class.
   /// Inject only for testing purposes

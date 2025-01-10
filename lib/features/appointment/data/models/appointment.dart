@@ -5,6 +5,7 @@ import 'package:objectbox/objectbox.dart';
 
 @Entity(uid: 2)
 class AppointmentModel extends CoreModel<AppointmentEntity>{
+  @override
   @Id()
   int localId = 0;
   @override

@@ -3,7 +3,7 @@ import 'package:appointments_manager/features/user/data/repositories/user_reposi
 import 'package:appointments_manager/features/user/domain/entities/user_entity.dart';
 import 'package:appointments_manager/features/user/domain/repositories/user_repository.dart';
 
-class SaveUserUseCase extends Usecases {
+class SaveUserUseCase extends UseCase {
   late UserEntity user;
   late final List<UserRepository> _repositories;
 

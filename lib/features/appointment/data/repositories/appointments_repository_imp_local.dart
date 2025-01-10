@@ -49,5 +49,45 @@ class AppointmentsRepositoryImpLocal extends GetxService
     return Future.value();
   }
 
+  @override
+  Future<List<AppointmentModel>> getAppointmentsByClient(ClientModel client) {
+    // TODO: implement getAppointmentsByClient
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<AppointmentModel>> getAppointmentsByClientAndDate(ClientModel client, DateTime date) {
+    // TODO: implement getAppointmentsByClientAndDate
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<List<AppointmentModel>> getAppointmentsByClientAndDateRange(ClientModel client, DateTime from, DateTime to) {
+    // TODO: implement getAppointmentsByClientAndDateRange
+    throw UnimplementedError();
+  }
+  /// Return a list of appointments for a given date, if any. All day events are included.
+  @override
+  Future<List<AppointmentModel>> getAppointmentsByDate(DateTime date) async {
+    return await _localAppointmentsDatasource.getAllDayAppointments(date);
+  }
+
+  /// Return a list of appointments for a given date range, if any. All day events are included.
+  @override
+  Future<List<AppointmentModel>> getAppointmentsByDateRange(DateTime from, DateTime to) {
+    return _localAppointmentsDatasource.getAppointmentsByDateRange(from, to);
+  }
+
+  @override
+  Future<List<AppointmentModel>> getOverlappingAppointments(AppointmentModel appointment) async  {
+    return await _localAppointmentsDatasource.getOverlappingAppointments(appointment);
+  }
+
+  @override
+  Future<void> updateAppointment(AppointmentModel appointment) {
+    // TODO: implement updateAppointment
+    throw UnimplementedError();
+  }
+
 
 }

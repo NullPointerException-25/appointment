@@ -37,7 +37,6 @@ class UserModel extends CoreModel<UserEntity> {
     if (id != null) {
       this.id = id;
     }
-    file.value = imagePath.isNotEmpty ? File(imagePath) : null;
   }
 
   factory UserModel.fromEntity(UserEntity entity) {

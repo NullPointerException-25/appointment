@@ -4,11 +4,10 @@ import 'package:appointments_manager/features/appointment/data/repositories/appo
 import 'package:appointments_manager/features/appointment/domain/entities/appointment_entity.dart';
 import 'package:appointments_manager/features/appointment/domain/repositories/appointments_repository.dart';
 import 'package:appointments_manager/features/client/domain/entities/client_entity.dart';
-import 'package:flutter/foundation.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 
-class CreateAppointmentUseCase extends Usecases<void> {
+class CreateAppointmentUseCase extends UseCase<void> {
   late final AppointmentsRepository _appointmentsRepository;
   late final AppointmentEntity appointment;
   final ClientEntity client;
@@ -31,7 +30,7 @@ class CreateAppointmentUseCase extends Usecases<void> {
   Future<void> perform() async {
     final appointmentModel = appointment.toModel();
     await _appointmentsRepository.saveAppointment(appointmentModel);
-    Get.offNamed(Routes.home);
+    Get.offAllNamed(Routes.home);
     return;
   }
 }

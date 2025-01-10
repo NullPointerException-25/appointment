@@ -96,12 +96,7 @@ final _entities = <obx_int.ModelEntity>[
             indexId: const obx_int.IdUid(1, 1946334522486954961),
             relationTarget: 'ClientModel')
       ],
-      relations: <obx_int.ModelRelation>[
-        obx_int.ModelRelation(
-            id: const obx_int.IdUid(1, 6766621169241648557),
-            name: 'fields',
-            targetId: const obx_int.IdUid(2, 2))
-      ],
+      relations: <obx_int.ModelRelation>[],
       backlinks: <obx_int.ModelBacklink>[]),
   obx_int.ModelEntity(
       id: const obx_int.IdUid(3, 5),
@@ -234,11 +229,6 @@ final _entities = <obx_int.ModelEntity>[
             type: 1,
             flags: 0),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(7, 1701739923913506732),
-            name: 'lastUpdate',
-            type: 10,
-            flags: 0),
-        obx_int.ModelProperty(
             id: const obx_int.IdUid(8, 4108223817629452004),
             name: 'isSetupComplete',
             type: 1,
@@ -294,8 +284,8 @@ obx_int.ModelDefinition getObjectBoxModel() {
       lastSequenceId: const obx_int.IdUid(0, 0),
       retiredEntityUids: const [],
       retiredIndexUids: const [],
-      retiredPropertyUids: const [],
-      retiredRelationUids: const [],
+      retiredPropertyUids: const [1701739923913506732],
+      retiredRelationUids: const [6766621169241648557],
       modelVersion: 5,
       modelVersionParserMinimum: 5,
       version: 1);
@@ -344,10 +334,7 @@ obx_int.ModelDefinition getObjectBoxModel() {
     AppointmentModel: obx_int.EntityDefinition<AppointmentModel>(
         model: _entities[1],
         toOneRelations: (AppointmentModel object) => [object.client],
-        toManyRelations: (AppointmentModel object) => {
-              obx_int.RelInfo<AppointmentModel>.toMany(1, object.localId):
-                  object.fields
-            },
+        toManyRelations: (AppointmentModel object) => {},
         getId: (AppointmentModel object) => object.localId,
         setId: (AppointmentModel object, int id) {
           object.localId = id;
@@ -385,10 +372,6 @@ obx_int.ModelDefinition getObjectBoxModel() {
           object.client.targetId =
               const fb.Int64Reader().vTableGet(buffer, rootOffset, 14, 0);
           object.client.attach(store);
-          obx_int.InternalToManyAccess.setRelInfo<AppointmentModel>(
-              object.fields,
-              store,
-              obx_int.RelInfo<AppointmentModel>.toMany(1, object.localId));
           return object;
         }),
     AppointmentTemplateModel:
@@ -528,7 +511,6 @@ obx_int.ModelDefinition getObjectBoxModel() {
           fbb.addOffset(3, nameOffset);
           fbb.addOffset(4, emailOffset);
           fbb.addBool(5, object.isCurrentUser);
-          fbb.addInt64(6, object.lastUpdate.millisecondsSinceEpoch);
           fbb.addBool(7, object.isSetupComplete);
           fbb.addOffset(8, remoteIdOffset);
           fbb.finish(fbb.endTable());
@@ -561,9 +543,7 @@ obx_int.ModelDefinition getObjectBoxModel() {
               isCurrentUser: isCurrentUserParam,
               isSetupComplete: isSetupCompleteParam,
               imageUrl: imageUrlParam,
-              remoteId: remoteIdParam)
-            ..lastUpdate = DateTime.fromMillisecondsSinceEpoch(
-                const fb.Int64Reader().vTableGet(buffer, rootOffset, 16, 0));
+              remoteId: remoteIdParam);
 
           return object;
         })
@@ -620,11 +600,6 @@ class AppointmentModel_ {
   /// See [AppointmentModel.client].
   static final client = obx.QueryRelationToOne<AppointmentModel, ClientModel>(
       _entities[1].properties[5]);
-
-  /// see [AppointmentModel.fields]
-  static final fields =
-      obx.QueryRelationToMany<AppointmentModel, AppointmentModel>(
-          _entities[1].relations[0]);
 }
 
 /// [AppointmentTemplateModel] entity fields to define ObjectBox queries.
@@ -721,15 +696,11 @@ class UserModel_ {
   static final isCurrentUser =
       obx.QueryBooleanProperty<UserModel>(_entities[4].properties[5]);
 
-  /// See [UserModel.lastUpdate].
-  static final lastUpdate =
-      obx.QueryDateProperty<UserModel>(_entities[4].properties[6]);
-
   /// See [UserModel.isSetupComplete].
   static final isSetupComplete =
-      obx.QueryBooleanProperty<UserModel>(_entities[4].properties[7]);
+      obx.QueryBooleanProperty<UserModel>(_entities[4].properties[6]);
 
   /// See [UserModel.remoteId].
   static final remoteId =
-      obx.QueryStringProperty<UserModel>(_entities[4].properties[8]);
+      obx.QueryStringProperty<UserModel>(_entities[4].properties[7]);
 }

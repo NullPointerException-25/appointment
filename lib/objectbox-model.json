@@ -77,13 +77,7 @@
           "relationTarget": "ClientModel"
         }
       ],
-      "relations": [
-        {
-          "id": "1:6766621169241648557",
-          "name": "fields",
-          "targetId": "2:2"
-        }
-      ]
+      "relations": []
     },
     {
       "id": "3:5",
@@ -213,11 +207,6 @@
           "type": 1
         },
         {
-          "id": "7:1701739923913506732",
-          "name": "lastUpdate",
-          "type": 10
-        },
-        {
           "id": "8:4108223817629452004",
           "name": "isSetupComplete",
           "type": 1
@@ -239,7 +228,11 @@
   "modelVersionParserMinimum": 5,
   "retiredEntityUids": [],
   "retiredIndexUids": [],
-  "retiredPropertyUids": [],
-  "retiredRelationUids": [],
+  "retiredPropertyUids": [
+    1701739923913506732
+  ],
+  "retiredRelationUids": [
+    6766621169241648557
+  ],
   "version": 1
 }

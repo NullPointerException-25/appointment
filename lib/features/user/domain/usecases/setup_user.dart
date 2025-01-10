@@ -5,7 +5,7 @@ import 'package:appointments_manager/features/user/domain/usecases/save_email_fo
 import 'package:appointments_manager/features/user/domain/usecases/save_profile_image_on_storage_use_case.dart';
 import 'package:appointments_manager/features/user/domain/usecases/save_user_use_case.dart';
 
-class SetupUserUseCase extends Usecases {
+class SetupUserUseCase extends UseCase {
   final String name;
   final String email;
   final String imagePath;

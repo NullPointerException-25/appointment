@@ -17,4 +17,18 @@ abstract class AppointmentsRepository {
   Future<void> deleteAppointment(AppointmentModel appointment);
 
   Future<List<AppointmentModel>> getAllAppointments();
+
+  Future<void> updateAppointment(AppointmentModel appointment);
+
+  Future<List<AppointmentModel>> getAppointmentsByDate(DateTime date);
+
+  Future<List<AppointmentModel>> getAppointmentsByClient(ClientModel client);
+
+  Future<List<AppointmentModel>> getAppointmentsByClientAndDate(ClientModel client, DateTime date);
+
+  Future<List<AppointmentModel>> getAppointmentsByDateRange(DateTime from, DateTime to);
+
+  Future<List<AppointmentModel>> getAppointmentsByClientAndDateRange(ClientModel client, DateTime from, DateTime to);
+
+  Future<List<AppointmentModel>> getOverlappingAppointments(AppointmentModel appointment);
 }
