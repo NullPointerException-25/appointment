@@ -51,6 +51,13 @@ class Translator extends Translations {
           "clientName": "Client name",
           "appointmentsDate": "Appointment date",
           "addANewField": "Add a new field",
+          "month": "Month",
+          "week": "Week",
+          "day": "Day",
+          "today": "Today",
+          "tomorrow": "Tomorrow",
+          "yesterday": "Yesterday",
+          "twoWeeks": "Two weeks",
 
         },
         'es': {
@@ -145,4 +152,18 @@ class Translator extends Translations {
   static String get appointmentsDate => "appointmentsDate";
 
   static String get addANewField => "addANewField";
+
+  static String get month => "month";
+
+  static String get week => "week";
+
+  static String get day => "day";
+
+  static String get today => "today";
+
+  static String get tomorrow => "tomorrow";
+
+  static String get yesterday => "yesterday";
+
+  static String get twoWeeks => "twoWeeks";
 }

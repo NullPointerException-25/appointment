@@ -29,7 +29,7 @@ class LocalAppointmentsDatasource extends GetxService{
 
   Future<List<AppointmentModel>> getAllDayAppointments(DateTime date) async {
     date = DateTime(date.year, date.month, date.day);
-    DateTime endDate = DateTime(date.year, date.month, date.day, 23, 59, 59);
+    final endDate = DateTime(date.year, date.month, date.day, 23, 59, 59);
     final box = _store.value.box<AppointmentModel>();
     final query = box.query(AppointmentModel_.fromDate.betweenDate(date, endDate)).build();
     final result = query.find();

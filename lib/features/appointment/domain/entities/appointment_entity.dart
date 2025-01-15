@@ -1,19 +1,22 @@
 import 'package:appointments_manager/core/abstractions/entity.dart';
 import 'package:appointments_manager/features/appointment/data/models/appointment.dart';
+import 'package:appointments_manager/features/appointment/domain/contracts/appointment_contract.dart';
 import 'package:appointments_manager/features/client/domain/entities/client_entity.dart';
 
-class AppointmentEntity extends CoreEntity<AppointmentModel> {
+class AppointmentEntity extends CoreEntity<AppointmentModel> implements AppointmentContract {
   @override
   late DateTime lastUpdate;
   @override
   int localId;
   @override
   String remoteId;
-
+  @override
   DateTime fromDate;
+  @override
   DateTime toDate;
   ClientEntity client;
 
+  @override
   Duration get duration => toDate.difference(fromDate);
 
   AppointmentEntity(
