@@ -1,4 +1,4 @@
-import 'package:appointments_manager/core/utils/routes.dart';
+import 'package:appointments_manager/core/utils/colors.dart';
 import 'package:appointments_manager/core/utils/translations.dart';
 import 'package:appointments_manager/features/appointment/domain/contracts/appointment_contract.dart';
 import 'package:appointments_manager/features/appointment/domain/entities/appointment_preview.dart';
@@ -8,10 +8,13 @@ import 'package:appointments_manager/features/appointment/domain/usecases/get_ap
 import 'package:appointments_manager/features/client/domain/entities/client_entity.dart';
 import 'package:appointments_manager/features/client/domain/entities/client_query_params.dart';
 import 'package:appointments_manager/features/client/domain/usecases/get_clients_by_params.dart';
+import 'package:elegant_notification/elegant_notification.dart';
+import 'package:elegant_notification/resources/arrays.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:jiffy/jiffy.dart';
 import 'package:table_calendar/table_calendar.dart';
+
+import '../../../../core/utils/routes.dart';
 
 class CreateAppointmentController extends GetxController {
   static CreateAppointmentController get to =>
@@ -96,6 +99,19 @@ class CreateAppointmentController extends GetxController {
             _intToDuration[sliderValue.toInt()]!)
         .perform()
         .then((value) {
+      ElegantNotification.success(
+        width: 300,
+        isDismissable: false,
+        displayCloseButton: false,
+        animationCurve: Curves.easeInOut,
+        background: ThemeColors.darkBlue,
+        position: Alignment.topRight,
+        animation: AnimationType.fromRight,
+        description: Text(
+          Translator.appointmentCreated.tr,
+          style: const TextStyle(color: ThemeColors.white),
+        ),
+      ).show(Get.context!);
       Get.offAllNamed(Routes.home);
     });
   }

@@ -3,7 +3,6 @@ import 'package:appointments_manager/features/appointment/data/repositories/appo
 import 'package:appointments_manager/features/appointment/domain/entities/appointment_entity.dart';
 import 'package:appointments_manager/features/appointment/domain/repositories/appointments_repository.dart';
 import 'package:appointments_manager/features/client/domain/entities/client_entity.dart';
-import 'package:flutter/cupertino.dart';
 
 class CreateAppointmentUseCase extends UseCase<void> {
   late final AppointmentsRepository _appointmentsRepository;
