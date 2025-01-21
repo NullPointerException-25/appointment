@@ -17,6 +17,7 @@ import 'package:appointments_manager/splash/presentation/pages/splash.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:objectbox_flutter_libs/objectbox_flutter_libs.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 import 'firebase_options.dart';
@@ -31,6 +32,7 @@ initServices() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await loadObjectBoxLibraryAndroidCompat();
   await Get.putAsync(() => ProfileService().init());
   await Get.putAsync(
       () => ObjectBoxService().init(ProfileService.to.profile.value));

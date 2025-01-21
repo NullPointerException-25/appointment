@@ -2,8 +2,10 @@ import 'package:appointments_manager/core/abstractions/entity.dart';
 import 'package:appointments_manager/features/appointment/data/models/appointment.dart';
 import 'package:appointments_manager/features/appointment/domain/contracts/appointment_contract.dart';
 import 'package:appointments_manager/features/client/domain/entities/client_entity.dart';
+import 'package:flutter/cupertino.dart';
 
-class AppointmentEntity extends CoreEntity<AppointmentModel> implements AppointmentContract {
+class AppointmentEntity extends CoreEntity<AppointmentModel>
+    implements AppointmentContract {
   @override
   late DateTime lastUpdate;
   @override
@@ -19,20 +21,20 @@ class AppointmentEntity extends CoreEntity<AppointmentModel> implements Appointm
   @override
   Duration get duration => toDate.difference(fromDate);
 
-  AppointmentEntity(
-      {this.localId = 0,
-      DateTime? lastUpdate,
-      this.remoteId = "",
-      required this.fromDate,
-      required this.toDate,
-      required this.client}) {
+  AppointmentEntity({this.localId = 0,
+    DateTime? lastUpdate,
+    this.remoteId = "",
+    required this.fromDate,
+    required this.toDate,
+    required this.client}) {
     this.lastUpdate = lastUpdate ?? DateTime.now();
   }
 
   @override
   AppointmentModel toModel() {
-    return AppointmentModel(
-        fromDate: fromDate, toDate: toDate, lastUpdate: lastUpdate)
-      ..client.target = client.toModel();
+    final appointment = AppointmentModel(
+        fromDate: fromDate, toDate: toDate, lastUpdate: lastUpdate);
+    appointment.client.target = client.toModel();
+    return appointment;
   }
 }

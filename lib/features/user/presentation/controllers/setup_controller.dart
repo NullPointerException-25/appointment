@@ -34,15 +34,21 @@ class SetupController extends GetxController {
   }
 
   void nextStep() {
-    if (!_stepRequirements[step.value]!()) {
-      return;
+    try {
+      if (!_stepRequirements[step.value]!()) {
+        return;
+      }
+      if (step.value == 2) {
+        _saveUserChanges();
+      }
+      step.value++;
+      pageController.nextPage(
+          duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
+    } catch (e) {
+      step.value = 0;
+      pageController.animateToPage(0,
+          duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
     }
-    if (step.value == 2) {
-      _saveUserChanges();
-    }
-    step.value++;
-    pageController.nextPage(
-        duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
   }
 
   void _saveUserChanges() async {

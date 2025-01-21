@@ -1,11 +1,9 @@
 import 'package:appointments_manager/core/abstractions/usecases.dart';
-import 'package:appointments_manager/core/utils/routes.dart';
 import 'package:appointments_manager/features/appointment/data/repositories/appointments_repository_imp_local.dart';
 import 'package:appointments_manager/features/appointment/domain/entities/appointment_entity.dart';
 import 'package:appointments_manager/features/appointment/domain/repositories/appointments_repository.dart';
 import 'package:appointments_manager/features/client/domain/entities/client_entity.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/get_navigation.dart';
+import 'package:flutter/cupertino.dart';
 
 class CreateAppointmentUseCase extends UseCase<void> {
   late final AppointmentsRepository _appointmentsRepository;
@@ -30,7 +28,7 @@ class CreateAppointmentUseCase extends UseCase<void> {
   Future<void> perform() async {
     final appointmentModel = appointment.toModel();
     await _appointmentsRepository.saveAppointment(appointmentModel);
-    Get.offAllNamed(Routes.home);
+
     return;
   }
 }

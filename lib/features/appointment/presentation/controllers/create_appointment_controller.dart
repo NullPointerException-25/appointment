@@ -1,6 +1,7 @@
+import 'package:appointments_manager/core/utils/routes.dart';
 import 'package:appointments_manager/core/utils/translations.dart';
 import 'package:appointments_manager/features/appointment/domain/contracts/appointment_contract.dart';
-import 'package:appointments_manager/features/appointment/domain/entities/appointment_entity.dart';
+import 'package:appointments_manager/features/appointment/domain/entities/appointment_preview.dart';
 import 'package:appointments_manager/features/appointment/domain/usecases/create_appointment_previews.dart';
 import 'package:appointments_manager/features/appointment/domain/usecases/create_appointment_use_case.dart';
 import 'package:appointments_manager/features/appointment/domain/usecases/get_appointments_by_date.dart';
@@ -28,6 +29,7 @@ class CreateAppointmentController extends GetxController {
   final clientNameSearchFocusNode = FocusNode();
   final calendarFormat = Rx<CalendarFormat>(CalendarFormat.month);
   final todayAppointments = <AppointmentContract>[].obs;
+  final selectedAppointmentPreview = Rxn<AppointmentPreview>();
 
   @override
   void onInit() {
@@ -39,6 +41,7 @@ class CreateAppointmentController extends GetxController {
       (callback) => setDuration(callback.toInt()),
     );
     ever(selectedDateTime, (callback) => fetchAppointments());
+    ever(sliderValue, (callback) => fetchAppointments());
   }
 
   Future<void> fetchClients() async {
@@ -57,11 +60,20 @@ class CreateAppointmentController extends GetxController {
   void fetchAppointments() async {
     todayAppointments.value =
         await GetAppointmentsByDateUseCase(selectedDateTime.value).perform();
+    getAppointmentPreviews();
+  }
+
+  void getAppointmentPreviews() async {
     todayAppointments.value = await CreateAppointmentPreviews(
       appointmentDuration: _intToDuration[sliderValue.toInt()]!,
       appointments: todayAppointments,
       selectedDay: selectedDateTime.value,
     ).perform();
+    selectedAppointmentPreview.value = null;
+  }
+
+  void setSelectedAppointment(AppointmentPreview appointment) {
+    selectedAppointmentPreview.value = appointment;
   }
 
   void selectClient(ClientEntity client) {
@@ -74,30 +86,18 @@ class CreateAppointmentController extends GetxController {
     if (selectedClient.value == null) {
       return;
     }
-    CreateAppointmentUseCase(selectedClient.value!, selectedDateTime.value,
-            _intToDuration[sliderValue.toInt()]!)
-        .perform();
-  }
+    if (selectedAppointmentPreview.value == null) {
+      return;
+    }
 
-  void setDateTime() async {
-    final dateTime = await showDatePicker(
-        context: Get.context!,
-        firstDate: DateTime.now(),
-        lastDate: DateTime.now().add(const Duration(days: 365)));
-    if (dateTime == null) {
-      return;
-    }
-    final time = await showTimePicker(
-      context: Get.context!,
-      initialTime: const TimeOfDay(hour: 0, minute: 0),
-    );
-    if (time == null) {
-      return;
-    }
-    selectedDateTime.value =
-        dateTime.add(Duration(hours: time.hour, minutes: time.minute));
-    startDateTimeTextController.text =
-        Jiffy.parse(selectedDateTime.value.toIso8601String()).yMMMMEEEEdjm;
+    CreateAppointmentUseCase(
+            selectedClient.value!,
+            selectedAppointmentPreview.value!.fromDate,
+            _intToDuration[sliderValue.toInt()]!)
+        .perform()
+        .then((value) {
+      Get.offAllNamed(Routes.home);
+    });
   }
 
   int get optionsLength => _intToDuration.length;

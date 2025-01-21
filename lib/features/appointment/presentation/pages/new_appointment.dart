@@ -1,14 +1,17 @@
 import 'package:appointments_manager/core/utils/colors.dart';
 import 'package:appointments_manager/core/utils/global_values.dart';
 import 'package:appointments_manager/core/utils/translations.dart';
+import 'package:appointments_manager/features/appointment/domain/entities/appointment_entity.dart';
+import 'package:appointments_manager/features/appointment/domain/entities/appointment_preview.dart';
 import 'package:appointments_manager/features/appointment/presentation/controllers/create_appointment_controller.dart';
+import 'package:appointments_manager/features/appointment/presentation/widgets/appointment_item.dart';
+import 'package:appointments_manager/features/appointment/presentation/widgets/appointment_preview_item.dart';
 import 'package:appointments_manager/features/appointment/presentation/widgets/calendar_date_picker.dart';
 import 'package:appointments_manager/features/appointment/presentation/widgets/client_searcher_textfield.dart';
 import 'package:appointments_manager/features/appointment/presentation/widgets/duration_slider.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:hugeicons/hugeicons.dart';
 
 class CreateAppointmentPage extends GetView<CreateAppointmentController> {
   const CreateAppointmentPage({super.key});
@@ -49,7 +52,7 @@ class CreateAppointmentPage extends GetView<CreateAppointmentController> {
                             "Duration",
                             style: TextStyle(
                                 color: Theme.of(context).brightness ==
-                                    Brightness.dark
+                                        Brightness.dark
                                     ? ThemeColors.white
                                     : ThemeColors.dark),
                           ),
@@ -58,51 +61,34 @@ class CreateAppointmentPage extends GetView<CreateAppointmentController> {
                           ),
                           const DurationSlider(),
                           Obx(
-                                () => Padding(
+                            () => Padding(
                               padding: const EdgeInsets.all(kPaddingS),
                               child:
-                              Text(controller.selectedDurationString.value),
+                                  Text(controller.selectedDurationString.value),
                             ),
                           ),
                         ],
                       ),
                     ),
                   ),
-                  Obx( ()=> SliverList.builder(
-                      itemCount: controller.todayAppointments.length,
-                      itemBuilder: (context, index) => const ListTile(
-                        title: Text(
-                          "()",
-                          style: TextStyle(color: ThemeColors.darkBlue),
-                        ),
-                      ),
+                  Obx(
+                    () => SliverPadding(
+                      padding: const EdgeInsets.all(kPaddingM),
+                      sliver: SliverList.builder(
+                          itemCount: controller.todayAppointments.length,
+                          itemBuilder: (context, index) {
+                            if (controller.todayAppointments[index]
+                                is AppointmentPreview) {
+                              return AppointmentPreviewItem(
+                                  controller.todayAppointments[index]
+                                      as AppointmentPreview);
+                            }
+                            return AppointmentItem(
+                                appointment: controller.todayAppointments[index]
+                                    as AppointmentEntity);
+                          }),
                     ),
                   ),
-                  SliverToBoxAdapter(
-                    child: Row(
-                      children: [
-                        TextButton.icon(
-                          onPressed: () {
-                         //controller.createAppointment();
-                          },
-                          icon: Icon(
-                            HugeIcons.strokeRoundedAdd01,
-                            color: Theme.of(context).brightness == Brightness.dark
-                                ? ThemeColors.white
-                                : ThemeColors.dark,
-                          ),
-                          label: Text(
-                            Translator.addANewField.tr,
-                            style: TextStyle(
-                                fontSize: kFontSize,
-                                color: Theme.of(context).brightness == Brightness.dark
-                                    ? ThemeColors.white
-                                    : ThemeColors.dark),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ), 
                 ],
               ),
             ),

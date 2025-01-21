@@ -1,9 +1,12 @@
 import 'package:appointments_manager/core/abstractions/usecases.dart';
+import 'package:appointments_manager/core/utils/routes.dart';
 import 'package:appointments_manager/features/user/domain/entities/user_entity.dart';
 import 'package:appointments_manager/features/user/domain/usecases/check_if_setup_completed_use_case.dart';
 import 'package:appointments_manager/features/user/domain/usecases/save_email_for_news.dart';
 import 'package:appointments_manager/features/user/domain/usecases/save_profile_image_on_storage_use_case.dart';
 import 'package:appointments_manager/features/user/domain/usecases/save_user_use_case.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 
 class SetupUserUseCase extends UseCase {
   final String name;
@@ -33,8 +36,10 @@ class SetupUserUseCase extends UseCase {
         name: name,
         lastUpdate: DateTime.now(),
       ),
-    ).perform();
-
-    CheckIfSetupCompletedUseCase().perform();
+    ).perform().then((value) async {
+      await SetSetupCompletedUseCase().perform();
+      Get.offAllNamed(Routes.home);
+      return;
+    });
   }
 }

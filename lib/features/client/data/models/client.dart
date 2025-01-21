@@ -33,7 +33,9 @@ class ClientModel extends CoreModel<ClientEntity> {
       required this.lastUpdate,
       this.phone = "",
       this.imagePath = "",
-      this.remoteId = ""});
+      this.remoteId = ""}){
+    localId = id??0;
+  }
 
   @override
   ClientEntity toEntity() {
