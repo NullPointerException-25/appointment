@@ -3,6 +3,8 @@ import 'package:appointments_manager/core/services/profile_service.dart';
 import 'package:appointments_manager/core/utils/routes.dart';
 import 'package:appointments_manager/core/utils/themes.dart';
 import 'package:appointments_manager/core/utils/translations.dart';
+import 'package:appointments_manager/features/appointment/presentation/bindings/create_appointment_binding.dart';
+import 'package:appointments_manager/features/appointment/presentation/pages/new_appointment.dart';
 import 'package:appointments_manager/features/client/presentation/bindings/clients_details_binding.dart';
 import 'package:appointments_manager/features/client/presentation/bindings/create_client_binding.dart';
 import 'package:appointments_manager/features/client/presentation/bindings/query_clients_binding.dart';
@@ -12,10 +14,10 @@ import 'package:appointments_manager/features/user/presentation/pages/setup.dart
 import 'package:appointments_manager/home/presentation/bindings/binding.dart';
 import 'package:appointments_manager/home/presentation/pages/home.dart';
 import 'package:appointments_manager/splash/presentation/pages/splash.dart';
-import 'package:calendar_view/calendar_view.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:objectbox_flutter_libs/objectbox_flutter_libs.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 import 'firebase_options.dart';
@@ -30,9 +32,11 @@ initServices() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await loadObjectBoxLibraryAndroidCompat();
   await Get.putAsync(() => ProfileService().init());
   await Get.putAsync(
       () => ObjectBoxService().init(ProfileService.to.profile.value));
+
 }
 
 class MyApp extends StatelessWidget {
@@ -40,9 +44,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CalendarControllerProvider(
-      controller: EventController(),
-      child: GetMaterialApp(
+    return GetMaterialApp(
         builder: (context, child) => ResponsiveBreakpoints.builder(
           child: child!,
           breakpoints: [
@@ -75,9 +77,13 @@ class MyApp extends StatelessWidget {
               name: Routes.newClient,
               page: () => const CreateClientPage(),
               binding: CreateClientBinding()),
+          GetPage(
+              name: Routes.newAppointment,
+              page: () => const CreateAppointmentPage(),
+              binding: CreateAppointmentBinding()
+          )
         ],
         initialRoute: Routes.splash,
-      ),
-    );
+      );
   }
 }

@@ -4,154 +4,215 @@
   "_note3": "If you have VCS merge conflicts, you must resolve them according to ObjectBox docs.",
   "entities": [
     {
-      "id": "1:2",
-      "lastPropertyId": "9:7617349162006730990",
-      "name": "AppointmentSchema",
+      "id": "1:6",
+      "lastPropertyId": "5:8883484128750373114",
+      "name": "AppointmentFieldModel",
       "properties": [
         {
-          "id": "1:3717834262775929084",
-          "name": "id",
+          "id": "1:4987253733664260378",
+          "name": "localId",
           "type": 6,
           "flags": 1
         },
         {
-          "id": "2:8490447078486864820",
+          "id": "2:1128836391707515361",
           "name": "title",
           "type": 9
         },
         {
-          "id": "3:8145614914489207244",
-          "name": "description",
-          "type": 9
-        },
-        {
-          "id": "4:1734301670390868762",
-          "name": "fromDate",
-          "type": 10
-        },
-        {
-          "id": "5:5440451931260295761",
-          "name": "toDate",
-          "type": 10
-        },
-        {
-          "id": "6:5375064600237580625",
+          "id": "3:3487889309704600814",
           "name": "lastUpdate",
           "type": 10
         },
         {
-          "id": "7:877759975389265884",
-          "name": "location",
+          "id": "4:1223340284426202036",
+          "name": "remoteId",
           "type": 9
         },
         {
-          "id": "8:2435066323877104109",
-          "name": "imagePath",
+          "id": "5:8883484128750373114",
+          "name": "formFieldType",
+          "type": 6
+        }
+      ],
+      "relations": []
+    },
+    {
+      "id": "2:2",
+      "lastPropertyId": "6:4734559856003409283",
+      "name": "AppointmentModel",
+      "properties": [
+        {
+          "id": "1:3331865463184248979",
+          "name": "localId",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:8750155977320275511",
+          "name": "remoteId",
           "type": 9
         },
         {
-          "id": "9:7617349162006730990",
+          "id": "3:3823775708848738830",
+          "name": "fromDate",
+          "type": 10
+        },
+        {
+          "id": "4:5587385553310279271",
+          "name": "toDate",
+          "type": 10
+        },
+        {
+          "id": "5:625059578056262747",
+          "name": "lastUpdate",
+          "type": 10
+        },
+        {
+          "id": "6:4734559856003409283",
           "name": "clientId",
           "type": 11,
           "flags": 520,
-          "indexId": "1:7900870585069514014",
+          "indexId": "1:1946334522486954961",
           "relationTarget": "ClientModel"
         }
       ],
       "relations": []
     },
     {
-      "id": "2:3",
-      "lastPropertyId": "7:853334162452125539",
-      "name": "ClientModel",
+      "id": "3:5",
+      "lastPropertyId": "4:7833738969150588266",
+      "name": "AppointmentTemplateModel",
       "properties": [
         {
-          "id": "1:5555597257152232090",
-          "name": "id",
+          "id": "1:1068970929063935680",
+          "name": "localId",
           "type": 6,
           "flags": 1
         },
         {
-          "id": "2:3204969529432121208",
-          "name": "name",
+          "id": "2:9107985784433699405",
+          "name": "remoteId",
           "type": 9
         },
         {
-          "id": "3:1931603103080843960",
-          "name": "email",
-          "type": 9
-        },
-        {
-          "id": "4:6049600247455947164",
-          "name": "phone",
-          "type": 9
-        },
-        {
-          "id": "5:4414747151987861419",
-          "name": "imagePath",
-          "type": 9
-        },
-        {
-          "id": "6:6007920042929438378",
+          "id": "3:4936006209922089957",
           "name": "lastUpdate",
           "type": 10
         },
         {
-          "id": "7:853334162452125539",
+          "id": "4:7833738969150588266",
+          "name": "name",
+          "type": 9,
+          "flags": 2080,
+          "indexId": "2:5379845610097248380"
+        }
+      ],
+      "relations": [
+        {
+          "id": "2:4933571554284600610",
+          "name": "fields",
+          "targetId": "1:6"
+        }
+      ]
+    },
+    {
+      "id": "4:3",
+      "lastPropertyId": "9:7234559328900190616",
+      "name": "ClientModel",
+      "properties": [
+        {
+          "id": "1:3241978278620678974",
+          "name": "localId",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:8906725109395119106",
+          "name": "name",
+          "type": 9
+        },
+        {
+          "id": "3:2027845712497478218",
+          "name": "email",
+          "type": 9
+        },
+        {
+          "id": "4:4421312535931179236",
+          "name": "phone",
+          "type": 9
+        },
+        {
+          "id": "5:7389054569073740939",
+          "name": "imagePath",
+          "type": 9
+        },
+        {
+          "id": "6:1833203443857996890",
           "name": "urlImage",
           "type": 9
+        },
+        {
+          "id": "7:6174784703118179351",
+          "name": "description",
+          "type": 9
+        },
+        {
+          "id": "8:4919568053282732977",
+          "name": "remoteId",
+          "type": 9
+        },
+        {
+          "id": "9:7234559328900190616",
+          "name": "lastUpdate",
+          "type": 10
         }
       ],
       "relations": []
     },
     {
-      "id": "3:1",
-      "lastPropertyId": "9:249219285888371299",
+      "id": "5:1",
+      "lastPropertyId": "9:1224945161615313284",
       "name": "UserModel",
       "properties": [
         {
-          "id": "1:4359905876601394740",
+          "id": "1:2729234290222431168",
           "name": "id",
           "type": 6,
           "flags": 1
         },
         {
-          "id": "2:1712312824777077428",
+          "id": "2:3533977671666599879",
           "name": "imagePath",
           "type": 9
         },
         {
-          "id": "3:303102462384224252",
-          "name": "name",
-          "type": 9
-        },
-        {
-          "id": "4:3290830076114544379",
-          "name": "email",
-          "type": 9
-        },
-        {
-          "id": "5:4675380094038512335",
-          "name": "isCurrentUser",
-          "type": 1
-        },
-        {
-          "id": "6:2961562627451087569",
-          "name": "lastUpdate",
-          "type": 10
-        },
-        {
-          "id": "7:8865586706154070390",
-          "name": "isSetupComplete",
-          "type": 1
-        },
-        {
-          "id": "8:1203890603581925110",
+          "id": "3:4432724981459415031",
           "name": "imageUrl",
           "type": 9
         },
         {
-          "id": "9:249219285888371299",
+          "id": "4:5410734881467320304",
+          "name": "name",
+          "type": 9
+        },
+        {
+          "id": "5:5589336430471208110",
+          "name": "email",
+          "type": 9
+        },
+        {
+          "id": "6:1937500422659137754",
+          "name": "isCurrentUser",
+          "type": 1
+        },
+        {
+          "id": "8:4108223817629452004",
+          "name": "isSetupComplete",
+          "type": 1
+        },
+        {
+          "id": "9:1224945161615313284",
           "name": "remoteId",
           "type": 9
         }
@@ -159,15 +220,19 @@
       "relations": []
     }
   ],
-  "lastEntityId": "3:1",
-  "lastIndexId": "1:7900870585069514014",
-  "lastRelationId": "0:0",
+  "lastEntityId": "5:1",
+  "lastIndexId": "2:5379845610097248380",
+  "lastRelationId": "2:4933571554284600610",
   "lastSequenceId": "0:0",
   "modelVersion": 5,
   "modelVersionParserMinimum": 5,
   "retiredEntityUids": [],
   "retiredIndexUids": [],
-  "retiredPropertyUids": [],
-  "retiredRelationUids": [],
+  "retiredPropertyUids": [
+    1701739923913506732
+  ],
+  "retiredRelationUids": [
+    6766621169241648557
+  ],
   "version": 1
 }

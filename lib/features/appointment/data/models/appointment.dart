@@ -1,37 +1,47 @@
+import 'package:appointments_manager/core/abstractions/model.dart';
+import 'package:appointments_manager/features/appointment/domain/entities/appointment_entity.dart';
 import 'package:appointments_manager/features/client/data/models/client.dart';
 import 'package:objectbox/objectbox.dart';
 
 @Entity(uid: 2)
-class AppointmentSchema {
+class AppointmentModel extends CoreModel<AppointmentEntity>{
+  @override
   @Id()
-  int id = 0;
-  String title;
-  String? description;
+  int localId = 0;
+  @override
+  String remoteId;
   @Property(type: PropertyType.date)
   DateTime fromDate;
   @Property(type: PropertyType.date)
   DateTime toDate;
+  @override
   @Property(type: PropertyType.date)
   DateTime lastUpdate;
-  String? location;
-  String? imagePath;
-  @Transient()
-  late Duration duration;
   final client = ToOne<ClientModel>();
+  //final fields = ToMany<AppointmentModel>();
 
-  AppointmentSchema({
+
+  AppointmentModel({
     int? id,
-    required this.title,
-    this.description,
+    this.remoteId="",
     required this.fromDate,
     required this.toDate,
     required this.lastUpdate,
-    this.location,
-    this.imagePath,
   }) {
     if (id != null) {
-      this.id = id;
+      localId = id;
     }
-    duration = toDate.difference(fromDate);
+  }
+
+  @override
+  AppointmentEntity toEntity() {
+     return AppointmentEntity(
+       lastUpdate: lastUpdate,
+       remoteId: remoteId,
+       fromDate: fromDate,
+       toDate: toDate,
+       localId: localId,
+       client: client.target!.toEntity(),
+     );
   }
 }

@@ -1,11 +1,12 @@
 import 'dart:io';
 
+import 'package:appointments_manager/core/abstractions/model.dart';
 import 'package:appointments_manager/features/user/domain/entities/user_entity.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:objectbox/objectbox.dart';
 
 @Entity(uid: 1)
-class UserModel {
+class UserModel extends CoreModel<UserEntity> {
   @Id()
   int id = 0;
   String imagePath;
@@ -13,8 +14,11 @@ class UserModel {
   String name;
   String email;
   bool isCurrentUser;
+  @override
+  @Transient()
   DateTime lastUpdate = DateTime.now();
   bool isSetupComplete;
+  @override
   String remoteId;
 
   @Transient()
@@ -33,7 +37,6 @@ class UserModel {
     if (id != null) {
       this.id = id;
     }
-    file.value = imagePath.isNotEmpty ? File(imagePath) : null;
   }
 
   factory UserModel.fromEntity(UserEntity entity) {
@@ -46,6 +49,24 @@ class UserModel {
       isCurrentUser: entity.isCurrentUser,
       isSetupComplete: entity.isSetupComplete,
       remoteId: entity.remoteId,
+    );
+  }
+
+  @override
+  int get localId => id;
+
+  @override
+  UserEntity toEntity() {
+    return UserEntity(
+      localId: id,
+      name: name,
+      email: email,
+      isCurrentUser: isCurrentUser,
+      isSetupComplete: isSetupComplete,
+      remoteId: remoteId,
+      lastUpdate: lastUpdate,
+      imageUrl: imageUrl,
+      imagePath: imagePath,
     );
   }
 }

@@ -15,6 +15,8 @@ import 'package:objectbox/objectbox.dart' as obx;
 import 'package:objectbox_flutter_libs/objectbox_flutter_libs.dart';
 
 import 'features/appointment/data/models/appointment.dart';
+import 'features/appointment_templates/data/model/appointment_field.dart';
+import 'features/appointment_templates/data/model/appointment_template.dart';
 import 'features/client/data/models/client.dart';
 import 'features/user/data/models/users_model.dart';
 
@@ -22,158 +24,217 @@ export 'package:objectbox/objectbox.dart'; // so that callers only have to impor
 
 final _entities = <obx_int.ModelEntity>[
   obx_int.ModelEntity(
-      id: const obx_int.IdUid(1, 2),
-      name: 'AppointmentSchema',
-      lastPropertyId: const obx_int.IdUid(9, 7617349162006730990),
+      id: const obx_int.IdUid(1, 6),
+      name: 'AppointmentFieldModel',
+      lastPropertyId: const obx_int.IdUid(5, 8883484128750373114),
       flags: 0,
       properties: <obx_int.ModelProperty>[
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(1, 3717834262775929084),
-            name: 'id',
+            id: const obx_int.IdUid(1, 4987253733664260378),
+            name: 'localId',
             type: 6,
             flags: 1),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(2, 8490447078486864820),
+            id: const obx_int.IdUid(2, 1128836391707515361),
             name: 'title',
             type: 9,
             flags: 0),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(3, 8145614914489207244),
-            name: 'description',
-            type: 9,
-            flags: 0),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(4, 1734301670390868762),
-            name: 'fromDate',
-            type: 10,
-            flags: 0),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(5, 5440451931260295761),
-            name: 'toDate',
-            type: 10,
-            flags: 0),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(6, 5375064600237580625),
+            id: const obx_int.IdUid(3, 3487889309704600814),
             name: 'lastUpdate',
             type: 10,
             flags: 0),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(7, 877759975389265884),
-            name: 'location',
+            id: const obx_int.IdUid(4, 1223340284426202036),
+            name: 'remoteId',
             type: 9,
             flags: 0),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(8, 2435066323877104109),
-            name: 'imagePath',
+            id: const obx_int.IdUid(5, 8883484128750373114),
+            name: 'formFieldType',
+            type: 6,
+            flags: 0)
+      ],
+      relations: <obx_int.ModelRelation>[],
+      backlinks: <obx_int.ModelBacklink>[]),
+  obx_int.ModelEntity(
+      id: const obx_int.IdUid(2, 2),
+      name: 'AppointmentModel',
+      lastPropertyId: const obx_int.IdUid(6, 4734559856003409283),
+      flags: 0,
+      properties: <obx_int.ModelProperty>[
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(1, 3331865463184248979),
+            name: 'localId',
+            type: 6,
+            flags: 1),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(2, 8750155977320275511),
+            name: 'remoteId',
             type: 9,
             flags: 0),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(9, 7617349162006730990),
+            id: const obx_int.IdUid(3, 3823775708848738830),
+            name: 'fromDate',
+            type: 10,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(4, 5587385553310279271),
+            name: 'toDate',
+            type: 10,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(5, 625059578056262747),
+            name: 'lastUpdate',
+            type: 10,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(6, 4734559856003409283),
             name: 'clientId',
             type: 11,
             flags: 520,
-            indexId: const obx_int.IdUid(1, 7900870585069514014),
+            indexId: const obx_int.IdUid(1, 1946334522486954961),
             relationTarget: 'ClientModel')
       ],
       relations: <obx_int.ModelRelation>[],
       backlinks: <obx_int.ModelBacklink>[]),
   obx_int.ModelEntity(
-      id: const obx_int.IdUid(2, 3),
-      name: 'ClientModel',
-      lastPropertyId: const obx_int.IdUid(7, 853334162452125539),
+      id: const obx_int.IdUid(3, 5),
+      name: 'AppointmentTemplateModel',
+      lastPropertyId: const obx_int.IdUid(4, 7833738969150588266),
       flags: 0,
       properties: <obx_int.ModelProperty>[
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(1, 5555597257152232090),
-            name: 'id',
+            id: const obx_int.IdUid(1, 1068970929063935680),
+            name: 'localId',
             type: 6,
             flags: 1),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(2, 3204969529432121208),
-            name: 'name',
+            id: const obx_int.IdUid(2, 9107985784433699405),
+            name: 'remoteId',
             type: 9,
             flags: 0),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(3, 1931603103080843960),
-            name: 'email',
-            type: 9,
-            flags: 0),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(4, 6049600247455947164),
-            name: 'phone',
-            type: 9,
-            flags: 0),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(5, 4414747151987861419),
-            name: 'imagePath',
-            type: 9,
-            flags: 0),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(6, 6007920042929438378),
+            id: const obx_int.IdUid(3, 4936006209922089957),
             name: 'lastUpdate',
             type: 10,
             flags: 0),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(7, 853334162452125539),
+            id: const obx_int.IdUid(4, 7833738969150588266),
+            name: 'name',
+            type: 9,
+            flags: 2080,
+            indexId: const obx_int.IdUid(2, 5379845610097248380))
+      ],
+      relations: <obx_int.ModelRelation>[
+        obx_int.ModelRelation(
+            id: const obx_int.IdUid(2, 4933571554284600610),
+            name: 'fields',
+            targetId: const obx_int.IdUid(1, 6))
+      ],
+      backlinks: <obx_int.ModelBacklink>[]),
+  obx_int.ModelEntity(
+      id: const obx_int.IdUid(4, 3),
+      name: 'ClientModel',
+      lastPropertyId: const obx_int.IdUid(9, 7234559328900190616),
+      flags: 0,
+      properties: <obx_int.ModelProperty>[
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(1, 3241978278620678974),
+            name: 'localId',
+            type: 6,
+            flags: 1),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(2, 8906725109395119106),
+            name: 'name',
+            type: 9,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(3, 2027845712497478218),
+            name: 'email',
+            type: 9,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(4, 4421312535931179236),
+            name: 'phone',
+            type: 9,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(5, 7389054569073740939),
+            name: 'imagePath',
+            type: 9,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(6, 1833203443857996890),
             name: 'urlImage',
             type: 9,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(7, 6174784703118179351),
+            name: 'description',
+            type: 9,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(8, 4919568053282732977),
+            name: 'remoteId',
+            type: 9,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(9, 7234559328900190616),
+            name: 'lastUpdate',
+            type: 10,
             flags: 0)
       ],
       relations: <obx_int.ModelRelation>[],
       backlinks: <obx_int.ModelBacklink>[
         obx_int.ModelBacklink(
             name: 'linkAppointments',
-            srcEntity: 'AppointmentSchema',
+            srcEntity: 'AppointmentModel',
             srcField: 'client')
       ]),
   obx_int.ModelEntity(
-      id: const obx_int.IdUid(3, 1),
+      id: const obx_int.IdUid(5, 1),
       name: 'UserModel',
-      lastPropertyId: const obx_int.IdUid(9, 249219285888371299),
+      lastPropertyId: const obx_int.IdUid(9, 1224945161615313284),
       flags: 0,
       properties: <obx_int.ModelProperty>[
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(1, 4359905876601394740),
+            id: const obx_int.IdUid(1, 2729234290222431168),
             name: 'id',
             type: 6,
             flags: 1),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(2, 1712312824777077428),
+            id: const obx_int.IdUid(2, 3533977671666599879),
             name: 'imagePath',
             type: 9,
             flags: 0),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(3, 303102462384224252),
-            name: 'name',
-            type: 9,
-            flags: 0),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(4, 3290830076114544379),
-            name: 'email',
-            type: 9,
-            flags: 0),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(5, 4675380094038512335),
-            name: 'isCurrentUser',
-            type: 1,
-            flags: 0),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(6, 2961562627451087569),
-            name: 'lastUpdate',
-            type: 10,
-            flags: 0),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(7, 8865586706154070390),
-            name: 'isSetupComplete',
-            type: 1,
-            flags: 0),
-        obx_int.ModelProperty(
-            id: const obx_int.IdUid(8, 1203890603581925110),
+            id: const obx_int.IdUid(3, 4432724981459415031),
             name: 'imageUrl',
             type: 9,
             flags: 0),
         obx_int.ModelProperty(
-            id: const obx_int.IdUid(9, 249219285888371299),
+            id: const obx_int.IdUid(4, 5410734881467320304),
+            name: 'name',
+            type: 9,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(5, 5589336430471208110),
+            name: 'email',
+            type: 9,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(6, 1937500422659137754),
+            name: 'isCurrentUser',
+            type: 1,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(8, 4108223817629452004),
+            name: 'isSetupComplete',
+            type: 1,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(9, 1224945161615313284),
             name: 'remoteId',
             type: 9,
             flags: 0)
@@ -217,96 +278,158 @@ Future<obx.Store> openStore(
 obx_int.ModelDefinition getObjectBoxModel() {
   final model = obx_int.ModelInfo(
       entities: _entities,
-      lastEntityId: const obx_int.IdUid(3, 1),
-      lastIndexId: const obx_int.IdUid(1, 7900870585069514014),
-      lastRelationId: const obx_int.IdUid(0, 0),
+      lastEntityId: const obx_int.IdUid(5, 1),
+      lastIndexId: const obx_int.IdUid(2, 5379845610097248380),
+      lastRelationId: const obx_int.IdUid(2, 4933571554284600610),
       lastSequenceId: const obx_int.IdUid(0, 0),
       retiredEntityUids: const [],
       retiredIndexUids: const [],
-      retiredPropertyUids: const [],
-      retiredRelationUids: const [],
+      retiredPropertyUids: const [1701739923913506732],
+      retiredRelationUids: const [6766621169241648557],
       modelVersion: 5,
       modelVersionParserMinimum: 5,
       version: 1);
 
   final bindings = <Type, obx_int.EntityDefinition>{
-    AppointmentSchema: obx_int.EntityDefinition<AppointmentSchema>(
+    AppointmentFieldModel: obx_int.EntityDefinition<AppointmentFieldModel>(
         model: _entities[0],
-        toOneRelations: (AppointmentSchema object) => [object.client],
-        toManyRelations: (AppointmentSchema object) => {},
-        getId: (AppointmentSchema object) => object.id,
-        setId: (AppointmentSchema object, int id) {
-          object.id = id;
+        toOneRelations: (AppointmentFieldModel object) => [],
+        toManyRelations: (AppointmentFieldModel object) => {},
+        getId: (AppointmentFieldModel object) => object.localId,
+        setId: (AppointmentFieldModel object, int id) {
+          object.localId = id;
         },
-        objectToFB: (AppointmentSchema object, fb.Builder fbb) {
+        objectToFB: (AppointmentFieldModel object, fb.Builder fbb) {
           final titleOffset = fbb.writeString(object.title);
-          final descriptionOffset = object.description == null
-              ? null
-              : fbb.writeString(object.description!);
-          final locationOffset = object.location == null
-              ? null
-              : fbb.writeString(object.location!);
-          final imagePathOffset = object.imagePath == null
-              ? null
-              : fbb.writeString(object.imagePath!);
-          fbb.startTable(10);
-          fbb.addInt64(0, object.id);
+          final remoteIdOffset = fbb.writeString(object.remoteId);
+          fbb.startTable(6);
+          fbb.addInt64(0, object.localId);
           fbb.addOffset(1, titleOffset);
-          fbb.addOffset(2, descriptionOffset);
-          fbb.addInt64(3, object.fromDate.millisecondsSinceEpoch);
-          fbb.addInt64(4, object.toDate.millisecondsSinceEpoch);
-          fbb.addInt64(5, object.lastUpdate.millisecondsSinceEpoch);
-          fbb.addOffset(6, locationOffset);
-          fbb.addOffset(7, imagePathOffset);
-          fbb.addInt64(8, object.client.targetId);
+          fbb.addInt64(2, object.lastUpdate.millisecondsSinceEpoch);
+          fbb.addOffset(3, remoteIdOffset);
+          fbb.addInt64(4, object.formFieldType);
           fbb.finish(fbb.endTable());
-          return object.id;
+          return object.localId;
         },
         objectFromFB: (obx.Store store, ByteData fbData) {
           final buffer = fb.BufferContext(fbData);
           final rootOffset = buffer.derefObject(0);
-          final idParam =
-              const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
           final titleParam = const fb.StringReader(asciiOptimization: true)
               .vTableGet(buffer, rootOffset, 6, '');
-          final descriptionParam =
-              const fb.StringReader(asciiOptimization: true)
-                  .vTableGetNullable(buffer, rootOffset, 8);
-          final fromDateParam = DateTime.fromMillisecondsSinceEpoch(
-              const fb.Int64Reader().vTableGet(buffer, rootOffset, 10, 0));
-          final toDateParam = DateTime.fromMillisecondsSinceEpoch(
-              const fb.Int64Reader().vTableGet(buffer, rootOffset, 12, 0));
+          final formFieldTypeParam =
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 12, 0);
+          final localIdParam =
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
+          final remoteIdParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGet(buffer, rootOffset, 10, '');
           final lastUpdateParam = DateTime.fromMillisecondsSinceEpoch(
-              const fb.Int64Reader().vTableGet(buffer, rootOffset, 14, 0));
-          final locationParam = const fb.StringReader(asciiOptimization: true)
-              .vTableGetNullable(buffer, rootOffset, 16);
-          final imagePathParam = const fb.StringReader(asciiOptimization: true)
-              .vTableGetNullable(buffer, rootOffset, 18);
-          final object = AppointmentSchema(
-              id: idParam,
-              title: titleParam,
-              description: descriptionParam,
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 8, 0));
+          final object = AppointmentFieldModel(titleParam, formFieldTypeParam,
+              localId: localIdParam,
+              remoteId: remoteIdParam,
+              lastUpdate: lastUpdateParam);
+
+          return object;
+        }),
+    AppointmentModel: obx_int.EntityDefinition<AppointmentModel>(
+        model: _entities[1],
+        toOneRelations: (AppointmentModel object) => [object.client],
+        toManyRelations: (AppointmentModel object) => {},
+        getId: (AppointmentModel object) => object.localId,
+        setId: (AppointmentModel object, int id) {
+          object.localId = id;
+        },
+        objectToFB: (AppointmentModel object, fb.Builder fbb) {
+          final remoteIdOffset = fbb.writeString(object.remoteId);
+          fbb.startTable(7);
+          fbb.addInt64(0, object.localId);
+          fbb.addOffset(1, remoteIdOffset);
+          fbb.addInt64(2, object.fromDate.millisecondsSinceEpoch);
+          fbb.addInt64(3, object.toDate.millisecondsSinceEpoch);
+          fbb.addInt64(4, object.lastUpdate.millisecondsSinceEpoch);
+          fbb.addInt64(5, object.client.targetId);
+          fbb.finish(fbb.endTable());
+          return object.localId;
+        },
+        objectFromFB: (obx.Store store, ByteData fbData) {
+          final buffer = fb.BufferContext(fbData);
+          final rootOffset = buffer.derefObject(0);
+          final remoteIdParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGet(buffer, rootOffset, 6, '');
+          final fromDateParam = DateTime.fromMillisecondsSinceEpoch(
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 8, 0));
+          final toDateParam = DateTime.fromMillisecondsSinceEpoch(
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 10, 0));
+          final lastUpdateParam = DateTime.fromMillisecondsSinceEpoch(
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 12, 0));
+          final object = AppointmentModel(
+              remoteId: remoteIdParam,
               fromDate: fromDateParam,
               toDate: toDateParam,
-              lastUpdate: lastUpdateParam,
-              location: locationParam,
-              imagePath: imagePathParam);
+              lastUpdate: lastUpdateParam)
+            ..localId =
+                const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
           object.client.targetId =
-              const fb.Int64Reader().vTableGet(buffer, rootOffset, 20, 0);
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 14, 0);
           object.client.attach(store);
           return object;
         }),
+    AppointmentTemplateModel:
+        obx_int.EntityDefinition<AppointmentTemplateModel>(
+            model: _entities[2],
+            toOneRelations: (AppointmentTemplateModel object) => [],
+            toManyRelations: (AppointmentTemplateModel object) => {
+                  obx_int.RelInfo<AppointmentTemplateModel>.toMany(
+                      2, object.localId): object.fields
+                },
+            getId: (AppointmentTemplateModel object) => object.localId,
+            setId: (AppointmentTemplateModel object, int id) {
+              object.localId = id;
+            },
+            objectToFB: (AppointmentTemplateModel object, fb.Builder fbb) {
+              final remoteIdOffset = fbb.writeString(object.remoteId);
+              final nameOffset = fbb.writeString(object.name);
+              fbb.startTable(5);
+              fbb.addInt64(0, object.localId);
+              fbb.addOffset(1, remoteIdOffset);
+              fbb.addInt64(2, object.lastUpdate.millisecondsSinceEpoch);
+              fbb.addOffset(3, nameOffset);
+              fbb.finish(fbb.endTable());
+              return object.localId;
+            },
+            objectFromFB: (obx.Store store, ByteData fbData) {
+              final buffer = fb.BufferContext(fbData);
+              final rootOffset = buffer.derefObject(0);
+              final remoteIdParam =
+                  const fb.StringReader(asciiOptimization: true)
+                      .vTableGet(buffer, rootOffset, 6, '');
+              final lastUpdateParam = DateTime.fromMillisecondsSinceEpoch(
+                  const fb.Int64Reader().vTableGet(buffer, rootOffset, 8, 0));
+              final nameParam = const fb.StringReader(asciiOptimization: true)
+                  .vTableGet(buffer, rootOffset, 10, '');
+              final localIdParam =
+                  const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
+              final object = AppointmentTemplateModel(
+                  remoteIdParam, lastUpdateParam,
+                  name: nameParam, localId: localIdParam);
+              obx_int.InternalToManyAccess.setRelInfo<AppointmentTemplateModel>(
+                  object.fields,
+                  store,
+                  obx_int.RelInfo<AppointmentTemplateModel>.toMany(
+                      2, object.localId));
+              return object;
+            }),
     ClientModel: obx_int.EntityDefinition<ClientModel>(
-        model: _entities[1],
+        model: _entities[3],
         toOneRelations: (ClientModel object) => [],
         toManyRelations: (ClientModel object) => {
-              obx_int.RelInfo<AppointmentSchema>.toOneBacklink(9, object.id,
-                      (AppointmentSchema srcObject) => srcObject.client):
+              obx_int.RelInfo<AppointmentModel>.toOneBacklink(6, object.localId,
+                      (AppointmentModel srcObject) => srcObject.client):
                   object.linkAppointments
             },
-        getId: (ClientModel object) => object.id,
+        getId: (ClientModel object) => object.localId,
         setId: (ClientModel object, int id) {
-          object.id = id;
+          object.localId = id;
         },
         objectToFB: (ClientModel object, fb.Builder fbb) {
           final nameOffset = fbb.writeString(object.name);
@@ -314,51 +437,61 @@ obx_int.ModelDefinition getObjectBoxModel() {
           final phoneOffset = fbb.writeString(object.phone);
           final imagePathOffset = fbb.writeString(object.imagePath);
           final urlImageOffset = fbb.writeString(object.urlImage);
-          fbb.startTable(8);
-          fbb.addInt64(0, object.id);
+          final descriptionOffset = fbb.writeString(object.description);
+          final remoteIdOffset = fbb.writeString(object.remoteId);
+          fbb.startTable(10);
+          fbb.addInt64(0, object.localId);
           fbb.addOffset(1, nameOffset);
           fbb.addOffset(2, emailOffset);
           fbb.addOffset(3, phoneOffset);
           fbb.addOffset(4, imagePathOffset);
-          fbb.addInt64(5, object.lastUpdate.millisecondsSinceEpoch);
-          fbb.addOffset(6, urlImageOffset);
+          fbb.addOffset(5, urlImageOffset);
+          fbb.addOffset(6, descriptionOffset);
+          fbb.addOffset(7, remoteIdOffset);
+          fbb.addInt64(8, object.lastUpdate.millisecondsSinceEpoch);
           fbb.finish(fbb.endTable());
-          return object.id;
+          return object.localId;
         },
         objectFromFB: (obx.Store store, ByteData fbData) {
           final buffer = fb.BufferContext(fbData);
           final rootOffset = buffer.derefObject(0);
-          final idParam =
-              const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
+          final descriptionParam =
+              const fb.StringReader(asciiOptimization: true)
+                  .vTableGet(buffer, rootOffset, 16, '');
           final nameParam = const fb.StringReader(asciiOptimization: true)
               .vTableGet(buffer, rootOffset, 6, '');
           final urlImageParam = const fb.StringReader(asciiOptimization: true)
-              .vTableGet(buffer, rootOffset, 16, '');
+              .vTableGet(buffer, rootOffset, 14, '');
           final emailParam = const fb.StringReader(asciiOptimization: true)
               .vTableGet(buffer, rootOffset, 8, '');
           final lastUpdateParam = DateTime.fromMillisecondsSinceEpoch(
-              const fb.Int64Reader().vTableGet(buffer, rootOffset, 14, 0));
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 20, 0));
           final phoneParam = const fb.StringReader(asciiOptimization: true)
               .vTableGet(buffer, rootOffset, 10, '');
           final imagePathParam = const fb.StringReader(asciiOptimization: true)
               .vTableGet(buffer, rootOffset, 12, '');
+          final remoteIdParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGet(buffer, rootOffset, 18, '');
           final object = ClientModel(
-              id: idParam,
+              description: descriptionParam,
               name: nameParam,
               urlImage: urlImageParam,
               email: emailParam,
               lastUpdate: lastUpdateParam,
               phone: phoneParam,
-              imagePath: imagePathParam);
+              imagePath: imagePathParam,
+              remoteId: remoteIdParam)
+            ..localId =
+                const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
           obx_int.InternalToManyAccess.setRelInfo<ClientModel>(
               object.linkAppointments,
               store,
-              obx_int.RelInfo<AppointmentSchema>.toOneBacklink(9, object.id,
-                  (AppointmentSchema srcObject) => srcObject.client));
+              obx_int.RelInfo<AppointmentModel>.toOneBacklink(6, object.localId,
+                  (AppointmentModel srcObject) => srcObject.client));
           return object;
         }),
     UserModel: obx_int.EntityDefinition<UserModel>(
-        model: _entities[2],
+        model: _entities[4],
         toOneRelations: (UserModel object) => [],
         toManyRelations: (UserModel object) => {},
         getId: (UserModel object) => object.id,
@@ -367,19 +500,18 @@ obx_int.ModelDefinition getObjectBoxModel() {
         },
         objectToFB: (UserModel object, fb.Builder fbb) {
           final imagePathOffset = fbb.writeString(object.imagePath);
+          final imageUrlOffset = fbb.writeString(object.imageUrl);
           final nameOffset = fbb.writeString(object.name);
           final emailOffset = fbb.writeString(object.email);
-          final imageUrlOffset = fbb.writeString(object.imageUrl);
           final remoteIdOffset = fbb.writeString(object.remoteId);
           fbb.startTable(10);
           fbb.addInt64(0, object.id);
           fbb.addOffset(1, imagePathOffset);
-          fbb.addOffset(2, nameOffset);
-          fbb.addOffset(3, emailOffset);
-          fbb.addBool(4, object.isCurrentUser);
-          fbb.addInt64(5, object.lastUpdate.millisecondsSinceEpoch);
-          fbb.addBool(6, object.isSetupComplete);
-          fbb.addOffset(7, imageUrlOffset);
+          fbb.addOffset(2, imageUrlOffset);
+          fbb.addOffset(3, nameOffset);
+          fbb.addOffset(4, emailOffset);
+          fbb.addBool(5, object.isCurrentUser);
+          fbb.addBool(7, object.isSetupComplete);
           fbb.addOffset(8, remoteIdOffset);
           fbb.finish(fbb.endTable());
           return object.id;
@@ -390,17 +522,17 @@ obx_int.ModelDefinition getObjectBoxModel() {
           final idParam =
               const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
           final nameParam = const fb.StringReader(asciiOptimization: true)
-              .vTableGet(buffer, rootOffset, 8, '');
-          final emailParam = const fb.StringReader(asciiOptimization: true)
               .vTableGet(buffer, rootOffset, 10, '');
+          final emailParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGet(buffer, rootOffset, 12, '');
           final imagePathParam = const fb.StringReader(asciiOptimization: true)
               .vTableGet(buffer, rootOffset, 6, '');
           final isCurrentUserParam =
-              const fb.BoolReader().vTableGet(buffer, rootOffset, 12, false);
+              const fb.BoolReader().vTableGet(buffer, rootOffset, 14, false);
           final isSetupCompleteParam =
-              const fb.BoolReader().vTableGet(buffer, rootOffset, 16, false);
+              const fb.BoolReader().vTableGet(buffer, rootOffset, 18, false);
           final imageUrlParam = const fb.StringReader(asciiOptimization: true)
-              .vTableGet(buffer, rootOffset, 18, '');
+              .vTableGet(buffer, rootOffset, 8, '');
           final remoteIdParam = const fb.StringReader(asciiOptimization: true)
               .vTableGet(buffer, rootOffset, 20, '');
           final object = UserModel(
@@ -411,9 +543,7 @@ obx_int.ModelDefinition getObjectBoxModel() {
               isCurrentUser: isCurrentUserParam,
               isSetupComplete: isSetupCompleteParam,
               imageUrl: imageUrlParam,
-              remoteId: remoteIdParam)
-            ..lastUpdate = DateTime.fromMillisecondsSinceEpoch(
-                const fb.Int64Reader().vTableGet(buffer, rootOffset, 14, 0));
+              remoteId: remoteIdParam);
 
           return object;
         })
@@ -422,116 +552,155 @@ obx_int.ModelDefinition getObjectBoxModel() {
   return obx_int.ModelDefinition(model, bindings);
 }
 
-/// [AppointmentSchema] entity fields to define ObjectBox queries.
-class AppointmentSchema_ {
-  /// See [AppointmentSchema.id].
-  static final id =
-      obx.QueryIntegerProperty<AppointmentSchema>(_entities[0].properties[0]);
+/// [AppointmentFieldModel] entity fields to define ObjectBox queries.
+class AppointmentFieldModel_ {
+  /// See [AppointmentFieldModel.localId].
+  static final localId = obx.QueryIntegerProperty<AppointmentFieldModel>(
+      _entities[0].properties[0]);
 
-  /// See [AppointmentSchema.title].
-  static final title =
-      obx.QueryStringProperty<AppointmentSchema>(_entities[0].properties[1]);
+  /// See [AppointmentFieldModel.title].
+  static final title = obx.QueryStringProperty<AppointmentFieldModel>(
+      _entities[0].properties[1]);
 
-  /// See [AppointmentSchema.description].
-  static final description =
-      obx.QueryStringProperty<AppointmentSchema>(_entities[0].properties[2]);
-
-  /// See [AppointmentSchema.fromDate].
-  static final fromDate =
-      obx.QueryDateProperty<AppointmentSchema>(_entities[0].properties[3]);
-
-  /// See [AppointmentSchema.toDate].
-  static final toDate =
-      obx.QueryDateProperty<AppointmentSchema>(_entities[0].properties[4]);
-
-  /// See [AppointmentSchema.lastUpdate].
+  /// See [AppointmentFieldModel.lastUpdate].
   static final lastUpdate =
-      obx.QueryDateProperty<AppointmentSchema>(_entities[0].properties[5]);
+      obx.QueryDateProperty<AppointmentFieldModel>(_entities[0].properties[2]);
 
-  /// See [AppointmentSchema.location].
-  static final location =
-      obx.QueryStringProperty<AppointmentSchema>(_entities[0].properties[6]);
+  /// See [AppointmentFieldModel.remoteId].
+  static final remoteId = obx.QueryStringProperty<AppointmentFieldModel>(
+      _entities[0].properties[3]);
 
-  /// See [AppointmentSchema.imagePath].
-  static final imagePath =
-      obx.QueryStringProperty<AppointmentSchema>(_entities[0].properties[7]);
+  /// See [AppointmentFieldModel.formFieldType].
+  static final formFieldType = obx.QueryIntegerProperty<AppointmentFieldModel>(
+      _entities[0].properties[4]);
+}
 
-  /// See [AppointmentSchema.client].
-  static final client = obx.QueryRelationToOne<AppointmentSchema, ClientModel>(
-      _entities[0].properties[8]);
+/// [AppointmentModel] entity fields to define ObjectBox queries.
+class AppointmentModel_ {
+  /// See [AppointmentModel.localId].
+  static final localId =
+      obx.QueryIntegerProperty<AppointmentModel>(_entities[1].properties[0]);
+
+  /// See [AppointmentModel.remoteId].
+  static final remoteId =
+      obx.QueryStringProperty<AppointmentModel>(_entities[1].properties[1]);
+
+  /// See [AppointmentModel.fromDate].
+  static final fromDate =
+      obx.QueryDateProperty<AppointmentModel>(_entities[1].properties[2]);
+
+  /// See [AppointmentModel.toDate].
+  static final toDate =
+      obx.QueryDateProperty<AppointmentModel>(_entities[1].properties[3]);
+
+  /// See [AppointmentModel.lastUpdate].
+  static final lastUpdate =
+      obx.QueryDateProperty<AppointmentModel>(_entities[1].properties[4]);
+
+  /// See [AppointmentModel.client].
+  static final client = obx.QueryRelationToOne<AppointmentModel, ClientModel>(
+      _entities[1].properties[5]);
+}
+
+/// [AppointmentTemplateModel] entity fields to define ObjectBox queries.
+class AppointmentTemplateModel_ {
+  /// See [AppointmentTemplateModel.localId].
+  static final localId = obx.QueryIntegerProperty<AppointmentTemplateModel>(
+      _entities[2].properties[0]);
+
+  /// See [AppointmentTemplateModel.remoteId].
+  static final remoteId = obx.QueryStringProperty<AppointmentTemplateModel>(
+      _entities[2].properties[1]);
+
+  /// See [AppointmentTemplateModel.lastUpdate].
+  static final lastUpdate = obx.QueryDateProperty<AppointmentTemplateModel>(
+      _entities[2].properties[2]);
+
+  /// See [AppointmentTemplateModel.name].
+  static final name = obx.QueryStringProperty<AppointmentTemplateModel>(
+      _entities[2].properties[3]);
+
+  /// see [AppointmentTemplateModel.fields]
+  static final fields =
+      obx.QueryRelationToMany<AppointmentTemplateModel, AppointmentFieldModel>(
+          _entities[2].relations[0]);
 }
 
 /// [ClientModel] entity fields to define ObjectBox queries.
 class ClientModel_ {
-  /// See [ClientModel.id].
-  static final id =
-      obx.QueryIntegerProperty<ClientModel>(_entities[1].properties[0]);
+  /// See [ClientModel.localId].
+  static final localId =
+      obx.QueryIntegerProperty<ClientModel>(_entities[3].properties[0]);
 
   /// See [ClientModel.name].
   static final name =
-      obx.QueryStringProperty<ClientModel>(_entities[1].properties[1]);
+      obx.QueryStringProperty<ClientModel>(_entities[3].properties[1]);
 
   /// See [ClientModel.email].
   static final email =
-      obx.QueryStringProperty<ClientModel>(_entities[1].properties[2]);
+      obx.QueryStringProperty<ClientModel>(_entities[3].properties[2]);
 
   /// See [ClientModel.phone].
   static final phone =
-      obx.QueryStringProperty<ClientModel>(_entities[1].properties[3]);
+      obx.QueryStringProperty<ClientModel>(_entities[3].properties[3]);
 
   /// See [ClientModel.imagePath].
   static final imagePath =
-      obx.QueryStringProperty<ClientModel>(_entities[1].properties[4]);
-
-  /// See [ClientModel.lastUpdate].
-  static final lastUpdate =
-      obx.QueryDateProperty<ClientModel>(_entities[1].properties[5]);
+      obx.QueryStringProperty<ClientModel>(_entities[3].properties[4]);
 
   /// See [ClientModel.urlImage].
   static final urlImage =
-      obx.QueryStringProperty<ClientModel>(_entities[1].properties[6]);
+      obx.QueryStringProperty<ClientModel>(_entities[3].properties[5]);
+
+  /// See [ClientModel.description].
+  static final description =
+      obx.QueryStringProperty<ClientModel>(_entities[3].properties[6]);
+
+  /// See [ClientModel.remoteId].
+  static final remoteId =
+      obx.QueryStringProperty<ClientModel>(_entities[3].properties[7]);
+
+  /// See [ClientModel.lastUpdate].
+  static final lastUpdate =
+      obx.QueryDateProperty<ClientModel>(_entities[3].properties[8]);
 
   /// see [ClientModel.linkAppointments]
   static final linkAppointments =
-      obx.QueryBacklinkToMany<AppointmentSchema, ClientModel>(
-          AppointmentSchema_.client);
+      obx.QueryBacklinkToMany<AppointmentModel, ClientModel>(
+          AppointmentModel_.client);
 }
 
 /// [UserModel] entity fields to define ObjectBox queries.
 class UserModel_ {
   /// See [UserModel.id].
   static final id =
-      obx.QueryIntegerProperty<UserModel>(_entities[2].properties[0]);
+      obx.QueryIntegerProperty<UserModel>(_entities[4].properties[0]);
 
   /// See [UserModel.imagePath].
   static final imagePath =
-      obx.QueryStringProperty<UserModel>(_entities[2].properties[1]);
-
-  /// See [UserModel.name].
-  static final name =
-      obx.QueryStringProperty<UserModel>(_entities[2].properties[2]);
-
-  /// See [UserModel.email].
-  static final email =
-      obx.QueryStringProperty<UserModel>(_entities[2].properties[3]);
-
-  /// See [UserModel.isCurrentUser].
-  static final isCurrentUser =
-      obx.QueryBooleanProperty<UserModel>(_entities[2].properties[4]);
-
-  /// See [UserModel.lastUpdate].
-  static final lastUpdate =
-      obx.QueryDateProperty<UserModel>(_entities[2].properties[5]);
-
-  /// See [UserModel.isSetupComplete].
-  static final isSetupComplete =
-      obx.QueryBooleanProperty<UserModel>(_entities[2].properties[6]);
+      obx.QueryStringProperty<UserModel>(_entities[4].properties[1]);
 
   /// See [UserModel.imageUrl].
   static final imageUrl =
-      obx.QueryStringProperty<UserModel>(_entities[2].properties[7]);
+      obx.QueryStringProperty<UserModel>(_entities[4].properties[2]);
+
+  /// See [UserModel.name].
+  static final name =
+      obx.QueryStringProperty<UserModel>(_entities[4].properties[3]);
+
+  /// See [UserModel.email].
+  static final email =
+      obx.QueryStringProperty<UserModel>(_entities[4].properties[4]);
+
+  /// See [UserModel.isCurrentUser].
+  static final isCurrentUser =
+      obx.QueryBooleanProperty<UserModel>(_entities[4].properties[5]);
+
+  /// See [UserModel.isSetupComplete].
+  static final isSetupComplete =
+      obx.QueryBooleanProperty<UserModel>(_entities[4].properties[6]);
 
   /// See [UserModel.remoteId].
   static final remoteId =
-      obx.QueryStringProperty<UserModel>(_entities[2].properties[8]);
+      obx.QueryStringProperty<UserModel>(_entities[4].properties[7]);
 }

@@ -1,6 +1,5 @@
 import 'dart:io';
-
-import 'package:appointments_manager/features/user/data/repositories/user_repository_impl.dart';
+import 'package:appointments_manager/features/user/domain/usecases/setup_user.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -24,7 +23,6 @@ class SetupController extends GetxController {
   late final Map<int, bool Function()> _stepRequirements;
   final GlobalKey<FormState> emailFormKey = GlobalKey<FormState>();
 
-
   @override
   void onInit() {
     super.onInit();
@@ -35,27 +33,30 @@ class SetupController extends GetxController {
     };
   }
 
-
-
   void nextStep() {
-    if (!_stepRequirements[step.value]!()) {
-      return;
+    try {
+      if (!_stepRequirements[step.value]!()) {
+        return;
+      }
+      if (step.value == 2) {
+        _saveUserChanges();
+      }
+      step.value++;
+      pageController.nextPage(
+          duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
+    } catch (e) {
+      step.value = 0;
+      pageController.animateToPage(0,
+          duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
     }
-    if (step.value == 2) {
-      _saveUserChanges();
-    }
-    step.value++;
-    pageController.nextPage(
-        duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
   }
 
-  void _saveUserChanges() {
-    UserDataRepositoryImpLocal.to.saveUserName(name.value);
-    UserDataRepositoryImpLocal.to.saveUserEmail(email.value);
-    if (image.value != null) {
-      UserDataRepositoryImpLocal.to.saveUserImage(image.value!.path);
-    }
-    UserDataRepositoryImpLocal.to.setSetupComplete();
+  void _saveUserChanges() async {
+    SetupUserUseCase(
+      name: name.value,
+      email: email.value,
+      imagePath: image.value?.path ?? "",
+    ).perform();
   }
 
   void previousStep() {
@@ -74,10 +75,12 @@ class SetupController extends GetxController {
   void detachImage() {
     image.value = null;
   }
-  PageController initPageController(){
-    pageController=PageController(initialPage: step.value);
+
+  PageController initPageController() {
+    pageController = PageController(initialPage: step.value);
     return pageController;
   }
+
   void loadPreviousData() {
     nameController.text = name.value;
     emailController.text = email.value;

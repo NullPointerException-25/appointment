@@ -38,6 +38,19 @@ const double kFontSizeXL = 20.0;
 const double kFontSizeXXL = 24.0;
 
 
+const double kElevation = 5.0;
+const double kElevationS = 2.0;
+const double kElevationM = 10.0;
+const double kElevationL = 15.0;
+const double kElevationXL = 20.0;
+const double kElevationXXL = 25.0;
+
+const double kOpacity = 0.5;
+const double kOpacityS = 0.3;
+const double kOpacityM = 0.7;
+const double kOpacityL = 0.8;
+const double kOpacityXL = 0.9;
+
 
 
 class ResponsiveMedia {

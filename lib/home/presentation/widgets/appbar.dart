@@ -40,8 +40,8 @@ class HomeAppBar extends GetView<HomeController> {
                     ),
                   )
                 : CircleAvatar(
-                    backgroundImage: controller.user.value!.file.value != null
-                        ? FileImage(controller.user.value!.file.value!)
+                    backgroundImage: controller.user.value!.localImage.value != null
+                        ? FileImage(controller.user.value!.localImage.value!)
                         : null,
                   ),
           ),

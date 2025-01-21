@@ -1,5 +1,11 @@
-abstract class CoreModel<Entity>{
+abstract class CoreModel<Entity> {
+  int get localId;
 
+  String get remoteId;
 
-Entity toEntity();
+  DateTime get lastUpdate;
+
+  CoreModel();
+
+  Entity toEntity();
 }

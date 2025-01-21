@@ -35,7 +35,7 @@ class CreateClientController extends GetxController implements ControllerClientC
         ),
       );
 
-      Get.back();
+
       Get.showSnackbar(const SnackBarClientSaved().build(Get.context!));
     }
   }

@@ -41,6 +41,25 @@ class Translator extends Translations {
           "scheduleAppointment": "Schedule appointment",
           "clientsNotFound":"Your clients must be here, but at least we found a cat",
           "addClient": "Add a client",
+          "minutes": "@minutes minutes",
+          "hourMinutes": "@hours hours and @minutes minutes",
+          "hour": "@hours hours",
+          "newAppointment": "New appointment",
+          "noClientsFound": "No clients found",
+          "tapToAddClient": "Tap to add a client",
+          "newClient": "New client",
+          "clientName": "Client name",
+          "appointmentsDate": "Appointment date",
+          "addANewField": "Add a new field",
+          "month": "Month",
+          "week": "Week",
+          "day": "Day",
+          "today": "Today",
+          "tomorrow": "Tomorrow",
+          "yesterday": "Yesterday",
+          "twoWeeks": "Two weeks",
+          "appointmentCreated": "Appointment created",
+
         },
         'es': {
           'title': 'Gestor de Citas',
@@ -114,4 +133,40 @@ class Translator extends Translations {
   static String get clientsNotFound=>"clientsNotFound";
 
   static String get addClient=>"addClient";
+
+  static String get minutes => "minutes";
+
+  static String get hourMinutes => "hourMinutes";
+
+  static String get hour => "hour";
+
+  static String get newAppointment => "newAppointment";
+
+  static String get noClientsFound => "noClientsFound";
+
+  static String get tapToAddClient => "tapToAddClient";
+
+  static String get newClient => "newClient";
+
+  static String get clientName => "clientName";
+
+  static String get appointmentsDate => "appointmentsDate";
+
+  static String get addANewField => "addANewField";
+
+  static String get month => "month";
+
+  static String get week => "week";
+
+  static String get day => "day";
+
+  static String get today => "today";
+
+  static String get tomorrow => "tomorrow";
+
+  static String get yesterday => "yesterday";
+
+  static String get twoWeeks => "twoWeeks";
+
+  static String get appointmentCreated => "appointmentCreated";
 }

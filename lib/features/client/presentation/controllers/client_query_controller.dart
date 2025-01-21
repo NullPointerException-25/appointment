@@ -1,5 +1,4 @@
 import 'package:appointments_manager/core/utils/routes.dart';
-import 'package:appointments_manager/features/client/data/models/client.dart';
 import 'package:appointments_manager/features/client/domain/entities/client_entity.dart';
 import 'package:appointments_manager/features/client/domain/entities/client_query_params.dart';
 import 'package:appointments_manager/features/client/domain/usecases/get_clients_by_params.dart';
@@ -24,15 +23,26 @@ class ClientQueryController extends GetxController {
   }
 
   void _getClientsByParams() async {
-    clients.addAll(
-        await GetClientsByParamsUseCase(queryParams: _params.value).perform());
+    clients.addAll(await GetClientsByParamsUseCase(
+            queryParams: _params.value)
+        .perform());
   }
 
   void goToClientDetailsPage(ClientEntity client) {
     Get.toNamed(Routes.client,
         parameters: {
-         if(!kIsWeb) "localId": client.localId.toString(),
-          if(client.remoteId.isNotEmpty)"remoteId": client.remoteId
+          if (!kIsWeb) "localId": client.localId.toString(),
+          if (client.remoteId.isNotEmpty) "remoteId": client.remoteId
+        },
+        arguments: client);
+  }
+
+  void goToCreateAppointment(ClientEntity client) {
+    Get.toNamed(Routes.newAppointment,
+        parameters: {
+          if (!kIsWeb) "clientLocalId": client.localId.toString(),
+          if (client.remoteId.isNotEmpty)
+            "clientRemoteId": client.remoteId.toString()
         },
         arguments: client);
   }
