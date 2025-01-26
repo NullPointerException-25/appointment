@@ -1,6 +1,11 @@
 import 'package:appointments_manager/core/utils/global_values.dart';
+import 'package:appointments_manager/core/utils/translations.dart';
+import 'package:appointments_manager/features/appointment/presentation/widgets/appointment_item_timeline.dart';
 import 'package:appointments_manager/home/presentation/widgets/welcome_home.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../controllers/timeline_controller.dart';
 
 class HomePager extends StatelessWidget {
   const HomePager({super.key});
@@ -12,39 +17,29 @@ class HomePager extends StatelessWidget {
       height: double.infinity,
       width: double.infinity,
       child: CustomScrollView(
+        controller: TimelineController.to.scrollController,
         slivers: [
           const SliverToBoxAdapter(child: WelcomeHomeSection()),
-          SliverList(delegate: SliverChildBuilderDelegate(
-            (context, index) {
-              return Container(
-                margin: const EdgeInsets.all(kPaddingM),
-                padding: const EdgeInsets.all(kPaddingM),
-                decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.surface,
-                  borderRadius: BorderRadius.circular(20),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Theme.of(context).colorScheme.onSurface.withOpacity(0.1),
-                      blurRadius: 10,
-                      offset: const Offset(0, 5),
-                    ),
-                  ],
+         SliverToBoxAdapter(
+                  child: Padding(
+                padding: const EdgeInsets.all(kPadding),
+                child: Text(
+                  Translator.today.tr,
+                  style: Theme.of(context).textTheme.titleLarge,
                 ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Appointments',
-                      style: Theme.of(context).textTheme.headlineMedium,
-                    ),
-                    const SizedBox(height: kPaddingM),
-                    const Text('Appointments list'),
-                  ],
-                ),
-              );
-            },
-            childCount: 5,
-          )),
+              )),
+          Obx(
+            () => SliverList.builder(
+              itemBuilder: (context, index) {
+                final appointment = TimelineController.to.appointments[index];
+                return AppointmentItemTimeline(
+                  appointment: appointment,
+                  index: index,
+                );
+              },
+              itemCount: TimelineController.to.appointments.length,
+            ),
+          ),
         ],
       ),
     );
