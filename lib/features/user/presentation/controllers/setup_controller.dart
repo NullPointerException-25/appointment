@@ -34,24 +34,20 @@ class SetupController extends GetxController {
   }
 
   void nextStep() {
-    try {
-      if (!_stepRequirements[step.value]!()) {
-        return;
-      }
-      if (step.value == 2) {
-        _saveUserChanges();
-      }
+    if (!_stepRequirements[step.value]!()) {
+      return;
+    }
+    if (step.value == 2) {
+      _saveUserChanges();
+    }
+    if (step.value != 2) {
       step.value++;
       pageController.nextPage(
-          duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
-    } catch (e) {
-      step.value = 0;
-      pageController.animateToPage(0,
           duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
     }
   }
 
-  void _saveUserChanges() async {
+  void _saveUserChanges() {
     SetupUserUseCase(
       name: name.value,
       email: email.value,

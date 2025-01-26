@@ -59,6 +59,7 @@ class Translator extends Translations {
           "yesterday": "Yesterday",
           "twoWeeks": "Two weeks",
           "appointmentCreated": "Appointment created",
+          "today'sAppointments": "Today's appointments",
 
         },
         'es': {
@@ -169,4 +170,6 @@ class Translator extends Translations {
   static String get twoWeeks => "twoWeeks";
 
   static String get appointmentCreated => "appointmentCreated";
+
+  static String get todayAppointments => "todayAppointments";
 }

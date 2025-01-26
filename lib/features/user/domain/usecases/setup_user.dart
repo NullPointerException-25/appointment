@@ -36,10 +36,8 @@ class SetupUserUseCase extends UseCase {
         name: name,
         lastUpdate: DateTime.now(),
       ),
-    ).perform().then((value) async {
-      await SetSetupCompletedUseCase().perform();
-      Get.offAllNamed(Routes.home);
-      return;
-    });
+    ).perform();
+    SetSetupCompletedUseCase().perform();
+    Get.offAllNamed(Routes.home);
   }
 }
