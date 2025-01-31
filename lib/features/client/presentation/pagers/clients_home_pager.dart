@@ -21,7 +21,7 @@ class ClientsHomePager extends GetView<ClientQueryController> {
         Obx(
           () {
             if (controller.clients.isEmpty) {
-              return SliverFillRemaining(
+              return SliverToBoxAdapter(
                   child: Column(
                 children: [
                   Padding(
@@ -29,14 +29,17 @@ class ClientsHomePager extends GetView<ClientQueryController> {
                     child: Text(
                         Translator.clientsNotFound.tr),
                   ),
-                  DotLottieLoader.fromAsset(LottieAssets.cat404,
-                      frameBuilder: (BuildContext ctx, DotLottie? dotlottie) {
-                    if (dotlottie != null) {
-                      return Lottie.memory(dotlottie.animations.values.single);
-                    } else {
-                      return Container();
-                    }
-                  }),
+                  Container(
+                    constraints: const BoxConstraints(maxHeight: 300),
+                    child: DotLottieLoader.fromAsset(LottieAssets.cat404,
+                        frameBuilder: (BuildContext ctx, DotLottie? dotlottie) {
+                      if (dotlottie != null) {
+                        return Lottie.memory(dotlottie.animations.values.single);
+                      } else {
+                        return Container();
+                      }
+                    }),
+                  ),
                   ElevatedButton(onPressed: () {
                       HomeController.to.goToCreateClientPage();
                   }, child: Text(Translator.addClient.tr))

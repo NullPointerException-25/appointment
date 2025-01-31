@@ -1,13 +1,12 @@
 
 import 'package:appointments_manager/core/utils/colors.dart';
-import 'package:appointments_manager/core/utils/global_values.dart';
+import 'package:appointments_manager/core/widgets/responsive_layout.dart';
 import 'package:appointments_manager/features/user/presentation/controllers/setup_controller.dart';
 import 'package:appointments_manager/features/user/presentation/widgets/setup_container_desktop.dart';
 import 'package:appointments_manager/features/user/presentation/widgets/setup_container_mobile.dart';
 import 'package:appointments_manager/features/user/presentation/widgets/setup_container_tablet.dart';
 import 'package:flutter/material.dart';
 import 'package:mesh_gradient/mesh_gradient.dart';
-import 'package:responsive_framework/responsive_framework.dart';
 
 
 
@@ -30,19 +29,13 @@ class SetupPage extends StatelessWidget {
           ],
           seed: 10,
           options: AnimatedMeshGradientOptions(speed: 1),
-          child: _getSetupContainer(context),
+          child: const ResponsiveLayout(
+            desktop: SetupContainerDesktop(),
+            mobile: SetupContainerMobile(),
+            tablet: SetupContainerTablet(),
+          ),
         ),
       ),
     );
-  }
-
-  Widget _getSetupContainer(BuildContext context) {
-    if(ResponsiveMedia(context).isSmallerThan(AspectRatioResponsive.fourThree)){
-      return const SetupContainerMobile();
-    }
-    if(ResponsiveMedia(context).isSmallerThan(AspectRatioResponsive.twentyOneNine) && ResponsiveBreakpoints.of(context).isTablet){
-      return const SetupContainerTablet();
-    }
-    return const SetupContainerDesktop();
   }
 }
