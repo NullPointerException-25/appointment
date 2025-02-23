@@ -685,14 +685,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.1.3-main.0"
-  manage_calendar_events:
-    dependency: "direct main"
-    description:
-      name: manage_calendar_events
-      sha256: f17600fcb7dc7047120c185993045e493d686930237b4e3c2689c26a64513d66
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.0.3"
   matcher:
     dependency: transitive
     description:
