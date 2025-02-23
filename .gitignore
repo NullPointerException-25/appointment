@@ -74,6 +74,8 @@ Flutter/flutter_export_environment.sh
 ServiceDefinitions.json
 android/app/.cxx/
 Runner/GeneratedPluginRegistrant.*
+ios/Podfile.lock
+pubspec.lock
 
 # Exceptions to above rules.
 !default.mode1v3
