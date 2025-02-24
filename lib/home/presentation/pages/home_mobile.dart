@@ -6,8 +6,6 @@ import 'package:appointments_manager/home/presentation/widgets/appbar.dart';
 import 'package:appointments_manager/home/presentation/widgets/bottom_appbar_responsive.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
-import 'package:get/get_state_manager/src/simple/get_responsive.dart';
 
 import '../widgets/circular_home_floating_action_button.dart';
 
@@ -76,7 +74,7 @@ class HomeMobilePage extends GetResponsiveView<HomeController> {
                       : 90,
                   decoration: BoxDecoration(
                       color: controller.isCircularMenuOpened.value
-                          ? ThemeColors.dark.withOpacity(0.2)
+                          ? ThemeColors.dark.withValues(alpha: 0.2)
                           : Colors.transparent),
                   child:  Container(
                     padding:  EdgeInsets.only(bottom: controller.bottomAppBarHeight.value !=null? controller.bottomAppBarHeight.value!-36: 48,),

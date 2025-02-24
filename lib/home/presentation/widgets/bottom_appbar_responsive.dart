@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get_state_manager/src/simple/get_view.dart';
 import 'package:hugeicons/hugeicons.dart';
 
 import '../controllers/home_controller.dart';
@@ -25,7 +24,6 @@ class _BottomAppbarResponsiveState extends State<BottomAppbarResponsive> {
     final RenderBox? renderBox = _bottomAppBarKey.currentContext?.findRenderObject() as RenderBox?;
     if (renderBox != null) {
         controller.bottomAppBarHeight.value = renderBox.size.height;
-        print(controller.bottomAppBarHeight.value);
     }
   }
 

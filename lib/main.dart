@@ -16,7 +16,6 @@ import 'package:appointments_manager/home/presentation/pages/home.dart';
 import 'package:appointments_manager/splash/presentation/pages/splash.dart';
 import 'package:device_preview_plus/device_preview_plus.dart' show DevicePreview;
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:objectbox_flutter_libs/objectbox_flutter_libs.dart';
@@ -46,52 +45,46 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return DevicePreview
-      (
-      enabled: kDebugMode,
-      builder: (context) {
-        return GetMaterialApp(
-            builder: (context, child) => ResponsiveBreakpoints.builder(
-              child: child!,
-              breakpoints: [
-                const Breakpoint(start: 0, end: 600, name: MOBILE),
-                const Breakpoint(start: 601, end: 1024, name: TABLET),
-                const Breakpoint(start: 1025, end: 1440, name: DESKTOP),
-                const Breakpoint(start: 1441, end: double.infinity, name: '4K'),
-              ],
-            ),
-            debugShowCheckedModeBanner: false,
-            title: 'Appointments Manager',
-            translations: Translator(),
-            locale: Get.deviceLocale,
-            fallbackLocale: const Locale('en', 'US'),
-            darkTheme: darkTheme,
-            theme: lightTheme,
-            themeMode: ThemeMode.system,
-            getPages: [
-              GetPage(
-                  name: Routes.home,
-                  page: () => HomePage(),
-                  bindings: [HomeBinding(), QueryClientsBinding()]),
-              GetPage(name: Routes.setup, page: () => SetupPage()),
-              GetPage(name: Routes.splash, page: () => const SplashPage()),
-              GetPage(
-                  name: Routes.client,
-                  page: () => const ClientDetailsPage(),
-                  binding: ClientsDetailsBinding()),
-              GetPage(
-                  name: Routes.newClient,
-                  page: () => const CreateClientPage(),
-                  binding: CreateClientBinding()),
-              GetPage(
-                  name: Routes.newAppointment,
-                  page: () => const CreateAppointmentPage(),
-                  binding: CreateAppointmentBinding()
-              )
-            ],
-            initialRoute: Routes.splash,
-          );
-      }
-    );
+    return GetMaterialApp(
+        builder: (context, child) => ResponsiveBreakpoints.builder(
+          child: child!,
+          breakpoints: [
+            const Breakpoint(start: 0, end: 600, name: MOBILE),
+            const Breakpoint(start: 601, end: 1024, name: TABLET),
+            const Breakpoint(start: 1025, end: 1440, name: DESKTOP),
+            const Breakpoint(start: 1441, end: double.infinity, name: '4K'),
+          ],
+        ),
+        debugShowCheckedModeBanner: false,
+        title: 'Appointments Manager',
+        translations: Translator(),
+        locale: Get.deviceLocale,
+        fallbackLocale: const Locale('en', 'US'),
+        darkTheme: darkTheme,
+        theme: lightTheme,
+        themeMode: ThemeMode.system,
+        getPages: [
+          GetPage(
+              name: Routes.home,
+              page: () => HomePage(),
+              bindings: [HomeBinding(), QueryClientsBinding()]),
+          GetPage(name: Routes.setup, page: () => SetupPage()),
+          GetPage(name: Routes.splash, page: () => const SplashPage()),
+          GetPage(
+              name: Routes.client,
+              page: () => const ClientDetailsPage(),
+              binding: ClientsDetailsBinding()),
+          GetPage(
+              name: Routes.newClient,
+              page: () => const CreateClientPage(),
+              binding: CreateClientBinding()),
+          GetPage(
+              name: Routes.newAppointment,
+              page: () => const CreateAppointmentPage(),
+              binding: CreateAppointmentBinding()
+          )
+        ],
+        initialRoute: Routes.splash,
+      );
   }
 }

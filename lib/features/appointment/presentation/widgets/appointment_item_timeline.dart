@@ -7,7 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:hugeicons/hugeicons.dart';
 
 class AppointmentItemTimeline extends StatelessWidget {
-     AppointmentItemTimeline(
+      AppointmentItemTimeline(
       {super.key, required this.appointment, required this.index});
 
   final AppointmentEntity appointment;

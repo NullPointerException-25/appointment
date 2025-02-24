@@ -55,8 +55,6 @@ PODS:
   - image_picker_ios (0.0.1):
     - Flutter
   - leveldb-library (1.22.6)
-  - manage_calendar_events (0.0.1):
-    - Flutter
   - nanopb (3.30910.0):
     - nanopb/decode (= 3.30910.0)
     - nanopb/encode (= 3.30910.0)
@@ -71,6 +69,9 @@ PODS:
     - FlutterMacOS
   - pointer_interceptor_ios (0.0.1):
     - Flutter
+  - shared_preferences_foundation (0.0.1):
+    - Flutter
+    - FlutterMacOS
 
 DEPENDENCIES:
   - cloud_firestore (from `.symlinks/plugins/cloud_firestore/ios`)
@@ -79,10 +80,10 @@ DEPENDENCIES:
   - Flutter (from `Flutter`)
   - flutter_keyboard_visibility (from `.symlinks/plugins/flutter_keyboard_visibility/ios`)
   - image_picker_ios (from `.symlinks/plugins/image_picker_ios/ios`)
-  - manage_calendar_events (from `.symlinks/plugins/manage_calendar_events/ios`)
   - objectbox_flutter_libs (from `.symlinks/plugins/objectbox_flutter_libs/ios`)
   - path_provider_foundation (from `.symlinks/plugins/path_provider_foundation/darwin`)
   - pointer_interceptor_ios (from `.symlinks/plugins/pointer_interceptor_ios/ios`)
+  - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/darwin`)
 
 SPEC REPOS:
   trunk:
@@ -116,14 +117,14 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/flutter_keyboard_visibility/ios"
   image_picker_ios:
     :path: ".symlinks/plugins/image_picker_ios/ios"
-  manage_calendar_events:
-    :path: ".symlinks/plugins/manage_calendar_events/ios"
   objectbox_flutter_libs:
     :path: ".symlinks/plugins/objectbox_flutter_libs/ios"
   path_provider_foundation:
     :path: ".symlinks/plugins/path_provider_foundation/darwin"
   pointer_interceptor_ios:
     :path: ".symlinks/plugins/pointer_interceptor_ios/ios"
+  shared_preferences_foundation:
+    :path: ".symlinks/plugins/shared_preferences_foundation/darwin"
 
 CHECKOUT OPTIONS:
   FirebaseFirestore:
@@ -150,12 +151,12 @@ SPEC CHECKSUMS:
   GoogleUtilities: 26a3abef001b6533cf678d3eb38fd3f614b7872d
   image_picker_ios: 7fe1ff8e34c1790d6fff70a32484959f563a928a
   leveldb-library: cc8b8f8e013647a295ad3f8cd2ddf49a6f19be19
-  manage_calendar_events: fe1541069431af035ced925ebd9def8b4b271254
   nanopb: fad817b59e0457d11a5dfbde799381cd727c1275
   ObjectBox: bf3d4b51075d52868422d5d1f2f2141b1d630d30
   objectbox_flutter_libs: e912f15beff5699f1e184dbd2ff6aa5657464e73
   path_provider_foundation: 080d55be775b7414fd5a5ef3ac137b97b097e564
   pointer_interceptor_ios: ec847ef8b0915778bed2b2cef636f4d177fa8eed
+  shared_preferences_foundation: 9e1978ff2562383bd5676f64ec4e9aa8fa06a6f7
 
 PODFILE CHECKSUM: 18f4878c37e02ba8c2d8aafaa1f28bd66b6e2af3
 
