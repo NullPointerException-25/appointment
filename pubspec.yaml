@@ -55,6 +55,7 @@ dependencies:
   elegant_notification: ^2.4.1
   firebase_core: ^3.11.0
   cloud_firestore: ^5.6.3
+  device_preview_plus: ^2.3.0
 
 
 dev_dependencies:

@@ -5,6 +5,7 @@ import 'package:appointments_manager/home/presentation/pagers/home_pager.dart';
 import 'package:appointments_manager/home/presentation/widgets/appbar.dart';
 import 'package:appointments_manager/home/presentation/widgets/bottom_appbar_responsive.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:get/get_state_manager/src/simple/get_responsive.dart';
 
@@ -25,7 +26,7 @@ class HomeMobilePage extends GetResponsiveView<HomeController> {
           floatingActionButtonLocation:
           FloatingActionButtonLocation.centerDocked,
           backgroundColor: Theme.of(context).colorScheme.surface,
-          bottomNavigationBar: const BottomAppbarResponsive(),
+         bottomNavigationBar: const BottomAppbarResponsive(),
           body: SafeArea(
             child: NestedScrollView(
               floatHeaderSlivers: true,
@@ -67,19 +68,19 @@ class HomeMobilePage extends GetResponsiveView<HomeController> {
                 controller.isCircularMenuOpened.value = false;
               },
               child: Container(
-                height: controller.isCircularMenuOpened.value
-                    ? double.maxFinite
-                    : 120,
-                width: controller.isCircularMenuOpened.value
-                    ? double.maxFinite
-                    : 90,
-                decoration: BoxDecoration(
-                    color: controller.isCircularMenuOpened.value
-                        ? ThemeColors.dark.withOpacity(0.2)
-                        : Colors.transparent),
-                child: const Padding(
-                  padding: EdgeInsets.only(bottom: 40),
-                  child: CircularHomeFloatingActionButton(),
+                  height: controller.isCircularMenuOpened.value
+                      ? double.maxFinite
+                      : controller.bottomAppBarHeight.value !=null? controller.bottomAppBarHeight.value!+40: 120,
+                  width: controller.isCircularMenuOpened.value
+                      ? double.maxFinite
+                      : 90,
+                  decoration: BoxDecoration(
+                      color: controller.isCircularMenuOpened.value
+                          ? ThemeColors.dark.withOpacity(0.2)
+                          : Colors.transparent),
+                  child:  Container(
+                    padding:  EdgeInsets.only(bottom: controller.bottomAppBarHeight.value !=null? controller.bottomAppBarHeight.value!-36: 48,),
+                    child: const CircularHomeFloatingActionButton(),
                 ),
               ),
             ),

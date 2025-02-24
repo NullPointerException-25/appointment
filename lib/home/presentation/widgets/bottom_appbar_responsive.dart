@@ -4,13 +4,35 @@ import 'package:hugeicons/hugeicons.dart';
 
 import '../controllers/home_controller.dart';
 
-class BottomAppbarResponsive extends GetView<HomeController> {
+class BottomAppbarResponsive extends StatefulWidget {
   const BottomAppbarResponsive({super.key});
+
+  @override
+  State<BottomAppbarResponsive> createState() => _BottomAppbarResponsiveState();
+}
+
+class _BottomAppbarResponsiveState extends State<BottomAppbarResponsive> {
+  final controller = HomeController.to;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) => _getBottomAppBarHeight());
+  }
+  final GlobalKey _bottomAppBarKey = GlobalKey();
+
+  void _getBottomAppBarHeight() {
+    final RenderBox? renderBox = _bottomAppBarKey.currentContext?.findRenderObject() as RenderBox?;
+    if (renderBox != null) {
+        controller.bottomAppBarHeight.value = renderBox.size.height;
+        print(controller.bottomAppBarHeight.value);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return BottomAppBar(
-      clipBehavior: Clip.none,
+      key: _bottomAppBarKey,
       notchMargin: 8,
       shape: const CircularNotchedRectangle(),
       color: Theme.of(context).colorScheme.onPrimary,
