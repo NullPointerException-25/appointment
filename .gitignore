@@ -76,7 +76,7 @@ android/app/.cxx/
 Runner/GeneratedPluginRegistrant.*
 ios/Podfile.lock
 pubspec.lock
-
+macos/Podfile.lock
 # Exceptions to above rules.
 !default.mode1v3
 !default.mode2v3
