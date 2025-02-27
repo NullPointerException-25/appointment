@@ -1,4 +1,6 @@
 
+import 'dart:io';
+
 import 'package:appointments_manager/objectbox.g.dart';
 import 'package:appointments_manager/features/user/data/models/users_model.dart';
 import 'package:get/get.dart';
@@ -13,7 +15,7 @@ class ProfileService extends GetxService {
   late final Rx<Store> store;
 
    Future<ProfileService> init() async {
-    final directory = await getApplicationDocumentsDirectory();
+    Directory directory = await getApplicationDocumentsDirectory();
     store = (await openStore(directory: p.join(directory.path, 'default'))).obs;
     final getUsers = store.value.box<UserModel>().getAll();
     if (getUsers.isEmpty) {
