@@ -7,33 +7,30 @@ import 'package:flutter/material.dart';
 import 'package:hugeicons/hugeicons.dart';
 
 class AppointmentItemTimeline extends StatelessWidget {
-      AppointmentItemTimeline(
+  AppointmentItemTimeline(
       {super.key, required this.appointment, required this.index});
 
   final AppointmentEntity appointment;
   final int index;
 
-   late final double? currentProgress;
+  late final double? currentProgress;
 
-   late final bool isBeforeStart;
+  late final bool isBeforeStart;
 
-   late final bool isAfterEnd;
+  late final bool isAfterEnd;
 
   void _calculateTimeProgress() {
     final currentDateTime = DateTime.now();
     isAfterEnd = currentDateTime.isAfter(appointment.toDate);
     isBeforeStart = currentDateTime.isBefore(appointment.fromDate);
 
-    if (!currentDateTime.isBetween(
-        appointment.fromDate, appointment.toDate)) {
+    if (!currentDateTime.isBetween(appointment.fromDate, appointment.toDate)) {
       currentProgress = null;
       return;
     }
 
-
-    final totalDuration = appointment.toDate
-        .difference(appointment.fromDate)
-        .inMinutes;
+    final totalDuration =
+        appointment.toDate.difference(appointment.fromDate).inMinutes;
     final currentDuration =
         currentDateTime.difference(appointment.fromDate).inMinutes;
     currentProgress = (currentDuration / totalDuration) * 100;
@@ -45,13 +42,6 @@ class AppointmentItemTimeline extends StatelessWidget {
     return Container(
       width: double.infinity,
       margin: const EdgeInsets.symmetric(horizontal: kPadding),
-      decoration: BoxDecoration(
-        color: currentProgress != null
-            ? Theme.of(context).brightness == Brightness.light
-                ? ThemeColors.ultraWhite
-                : ThemeColors.dark
-            : null,
-      ),
       child: Row(
         children: [
           SizedBox(
@@ -63,8 +53,7 @@ class AppointmentItemTimeline extends StatelessWidget {
                       topLeft: Radius.circular(kCornerRadiusXXL),
                       topRight: Radius.circular(kCornerRadiusXXL),
                     )
-                  : index ==
-                          TimelineController.to.appointments.length - 1
+                  : index == TimelineController.to.appointments.length - 1
                       ? const BorderRadius.only(
                           bottomLeft: Radius.circular(kCornerRadiusXXL),
                           bottomRight: Radius.circular(kCornerRadiusXXL),
@@ -80,7 +69,9 @@ class AppointmentItemTimeline extends StatelessWidget {
                           : ThemeColors.lightBlue),
                   if (currentProgress != null)
                     Positioned(
-                      top: currentProgress,
+                      top: currentProgress! > 80
+                              ? 80
+                              : currentProgress,
                       child: Container(
                         width: 20,
                         height: 20,
@@ -113,8 +104,8 @@ class AppointmentItemTimeline extends StatelessWidget {
                       appointment.client.image.value != null
                           ? CircleAvatar(
                               radius: kIconSizeM / 2,
-                              backgroundImage: FileImage(
-                                  appointment.client.image.value!),
+                              backgroundImage:
+                                  FileImage(appointment.client.image.value!),
                             )
                           : const CircleAvatar(
                               radius: kIconSizeM / 2,

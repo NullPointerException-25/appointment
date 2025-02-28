@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 
 class LocalAppointmentsDatasource extends GetxService {
   late final Rx<Store> _store;
+
   static LocalAppointmentsDatasource get to =>
       Get.find<LocalAppointmentsDatasource>();
 
@@ -34,6 +35,7 @@ class LocalAppointmentsDatasource extends GetxService {
     final box = _store.value.box<AppointmentModel>();
     final query = box
         .query(AppointmentModel_.fromDate.betweenDate(date, endDate))
+        .order(AppointmentModel_.fromDate)
         .build();
     final result = query.find();
     query.close();

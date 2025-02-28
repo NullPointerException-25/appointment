@@ -5,6 +5,7 @@ import 'package:appointments_manager/home/presentation/widgets/welcome_home.dart
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../features/appointment/domain/entities/appointment_entity.dart';
 import '../controllers/timeline_controller.dart';
 
 class HomePager extends StatelessWidget {
@@ -20,14 +21,29 @@ class HomePager extends StatelessWidget {
         controller: TimelineController.to.scrollController,
         slivers: [
           const SliverToBoxAdapter(child: WelcomeHomeSection()),
-         SliverToBoxAdapter(
-                  child: Padding(
-                padding: const EdgeInsets.all(kPadding),
-                child: Text(
-                  Translator.today.tr,
-                  style: Theme.of(context).textTheme.titleLarge,
-                ),
-              )),
+         ObxValue<RxList<AppointmentEntity>>(
+           (appointments) {
+             if(appointments.isEmpty){
+               return SliverToBoxAdapter(
+                 child: Padding(
+                   padding: const EdgeInsets.all(kPadding),
+                   child: Text(
+                     Translator.nothingForToday.tr,
+                     style: Theme.of(context).textTheme.titleLarge,
+                   ),
+                 ),);
+             }
+             return SliverToBoxAdapter(
+                 child: Padding(
+                   padding: const EdgeInsets.all(kPadding),
+                   child: Text(
+                     Translator.today.tr,
+                     style: Theme.of(context).textTheme.titleLarge,
+                   ),
+                 ),);
+           },
+           TimelineController.to.appointments
+         ),
           Obx(
             () => SliverList.builder(
               itemBuilder: (context, index) {
