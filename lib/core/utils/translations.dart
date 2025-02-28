@@ -62,6 +62,7 @@ class Translator extends Translations {
           "appointmentCreated": "Appointment created",
           "today'sAppointments": "Today's appointments",
           "calendar": "Calendar",
+          "nameIsRequired": "Name cannot be empty"
         },
         'es': {
           'title': 'Gestor de Citas',
@@ -175,4 +176,6 @@ class Translator extends Translations {
   static String get todayAppointments => "todayAppointments";
 
   static String get calendar => "calendar";
+
+  static String get nameIsRequired=>"nameIsRequired";
 }

@@ -16,7 +16,12 @@ class ProfileService extends GetxService {
 
    Future<ProfileService> init() async {
     Directory directory = await getApplicationDocumentsDirectory();
-    store = (await openStore(directory: p.join(directory.path, 'default'))).obs;
+    if(Platform.isMacOS || Platform.isLinux || Platform.isWindows){
+      directory = await getApplicationSupportDirectory();
+    }
+    final dbPath = p.join(directory.path, 'default');
+    await Directory(dbPath).create(recursive: true);
+    store = (await openStore(directory: dbPath)).obs;
     final getUsers = store.value.box<UserModel>().getAll();
     if (getUsers.isEmpty) {
       createDefaultUser();

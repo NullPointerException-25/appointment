@@ -1,6 +1,7 @@
 
 import 'package:appointments_manager/core/utils/assets.dart';
 import 'package:appointments_manager/core/utils/colors.dart';
+import 'package:appointments_manager/core/utils/global_values.dart';
 import 'package:appointments_manager/core/utils/translations.dart';
 import 'package:appointments_manager/features/user/presentation/controllers/setup_controller.dart';
 import 'package:flutter/material.dart';
@@ -97,7 +98,7 @@ class EmailPager extends StatelessWidget {
           children: [
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.all(kPaddingM),
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Theme.of(context).colorScheme.secondary,

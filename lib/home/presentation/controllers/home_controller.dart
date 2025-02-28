@@ -12,6 +12,7 @@ class HomeController extends GetxController {
   final RxBool isCircularMenuOpened= RxBool(false);
 
   final _circularKey=GlobalKey<CircularMenuState>();
+  final selectedIndex= RxnInt(0);
 
   GlobalKey<CircularMenuState> get circularMenuKey=> _circularKey;
 
