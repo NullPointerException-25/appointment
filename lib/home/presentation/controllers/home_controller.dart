@@ -8,10 +8,11 @@ import 'package:get/get.dart';
 class HomeController extends GetxController {
   final Rxn<UserEntity> user = Rxn<UserEntity>();
   final PageController pageController = PageController();
-
+  final  RxnDouble bottomAppBarHeight= RxnDouble();
   final RxBool isCircularMenuOpened= RxBool(false);
 
   final _circularKey=GlobalKey<CircularMenuState>();
+  final selectedIndex= RxnInt(0);
 
   GlobalKey<CircularMenuState> get circularMenuKey=> _circularKey;
 

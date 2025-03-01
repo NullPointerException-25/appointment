@@ -11,14 +11,17 @@ import 'package:hugeicons/hugeicons.dart';
 class SetupContainerMobile extends StatelessWidget {
   const SetupContainerMobile({super.key});
 
+
   @override
   Widget build(BuildContext context) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
-        Expanded(flex: 2, child: Container()),
+        Expanded( child: Container()),
         Container(
-          height: MediaQuery.of(context).size.height * 0.6,
+          constraints: BoxConstraints(
+              maxHeight: MediaQuery.of(context).size.height * 0.7
+          ),
           width: double.infinity,
           decoration: BoxDecoration(
             color: Theme.of(context).colorScheme.surface,

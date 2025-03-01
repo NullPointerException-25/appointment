@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 
 class Translator extends Translations {
+
   static String get appName => 'Appointments Manager';
 
   @override
@@ -60,7 +61,9 @@ class Translator extends Translations {
           "twoWeeks": "Two weeks",
           "appointmentCreated": "Appointment created",
           "today'sAppointments": "Today's appointments",
-
+          "calendar": "Calendar",
+          "nameIsRequired": "Name cannot be empty",
+          "nothingForToday": "No appointments today"
         },
         'es': {
           'title': 'Gestor de Citas',
@@ -172,4 +175,10 @@ class Translator extends Translations {
   static String get appointmentCreated => "appointmentCreated";
 
   static String get todayAppointments => "todayAppointments";
+
+  static String get calendar => "calendar";
+
+  static String get nameIsRequired=>"nameIsRequired";
+
+  static String get nothingForToday=> "nothingForToday";
 }
