@@ -89,6 +89,37 @@ class CreateAppointmentPage extends GetView<CreateAppointmentController> {
                           }),
                     ),
                   ),
+                  SliverToBoxAdapter(
+                    child: Padding(
+                      padding: const EdgeInsets.all(kPaddingM),
+                      child: Text(
+                        "Custom fields",
+                        style: TextStyle(
+                            color: Theme.of(context).brightness ==
+                                Brightness.dark
+                                ? ThemeColors.white
+                                : ThemeColors.dark),
+                      ),
+                    ),
+                  ),
+                  Obx(
+                        () => SliverPadding(
+                      padding: const EdgeInsets.all(kPaddingM),
+                      sliver: SliverList.builder(
+                          itemCount: controller.todayAppointments.length,
+                          itemBuilder: (context, index) {
+                            return Container(
+                               child: Column(
+                                 children: [
+                                    Row(
+                                      children: [],
+                                    ),
+                                 ],
+                               ),
+                            );
+                          }),
+                    ),
+                  ),
                 ],
               ),
             ),

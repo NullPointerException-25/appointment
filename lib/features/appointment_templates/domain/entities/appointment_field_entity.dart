@@ -43,6 +43,8 @@ class AppointmentFieldEntity extends CoreEntity<AppointmentFieldModel> {
     2: FormFieldType.shortText,
     3: FormFieldType.largeText,
     4: FormFieldType.date,
-    5: FormFieldType.imageList
+    5: FormFieldType.imageList,
+    6: FormFieldType.phoneNumber,
+    7: FormFieldType.audio
   };
 }
