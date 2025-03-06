@@ -1,6 +1,5 @@
 import 'package:appointments_manager/core/utils/global_values.dart';
 import 'package:appointments_manager/features/appointment_templates/domain/entities/appointment_field_entity.dart';
-import 'package:appointments_manager/features/appointment_templates/presentation/widgets/fields/number.dart';
 import 'package:flutter/material.dart';
 
 import '../../data/model/appointment_field.dart';
@@ -12,7 +11,7 @@ class TemplateFieldBuilder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if(field.fieldType == FormFieldType.number) {
-      return NumberCustomField(field: field);
+      //return CustomFieldEditing(field: field);
     }
     return Padding(
       padding: const EdgeInsets.all(kPaddingM),

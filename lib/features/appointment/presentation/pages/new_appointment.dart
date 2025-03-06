@@ -10,7 +10,7 @@ import 'package:appointments_manager/features/appointment/presentation/widgets/c
 import 'package:appointments_manager/features/appointment/presentation/widgets/client_searcher_textfield.dart';
 import 'package:appointments_manager/features/appointment/presentation/widgets/duration_slider.dart';
 import 'package:appointments_manager/features/appointment_templates/presentation/controllers/custom_fields_controller.dart';
-import 'package:appointments_manager/features/appointment_templates/presentation/widgets/template_field_builder.dart';
+import 'package:appointments_manager/features/appointment_templates/presentation/widgets/custom_field_editing.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -37,6 +37,15 @@ class CreateAppointmentPage extends GetView<CreateAppointmentController> {
                             : ThemeColors.dark,
                       ),
                     ),
+                    actions: [
+                      IconButton(
+                        icon: const Icon(HugeIcons.strokeRoundedView),
+                        tooltip: Translator.preview.tr,
+                        onPressed: () {
+
+                        },
+                      ),
+                    ],
                   ),
                   SliverToBoxAdapter(
                     child: Padding(
@@ -134,7 +143,7 @@ class CreateAppointmentPage extends GetView<CreateAppointmentController> {
                                 ),
                               );
                             }
-                            return TemplateFieldBuilder(field: CustomFieldsController.to.customFields[index]);
+                            return CustomFieldEditing(field: CustomFieldsController.to.customFields[index]);
                           }),
                     ),
                   ),

@@ -67,6 +67,13 @@ class Translator extends Translations {
           "addNewField": "Add new field",
           "customFields": "Custom fields",
           "duration": "Duration",
+          "preview": "Preview",
+          "number": "Number",
+          "imageList": "Image list",
+          "audio": "Audio",
+          "video": "Video",
+          "file": "File",
+          "date": "Date",
         },
         'es': {
           'title': 'Gestor de Citas',
@@ -190,4 +197,19 @@ class Translator extends Translations {
   static String get customFields => "customFields";
 
   static String get duration => "duration";
+
+  static String get preview => "preview";
+
+  static String get number => "number";
+
+  static String get imageList => "imageList";
+
+  static String get audio => "audio";
+
+  static String get video => "video";
+
+  static String get file => "file";
+
+  static String get date => "date";
+
 }
