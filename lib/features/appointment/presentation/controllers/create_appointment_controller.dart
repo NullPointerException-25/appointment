@@ -123,8 +123,6 @@ class CreateAppointmentController extends GetxController {
         _durationTextMap[_intToDuration[index]!.inMinutes]!;
   }
 
-  void addNewField() {}
-
   final Map<int, String> _durationTextMap = {
     15: Translator.minutes.trParams({"minutes": "15"}),
     30: Translator.minutes.trParams({"minutes": "30"}),

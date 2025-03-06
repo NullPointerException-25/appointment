@@ -9,9 +9,12 @@ import 'package:appointments_manager/features/appointment/presentation/widgets/a
 import 'package:appointments_manager/features/appointment/presentation/widgets/calendar_date_picker.dart';
 import 'package:appointments_manager/features/appointment/presentation/widgets/client_searcher_textfield.dart';
 import 'package:appointments_manager/features/appointment/presentation/widgets/duration_slider.dart';
+import 'package:appointments_manager/features/appointment_templates/presentation/controllers/custom_fields_controller.dart';
+import 'package:appointments_manager/features/appointment_templates/presentation/widgets/template_field_builder.dart';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:hugeicons/hugeicons.dart';
 
 class CreateAppointmentPage extends GetView<CreateAppointmentController> {
   const CreateAppointmentPage({super.key});
@@ -49,7 +52,7 @@ class CreateAppointmentPage extends GetView<CreateAppointmentController> {
                             height: kPaddingS,
                           ),
                           Text(
-                            "Duration",
+                            Translator.duration.tr,
                             style: TextStyle(
                                 color: Theme.of(context).brightness ==
                                         Brightness.dark
@@ -93,7 +96,8 @@ class CreateAppointmentPage extends GetView<CreateAppointmentController> {
                     child: Padding(
                       padding: const EdgeInsets.all(kPaddingM),
                       child: Text(
-                        "Custom fields",
+                        textAlign: TextAlign.center,
+                        Translator.customFields.tr,
                         style: TextStyle(
                             color: Theme.of(context).brightness ==
                                 Brightness.dark
@@ -106,17 +110,31 @@ class CreateAppointmentPage extends GetView<CreateAppointmentController> {
                         () => SliverPadding(
                       padding: const EdgeInsets.all(kPaddingM),
                       sliver: SliverList.builder(
-                          itemCount: controller.todayAppointments.length,
+                          itemCount: CustomFieldsController.to.customFields.length+1,
                           itemBuilder: (context, index) {
-                            return Container(
-                               child: Column(
-                                 children: [
-                                    Row(
-                                      children: [],
+                            if (index == CustomFieldsController.to.customFields.length) {
+                              return Padding(
+                                padding: const EdgeInsets.all(kPadding),
+                                child: Row(
+                                  children: [
+                                    ElevatedButton.icon(
+                                      icon: const Icon(HugeIcons.strokeRoundedAdd01, color: ThemeColors.white,),
+                                      onPressed: () {
+                                        CustomFieldsController.to.addNewField();
+                                      },
+                                      label: Text(
+                                        Translator.addNewField.tr,
+                                        style: const TextStyle(
+                                            color: ThemeColors.white,
+                                            fontSize: kFontSize,
+                                            fontWeight: FontWeight.bold),
+                                      ),
                                     ),
-                                 ],
-                               ),
-                            );
+                                  ],
+                                ),
+                              );
+                            }
+                            return TemplateFieldBuilder(field: CustomFieldsController.to.customFields[index]);
                           }),
                     ),
                   ),
