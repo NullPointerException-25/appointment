@@ -21,7 +21,7 @@ class HomeTabletPage extends GetView<HomeController> {
         child: Row(
           children: [
             NavigationRail(
-              extended: true,
+              extended: false,
               destinations: [
                 NavigationRailDestination(
                   icon: Icon(HugeIcons.strokeRoundedHome01,
