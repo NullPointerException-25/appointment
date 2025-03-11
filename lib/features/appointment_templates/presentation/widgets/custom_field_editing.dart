@@ -6,17 +6,14 @@ import 'package:hugeicons/hugeicons.dart';
 
 import '../../domain/entities/appointment_field_entity.dart';
 
-class CustomFieldEditing extends StatefulWidget {
+class CustomFieldEditing extends StatelessWidget {
   const CustomFieldEditing({super.key, required this.field});
   final AppointmentFieldEntity field;
 
-  @override
-  State<CustomFieldEditing> createState() => _CustomFieldEditingState();
-}
 
-class _CustomFieldEditingState extends State<CustomFieldEditing> {
   @override
   Widget build(BuildContext context) {
+    final controller= TextEditingController(text: field.title);
     return Container(
       padding: const EdgeInsets.only(top: kPaddingM, left: kPaddingM, right: kPaddingM),
       child: Column(
@@ -36,9 +33,9 @@ class _CustomFieldEditingState extends State<CustomFieldEditing> {
                   decoration: const InputDecoration(
                     border: InputBorder.none
                   ),
-                  value: widget.field.fieldType,
+                  value: field.fieldType,
                   onChanged: (value) {
-                    widget.field.fieldType = value!;
+                    field.fieldType = value!;
                   },
                   items:  const [
                     DropdownMenuItem(
@@ -125,9 +122,9 @@ class _CustomFieldEditingState extends State<CustomFieldEditing> {
           ),
           TextFormFieldCore(
             hintText: "Name",
-            controller: TextEditingController(text: widget.field.title),
+            controller: controller,
             onChanged: (value) {
-              widget.field.title = value;
+              field.title = value;
             },
           )
         ],
