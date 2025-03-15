@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:appointments_manager/objectbox.g.dart';
 import 'package:appointments_manager/features/user/data/models/users_model.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as p;
@@ -19,7 +20,9 @@ class ProfileService extends GetxService {
     if(Platform.isMacOS || Platform.isLinux || Platform.isWindows){
       directory = await getApplicationSupportDirectory();
     }
+
     final dbPath = p.join(directory.path, 'default');
+    debugPrint("ProfileService initialized in: $dbPath");
     await Directory(dbPath).create(recursive: true);
     store = (await openStore(directory: dbPath)).obs;
     final getUsers = store.value.box<UserModel>().getAll();
