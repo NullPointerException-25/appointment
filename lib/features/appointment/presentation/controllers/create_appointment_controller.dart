@@ -1,4 +1,4 @@
-import 'package:appointments_manager/core/utils/colors.dart';
+import 'package:appointments_manager/core/services/in_app_notification_service.dart';
 import 'package:appointments_manager/core/utils/translations.dart';
 import 'package:appointments_manager/features/appointment/domain/contracts/appointment_contract.dart';
 import 'package:appointments_manager/features/appointment/domain/entities/appointment_preview.dart';
@@ -8,8 +8,6 @@ import 'package:appointments_manager/features/appointment/domain/usecases/get_ap
 import 'package:appointments_manager/features/client/domain/entities/client_entity.dart';
 import 'package:appointments_manager/features/client/domain/entities/client_query_params.dart';
 import 'package:appointments_manager/features/client/domain/usecases/get_clients_by_params.dart';
-import 'package:elegant_notification/elegant_notification.dart';
-import 'package:elegant_notification/resources/arrays.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:table_calendar/table_calendar.dart';
@@ -20,6 +18,7 @@ import '../../../appointment_templates/domain/entities/appointment_field_entity.
 class CreateAppointmentController extends GetxController {
   static CreateAppointmentController get to =>
       Get.find<CreateAppointmentController>();
+  final formKey = GlobalKey<FormState>();
 
   final clients = <ClientEntity>[].obs;
   final Rx<ClientQueryParamsDto> _params =
@@ -91,36 +90,22 @@ class CreateAppointmentController extends GetxController {
     clientNameSearchFocusNode.unfocus();
   }
 
-  void createAppointment() {
-    if (selectedClient.value == null) {
+  void createAppointment() async {
+    if (!formKey.currentState!.validate()) {
       return;
     }
     if (selectedAppointmentPreview.value == null) {
       return;
     }
-
-    CreateAppointmentUseCase(
+    await CreateAppointmentUseCase(
             selectedClient.value!,
             selectedAppointmentPreview.value!.fromDate,
             _intToDuration[sliderValue.toInt()]!,
-             customFields.toList())
-        .perform()
-        .then((value) {
-      ElegantNotification.success(
-        width: 300,
-        isDismissable: false,
-        displayCloseButton: false,
-        animationCurve: Curves.easeInOut,
-        background: ThemeColors.darkBlue,
-        position: Alignment.topRight,
-        animation: AnimationType.fromRight,
-        description: Text(
-          Translator.appointmentCreated.tr,
-          style: const TextStyle(color: ThemeColors.white),
-        ),
-      ).show(Get.context!);
-      Get.offAllNamed(Routes.home);
-    });
+            customFields.toList())
+        .perform();
+    InAppNotificationService.to
+        .showNotificationSuccess(Translator.appointmentCreated.tr);
+    Get.offAllNamed(Routes.home);
   }
 
   int get optionsLength => _intToDuration.length;
@@ -130,19 +115,15 @@ class CreateAppointmentController extends GetxController {
         _durationTextMap[_intToDuration[index]!.inMinutes]!;
   }
 
-
-
   void addNewField() {
     customFields.add(AppointmentFieldEntity(
       title: "",
     ));
   }
 
-
-  void _removeField(AppointmentFieldEntity field) {
+  void removeField(AppointmentFieldEntity field) {
     customFields.remove(field);
   }
-
 
   final Map<int, String> _durationTextMap = {
     15: Translator.minutes.trParams({"minutes": "15"}),

@@ -1,19 +1,21 @@
 import 'package:appointments_manager/core/utils/global_values.dart';
 import 'package:appointments_manager/core/widgets/text_form_field_core.dart';
+import 'package:appointments_manager/features/appointment/presentation/controllers/create_appointment_controller.dart';
 import 'package:appointments_manager/features/appointment_templates/data/model/appointment_field.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:hugeicons/hugeicons.dart';
 
 import '../../domain/entities/appointment_field_entity.dart';
 
-class CustomFieldEditing extends StatelessWidget {
+class CustomFieldEditing extends GetView<CreateAppointmentController> {
   const CustomFieldEditing({super.key, required this.field});
   final AppointmentFieldEntity field;
 
 
   @override
   Widget build(BuildContext context) {
-    final controller= TextEditingController(text: field.title);
+    final controllerText= TextEditingController(text: field.title);
     return Container(
       padding: const EdgeInsets.only(top: kPaddingM, left: kPaddingM, right: kPaddingM),
       child: Column(
@@ -35,7 +37,7 @@ class CustomFieldEditing extends StatelessWidget {
                   ),
                   value: field.fieldType,
                   onChanged: (value) {
-                    field.fieldType = value!;
+                    field.fieldType = value?? FormFieldType.number;
                   },
                   items:  const [
                     DropdownMenuItem(
@@ -115,14 +117,20 @@ class CustomFieldEditing extends StatelessWidget {
                 tooltip: "Remove field",
                 icon: const Icon(HugeIcons.strokeRoundedDelete01),
                 onPressed: () {
-                  //controller._removeField(field);
+                  controller.removeField(field);
                 },
               ),
             ],
           ),
           TextFormFieldCore(
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return "Please enter a title";
+              }
+              return null;
+            },
             hintText: "Name",
-            controller: controller,
+            controller: controllerText,
             onChanged: (value) {
               field.title = value;
             },
