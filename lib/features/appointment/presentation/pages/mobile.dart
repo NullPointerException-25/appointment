@@ -6,7 +6,6 @@ import 'package:hugeicons/hugeicons.dart';
 import '../../../../core/utils/colors.dart';
 import '../../../../core/utils/global_values.dart';
 import '../../../../core/utils/translations.dart';
-import '../../../appointment_templates/presentation/controllers/custom_fields_controller.dart';
 import '../../../appointment_templates/presentation/widgets/custom_field_editing.dart';
 import '../../domain/entities/appointment_entity.dart';
 import '../../domain/entities/appointment_preview.dart';
@@ -120,9 +119,9 @@ class NewAppointmentMobilePage extends GetView<CreateAppointmentController> {
                         () => SliverPadding(
                       padding: const EdgeInsets.all(kPaddingM),
                       sliver: SliverList.builder(
-                          itemCount: CustomFieldsController.to.customFields.length+1,
+                          itemCount: controller.customFields.length+1,
                           itemBuilder: (context, index) {
-                            if (index == CustomFieldsController.to.customFields.length) {
+                            if (index == controller.customFields.length) {
                               return Padding(
                                 padding: const EdgeInsets.all(kPadding),
                                 child: Row(
@@ -130,7 +129,7 @@ class NewAppointmentMobilePage extends GetView<CreateAppointmentController> {
                                     ElevatedButton.icon(
                                       icon: const Icon(HugeIcons.strokeRoundedAdd01, color: ThemeColors.white,),
                                       onPressed: () {
-                                        CustomFieldsController.to.addNewField();
+                                        controller.addNewField();
                                       },
                                       label: Text(
                                         Translator.addNewField.tr,
@@ -144,7 +143,7 @@ class NewAppointmentMobilePage extends GetView<CreateAppointmentController> {
                                 ),
                               );
                             }
-                            return CustomFieldEditing(field: CustomFieldsController.to.customFields[index]);
+                            return CustomFieldEditing(field: controller.customFields[index]);
                           }),
                     ),
                   ),

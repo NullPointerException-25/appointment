@@ -15,24 +15,30 @@ import 'package:get/get.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 import '../../../../core/utils/routes.dart';
+import '../../../appointment_templates/domain/entities/appointment_field_entity.dart';
 
 class CreateAppointmentController extends GetxController {
   static CreateAppointmentController get to =>
       Get.find<CreateAppointmentController>();
+
   final clients = <ClientEntity>[].obs;
   final Rx<ClientQueryParamsDto> _params =
       Rx<ClientQueryParamsDto>(ClientQueryParamsDto());
+
   final clientNameSearchTextController = TextEditingController();
   final startDateTimeTextController = TextEditingController();
   final durationTextController = TextEditingController();
+
   final sliderValue = 1.0.obs;
   final selectedDurationString = "".obs;
   final selectedClient = Rxn<ClientEntity>();
   final Rx<DateTime> selectedDateTime = DateTime.now().obs;
   final clientNameSearchFocusNode = FocusNode();
+
   final calendarFormat = Rx<CalendarFormat>(CalendarFormat.month);
   final todayAppointments = <AppointmentContract>[].obs;
   final selectedAppointmentPreview = Rxn<AppointmentPreview>();
+  final customFields = RxList<AppointmentFieldEntity>([]);
 
   @override
   void onInit() {
@@ -96,7 +102,8 @@ class CreateAppointmentController extends GetxController {
     CreateAppointmentUseCase(
             selectedClient.value!,
             selectedAppointmentPreview.value!.fromDate,
-            _intToDuration[sliderValue.toInt()]!)
+            _intToDuration[sliderValue.toInt()]!,
+             customFields.toList())
         .perform()
         .then((value) {
       ElegantNotification.success(
@@ -122,6 +129,20 @@ class CreateAppointmentController extends GetxController {
     selectedDurationString.value =
         _durationTextMap[_intToDuration[index]!.inMinutes]!;
   }
+
+
+
+  void addNewField() {
+    customFields.add(AppointmentFieldEntity(
+      title: "",
+    ));
+  }
+
+
+  void _removeField(AppointmentFieldEntity field) {
+    customFields.remove(field);
+  }
+
 
   final Map<int, String> _durationTextMap = {
     15: Translator.minutes.trParams({"minutes": "15"}),

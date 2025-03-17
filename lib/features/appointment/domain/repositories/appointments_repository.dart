@@ -4,7 +4,7 @@ import 'package:appointments_manager/features/client/data/models/client.dart';
 abstract class AppointmentsRepository {
   Future<void> saveAppointment(AppointmentModel appointment);
 
-  Future<AppointmentModel?> getAppointment(int id);
+  Future<AppointmentModel?> getAppointment({int? id, String? remoteId});
 
   Future<List<AppointmentModel>> getAllAppointmentsFromClient(
       ClientModel client,

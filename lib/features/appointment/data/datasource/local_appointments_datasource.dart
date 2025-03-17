@@ -13,12 +13,13 @@ class LocalAppointmentsDatasource extends GetxService {
     _store = objectBoxService?.store ?? ObjectBoxService.to.store;
   }
 
-  void saveAppointment(AppointmentModel appointment) {
+  AppointmentModel saveAppointment(AppointmentModel appointment) {
     final box = _store.value.box<AppointmentModel>();
     final result = box.put(appointment);
     if (result == 0) {
       throw Exception("Failed to save appointment");
     }
+    return box.get(result)!;
   }
 
   void deleteAppointment(AppointmentModel appointment) {

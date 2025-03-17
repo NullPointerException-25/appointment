@@ -38,15 +38,15 @@ class AppointmentsRepositoryImpLocal extends GetxService
   }
 
   @override
-  Future<AppointmentModel?> getAppointment(int id) {
+  Future<AppointmentModel?> getAppointment({int? id, String? remoteId}) {
     // TODO: implement getAppointment
     throw UnimplementedError();
   }
 
   @override
-  Future<void> saveAppointment(AppointmentModel appointment)  {
-    _localAppointmentsDatasource.saveAppointment(appointment);
-    return Future.value();
+  Future<AppointmentModel> saveAppointment(AppointmentModel appointment)  async  {
+    final result= await _localAppointmentsDatasource.saveAppointment(appointment);
+    return result;
   }
 
   @override

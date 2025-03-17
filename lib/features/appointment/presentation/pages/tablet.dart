@@ -6,7 +6,6 @@ import 'package:hugeicons/hugeicons.dart';
 import '../../../../core/utils/colors.dart';
 import '../../../../core/utils/global_values.dart';
 import '../../../../core/utils/translations.dart';
-import '../../../appointment_templates/presentation/controllers/custom_fields_controller.dart';
 import '../../../appointment_templates/presentation/widgets/custom_field_editing.dart';
 import '../../domain/entities/appointment_entity.dart';
 import '../../domain/entities/appointment_preview.dart';
@@ -137,10 +136,10 @@ class NewAppointmentTabletPage extends GetView<CreateAppointmentController> {
                     padding: const EdgeInsets.all(kPaddingM),
                     sliver: SliverList.builder(
                         itemCount:
-                            CustomFieldsController.to.customFields.length + 1,
+                            controller.customFields.length + 1,
                         itemBuilder: (context, index) {
                           if (index ==
-                              CustomFieldsController.to.customFields.length) {
+                              controller.customFields.length) {
                             return Padding(
                               padding: const EdgeInsets.all(kPadding),
                               child: Row(
@@ -151,7 +150,7 @@ class NewAppointmentTabletPage extends GetView<CreateAppointmentController> {
                                       color: ThemeColors.white,
                                     ),
                                     onPressed: () {
-                                      CustomFieldsController.to.addNewField();
+                                      controller.addNewField();
                                     },
                                     label: Text(
                                       Translator.addNewField.tr,
@@ -166,8 +165,7 @@ class NewAppointmentTabletPage extends GetView<CreateAppointmentController> {
                             );
                           }
                           return CustomFieldEditing(
-                              field: CustomFieldsController
-                                  .to.customFields[index]);
+                              field: controller.customFields[index]);
                         }),
                   ),
                 ),
