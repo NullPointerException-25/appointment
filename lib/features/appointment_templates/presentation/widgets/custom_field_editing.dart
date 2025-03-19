@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hugeicons/hugeicons.dart';
 
+import '../../../../core/utils/translations.dart';
 import '../../domain/entities/appointment_field_entity.dart';
 
 class CustomFieldEditing extends GetView<CreateAppointmentController> {
@@ -39,14 +40,14 @@ class CustomFieldEditing extends GetView<CreateAppointmentController> {
                   onChanged: (value) {
                     field.fieldType = value?? FormFieldType.number;
                   },
-                  items:  const [
+                  items:   [
                     DropdownMenuItem(
                       value: FormFieldType.number,
                       child: Row(
                         spacing: kSpacing,
                         children: [
-                           Text("Number"),
-                          Icon(HugeIcons.strokeRoundedTextNumberSign),
+                           Text(Translator.number.tr),
+                          const Icon(HugeIcons.strokeRoundedTextNumberSign),
                         ],
                       ),
                     ),
@@ -55,8 +56,8 @@ class CustomFieldEditing extends GetView<CreateAppointmentController> {
                       child: Row(
                         spacing: kSpacing,
                         children: [
-                          Text("Short Text"),
-                          Icon(HugeIcons.strokeRoundedText),
+                          Text(Translator.shortText.tr),
+                          const Icon(HugeIcons.strokeRoundedText),
                         ],
                       ),
                     ),
@@ -65,8 +66,8 @@ class CustomFieldEditing extends GetView<CreateAppointmentController> {
                       child: Row(
                         spacing: kSpacing,
                         children: [
-                          Text("Large Text"),
-                          Icon(HugeIcons.strokeRoundedTextIndent),
+                          Text(Translator.largeText.tr),
+                          const Icon(HugeIcons.strokeRoundedTextIndent),
                         ],
                       ),
                     ),
@@ -75,8 +76,8 @@ class CustomFieldEditing extends GetView<CreateAppointmentController> {
                       child: Row(
                         spacing: kSpacing,
                         children: [
-                          Text("Date"),
-                          Icon(HugeIcons.strokeRoundedCalendar01),
+                          Text(Translator.date.tr),
+                          const Icon(HugeIcons.strokeRoundedCalendar01),
                         ],
                       ),
                     ),
@@ -85,8 +86,8 @@ class CustomFieldEditing extends GetView<CreateAppointmentController> {
                       child: Row(
                         spacing: kSpacing,
                         children: [
-                          Text("Image List"),
-                          Icon(HugeIcons.strokeRoundedImage02),
+                          Text(Translator.images.tr),
+                          const Icon(HugeIcons.strokeRoundedImage02),
                         ],
                       ),
                     ),
@@ -95,8 +96,8 @@ class CustomFieldEditing extends GetView<CreateAppointmentController> {
                       child: Row(
                         spacing: kSpacing,
                         children: [
-                          Text("Phone Number"),
-                          Icon(HugeIcons.strokeRoundedCall),
+                          Text(Translator.phoneNumber.tr),
+                          const Icon(HugeIcons.strokeRoundedCall),
                         ],
                       ),
                     ),
@@ -105,8 +106,8 @@ class CustomFieldEditing extends GetView<CreateAppointmentController> {
                       child: Row(
                         spacing: kSpacing,
                         children: [
-                          Text("Audio"),
-                          Icon(HugeIcons.strokeRoundedMic01),
+                          Text(Translator.audio.tr),
+                          const Icon(HugeIcons.strokeRoundedMic01),
                         ],
                       ),
                     ),
@@ -114,7 +115,7 @@ class CustomFieldEditing extends GetView<CreateAppointmentController> {
                 ),
               ),
               IconButton(
-                tooltip: "Remove field",
+                tooltip: Translator.removeField.tr,
                 icon: const Icon(HugeIcons.strokeRoundedDelete01),
                 onPressed: () {
                   controller.removeField(field);
@@ -125,11 +126,12 @@ class CustomFieldEditing extends GetView<CreateAppointmentController> {
           TextFormFieldCore(
             validator: (value) {
               if (value == null || value.isEmpty) {
-                return "Please enter a title";
+
+                return Translator.nameIsRequired.tr;
               }
               return null;
             },
-            hintText: "Name",
+            hintText: Translator.name.tr,
             controller: controllerText,
             onChanged: (value) {
               field.title = value;

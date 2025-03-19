@@ -84,7 +84,7 @@ class ClientSearcherTextField extends GetView<CreateAppointmentController> {
         () => TextFormFieldCore(
           validator: (value){
             if(this.controller.selectedClient.value==null){
-              return "Please select a client";
+              return Translator.pleaseSelectAClient.tr;
             }
             return null;
           },

@@ -95,6 +95,8 @@ class CreateAppointmentController extends GetxController {
       return;
     }
     if (selectedAppointmentPreview.value == null) {
+      InAppNotificationService.to.showNotificationError(
+          Translator.selectAppointment.tr);
       return;
     }
     await CreateAppointmentUseCase(

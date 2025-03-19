@@ -39,7 +39,7 @@ initServices() async {
   await Get.putAsync(() => ProfileService().init());
   await Get.putAsync(
       () => ObjectBoxService().init(ProfileService.to.profile.value));
-  Get.put(() => InAppNotificationService());
+  Get.put(InAppNotificationService());
 }
 
 class MyApp extends StatelessWidget {

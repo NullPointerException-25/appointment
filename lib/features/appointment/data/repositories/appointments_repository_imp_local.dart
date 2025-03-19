@@ -45,8 +45,7 @@ class AppointmentsRepositoryImpLocal extends GetxService
 
   @override
   Future<AppointmentModel> saveAppointment(AppointmentModel appointment)  async  {
-    final result= await _localAppointmentsDatasource.saveAppointment(appointment);
-    return result;
+    return _localAppointmentsDatasource.saveAppointment(appointment);
   }
 
   @override
@@ -88,6 +87,7 @@ class AppointmentsRepositoryImpLocal extends GetxService
     // TODO: implement updateAppointment
     throw UnimplementedError();
   }
+
 
 
 }

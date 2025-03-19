@@ -74,6 +74,15 @@ class Translator extends Translations {
           "video": "Video",
           "file": "File",
           "date": "Date",
+          "pleaseSelectAClient": "Please select a client",
+          "selectAppointment": "Please select an appointment",
+          "pleaseEnterATitle": "Please enter a title",
+           "shortText": "Short text",
+          "largeText": "Large text",
+          "phoneNumber": "Phone number",
+          "images": "Images",
+          "removeField": "Remove field",
+          "somethingWentWrong": "Something went wrong",
         },
         'es': {
           'title': 'Gestor de Citas',
@@ -212,4 +221,21 @@ class Translator extends Translations {
 
   static String get date => "date";
 
+  static String get pleaseSelectAClient => "pleaseSelectAClient";
+
+  static String get selectAppointment => "selectAppointment";
+
+  static String get pleaseEnterATitle => "pleaseEnterATitle";
+
+  static String get shortText => "shortText";
+
+  static String get largeText => "largeText";
+
+  static String get phoneNumber => "phoneNumber";
+
+  static String get images => "images";
+
+  static String get removeField => "removeField";
+
+  static String get somethingWentWrong => "somethingWentWrong";
 }
