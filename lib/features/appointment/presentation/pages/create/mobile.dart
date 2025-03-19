@@ -3,17 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hugeicons/hugeicons.dart';
 
-import '../../../../core/utils/colors.dart';
-import '../../../../core/utils/global_values.dart';
-import '../../../../core/utils/translations.dart';
-import '../../../appointment_templates/presentation/widgets/custom_field_editing.dart';
-import '../../domain/entities/appointment_entity.dart';
-import '../../domain/entities/appointment_preview.dart';
-import '../widgets/appointment_item.dart';
-import '../widgets/appointment_preview_item.dart';
-import '../widgets/calendar_date_picker.dart';
-import '../widgets/client_searcher_textfield.dart';
-import '../widgets/duration_slider.dart' show DurationSlider;
+import '../../../../../core/utils/colors.dart';
+import '../../../../../core/utils/global_values.dart';
+import '../../../../../core/utils/translations.dart';
+import '../../../../appointment_templates/presentation/widgets/custom_field_editing.dart';
+import '../../../domain/entities/appointment_entity.dart';
+import '../../../domain/entities/appointment_preview.dart';
+import '../../widgets/appointment_item.dart';
+import '../../widgets/appointment_preview_item.dart';
+import '../../widgets/calendar_date_picker.dart';
+import '../../widgets/client_searcher_textfield.dart';
+import '../../widgets/duration_slider.dart' show DurationSlider;
 
 class NewAppointmentMobilePage extends GetView<CreateAppointmentController> {
   const NewAppointmentMobilePage({super.key});
