@@ -16,9 +16,11 @@ class DeviceStorageUserDatastore extends GetxService {
 
   Future<String> saveProfileImage(String imagePath) async {
     final folder = _objectBoxService.profileFolder;
-    final docsDir = await getApplicationDocumentsDirectory();
+    Directory docsDir = await getApplicationDocumentsDirectory();
+    if(Platform.isMacOS || Platform.isLinux || Platform.isWindows){
+      docsDir = await getApplicationSupportDirectory();
+    }
     final profileImagePath = p.join(docsDir.path, folder, profileImageFolder);
-    // Create the directory if it doesn't exist
     await _createDirectory(profileImagePath);
     final file = File(imagePath);
     final fileName = p.basename(file.path);

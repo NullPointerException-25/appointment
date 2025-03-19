@@ -1,4 +1,3 @@
-import 'package:appointments_manager/core/utils/global_values.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
@@ -15,11 +14,9 @@ class ResponsiveLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-      final responsiveMedia = ResponsiveMedia(context);
       final responsiveBreakpoints = ResponsiveBreakpoints.of(context);
-
-      final isSmallScreen = responsiveMedia.isSmallerThan(AspectRatioResponsive.fourThree);
-      final isMediumScreen = responsiveMedia.isSmallerThan(AspectRatioResponsive.twentyOneNine) &&  responsiveBreakpoints.isTablet;
+      final isSmallScreen = responsiveBreakpoints.isMobile;
+      final isMediumScreen = responsiveBreakpoints.isTablet;
 
       if (isSmallScreen) return mobile;
       if (isMediumScreen) return tablet;

@@ -63,7 +63,26 @@ class Translator extends Translations {
           "today'sAppointments": "Today's appointments",
           "calendar": "Calendar",
           "nameIsRequired": "Name cannot be empty",
-          "nothingForToday": "No appointments today"
+          "nothingForToday": "No appointments today",
+          "addNewField": "Add new field",
+          "customFields": "Custom fields",
+          "duration": "Duration",
+          "preview": "Preview",
+          "number": "Number",
+          "imageList": "Image list",
+          "audio": "Audio",
+          "video": "Video",
+          "file": "File",
+          "date": "Date",
+          "pleaseSelectAClient": "Please select a client",
+          "selectAppointment": "Please select an appointment",
+          "pleaseEnterATitle": "Please enter a title",
+           "shortText": "Short text",
+          "largeText": "Large text",
+          "phoneNumber": "Phone number",
+          "images": "Images",
+          "removeField": "Remove field",
+          "somethingWentWrong": "Something went wrong",
         },
         'es': {
           'title': 'Gestor de Citas',
@@ -181,4 +200,42 @@ class Translator extends Translations {
   static String get nameIsRequired=>"nameIsRequired";
 
   static String get nothingForToday=> "nothingForToday";
+
+  static String get addNewField => "addNewField";
+
+  static String get customFields => "customFields";
+
+  static String get duration => "duration";
+
+  static String get preview => "preview";
+
+  static String get number => "number";
+
+  static String get imageList => "imageList";
+
+  static String get audio => "audio";
+
+  static String get video => "video";
+
+  static String get file => "file";
+
+  static String get date => "date";
+
+  static String get pleaseSelectAClient => "pleaseSelectAClient";
+
+  static String get selectAppointment => "selectAppointment";
+
+  static String get pleaseEnterATitle => "pleaseEnterATitle";
+
+  static String get shortText => "shortText";
+
+  static String get largeText => "largeText";
+
+  static String get phoneNumber => "phoneNumber";
+
+  static String get images => "images";
+
+  static String get removeField => "removeField";
+
+  static String get somethingWentWrong => "somethingWentWrong";
 }

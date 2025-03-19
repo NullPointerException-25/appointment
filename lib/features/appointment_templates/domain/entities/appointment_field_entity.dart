@@ -13,17 +13,17 @@ class AppointmentFieldEntity extends CoreEntity<AppointmentFieldModel> {
 
   String title;
 
-  late final FormFieldType fieldType;
+  late FormFieldType fieldType;
 
   AppointmentFieldEntity(
       {DateTime? lastUpdate,
       this.localId = 0,
       this.remoteId = "",
-      required this.title,
-      required int fieldType}) {
+      required this.title, int fieldType=1}) {
     this.lastUpdate = lastUpdate ?? DateTime.now();
     this.fieldType = _formFieldTypeMap[fieldType] ?? FormFieldType.unknown;
   }
+
 
   @override
   AppointmentFieldModel toModel() {
@@ -43,6 +43,8 @@ class AppointmentFieldEntity extends CoreEntity<AppointmentFieldModel> {
     2: FormFieldType.shortText,
     3: FormFieldType.largeText,
     4: FormFieldType.date,
-    5: FormFieldType.imageList
+    5: FormFieldType.imageList,
+    6: FormFieldType.phoneNumber,
+    7: FormFieldType.audio
   };
 }

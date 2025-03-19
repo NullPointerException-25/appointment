@@ -1,5 +1,6 @@
 import 'package:appointments_manager/core/abstractions/model.dart';
 import 'package:appointments_manager/features/appointment/domain/entities/appointment_entity.dart';
+import 'package:appointments_manager/features/appointment_templates/data/model/appointment_field.dart';
 import 'package:appointments_manager/features/client/data/models/client.dart';
 import 'package:objectbox/objectbox.dart';
 
@@ -18,7 +19,8 @@ class AppointmentModel extends CoreModel<AppointmentEntity>{
   @Property(type: PropertyType.date)
   DateTime lastUpdate;
   final client = ToOne<ClientModel>();
-  //final fields = ToMany<AppointmentModel>();
+  @Backlink('customFields')
+  final fields = ToMany<AppointmentFieldModel>();
 
 
   AppointmentModel({

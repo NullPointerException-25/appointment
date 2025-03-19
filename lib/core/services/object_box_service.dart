@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:appointments_manager/core/services/profile_service.dart';
 import 'package:appointments_manager/objectbox.g.dart';
 import 'package:get/get.dart';
@@ -20,8 +22,12 @@ class ObjectBoxService extends GetxService {
   }
 
   Future<ObjectBoxService> init(int profile) async {
-    final docsDir = await getApplicationDocumentsDirectory();
+    Directory docsDir = await getApplicationDocumentsDirectory();
+    if(Platform.isMacOS || Platform.isLinux || Platform.isWindows){
+      docsDir = await getApplicationSupportDirectory();
+    }
     final directory = p.join(docsDir.path, profileFolder);
+    print("ObjectBoxService initialized in: $directory");
     try {
       store = Rx<Store>(await openStore(directory: directory));
     } catch (e) {

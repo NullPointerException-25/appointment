@@ -82,6 +82,12 @@ class ClientSearcherTextField extends GetView<CreateAppointmentController> {
       },
       builder: (context, controller, focusNode) => Obx(
         () => TextFormFieldCore(
+          validator: (value){
+            if(this.controller.selectedClient.value==null){
+              return Translator.pleaseSelectAClient.tr;
+            }
+            return null;
+          },
             prefixIcon: this.controller.selectedClient.value == null ||
                     this.controller.selectedClient.value!.image.value == null
                 ? HugeIcon(
