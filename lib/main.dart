@@ -4,7 +4,7 @@ import 'package:appointments_manager/core/utils/routes.dart';
 import 'package:appointments_manager/core/utils/themes.dart';
 import 'package:appointments_manager/core/utils/translations.dart';
 import 'package:appointments_manager/features/appointment/presentation/bindings/create_appointment_binding.dart';
-import 'package:appointments_manager/features/appointment/presentation/pages/new_appointment.dart';
+import 'package:appointments_manager/features/appointment/presentation/pages/details/details.dart';
 import 'package:appointments_manager/features/client/presentation/bindings/clients_details_binding.dart';
 import 'package:appointments_manager/features/client/presentation/bindings/create_client_binding.dart';
 import 'package:appointments_manager/features/client/presentation/bindings/query_clients_binding.dart';
@@ -23,6 +23,8 @@ import 'package:objectbox_flutter_libs/objectbox_flutter_libs.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 import 'core/services/in_app_notification_service.dart';
+import 'features/appointment/presentation/bindings/details_binding.dart';
+import 'features/appointment/presentation/pages/create/create.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -83,7 +85,11 @@ class MyApp extends StatelessWidget {
         GetPage(
             name: Routes.newAppointment,
             page: () => const CreateAppointmentPage(),
-            binding: CreateAppointmentBinding())
+            binding: CreateAppointmentBinding()),
+        GetPage(
+            name: Routes.appointmentDetail,
+            binding: DetailsAppointmentBinding(),
+            page: () => const DetailsAppointmentPage())
       ],
       initialRoute: Routes.splash,
     );

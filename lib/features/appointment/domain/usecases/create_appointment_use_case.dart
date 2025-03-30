@@ -12,7 +12,6 @@ import '../../../../core/utils/translations.dart';
 
 class CreateAppointmentUseCase extends UseCase<void> {
   late final AppointmentsRepositoryImpLocal _appointmentsRepository;
-  late final LocalCustomFieldsRepositoryImpl _localCustomFieldsRepositoryImpl;
   late final AppointmentEntity appointment;
   final ClientEntity client;
   final List<AppointmentFieldEntity> customFields;
@@ -22,15 +21,18 @@ class CreateAppointmentUseCase extends UseCase<void> {
   /// Use this constructor to create a new appointment.
   /// Inject the repository on the constructor to allow for easier testing.
   /// Avoid injecting repositories directly on the use case methods.
-  CreateAppointmentUseCase(this.client, this.fromDate, this.duration, this.customFields,
-      {AppointmentsRepositoryImpLocal? appointmentsRepositoryLocal, LocalCustomFieldsRepositoryImpl? localCustomFieldsRepositoryImpl}) {
+  CreateAppointmentUseCase(
+      this.client, this.fromDate, this.duration, this.customFields,
+      {AppointmentsRepositoryImpLocal? appointmentsRepositoryLocal,
+      LocalCustomFieldsRepositoryImpl? localCustomFieldsRepositoryImpl}) {
     _appointmentsRepository =
         appointmentsRepositoryLocal ?? AppointmentsRepositoryImpLocal.to;
 
-    _localCustomFieldsRepositoryImpl = localCustomFieldsRepositoryImpl ?? LocalCustomFieldsRepositoryImpl.to;
-
     appointment = AppointmentEntity(
-        client: client, fromDate: fromDate, toDate: fromDate.add(duration));
+        client: client,
+        fromDate: fromDate,
+        toDate: fromDate.add(duration),
+        customFields: customFields);
   }
 
   @override
@@ -38,10 +40,10 @@ class CreateAppointmentUseCase extends UseCase<void> {
     final appointmentModel = appointment.toModel();
     try {
       await _appointmentsRepository.saveAppointment(appointmentModel);
-      await _localCustomFieldsRepositoryImpl.attachCustomFields(appointmentModel, customFields.map((e) => e.toModel()).toList());
     } catch (e) {
       debugPrint(e.toString());
-      InAppNotificationService.to.showNotificationError(Translator.somethingWentWrong.tr);
+      InAppNotificationService.to
+          .showNotificationError(Translator.somethingWentWrong.tr);
     }
 
     return;

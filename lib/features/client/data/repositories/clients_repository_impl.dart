@@ -29,7 +29,8 @@ class LocalClientsRepositoryImpl extends GetxService
 
   @override
   Future<ClientEntity?> getClientById(int id) async {
-    throw UnimplementedError();
+    final client = await _localClientDataSource.getClientById(id);
+    return client?.toEntity();
   }
 
   @override

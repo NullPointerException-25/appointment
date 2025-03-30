@@ -7,4 +7,5 @@ abstract class Routes {
   static const String newClient = '$client/new';
   static const String appointment = "/appointment";
   static const String newAppointment = "$appointment/new";
+  static const String appointmentDetail = "$appointment/detail";
 }
