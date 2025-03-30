@@ -44,7 +44,7 @@ class AppointmentItemTimeline extends StatelessWidget {
     _calculateTimeProgress();
     return InkWell(
       onTap: (){
-        Get.toNamed(Routes.appointmentDetail);
+        Get.toNamed(Routes.appointmentDetail, arguments: appointment);
       },
       child: Container(
         width: double.infinity,

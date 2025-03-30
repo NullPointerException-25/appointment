@@ -29,6 +29,7 @@ class AppointmentModel extends CoreModel<AppointmentEntity>{
     required this.fromDate,
     required this.toDate,
     required this.lastUpdate,
+
   }) {
     if (id != null) {
       localId = id;
@@ -38,6 +39,7 @@ class AppointmentModel extends CoreModel<AppointmentEntity>{
   @override
   AppointmentEntity toEntity() {
      return AppointmentEntity(
+       customFields: fields.map((e) => e.toEntity()).toList(),
        lastUpdate: lastUpdate,
        remoteId: remoteId,
        fromDate: fromDate,

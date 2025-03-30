@@ -13,6 +13,10 @@ class LocalClientDataSource extends GetxService{
     return _store.value.box<ClientModel>().put(client);
   }
 
+  Future<ClientModel?> getClientById(int id) async {
+    return _store.value.box<ClientModel>().get(id);
+  }
+
   Future<List<ClientModel>> getClients({ClientQueryParamsDto? query}) async {
     Query<ClientModel>? preQuery= query?.toObjectBoxQuery(_store.value);
     if(preQuery!=null){
