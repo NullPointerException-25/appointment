@@ -19,12 +19,7 @@ class EmailPager extends StatelessWidget {
         Expanded(
           child: Column(
             children: [
-              const SizedBox(height: 20),
-              Expanded(
-                child: LottieBuilder.asset(LottieAssets.email),
-              ),
-              const SizedBox(height: 20),
-              Text(Translator.receiveEmailsOfNewFeatures.tr,
+              Text(Translator.signUp.tr,
                   style: Theme.of(context).textTheme.titleMedium),
               const SizedBox(height: 20),
               Padding(

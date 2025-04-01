@@ -83,6 +83,7 @@ class Translator extends Translations {
           "images": "Images",
           "removeField": "Remove field",
           "somethingWentWrong": "Something went wrong",
+          "signUp": "Sign up",
         },
         'es': {
           'title': 'Gestor de Citas',
@@ -238,4 +239,6 @@ class Translator extends Translations {
   static String get removeField => "removeField";
 
   static String get somethingWentWrong => "somethingWentWrong";
+
+  static String get signUp => "signUp";
 }
