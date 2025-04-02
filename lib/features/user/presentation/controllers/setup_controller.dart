@@ -16,10 +16,14 @@ class SetupController extends GetxController {
   final Rxn<File> image = Rxn<File>();
   final Rx<String> name = Rx<String>("");
   final Rx<String> email = Rx<String>("");
+  final Rx<String> password = Rx<String>("");
+  final Rx<String> confirmPassword = Rx<String>("");
   final RxInt step = 0.obs;
   late PageController pageController;
   final TextEditingController emailController = TextEditingController();
   final TextEditingController nameController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController = TextEditingController();
   late final Map<int, bool Function()> _stepRequirements;
   final GlobalKey<FormState> emailFormKey = GlobalKey<FormState>();
 

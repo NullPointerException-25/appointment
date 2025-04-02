@@ -84,6 +84,12 @@ class Translator extends Translations {
           "removeField": "Remove field",
           "somethingWentWrong": "Something went wrong",
           "signUp": "Sign up",
+          "password": "Password",
+          "continueWithoutAccount": "Continue without account",
+          "passwordTooShort": "Password must be at least 8 characters long",
+          "passwordNotMatch": "Passwords do not match",
+          "confirmPassword": "Confirm password",
+          "youCanCreateAccountLater": "Don't worry, You can create an account later",
         },
         'es': {
           'title': 'Gestor de Citas',
@@ -241,4 +247,16 @@ class Translator extends Translations {
   static String get somethingWentWrong => "somethingWentWrong";
 
   static String get signUp => "signUp";
+
+  static String get password => "password";
+
+  static String get continueWithoutAccount => "continueWithoutAccount";
+
+  static String get passwordTooShort => "passwordTooShort";
+
+  static String get passwordNotMatch => "passwordNotMatch";
+
+  static String get confirmPassword => "confirmPassword";
+
+  static String get youCanCreateAccountLater => "youCanCreateAccountLater";
 }

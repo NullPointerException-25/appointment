@@ -27,8 +27,7 @@ class SetupPage extends StatelessWidget {
             ThemeColors.lighterBlue,
             Theme.of(context).primaryColorDark,
           ],
-          seed: 10,
-          options: AnimatedMeshGradientOptions(speed: 1),
+          options: AnimatedMeshGradientOptions(speed: 2),
           child: const ResponsiveLayout(
             desktop: SetupContainerDesktop(),
             mobile: SetupContainerMobile(),
