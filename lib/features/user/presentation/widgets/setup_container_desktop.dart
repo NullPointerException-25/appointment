@@ -2,7 +2,7 @@
 import 'package:appointments_manager/core/utils/global_values.dart';
 import 'package:appointments_manager/core/utils/translations.dart';
 import 'package:appointments_manager/features/user/presentation/controllers/setup_controller.dart';
-import 'package:appointments_manager/features/user/presentation/pagers/email_pager.dart';
+import 'package:appointments_manager/features/user/presentation/pagers/setup_pager.dart';
 import 'package:appointments_manager/features/user/presentation/pagers/image_pager.dart';
 import 'package:appointments_manager/features/user/presentation/pagers/name_pager.dart';
 import 'package:flutter/material.dart';
@@ -71,7 +71,7 @@ class SetupContainerDesktop extends StatelessWidget {
                   children: const [
                     NamePager(),
                     ImagePager(),
-                    EmailPager()
+                    SignUpPager()
                   ],
                 ),
               ),

@@ -1,6 +1,7 @@
 
 import 'package:appointments_manager/core/utils/colors.dart';
 import 'package:appointments_manager/core/widgets/responsive_layout.dart';
+import 'package:appointments_manager/features/user/presentation/controllers/login_controller.dart';
 import 'package:appointments_manager/features/user/presentation/controllers/setup_controller.dart';
 import 'package:appointments_manager/features/user/presentation/widgets/setup_container_desktop.dart';
 import 'package:appointments_manager/features/user/presentation/widgets/setup_container_mobile.dart';
@@ -16,6 +17,7 @@ class SetupPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SetupController.to.loadPreviousData();
+    LoginController.to;
     return Scaffold(
       body: SizedBox(
         height: double.infinity,

@@ -31,9 +31,10 @@ class SetupController extends GetxController {
   void onInit() {
     super.onInit();
     _stepRequirements = {
-      0: () => name.value.isNotEmpty,
-      1: () => true,
+      0: () => true,
+      1: () => name.value.isNotEmpty,
       2: () => true,
+      3: () => true,
     };
   }
 
@@ -41,10 +42,10 @@ class SetupController extends GetxController {
     if (!_stepRequirements[step.value]!()) {
       return;
     }
-    if (step.value == 2) {
+    if (step.value == 3) {
       _saveUserChanges();
     }
-    if (step.value != 2) {
+    if (step.value != 3) {
       step.value++;
       pageController.nextPage(
           duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
