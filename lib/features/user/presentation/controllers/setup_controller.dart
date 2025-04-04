@@ -5,13 +5,7 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
 class SetupController extends GetxController {
-  static SetupController get to {
-    try {
-      return Get.find<SetupController>();
-    } catch (e) {
-      return Get.put(SetupController());
-    }
-  }
+  static SetupController get to => Get.find<SetupController>();
 
   final Rxn<File> image = Rxn<File>();
   final Rx<String> name = Rx<String>("");

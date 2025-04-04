@@ -75,4 +75,9 @@ class LocalUserDatasource extends GetxService {
     _user.value= _store.value.box<UserModel>().get(_user.value.id)!;
     return Future.value();
   }
+
+  Future<List<UserModel>> getUsers() {
+    final users = _store.value.box<UserModel>().getAll();
+    return Future.value(users);
+  }
 }

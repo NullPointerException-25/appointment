@@ -17,7 +17,6 @@ class SetupPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SetupController.to.loadPreviousData();
-    LoginController.to;
     return Scaffold(
       body: SizedBox(
         height: double.infinity,

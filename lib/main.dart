@@ -25,6 +25,7 @@ import 'package:responsive_framework/responsive_framework.dart';
 import 'core/services/in_app_notification_service.dart';
 import 'features/appointment/presentation/bindings/details_binding.dart';
 import 'features/appointment/presentation/pages/create/create.dart';
+import 'features/user/presentation/bindings/binding.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -72,7 +73,10 @@ class MyApp extends StatelessWidget {
             name: Routes.home,
             page: () => HomePage(),
             bindings: [HomeBinding(), QueryClientsBinding()]),
-        GetPage(name: Routes.setup, page: () => SetupPage()),
+        GetPage(
+            name: Routes.setup,
+            page: () => SetupPage(),
+            binding: SetupBinding()),
         GetPage(name: Routes.splash, page: () => const SplashPage()),
         GetPage(
             name: Routes.client,

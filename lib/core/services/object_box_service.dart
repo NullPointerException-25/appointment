@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:appointments_manager/core/services/profile_service.dart';
 import 'package:appointments_manager/objectbox.g.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart' as p;
@@ -27,7 +28,7 @@ class ObjectBoxService extends GetxService {
       docsDir = await getApplicationSupportDirectory();
     }
     final directory = p.join(docsDir.path, profileFolder);
-    print("ObjectBoxService initialized in: $directory");
+    debugPrint("ObjectBoxService initialized in: $directory");
     try {
       store = Rx<Store>(await openStore(directory: directory));
     } catch (e) {

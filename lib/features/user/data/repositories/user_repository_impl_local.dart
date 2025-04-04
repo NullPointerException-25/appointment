@@ -61,4 +61,11 @@ class UserRepositoryImpLocal extends GetxService implements UserRepository {
     await _localUserDatasource.saveUserImage(devicePath);
     return devicePath;
   }
+
+  @override
+  Future<List<UserModel>> getUsers() async{
+     return await _localUserDatasource.getUsers();
+  }
+
+
 }
