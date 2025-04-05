@@ -2,6 +2,7 @@
 import 'package:appointments_manager/core/utils/global_values.dart';
 import 'package:appointments_manager/core/utils/translations.dart';
 import 'package:appointments_manager/features/user/presentation/controllers/setup_controller.dart';
+import 'package:appointments_manager/features/user/presentation/pagers/login_pager.dart';
 import 'package:appointments_manager/features/user/presentation/pagers/setup_pager.dart';
 import 'package:appointments_manager/features/user/presentation/pagers/image_pager.dart';
 import 'package:appointments_manager/features/user/presentation/pagers/name_pager.dart';
@@ -65,26 +66,22 @@ class SetupContainerTablet extends StatelessWidget {
               ),
               Expanded(
                 child: PageView(
-                  allowImplicitScrolling: false,
                   scrollDirection: Axis.vertical,
                   controller: SetupController.to.initPageController(),
                   physics: const NeverScrollableScrollPhysics(),
                   children:  [
-                    SingleChildScrollView(
-                      child: SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.8,
-                          child: const NamePager()),
-                    ),
-                    SingleChildScrollView(
-                      child: SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.8,
-                          child: const ImagePager()),
-                    ),
-                    SingleChildScrollView(
-                      child: SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.8,
-                          child: const SignUpPager()),
-                    )
+                    SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.8,
+                        child: const LoginPager()),
+                    SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.8,
+                        child: const NamePager()),
+                    SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.8,
+                        child: const ImagePager()),
+                    SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.8,
+                        child: const SignUpPager())
                   ],
                 ),
               ),

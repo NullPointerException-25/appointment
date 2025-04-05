@@ -8,152 +8,219 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hugeicons/hugeicons.dart';
 
+import '../../../../core/widgets/responsive_layout.dart';
+
 class LoginPager extends GetView<LoginController> {
   const LoginPager({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Column(
-      spacing: kSpacingM,
       children: [
         Expanded(
-          child: Column(
-            children: [
-              const SizedBox(height: 20),
-              Text(Translator.login.tr,
-                  style: Theme.of(context).textTheme.titleMedium),
-              const SizedBox(height: 20),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20),
-                child: Form(
-                  key: SetupController.to.emailFormKey,
-                  child: Column(
-
-                    children: [
-                      const SizedBox(height: 10),
-                      TextFormField(
-                        textInputAction: TextInputAction.next,
-                        controller: controller.emailController,
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return Translator.pleaseEnterSomeText.tr;
-                          }
-                          if (!GetUtils.isEmail(value.trim())) {
-                            return Translator.pleaseEnterAValidEmail.tr;
-                          }
-                          return null;
-                        },
-                        style: const TextStyle(fontSize: 16),
-                        onChanged: (value) =>
-                        controller.email.value = value,
-                        decoration: InputDecoration(
-                          prefixIcon: Icon(
-                            HugeIcons.strokeRoundedMail01,
-                            color:
-                            Theme.of(context).brightness == Brightness.light
-                                ? Theme.of(context).primaryColorDark
-                                : Theme.of(context).primaryColorLight,
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                                color: Theme.of(context).primaryColorDark),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          hintText: Translator.email.tr,
-                          hintStyle: TextStyle(
-                              fontSize: 16, color: Theme.of(context).hintColor),
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide(
-                                color: Theme.of(context).primaryColorLight),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(height: 20),
-                      TextFormField(
-                        textInputAction: TextInputAction.next,
-                        controller: controller.passwordController,
-                        validator: (value) {
-                          if (value == null || value.isEmpty) {
-                            return Translator.pleaseEnterSomeText.tr;
-                          }
-                          return null;
-                        },
-                        style: const TextStyle(fontSize: 16),
-                        onChanged: (value) =>
-                        controller.password.value = value,
-                        decoration: InputDecoration(
-                          prefixIcon: Icon(
-                            HugeIcons.strokeRoundedLockPassword,
-                            color:
-                            Theme.of(context).brightness == Brightness.light
-                                ? Theme.of(context).primaryColorDark
-                                : Theme.of(context).primaryColorLight,
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                                color: Theme.of(context).primaryColorDark),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          hintText: Translator.password.tr,
-                          hintStyle: TextStyle(
-                              fontSize: 16, color: Theme.of(context).hintColor),
-                          border: OutlineInputBorder(
-                            borderSide: BorderSide(
-                                color: Theme.of(context).primaryColorLight),
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                        ),
-                      ),
-                    ],
+          child: CustomScrollView(
+            slivers: [
+              ResponsiveLayout(
+                desktop: SliverToBoxAdapter(
+                  child: SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.2,
+                  ),
+                ),
+                mobile: const SliverToBoxAdapter(),
+                tablet: SliverToBoxAdapter(
+                  child: SizedBox(
+                    height: MediaQuery.of(context).size.height * 0.2,
                   ),
                 ),
               ),
-
-              const SizedBox(height: 20),
-          ObxValue<RxList<UserEntity>>(
-              (accounts) {
-                if (accounts.isEmpty) {
-                  return const SizedBox();
-                }
-                return Text(Translator.savedAccounts.tr,
-                    style: Theme.of(context).textTheme.titleMedium);
-              }, controller.accounts
-            ),
-              Padding(
-                padding: const EdgeInsets.all(kPaddingL),
-                child: ObxValue<RxList<UserEntity>>(
-                  (accounts) =>  SizedBox(
-                    height: 100,
-                    child: ListView.builder(
-                      scrollDirection: Axis.horizontal,
-                      itemCount: accounts.length,
-                      itemBuilder: (context, index) {
-                        final account = accounts[index];
-                        return InkWell(
-                          onTap: () {
-                            controller.localLogin(account);
+              const SliverToBoxAdapter(child: SizedBox(height: 20)),
+              SliverPadding(
+                padding: const EdgeInsets.all(kPadding),
+                sliver: SliverToBoxAdapter(
+                  child: Text(Translator.login.tr,
+                      textAlign: TextAlign.center,
+                      style: Theme.of(context).textTheme.titleMedium),
+                ),
+              ),
+              const SliverToBoxAdapter(child: SizedBox(height: 20)),
+              SliverToBoxAdapter(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Form(
+                    key: controller.loginFormKey,
+                    child: Column(
+                      children: [
+                        const SizedBox(height: 10),
+                        TextFormField(
+                          textInputAction: TextInputAction.next,
+                          controller: controller.emailController,
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return Translator.pleaseEnterSomeText.tr;
+                            }
+                            if (!GetUtils.isEmail(value.trim())) {
+                              return Translator.pleaseEnterAValidEmail.tr;
+                            }
+                            return null;
                           },
-                          child: Container(
-                            width: 100,
-                            margin: const EdgeInsets.only(right: kPaddingXS),
-                            child: Column(
-                              spacing: kSpacing,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                account.localImage.value==null? const Icon(HugeIcons.strokeRoundedUser): CircleAvatar(
-                                  backgroundImage: FileImage(account.localImage.value!),
-                                  radius: kIconSizeM/2,
-                                ),
-                                Text(account.name),
-                                Text(account.email),
-                              ],
+                          style: const TextStyle(fontSize: 16),
+                          onChanged: (value) => controller.email.value = value,
+                          decoration: InputDecoration(
+                            prefixIcon: Icon(
+                              HugeIcons.strokeRoundedMail01,
+                              color: Theme.of(context).brightness ==
+                                      Brightness.light
+                                  ? Theme.of(context).primaryColorDark
+                                  : Theme.of(context).primaryColorLight,
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: Theme.of(context).primaryColorDark),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            hintText: Translator.email.tr,
+                            hintStyle: TextStyle(
+                                fontSize: 16,
+                                color: Theme.of(context).hintColor),
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: Theme.of(context).primaryColorLight),
+                              borderRadius: BorderRadius.circular(10),
                             ),
                           ),
-                        );
-                      },),
-                  ), controller.accounts
+                        ),
+                        const SizedBox(height: 20),
+                        TextFormField(
+                          obscureText: true,
+                          textInputAction: TextInputAction.next,
+                          controller: controller.passwordController,
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return Translator.pleaseEnterSomeText.tr;
+                            }
+                            return null;
+                          },
+                          style: const TextStyle(fontSize: 16),
+                          onChanged: (value) =>
+                              controller.password.value = value,
+                          decoration: InputDecoration(
+                            prefixIcon: Icon(
+                              HugeIcons.strokeRoundedLockPassword,
+                              color: Theme.of(context).brightness ==
+                                      Brightness.light
+                                  ? Theme.of(context).primaryColorDark
+                                  : Theme.of(context).primaryColorLight,
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: Theme.of(context).primaryColorDark),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            hintText: Translator.password.tr,
+                            hintStyle: TextStyle(
+                                fontSize: 16,
+                                color: Theme.of(context).hintColor),
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: Theme.of(context).primaryColorLight),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
+              ),
+              const SliverToBoxAdapter(child: SizedBox(height: kSpacing)),
+              SliverPadding(
+                padding: const EdgeInsets.all(kPadding),
+                sliver: SliverToBoxAdapter(
+                  child: InkWell(
+                    onTap: () {},
+                    child: Text.rich(TextSpan(
+                        style: Theme.of(context)
+                            .textTheme
+                            .displaySmall
+                            ?.copyWith(fontSize: 14),
+                        text: Translator.bySigningIn.tr,
+                        children: [
+                          TextSpan(
+                              text: Translator.termsOfService.tr,
+                              style:
+                                  const TextStyle(color: ThemeColors.lightBlue))
+                        ])),
+                  ),
+                ),
+              ),
+              const SliverToBoxAdapter(child: SizedBox(height: kSpacing)),
+              ObxValue<RxList<UserEntity>>((accounts) {
+                if (accounts.isEmpty) {
+                  return const SliverToBoxAdapter(
+                    child: SizedBox(),
+                  );
+                }
+                return SliverToBoxAdapter(
+                  child: Padding(
+                    padding: const EdgeInsets.all(kPadding),
+                    child: Text(Translator.savedAccounts.tr,
+                        style: Theme.of(context).textTheme.titleMedium),
+                  ),
+                );
+              }, controller.accounts),
+              SliverPadding(
+                padding: const EdgeInsets.all(kPaddingL),
+                sliver: ObxValue<RxList<UserEntity>>(
+                    (accounts) => SliverList.builder(
+                          itemCount: accounts.length,
+                          itemBuilder: (context, index) {
+                            final account = accounts[index];
+                            return InkWell(
+                              onTap: () {
+                                controller.localLogin(account);
+                              },
+                              child: Row(
+                                spacing: kSpacing,
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  account.localImage.value == null
+                                      ? const Icon(HugeIcons.strokeRoundedUser)
+                                      : CircleAvatar(
+                                          backgroundImage: FileImage(
+                                              account.localImage.value!),
+                                          radius: kIconSizeL / 2,
+                                        ),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text(account.name),
+                                      Text(
+                                        account.email.isEmpty
+                                            ? "No email linked"
+                                            : account.email,
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .displaySmall
+                                            ?.copyWith(fontSize: 14),
+                                      ),
+                                    ],
+                                  ),
+                                  const Spacer(),
+                                  Icon(
+                                    account.email.isNotEmpty
+                                        ? HugeIcons
+                                            .strokeRoundedCloudSavingDone01
+                                        : Icons.cloud_off,
+                                    size: kIconSize,
+                                  )
+                                ],
+                              ),
+                            );
+                          },
+                        ),
+                    controller.accounts),
               )
             ],
           ),
@@ -172,11 +239,10 @@ class LoginPager extends GetView<LoginController> {
                       borderRadius: BorderRadius.circular(10),
                     ),
                     textStyle:
-                    const TextStyle(fontSize: 16, color: ThemeColors.white),
+                        const TextStyle(fontSize: 16, color: ThemeColors.white),
                   ),
                   onPressed: () async {
-                    if (controller.loginFormKey.currentState!
-                        .validate()) {
+                    if (controller.loginFormKey.currentState!.validate()) {
                       controller.login();
                     }
                   },
@@ -203,7 +269,7 @@ class LoginPager extends GetView<LoginController> {
                   onPressed: () {
                     SetupController.to.nextStep();
                   },
-                  child: Text(Translator.continueWithoutAccount.tr),
+                  child: Text(Translator.newProfile.tr),
                 ),
               ),
             ),

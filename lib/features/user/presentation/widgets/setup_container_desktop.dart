@@ -2,6 +2,7 @@
 import 'package:appointments_manager/core/utils/global_values.dart';
 import 'package:appointments_manager/core/utils/translations.dart';
 import 'package:appointments_manager/features/user/presentation/controllers/setup_controller.dart';
+import 'package:appointments_manager/features/user/presentation/pagers/login_pager.dart';
 import 'package:appointments_manager/features/user/presentation/pagers/setup_pager.dart';
 import 'package:appointments_manager/features/user/presentation/pagers/image_pager.dart';
 import 'package:appointments_manager/features/user/presentation/pagers/name_pager.dart';
@@ -69,6 +70,7 @@ class SetupContainerDesktop extends StatelessWidget {
                   controller: SetupController.to.initPageController(),
                   physics: const NeverScrollableScrollPhysics(),
                   children: const [
+                    LoginPager(),
                     NamePager(),
                     ImagePager(),
                     SignUpPager()

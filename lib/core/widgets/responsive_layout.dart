@@ -17,7 +17,6 @@ class ResponsiveLayout extends StatelessWidget {
       final responsiveBreakpoints = ResponsiveBreakpoints.of(context);
       final isSmallScreen = responsiveBreakpoints.isMobile;
       final isMediumScreen = responsiveBreakpoints.isTablet;
-
       if (isSmallScreen) return mobile;
       if (isMediumScreen) return tablet;
 

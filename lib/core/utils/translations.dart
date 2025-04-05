@@ -89,10 +89,17 @@ class Translator extends Translations {
           "passwordTooShort": "Password must be at least 8 characters long",
           "passwordNotMatch": "Passwords do not match",
           "confirmPassword": "Confirm password",
-          "youCanCreateAccountLater": "Don't worry, You can create an account later",
+          "youCanCreateAccountLater": "Don't worry, You can create and link an account later",
           "letsGetStarted": "Let's get started",
           "whatsYourName": "What's your name?",
           "savedAccounts": "Saved accounts",
+          "newProfile": "New profile",
+          "alreadyHaveAnAccount": "Do you already have an account? ",
+          "signInHere": "Sign in here",
+          "bySigningIn": "By signing in, you agree to our ",
+          "termsOfService": "Terms of Service",
+          "useProfileLocally": "Use this profile locally",
+
         },
         'es': {
           'title': 'Gestor de Citas',
@@ -264,5 +271,17 @@ class Translator extends Translations {
   static String get youCanCreateAccountLater => "youCanCreateAccountLater";
 
   static String get savedAccounts => "savedAccounts";
+
+  static String get newProfile => "newProfile";
+
+  static String get alreadyHaveAnAccount => "alreadyHaveAnAccount";
+
+  static String get signInHere => "signInHere";
+
+  static String get bySigningIn => "bySigningIn";
+
+  static String get termsOfService => "termsOfService";
+
+  static String get useProfileLocally => "useProfileLocally";
 
 }

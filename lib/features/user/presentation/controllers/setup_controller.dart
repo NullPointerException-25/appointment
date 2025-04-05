@@ -60,6 +60,12 @@ class SetupController extends GetxController {
     step.value--;
   }
 
+  void goToLoginStep() {
+    step.value = 0;
+    pageController.animateToPage(0,
+        duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
+  }
+
   void pickImage() async {
     final image = await ImagePicker().pickImage(source: ImageSource.gallery);
     if (image != null) {
