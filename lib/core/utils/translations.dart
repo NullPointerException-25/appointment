@@ -90,6 +90,9 @@ class Translator extends Translations {
           "passwordNotMatch": "Passwords do not match",
           "confirmPassword": "Confirm password",
           "youCanCreateAccountLater": "Don't worry, You can create an account later",
+          "letsGetStarted": "Let's get started",
+          "whatsYourName": "What's your name?",
+          "savedAccounts": "Saved accounts",
         },
         'es': {
           'title': 'Gestor de Citas',
@@ -259,4 +262,7 @@ class Translator extends Translations {
   static String get confirmPassword => "confirmPassword";
 
   static String get youCanCreateAccountLater => "youCanCreateAccountLater";
+
+  static String get savedAccounts => "savedAccounts";
+
 }

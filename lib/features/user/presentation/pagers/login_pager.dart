@@ -1,6 +1,7 @@
 import 'package:appointments_manager/core/utils/colors.dart';
 import 'package:appointments_manager/core/utils/global_values.dart';
 import 'package:appointments_manager/core/utils/translations.dart';
+import 'package:appointments_manager/features/user/domain/entities/user_entity.dart';
 import 'package:appointments_manager/features/user/presentation/controllers/login_controller.dart';
 import 'package:appointments_manager/features/user/presentation/controllers/setup_controller.dart';
 import 'package:flutter/material.dart';
@@ -13,10 +14,10 @@ class LoginPager extends GetView<LoginController> {
   @override
   Widget build(BuildContext context) {
     return Column(
+      spacing: kSpacingM,
       children: [
         Expanded(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               const SizedBox(height: 20),
               Text(Translator.login.tr,
@@ -108,31 +109,52 @@ class LoginPager extends GetView<LoginController> {
                   ),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: kPadding, horizontal: kPaddingL),
-                child: Row(
-                  spacing: kSpacingM,
-                  children: [
-                    Icon(
-                      HugeIcons.strokeRoundedAlertCircle,
-                      size: kIconSizeS,
-                      color:
-                      Theme.of(context).brightness == Brightness.light
-                          ? Theme.of(context).primaryColorDark
-                          : Theme.of(context).primaryColorLight,
-                    ),
-                    Expanded(
-                      child: Text(
-                        "You can use this app locally",
-                        style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                            fontSize: 12
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+
               const SizedBox(height: 20),
+          ObxValue<RxList<UserEntity>>(
+              (accounts) {
+                if (accounts.isEmpty) {
+                  return const SizedBox();
+                }
+                return Text(Translator.savedAccounts.tr,
+                    style: Theme.of(context).textTheme.titleMedium);
+              }, controller.accounts
+            ),
+              Padding(
+                padding: const EdgeInsets.all(kPaddingL),
+                child: ObxValue<RxList<UserEntity>>(
+                  (accounts) =>  SizedBox(
+                    height: 100,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: accounts.length,
+                      itemBuilder: (context, index) {
+                        final account = accounts[index];
+                        return InkWell(
+                          onTap: () {
+                            controller.localLogin(account);
+                          },
+                          child: Container(
+                            width: 100,
+                            margin: const EdgeInsets.only(right: kPaddingXS),
+                            child: Column(
+                              spacing: kSpacing,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                account.localImage.value==null? const Icon(HugeIcons.strokeRoundedUser): CircleAvatar(
+                                  backgroundImage: FileImage(account.localImage.value!),
+                                  radius: kIconSizeM/2,
+                                ),
+                                Text(account.name),
+                                Text(account.email),
+                              ],
+                            ),
+                          ),
+                        );
+                      },),
+                  ), controller.accounts
+                ),
+              )
             ],
           ),
         ),

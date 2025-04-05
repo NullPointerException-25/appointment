@@ -6,14 +6,6 @@ import '../../domain/usecases/get_all_users.dart';
 
 class LoginController extends GetxController {
   static LoginController get to => Get.find<LoginController>();
-
-
-  @override
-  void onInit() {
-    super.onInit();
-    _getUsers();
-  }
-
   final Rx<String> email = Rx<String>("");
   final Rx<String> password = Rx<String>("");
   final RxList<UserEntity> accounts = <UserEntity>[].obs;
@@ -22,12 +14,21 @@ class LoginController extends GetxController {
   final TextEditingController passwordController = TextEditingController();
   final GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
 
+  @override
+  void onInit() {
+    super.onInit();
+    _getUsers();
+  }
 
   void login()async {}
 
   void _getUsers() async {
     final result = await GetAllUsersUseCase().perform();
     accounts.value = result;
+  }
+
+  void localLogin(UserEntity user) {
+
   }
 
 }
