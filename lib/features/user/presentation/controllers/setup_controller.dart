@@ -48,7 +48,11 @@ class SetupController extends GetxController {
 
   void signUp() async {
     if (step.value == 3) {
-      _saveUserChanges();
+      SetupUserUseCase(
+        name: name.value,
+        email: email.value,
+        imagePath: image.value?.path ?? "",
+      ).perform(isRemoteSignUp: true);
     }
   }
 

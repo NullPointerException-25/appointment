@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:appointments_manager/core/abstractions/model.dart';
 import 'package:appointments_manager/features/user/domain/entities/user_entity.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:objectbox/objectbox.dart';
 
@@ -77,21 +78,26 @@ class UserModel extends CoreModel<UserEntity> {
 
   @override
   toJson() {
-    // TODO: implement toJson
-    throw UnimplementedError();
+    return {
+      'name': name,
+      'email': email,
+      'imageUrl': imageUrl,
+      'isSetupComplete': isSetupComplete,
+      'remoteId': remoteId,
+      'lastUpdate': Timestamp.fromDate(lastUpdate),
+    };
   }
 
   @override
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
-      id: json['id'] as int,
       name: json['name'] as String,
       email: json['email'] as String,
-      imagePath: json['imagePath'] as String,
+      imagePath: "",
       imageUrl: json['imageUrl'] as String,
       isSetupComplete: json['isSetupComplete'] as bool,
       remoteId: json['remoteId'] as String,
-      lastUpdate: DateTime.parse((json['lastUpdate'] as String)),
+      lastUpdate: (json['lastUpdate'] as Timestamp).toDate(),
     );
   }
 }

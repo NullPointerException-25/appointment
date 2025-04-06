@@ -17,7 +17,6 @@ class UserRemoteFirestoreDatasource extends GetxService {
   }
 
   Future<UserModel> saveUser(UserModel user) async {
-    user.lastUpdate=DateTime.now();
     await _firestore.collection(_collectionName).doc(user.remoteId).set(user.toJson());
     final doc = await  _firestore.collection(_collectionName).doc(user.remoteId).get();
     return UserModel.fromJson(doc.data()!)..id=user.id;
