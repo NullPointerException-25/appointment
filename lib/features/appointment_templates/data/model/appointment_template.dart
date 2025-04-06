@@ -26,4 +26,10 @@ class AppointmentTemplateModel extends CoreModel<AppointmentTemplateEntity> {
   AppointmentTemplateEntity toEntity() {
     return AppointmentTemplateEntity(name: name, remoteId: remoteId, localId: localId, lastUpdate: lastUpdate );
   }
+
+  @override
+  toJson() {
+    // TODO: implement toJson
+    throw UnimplementedError();
+  }
 }

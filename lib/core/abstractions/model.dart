@@ -8,4 +8,9 @@ abstract class CoreModel<Entity> {
   CoreModel();
 
   Entity toEntity();
+
+  toJson();
+  factory CoreModel.fromJson(Map<String, dynamic> json){
+    throw UnimplementedError("toJson not implemented");
+  }
 }

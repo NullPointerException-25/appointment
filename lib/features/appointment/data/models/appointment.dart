@@ -48,4 +48,10 @@ class AppointmentModel extends CoreModel<AppointmentEntity>{
        client: client.target!.toEntity(),
      );
   }
+
+  @override
+  toJson() {
+    // TODO: implement toJson
+    throw UnimplementedError();
+  }
 }

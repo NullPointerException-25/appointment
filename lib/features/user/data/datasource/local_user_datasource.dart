@@ -80,4 +80,11 @@ class LocalUserDatasource extends GetxService {
     final users = _store.value.box<UserModel>().getAll();
     return Future.value(users);
   }
+
+  Future<UserModel> createUser(UserModel user) async {
+    final id = _store.value.box<UserModel>().put(user);
+    user.id = id;
+    _profileService.changeProfile(id);
+    return user;
+  }
 }

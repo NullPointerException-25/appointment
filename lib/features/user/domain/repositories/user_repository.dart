@@ -11,4 +11,5 @@ abstract class UserRepository {
   Future<void> setSetupComplete();
   Future<String> saveProfileImage(String imagePath);
   Future<List<UserModel>> getUsers();
+  Future<UserModel> createUser(UserModel user);
 }

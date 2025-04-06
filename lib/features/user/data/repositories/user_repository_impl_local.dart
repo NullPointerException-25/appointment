@@ -67,5 +67,10 @@ class UserRepositoryImpLocal extends GetxService implements UserRepository {
      return await _localUserDatasource.getUsers();
   }
 
+  @override
+  Future<UserModel> createUser(UserModel user) async {
+    return _localUserDatasource.createUser(user);
+  }
+
 
 }

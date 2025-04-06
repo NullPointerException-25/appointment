@@ -29,6 +29,12 @@ class AppointmentFieldModel extends CoreModel<AppointmentFieldEntity> {
         remoteId: remoteId,
         localId: localId);
   }
+
+  @override
+  toJson() {
+    // TODO: implement toJson
+    throw UnimplementedError();
+  }
 }
 
 enum FormFieldType { number, shortText, largeText, date, imageList, unknown, phoneNumber, audio }

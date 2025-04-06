@@ -46,6 +46,12 @@ class SetupController extends GetxController {
     }
   }
 
+  void signUp() async {
+    if (step.value == 3) {
+      _saveUserChanges();
+    }
+  }
+
   void _saveUserChanges() {
     SetupUserUseCase(
       name: name.value,
@@ -53,6 +59,8 @@ class SetupController extends GetxController {
       imagePath: image.value?.path ?? "",
     ).perform();
   }
+
+
 
   void previousStep() {
     pageController.previousPage(

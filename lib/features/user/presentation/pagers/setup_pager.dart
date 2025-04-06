@@ -217,7 +217,7 @@ class SignUpPager extends GetView<SetupController> {
                   onPressed: () async {
                     if (controller.emailFormKey.currentState!
                         .validate()) {
-                      controller.nextStep();
+                      controller.signUp();
                     }
                   },
                   child: Text(Translator.signUp.tr),
@@ -241,7 +241,6 @@ class SignUpPager extends GetView<SetupController> {
                     textStyle: const TextStyle(fontSize: 16),
                   ),
                   onPressed: () {
-                    controller.email.value = '';
                     controller.nextStep();
                   },
                   child: Text(Translator.useProfileLocally.tr),

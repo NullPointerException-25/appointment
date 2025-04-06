@@ -33,9 +33,14 @@ class UserModel extends CoreModel<UserEntity> {
       this.isCurrentUser = false,
       this.isSetupComplete = false,
       this.imageUrl = "",
+      DateTime? lastUpdate,
       this.remoteId = ""}) {
     if (id != null) {
       this.id = id;
+
+    }
+    if (lastUpdate != null) {
+      this.lastUpdate = lastUpdate;
     }
   }
 
@@ -67,6 +72,26 @@ class UserModel extends CoreModel<UserEntity> {
       lastUpdate: lastUpdate,
       imageUrl: imageUrl,
       imagePath: imagePath,
+    );
+  }
+
+  @override
+  toJson() {
+    // TODO: implement toJson
+    throw UnimplementedError();
+  }
+
+  @override
+  factory UserModel.fromJson(Map<String, dynamic> json) {
+    return UserModel(
+      id: json['id'] as int,
+      name: json['name'] as String,
+      email: json['email'] as String,
+      imagePath: json['imagePath'] as String,
+      imageUrl: json['imageUrl'] as String,
+      isSetupComplete: json['isSetupComplete'] as bool,
+      remoteId: json['remoteId'] as String,
+      lastUpdate: DateTime.parse((json['lastUpdate'] as String)),
     );
   }
 }

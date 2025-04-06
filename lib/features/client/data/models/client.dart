@@ -51,4 +51,10 @@ class ClientModel extends CoreModel<ClientEntity> {
         email: email);
   }
 
+  @override
+  toJson() {
+    // TODO: implement toJson
+    throw UnimplementedError();
+  }
+
 }
