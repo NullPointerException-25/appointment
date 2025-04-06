@@ -6,7 +6,7 @@ import '../../domain/repositories/user_repository_firebase.dart';
 import '../datasource/user_remote_firestore_datasource.dart';
 
 
-class UserRepositoryFirebaseImpl extends GetxController implements UserRepositoryFirebase{
+class UserRepositoryFirebaseImpl extends GetxService implements UserRepositoryFirebase{
   static UserRepositoryFirebaseImpl get to => Get.find();
   late final UserRemoteFirestoreDatasource _firestoreUserFirestoreDatasource;
   UserRepositoryFirebaseImpl({UserRemoteFirestoreDatasource? firestoreUserEmailsDatasource}){

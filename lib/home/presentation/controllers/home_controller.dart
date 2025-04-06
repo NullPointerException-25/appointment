@@ -3,6 +3,7 @@ import 'package:appointments_manager/core/utils/global_values.dart';
 import 'package:appointments_manager/core/utils/routes.dart';
 import 'package:appointments_manager/features/user/domain/entities/user_entity.dart';
 import 'package:appointments_manager/features/user/domain/usecases/get_user.dart';
+import 'package:appointments_manager/features/user/domain/usecases/logout.dart';
 import 'package:circular_menu/circular_menu.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -84,7 +85,7 @@ class HomeController extends GetxController {
     );
 
     if(result=="3"){
-      Get.offAllNamed(Routes.setup);
+      LogoutUseCase().perform();
     }
   }
 }

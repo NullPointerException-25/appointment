@@ -32,6 +32,7 @@ class ObjectBoxService extends GetxService {
     try {
       store = Rx<Store>(await openStore(directory: directory));
     } catch (e) {
+      store.value.close();
       store.value = await openStore(directory: directory);
     }
     return this;

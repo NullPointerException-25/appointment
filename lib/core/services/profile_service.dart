@@ -49,7 +49,13 @@ class ProfileService extends GetxService {
     if (otherUser != null && id != profile.value) {
       store.value.box<UserModel>().put(otherUser..isCurrentUser = false);
     }
-    user = store.value.box<UserModel>().get(profile.value)!.obs;
+
+    try{
+      user = store.value.box<UserModel>().get(profile.value)!.obs;
+    }
+    catch (e){
+      user.value = store.value.box<UserModel>().get(profile.value)!;
+    }
   }
 
   void createDefaultUser() {

@@ -9,6 +9,7 @@ import 'package:get/get.dart';
 import 'package:hugeicons/hugeicons.dart';
 
 import '../../../../core/widgets/responsive_layout.dart';
+import '../widgets/account_list_item.dart';
 
 class LoginPager extends GetView<LoginController> {
   const LoginPager({super.key});
@@ -22,14 +23,22 @@ class LoginPager extends GetView<LoginController> {
             slivers: [
               ResponsiveLayout(
                 desktop: SliverToBoxAdapter(
-                  child: SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.2,
+                  child: Obx(
+                    () => SizedBox(
+                      height: controller.accounts.length < 2
+                          ? MediaQuery.of(context).size.height * 0.2
+                          : 0,
+                    ),
                   ),
                 ),
                 mobile: const SliverToBoxAdapter(),
-                tablet: SliverToBoxAdapter(
-                  child: SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.2,
+                tablet: Obx(
+                  () =>  SliverToBoxAdapter(
+                    child: SizedBox(
+                      height: controller.accounts.length < 2
+                          ? MediaQuery.of(context).size.height * 0.2
+                          : MediaQuery.of(context).size.height * 0.1,
+                    ),
                   ),
                 ),
               ),
@@ -153,7 +162,6 @@ class LoginPager extends GetView<LoginController> {
                   ),
                 ),
               ),
-              const SliverToBoxAdapter(child: SizedBox(height: kSpacing)),
               ObxValue<RxList<UserEntity>>((accounts) {
                 if (accounts.isEmpty) {
                   return const SliverToBoxAdapter(
@@ -162,7 +170,8 @@ class LoginPager extends GetView<LoginController> {
                 }
                 return SliverToBoxAdapter(
                   child: Padding(
-                    padding: const EdgeInsets.all(kPadding),
+                    padding: const EdgeInsets.only(
+                        top: kPadding, left: kPadding, right: kPadding),
                     child: Text(Translator.savedAccounts.tr,
                         style: Theme.of(context).textTheme.titleMedium),
                   ),
@@ -175,49 +184,7 @@ class LoginPager extends GetView<LoginController> {
                           itemCount: accounts.length,
                           itemBuilder: (context, index) {
                             final account = accounts[index];
-                            return InkWell(
-                              onTap: () {
-                                controller.localLogin(account);
-                              },
-                              child: Row(
-                                spacing: kSpacing,
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  account.localImage.value == null
-                                      ? const Icon(HugeIcons.strokeRoundedUser)
-                                      : CircleAvatar(
-                                          backgroundImage: FileImage(
-                                              account.localImage.value!),
-                                          radius: kIconSizeL / 2,
-                                        ),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(account.name),
-                                      Text(
-                                        account.email.isEmpty
-                                            ? "No email linked"
-                                            : account.email,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .displaySmall
-                                            ?.copyWith(fontSize: 14),
-                                      ),
-                                    ],
-                                  ),
-                                  const Spacer(),
-                                  Icon(
-                                    account.email.isNotEmpty
-                                        ? HugeIcons
-                                            .strokeRoundedCloudSavingDone01
-                                        : Icons.cloud_off,
-                                    size: kIconSize,
-                                  )
-                                ],
-                              ),
-                            );
+                            return AccountListItem(account);
                           },
                         ),
                     controller.accounts),
