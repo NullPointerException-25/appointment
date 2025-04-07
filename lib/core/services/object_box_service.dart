@@ -11,11 +11,12 @@ import 'package:path/path.dart' as p;
 /// This service manages the ObjectBox store for the specific user profile.
 /// Whenever the profile changes, the store is updated, there´s no need to manually close the store for any child service.
 class ObjectBoxService extends GetxService {
-  late final Rx<Store> store;
+   final Rxn<Store> store = Rxn<Store>();
 
   static ObjectBoxService get to => Get.find<ObjectBoxService>();
 
   String get profileFolder => "user${ProfileService.to.profile.value}";
+
   @override
   void onInit() {
     super.onInit();
@@ -24,17 +25,21 @@ class ObjectBoxService extends GetxService {
 
   Future<ObjectBoxService> init(int profile) async {
     Directory docsDir = await getApplicationDocumentsDirectory();
-    if(Platform.isMacOS || Platform.isLinux || Platform.isWindows){
+    if (Platform.isMacOS || Platform.isLinux || Platform.isWindows) {
       docsDir = await getApplicationSupportDirectory();
     }
-    final directory = p.join(docsDir.path, profileFolder);
-    debugPrint("ObjectBoxService initialized in: $directory");
-    try {
-      store = Rx<Store>(await openStore(directory: directory));
-    } catch (e) {
-      store.value.close();
-      store.value = await openStore(directory: directory);
-    }
+    String path = p.join(docsDir.path, profileFolder);
+    path = (await Directory(path).create(recursive: true)).path;
+    debugPrint("ObjectBoxService initialized in: $path");
+
+      debugPrint("Checking if store is closed");
+      if (store.value!=null && !store.value!.isClosed()) {
+        debugPrint("Closing store");
+        store.value?.close();
+      }
+
+      store.value = Store(getObjectBoxModel(), directory: path);
+      debugPrint("Store initialized");
     return this;
   }
 }

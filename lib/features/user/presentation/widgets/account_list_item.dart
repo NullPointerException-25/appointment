@@ -1,3 +1,4 @@
+import 'package:appointments_manager/core/utils/colors.dart';
 import 'package:appointments_manager/features/user/domain/entities/user_entity.dart';
 import 'package:appointments_manager/features/user/presentation/controllers/login_controller.dart';
 import 'package:flutter/material.dart';
@@ -8,6 +9,7 @@ import '../../../../core/utils/global_values.dart';
 
 class AccountListItem extends GetView<LoginController> {
   const AccountListItem(this.account, {super.key});
+
   final UserEntity account;
 
   @override
@@ -24,7 +26,12 @@ class AccountListItem extends GetView<LoginController> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             account.localImage.value == null
-                ? const Icon(HugeIcons.strokeRoundedUser)
+                ? Icon(
+                    HugeIcons.strokeRoundedUser,
+                    color: Theme.of(context).brightness == Brightness.dark
+                        ? ThemeColors.white
+                        : ThemeColors.dark,
+                  )
                 : CircleAvatar(
                     backgroundImage: FileImage(account.localImage.value!),
                     radius: kIconSizeL / 2,
@@ -32,7 +39,12 @@ class AccountListItem extends GetView<LoginController> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(account.name),
+                Text(account.name, style:
+                Theme.of(context)
+                    .textTheme
+                    .displaySmall
+                    ?.copyWith(fontSize: 16),
+                  ),
                 Text(
                   account.email.isEmpty ? "No email linked" : account.email,
                   style: Theme.of(context)

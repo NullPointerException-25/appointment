@@ -25,13 +25,11 @@ class LocalUserDatasource extends GetxService {
   }
 
 
-  String checkUserSetup(UserModel user) {
+  void checkUserSetup(UserModel user) {
     if(!user.isSetupComplete){
       Get.offAllNamed(Routes.setup);
-      return (Routes.setup);
     }
     Get.offAllNamed(Routes.home);
-    return (Routes.home);
   }
 
   Future<UserModel> getUser() async {
@@ -86,5 +84,10 @@ class LocalUserDatasource extends GetxService {
     user.id = id;
     _profileService.changeProfile(id);
     return user;
+  }
+
+  Future<void> changeUser(int id) async {
+    _profileService.changeProfile(id);
+    return;
   }
 }

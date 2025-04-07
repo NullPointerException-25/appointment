@@ -7,14 +7,14 @@ import '../../../../objectbox.g.dart';
 
 class LocalCustomFieldsDataSource extends GetxService {
   static LocalCustomFieldsDataSource get to => Get.find<LocalCustomFieldsDataSource>();
-  late final Rx<Store> _store;
+  late final Rxn<Store> _store;
 
   LocalCustomFieldsDataSource({ObjectBoxService? objectBoxService}) {
     _store = objectBoxService?.store ?? ObjectBoxService.to.store;
   }
 
   void attachCustomFields(AppointmentModel appointment, List<AppointmentFieldModel> customFields) {
-    final box = _store.value.box<AppointmentModel>();
+    final box = _store.value!.box<AppointmentModel>();
     final appointmentModel = box.get(appointment.localId);
     if (appointmentModel != null) {
       appointmentModel.fields.addAll(customFields);
@@ -23,7 +23,7 @@ class LocalCustomFieldsDataSource extends GetxService {
   }
 
   void removeCustomField(AppointmentModel appointment, AppointmentFieldModel customField) {
-    final box = _store.value.box<AppointmentModel>();
+    final box = _store.value!.box<AppointmentModel>();
     final appointmentModel = box.get(appointment.localId);
     if (appointmentModel != null) {
       appointmentModel.fields.remove(customField);
@@ -32,7 +32,7 @@ class LocalCustomFieldsDataSource extends GetxService {
   }
 
   List<AppointmentFieldModel> getCustomFields(AppointmentModel appointment) {
-    final box = _store.value.box<AppointmentModel>();
+    final box = _store.value!.box<AppointmentModel>();
     final appointmentModel = box.get(appointment.localId);
     return appointmentModel?.fields.toList() ?? [];
   }

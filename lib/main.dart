@@ -28,6 +28,8 @@ import 'features/appointment/presentation/pages/create/create.dart';
 import 'features/user/presentation/bindings/binding.dart';
 import 'firebase_options.dart';
 
+
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initServices();

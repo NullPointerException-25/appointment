@@ -69,22 +69,30 @@ class HomeController extends GetxController {
             value: '1',
             child: Text(
               'Ver perfil',
-              style: Theme.of(context).textTheme.displaySmall,
+              style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                    color: ThemeColors.white,
+                  ),
             )),
         PopupMenuItem(
             value: '2',
             child: Text(
               'Configuración',
-              style: Theme.of(context).textTheme.displaySmall,
+              style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                    color: ThemeColors.white,
+                  ),
             )),
         PopupMenuItem(
             value: '3',
-            child: Text('Cerrar sesión',
-                style: Theme.of(context).textTheme.displaySmall)),
+            child: Text(
+              'Cerrar sesión',
+              style: Theme.of(context).textTheme.displaySmall?.copyWith(
+                    color: ThemeColors.white,
+                  ),
+            )),
       ],
     );
 
-    if(result=="3"){
+    if (result == "3") {
       LogoutUseCase().perform();
     }
   }

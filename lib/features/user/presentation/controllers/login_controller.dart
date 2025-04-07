@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 import '../../domain/usecases/get_all_users.dart';
+import '../../domain/usecases/login.dart';
 
 class LoginController extends GetxController {
   static LoginController get to => Get.find<LoginController>();
@@ -28,7 +29,7 @@ class LoginController extends GetxController {
   }
 
   void localLogin(UserEntity user) {
-
+    LoginUseCase().perform(user: user);
   }
 
 }

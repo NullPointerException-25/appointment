@@ -16,11 +16,6 @@ class UserFirebaseAuthDatasource extends GetxService {
   void onInit() {
     super.onInit();
     _user.bindStream(_firebaseAuth.userChanges());
-    ever(_user, (User? user) {
-      if (user == null) {
-        Get.offAllNamed(Routes.setup);
-      }
-    });
   }
 
   Future<UserCredential> signInWithEmailAndPassword(String email, String password) async {
