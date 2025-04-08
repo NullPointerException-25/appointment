@@ -25,12 +25,9 @@ class ObjectBoxService extends GetxService {
     String path = p.join(docsDir.path, profileFolder);
 
 
-    debugPrint("Checking if store is closed");
     requestToCloseDatabase();
 
     if (store.value == null || store.value!.isClosed()) {
-      debugPrint(store.value?.isClosed().toString());
-      debugPrint("Store closed, creating a store");
       store.value = await openStore(directory: path);
     }
     debugPrint("ObjectBoxService initialized in: $path");
@@ -41,7 +38,6 @@ class ObjectBoxService extends GetxService {
     if (store.value != null && !store.value!.isClosed()) {
       store.value?.close();
       store.value = null;
-      debugPrint("Store closed");
     }
   }
 }

@@ -95,7 +95,7 @@ final ThemeData lightTheme = ThemeData(
   cardColor: ThemeColors.white,
   primaryColorDark: ThemeColors.darkerBlue,
   brightness: Brightness.light,
-  hintColor: ThemeColors.black.withOpacity(0.5),
+  hintColor: ThemeColors.black.withValues(alpha: 0.5),
 
   actionIconTheme: ActionIconThemeData(
     backButtonIconBuilder: (context) => const Icon(
@@ -216,7 +216,7 @@ final ThemeData darkTheme = ThemeData(
   primaryColorDark: ThemeColors.darkBlue,
   cardColor: ThemeColors.black,
   brightness: Brightness.dark,
-  hintColor: ThemeColors.white.withOpacity(0.5),
+  hintColor: ThemeColors.white.withValues(alpha: 0.5),
   actionIconTheme: ActionIconThemeData(
     backButtonIconBuilder: (context) => const Icon(
         HugeIcons.strokeRoundedArrowLeft02,

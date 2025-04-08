@@ -39,7 +39,7 @@ class DetailsAppointmentMobilePage
                 children: [
                   if (DateTime.now().isBetween(
                       appointment.value.fromDate, appointment.value.toDate))
-                    Text("Today"),
+                    const Text("Today"),
                   if (DateTime.now().isBetween(
                       appointment.value.fromDate, appointment.value.toDate))
                     Obx(

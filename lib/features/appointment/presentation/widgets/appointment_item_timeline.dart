@@ -6,11 +6,10 @@ import 'package:appointments_manager/features/appointment/domain/entities/appoin
 import 'package:appointments_manager/home/presentation/controllers/timeline_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 import 'package:hugeicons/hugeicons.dart';
 
 class AppointmentItemTimeline extends StatelessWidget {
-  AppointmentItemTimeline(
+   AppointmentItemTimeline(
       {super.key, required this.appointment, required this.index});
 
   final AppointmentEntity appointment;
@@ -85,7 +84,7 @@ class AppointmentItemTimeline extends StatelessWidget {
                           decoration: BoxDecoration(
                             boxShadow: [
                               BoxShadow(
-                                color: ThemeColors.black.withOpacity(0.2),
+                                color: ThemeColors.black.withValues(alpha: 0.2),
                                 blurRadius: 5,
                                 spreadRadius: 2,
                                 offset: const Offset(1, 2),

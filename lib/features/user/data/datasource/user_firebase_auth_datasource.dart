@@ -1,4 +1,4 @@
-import 'package:appointments_manager/core/utils/routes.dart';
+
 import 'package:get/get.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 

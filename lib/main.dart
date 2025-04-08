@@ -14,8 +14,6 @@ import 'package:appointments_manager/features/user/presentation/pages/setup.dart
 import 'package:appointments_manager/home/presentation/bindings/binding.dart';
 import 'package:appointments_manager/home/presentation/pages/home.dart';
 import 'package:appointments_manager/splash/presentation/pages/splash.dart';
-import 'package:device_preview_plus/device_preview_plus.dart'
-    show DevicePreview;
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -41,7 +39,7 @@ initServices() async {
   await loadObjectBoxLibraryAndroidCompat();
 
   final profileService= Get.put(ProfileService());
-  final boxService= Get.put(ObjectBoxService());
+  Get.put(ObjectBoxService());
   await profileService.init();
   Get.put(InAppNotificationService());
 }

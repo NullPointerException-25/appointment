@@ -47,12 +47,12 @@ class CalendarDateAppointmentPicker
           ),
           holidayDecoration: BoxDecoration(
             color: Theme.of(context).brightness == Brightness.dark
-                ? ThemeColors.white.withOpacity(kOpacity)
-                : ThemeColors.dark.withOpacity(kOpacity),
+                ? ThemeColors.white.withValues(alpha: kOpacity)
+                : ThemeColors.dark.withValues(alpha: kOpacity)
           ),
           disabledTextStyle: TextStyle(
             color: Theme.of(context).brightness == Brightness.dark
-                ? ThemeColors.white.withOpacity(kOpacity)
+                ? ThemeColors.white.withValues(alpha: kOpacity)
                 : ThemeColors.dark,
           ),
         ),
