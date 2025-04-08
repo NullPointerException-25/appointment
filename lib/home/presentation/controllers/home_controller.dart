@@ -13,10 +13,13 @@ class HomeController extends GetxController {
   final PageController pageController = PageController();
   final RxnDouble bottomAppBarHeight = RxnDouble();
   final RxBool isCircularMenuOpened = RxBool(false);
-  final _circularKey = GlobalKey<CircularMenuState>();
+  late GlobalKey<CircularMenuState> circularKey;
   final selectedIndex = RxnInt(0);
 
-  GlobalKey<CircularMenuState> get circularMenuKey => _circularKey;
+
+  HomeController() {
+    circularKey = GlobalKey<CircularMenuState>();
+  }
 
   void changePage(int index) {
     pageController.animateToPage(index,
