@@ -16,7 +16,7 @@ class AppointmentTemplateModel extends CoreModel<AppointmentTemplateEntity> {
   @Unique()
   final String name;
 
-
+  @Backlink('template')
   final fields= ToMany<AppointmentFieldModel>();
 
   AppointmentTemplateModel(this.remoteId, this.lastUpdate,

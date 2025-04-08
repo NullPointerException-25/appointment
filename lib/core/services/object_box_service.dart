@@ -29,7 +29,6 @@ class ObjectBoxService extends GetxService {
       docsDir = await getApplicationSupportDirectory();
     }
     String path = p.join(docsDir.path, profileFolder);
-    path = (await Directory(path).create(recursive: true)).path;
     debugPrint("ObjectBoxService initialized in: $path");
 
       debugPrint("Checking if store is closed");
@@ -38,7 +37,11 @@ class ObjectBoxService extends GetxService {
         store.value?.close();
       }
 
-      store.value = Store(getObjectBoxModel(), directory: path);
+     if(store.value == null || store.value!.isClosed()){
+       debugPrint(store.value?.isClosed().toString());
+       debugPrint("Store closed, creating a store");
+       store.value = await openStore(directory: path);
+     }
       debugPrint("Store initialized");
     return this;
   }

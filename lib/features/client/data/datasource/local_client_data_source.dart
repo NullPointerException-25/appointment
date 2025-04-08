@@ -4,24 +4,31 @@ import 'package:appointments_manager/features/client/domain/entities/client_quer
 import 'package:appointments_manager/objectbox.g.dart';
 import 'package:get/get.dart';
 
-class LocalClientDataSource extends GetxService{
-  final _store = ObjectBoxService.to.store;
+class LocalClientDataSource extends GetxService {
+  late final ObjectBoxService _objectBoxService;
+
+  LocalClientDataSource({ObjectBoxService? objectBoxService}) {
+    _objectBoxService = objectBoxService ?? ObjectBoxService.to;
+  }
 
   static LocalClientDataSource get to => Get.find<LocalClientDataSource>();
 
   Future<int> saveClient(ClientModel client) async {
-    return _store.value!.box<ClientModel>().put(client);
+    return _objectBoxService.store.value!.box<ClientModel>().put(client);
   }
 
   Future<ClientModel?> getClientById(int id) async {
-    return _store.value!.box<ClientModel>().get(id);
+    return _objectBoxService.store.value!.box<ClientModel>().get(id);
   }
 
   Future<List<ClientModel>> getClients({ClientQueryParamsDto? query}) async {
-    Query<ClientModel>? preQuery= query?.toObjectBoxQuery(_store.value!);
-    if(preQuery!=null){
+    Query<ClientModel>? preQuery =
+        query?.toObjectBoxQuery(_objectBoxService.store.value!);
+    if (preQuery != null) {
       return await preQuery.findAsync();
     }
-    return  await _store.value!.box<ClientModel>().getAllAsync();
+    return await _objectBoxService.store.value!
+        .box<ClientModel>()
+        .getAllAsync();
   }
 }

@@ -5,7 +5,6 @@ import 'package:appointments_manager/features/user/domain/entities/user_entity.d
 import 'package:appointments_manager/features/user/domain/usecases/get_user.dart';
 import 'package:appointments_manager/features/user/domain/usecases/logout.dart';
 import 'package:circular_menu/circular_menu.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
