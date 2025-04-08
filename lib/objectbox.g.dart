@@ -26,7 +26,7 @@ final _entities = <obx_int.ModelEntity>[
   obx_int.ModelEntity(
       id: const obx_int.IdUid(1, 6),
       name: 'AppointmentFieldModel',
-      lastPropertyId: const obx_int.IdUid(5, 8883484128750373114),
+      lastPropertyId: const obx_int.IdUid(7, 6963785314595703275),
       flags: 0,
       properties: <obx_int.ModelProperty>[
         obx_int.ModelProperty(
@@ -53,7 +53,21 @@ final _entities = <obx_int.ModelEntity>[
             id: const obx_int.IdUid(5, 8883484128750373114),
             name: 'formFieldType',
             type: 6,
-            flags: 0)
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(6, 6392087685802307996),
+            name: 'appointmentId',
+            type: 11,
+            flags: 520,
+            indexId: const obx_int.IdUid(3, 3598701885457462899),
+            relationTarget: 'AppointmentModel'),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(7, 6963785314595703275),
+            name: 'templateId',
+            type: 11,
+            flags: 520,
+            indexId: const obx_int.IdUid(4, 2364838510077903882),
+            relationTarget: 'AppointmentTemplateModel')
       ],
       relations: <obx_int.ModelRelation>[],
       backlinks: <obx_int.ModelBacklink>[]),
@@ -97,7 +111,12 @@ final _entities = <obx_int.ModelEntity>[
             relationTarget: 'ClientModel')
       ],
       relations: <obx_int.ModelRelation>[],
-      backlinks: <obx_int.ModelBacklink>[]),
+      backlinks: <obx_int.ModelBacklink>[
+        obx_int.ModelBacklink(
+            name: 'fields',
+            srcEntity: 'AppointmentFieldModel',
+            srcField: 'appointment')
+      ]),
   obx_int.ModelEntity(
       id: const obx_int.IdUid(3, 5),
       name: 'AppointmentTemplateModel',
@@ -126,13 +145,13 @@ final _entities = <obx_int.ModelEntity>[
             flags: 2080,
             indexId: const obx_int.IdUid(2, 5379845610097248380))
       ],
-      relations: <obx_int.ModelRelation>[
-        obx_int.ModelRelation(
-            id: const obx_int.IdUid(2, 4933571554284600610),
+      relations: <obx_int.ModelRelation>[],
+      backlinks: <obx_int.ModelBacklink>[
+        obx_int.ModelBacklink(
             name: 'fields',
-            targetId: const obx_int.IdUid(1, 6))
-      ],
-      backlinks: <obx_int.ModelBacklink>[]),
+            srcEntity: 'AppointmentFieldModel',
+            srcField: 'template')
+      ]),
   obx_int.ModelEntity(
       id: const obx_int.IdUid(4, 3),
       name: 'ClientModel',
@@ -279,13 +298,13 @@ obx_int.ModelDefinition getObjectBoxModel() {
   final model = obx_int.ModelInfo(
       entities: _entities,
       lastEntityId: const obx_int.IdUid(5, 1),
-      lastIndexId: const obx_int.IdUid(2, 5379845610097248380),
+      lastIndexId: const obx_int.IdUid(4, 2364838510077903882),
       lastRelationId: const obx_int.IdUid(2, 4933571554284600610),
       lastSequenceId: const obx_int.IdUid(0, 0),
       retiredEntityUids: const [],
       retiredIndexUids: const [],
       retiredPropertyUids: const [1701739923913506732],
-      retiredRelationUids: const [6766621169241648557],
+      retiredRelationUids: const [6766621169241648557, 4933571554284600610],
       modelVersion: 5,
       modelVersionParserMinimum: 5,
       version: 1);
@@ -293,7 +312,8 @@ obx_int.ModelDefinition getObjectBoxModel() {
   final bindings = <Type, obx_int.EntityDefinition>{
     AppointmentFieldModel: obx_int.EntityDefinition<AppointmentFieldModel>(
         model: _entities[0],
-        toOneRelations: (AppointmentFieldModel object) => [],
+        toOneRelations: (AppointmentFieldModel object) =>
+            [object.appointment, object.template],
         toManyRelations: (AppointmentFieldModel object) => {},
         getId: (AppointmentFieldModel object) => object.localId,
         setId: (AppointmentFieldModel object, int id) {
@@ -302,12 +322,14 @@ obx_int.ModelDefinition getObjectBoxModel() {
         objectToFB: (AppointmentFieldModel object, fb.Builder fbb) {
           final titleOffset = fbb.writeString(object.title);
           final remoteIdOffset = fbb.writeString(object.remoteId);
-          fbb.startTable(6);
+          fbb.startTable(8);
           fbb.addInt64(0, object.localId);
           fbb.addOffset(1, titleOffset);
           fbb.addInt64(2, object.lastUpdate.millisecondsSinceEpoch);
           fbb.addOffset(3, remoteIdOffset);
           fbb.addInt64(4, object.formFieldType);
+          fbb.addInt64(5, object.appointment.targetId);
+          fbb.addInt64(6, object.template.targetId);
           fbb.finish(fbb.endTable());
           return object.localId;
         },
@@ -328,13 +350,24 @@ obx_int.ModelDefinition getObjectBoxModel() {
               localId: localIdParam,
               remoteId: remoteIdParam,
               lastUpdate: lastUpdateParam);
-
+          object.appointment.targetId =
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 14, 0);
+          object.appointment.attach(store);
+          object.template.targetId =
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 16, 0);
+          object.template.attach(store);
           return object;
         }),
     AppointmentModel: obx_int.EntityDefinition<AppointmentModel>(
         model: _entities[1],
         toOneRelations: (AppointmentModel object) => [object.client],
-        toManyRelations: (AppointmentModel object) => {},
+        toManyRelations: (AppointmentModel object) => {
+              obx_int.RelInfo<AppointmentFieldModel>.toOneBacklink(
+                  6,
+                  object.localId,
+                  (AppointmentFieldModel srcObject) =>
+                      srcObject.appointment): object.fields
+            },
         getId: (AppointmentModel object) => object.localId,
         setId: (AppointmentModel object, int id) {
           object.localId = id;
@@ -372,6 +405,13 @@ obx_int.ModelDefinition getObjectBoxModel() {
           object.client.targetId =
               const fb.Int64Reader().vTableGet(buffer, rootOffset, 14, 0);
           object.client.attach(store);
+          obx_int.InternalToManyAccess.setRelInfo<AppointmentModel>(
+              object.fields,
+              store,
+              obx_int.RelInfo<AppointmentFieldModel>.toOneBacklink(
+                  6,
+                  object.localId,
+                  (AppointmentFieldModel srcObject) => srcObject.appointment));
           return object;
         }),
     AppointmentTemplateModel:
@@ -379,8 +419,11 @@ obx_int.ModelDefinition getObjectBoxModel() {
             model: _entities[2],
             toOneRelations: (AppointmentTemplateModel object) => [],
             toManyRelations: (AppointmentTemplateModel object) => {
-                  obx_int.RelInfo<AppointmentTemplateModel>.toMany(
-                      2, object.localId): object.fields
+                  obx_int.RelInfo<AppointmentFieldModel>.toOneBacklink(
+                      7,
+                      object.localId,
+                      (AppointmentFieldModel srcObject) =>
+                          srcObject.template): object.fields
                 },
             getId: (AppointmentTemplateModel object) => object.localId,
             setId: (AppointmentTemplateModel object, int id) {
@@ -415,8 +458,10 @@ obx_int.ModelDefinition getObjectBoxModel() {
               obx_int.InternalToManyAccess.setRelInfo<AppointmentTemplateModel>(
                   object.fields,
                   store,
-                  obx_int.RelInfo<AppointmentTemplateModel>.toMany(
-                      2, object.localId));
+                  obx_int.RelInfo<AppointmentFieldModel>.toOneBacklink(
+                      7,
+                      object.localId,
+                      (AppointmentFieldModel srcObject) => srcObject.template));
               return object;
             }),
     ClientModel: obx_int.EntityDefinition<ClientModel>(
@@ -573,6 +618,16 @@ class AppointmentFieldModel_ {
   /// See [AppointmentFieldModel.formFieldType].
   static final formFieldType = obx.QueryIntegerProperty<AppointmentFieldModel>(
       _entities[0].properties[4]);
+
+  /// See [AppointmentFieldModel.appointment].
+  static final appointment =
+      obx.QueryRelationToOne<AppointmentFieldModel, AppointmentModel>(
+          _entities[0].properties[5]);
+
+  /// See [AppointmentFieldModel.template].
+  static final template =
+      obx.QueryRelationToOne<AppointmentFieldModel, AppointmentTemplateModel>(
+          _entities[0].properties[6]);
 }
 
 /// [AppointmentModel] entity fields to define ObjectBox queries.
@@ -600,6 +655,11 @@ class AppointmentModel_ {
   /// See [AppointmentModel.client].
   static final client = obx.QueryRelationToOne<AppointmentModel, ClientModel>(
       _entities[1].properties[5]);
+
+  /// see [AppointmentModel.fields]
+  static final fields =
+      obx.QueryBacklinkToMany<AppointmentFieldModel, AppointmentModel>(
+          AppointmentFieldModel_.appointment);
 }
 
 /// [AppointmentTemplateModel] entity fields to define ObjectBox queries.
@@ -622,8 +682,8 @@ class AppointmentTemplateModel_ {
 
   /// see [AppointmentTemplateModel.fields]
   static final fields =
-      obx.QueryRelationToMany<AppointmentTemplateModel, AppointmentFieldModel>(
-          _entities[2].relations[0]);
+      obx.QueryBacklinkToMany<AppointmentFieldModel, AppointmentTemplateModel>(
+          AppointmentFieldModel_.template);
 }
 
 /// [ClientModel] entity fields to define ObjectBox queries.

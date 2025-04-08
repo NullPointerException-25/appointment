@@ -28,8 +28,8 @@ class LoginController extends GetxController {
     accounts.value = result;
   }
 
-  void localLogin(UserEntity user) {
-    LoginUseCase().perform(user: user);
+  void localLogin(UserEntity user) async {
+    await LoginUseCase().perform(user: user);
   }
 
 }

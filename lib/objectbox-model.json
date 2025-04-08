@@ -5,7 +5,7 @@
   "entities": [
     {
       "id": "1:6",
-      "lastPropertyId": "5:8883484128750373114",
+      "lastPropertyId": "7:6963785314595703275",
       "name": "AppointmentFieldModel",
       "properties": [
         {
@@ -33,6 +33,22 @@
           "id": "5:8883484128750373114",
           "name": "formFieldType",
           "type": 6
+        },
+        {
+          "id": "6:6392087685802307996",
+          "name": "appointmentId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "3:3598701885457462899",
+          "relationTarget": "AppointmentModel"
+        },
+        {
+          "id": "7:6963785314595703275",
+          "name": "templateId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "4:2364838510077903882",
+          "relationTarget": "AppointmentTemplateModel"
         }
       ],
       "relations": []
@@ -108,13 +124,7 @@
           "indexId": "2:5379845610097248380"
         }
       ],
-      "relations": [
-        {
-          "id": "2:4933571554284600610",
-          "name": "fields",
-          "targetId": "1:6"
-        }
-      ]
+      "relations": []
     },
     {
       "id": "4:3",
@@ -221,7 +231,7 @@
     }
   ],
   "lastEntityId": "5:1",
-  "lastIndexId": "2:5379845610097248380",
+  "lastIndexId": "4:2364838510077903882",
   "lastRelationId": "2:4933571554284600610",
   "lastSequenceId": "0:0",
   "modelVersion": 5,
@@ -232,7 +242,8 @@
     1701739923913506732
   ],
   "retiredRelationUids": [
-    6766621169241648557
+    6766621169241648557,
+    4933571554284600610
   ],
   "version": 1
 }

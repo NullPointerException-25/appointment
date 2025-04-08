@@ -28,8 +28,6 @@ import 'features/appointment/presentation/pages/create/create.dart';
 import 'features/user/presentation/bindings/binding.dart';
 import 'firebase_options.dart';
 
-
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initServices();
@@ -41,9 +39,10 @@ initServices() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   await loadObjectBoxLibraryAndroidCompat();
-  await Get.putAsync(() => ProfileService().init());
-  await Get.putAsync(
-      () => ObjectBoxService().init(ProfileService.to.profile.value));
+
+  final profileService= Get.put(ProfileService());
+  final boxService= Get.put(ObjectBoxService());
+  await profileService.init();
   Get.put(InAppNotificationService());
 }
 

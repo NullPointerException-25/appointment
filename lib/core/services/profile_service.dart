@@ -1,6 +1,7 @@
 
 import 'dart:io';
 
+import 'package:appointments_manager/core/services/object_box_service.dart';
 import 'package:appointments_manager/objectbox.g.dart';
 import 'package:appointments_manager/features/user/data/models/users_model.dart';
 import 'package:flutter/cupertino.dart';
@@ -33,22 +34,21 @@ class ProfileService extends GetxService {
     final currentUser =
         getUsers.firstWhereOrNull((element) => element.isCurrentUser);
     if (currentUser != null) {
-      changeProfile(currentUser.id);
+      await changeProfile(currentUser.id);
       return this;
     }
-    changeProfile(getUsers.first.id);
+    await changeProfile(getUsers.first.id);
     return this;
   }
 
-  void changeProfile(int id) {
-    profile.value = id;
-    store.value
-        .box<UserModel>()
-        .put(store.value.box<UserModel>().get(id)!..isCurrentUser = true);
-    final otherUser = store.value.box<UserModel>().get(profile.value);
-    if (otherUser != null && id != profile.value) {
-      store.value.box<UserModel>().put(otherUser..isCurrentUser = false);
+  Future<void> changeProfile(int id) async {
+    final currentUser = profile.value ==0? null: store.value.box<UserModel>().get(profile.value);
+    if(currentUser != null) {
+      currentUser.isCurrentUser = false;
+      store.value.box<UserModel>().put(currentUser);
     }
+    profile.value = id;
+    await ObjectBoxService.to.init(profile.value);
 
     try{
       user = store.value.box<UserModel>().get(profile.value)!.obs;
@@ -56,9 +56,14 @@ class ProfileService extends GetxService {
     catch (e){
       user.value = store.value.box<UserModel>().get(profile.value)!;
     }
+    finally {
+      store.value
+          .box<UserModel>()
+          .put(store.value.box<UserModel>().get(id)!..isCurrentUser = true);
+    }
   }
 
-  void createDefaultUser() {
+  Future<void> createDefaultUser() async {
     int id = store.value.box<UserModel>().put(UserModel(
           id: 0,
           name: '',
@@ -66,6 +71,6 @@ class ProfileService extends GetxService {
           email: "",
           isCurrentUser: true,
         ));
-    changeProfile(id);
+    await changeProfile(id);
   }
 }

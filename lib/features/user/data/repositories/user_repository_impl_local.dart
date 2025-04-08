@@ -74,7 +74,11 @@ class UserRepositoryImpLocal extends GetxService implements UserRepository {
 
   @override
   Future<void> changeUser(int id) async {
-    _localUserDatasource.changeUser(id);
+   await _localUserDatasource.changeUser(id);
+  }
+
+  Future<void> detachUserDatabase() {
+    return _localUserDatasource.detachUserDatabase();
   }
 
 

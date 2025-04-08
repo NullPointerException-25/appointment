@@ -11,17 +11,11 @@ import 'package:path/path.dart' as p;
 /// This service manages the ObjectBox store for the specific user profile.
 /// Whenever the profile changes, the store is updated, there´s no need to manually close the store for any child service.
 class ObjectBoxService extends GetxService {
-   final Rxn<Store> store = Rxn<Store>();
+  final Rxn<Store> store = Rxn<Store>();
 
   static ObjectBoxService get to => Get.find<ObjectBoxService>();
 
   String get profileFolder => "user${ProfileService.to.profile.value}";
-
-  @override
-  void onInit() {
-    super.onInit();
-    ever(ProfileService.to.profile, init);
-  }
 
   Future<ObjectBoxService> init(int profile) async {
     Directory docsDir = await getApplicationDocumentsDirectory();
@@ -29,20 +23,25 @@ class ObjectBoxService extends GetxService {
       docsDir = await getApplicationSupportDirectory();
     }
     String path = p.join(docsDir.path, profileFolder);
+
+
+    debugPrint("Checking if store is closed");
+    requestToCloseDatabase();
+
+    if (store.value == null || store.value!.isClosed()) {
+      debugPrint(store.value?.isClosed().toString());
+      debugPrint("Store closed, creating a store");
+      store.value = await openStore(directory: path);
+    }
     debugPrint("ObjectBoxService initialized in: $path");
-
-      debugPrint("Checking if store is closed");
-      if (store.value!=null && !store.value!.isClosed()) {
-        debugPrint("Closing store");
-        store.value?.close();
-      }
-
-     if(store.value == null || store.value!.isClosed()){
-       debugPrint(store.value?.isClosed().toString());
-       debugPrint("Store closed, creating a store");
-       store.value = await openStore(directory: path);
-     }
-      debugPrint("Store initialized");
     return this;
+  }
+
+  void requestToCloseDatabase() {
+    if (store.value != null && !store.value!.isClosed()) {
+      store.value?.close();
+      store.value = null;
+      debugPrint("Store closed");
+    }
   }
 }

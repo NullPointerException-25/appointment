@@ -1,3 +1,4 @@
+import 'package:appointments_manager/core/services/object_box_service.dart';
 import 'package:appointments_manager/core/services/profile_service.dart';
 import 'package:appointments_manager/core/utils/routes.dart';
 import 'package:appointments_manager/features/user/data/models/users_model.dart';
@@ -9,9 +10,11 @@ class LocalUserDatasource extends GetxService {
   late final Rx<UserModel> _user;
   late final Rx<Store> _store;
   late final ProfileService _profileService;
+  late final ObjectBoxService _objectBoxService;
 
-  LocalUserDatasource({ProfileService? profileService}){
+  LocalUserDatasource({ProfileService? profileService, ObjectBoxService? objectBoxService}) {
     _profileService = profileService ?? ProfileService.to;
+    _objectBoxService= objectBoxService ?? ObjectBoxService.to;
     _user = _profileService.user;
     _store = _profileService.store;
   }
@@ -87,7 +90,12 @@ class LocalUserDatasource extends GetxService {
   }
 
   Future<void> changeUser(int id) async {
-    _profileService.changeProfile(id);
+    await _profileService.changeProfile(id);
     return;
+  }
+
+  Future<void> detachUserDatabase() {
+    _objectBoxService.requestToCloseDatabase();
+    return Future.value();
   }
 }
