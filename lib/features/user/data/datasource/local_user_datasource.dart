@@ -98,4 +98,16 @@ class LocalUserDatasource extends GetxService {
     _objectBoxService.requestToCloseDatabase();
     return Future.value();
   }
+
+  Future<bool>requestPasswordIfLinked(int id) async {
+    final user = _store.value.box<UserModel>().get(id);
+    if(user == null) {
+      return false;
+    }
+    if(user.email.isNotEmpty){
+      
+      return true;
+    }
+    return false;
+  }
 }

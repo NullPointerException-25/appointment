@@ -74,6 +74,7 @@ class UserRepositoryImpLocal extends GetxService implements UserRepository {
 
   @override
   Future<void> changeUser(int id) async {
+    if(!await _localUserDatasource.requestPasswordIfLinked(id)){}
    await _localUserDatasource.changeUser(id);
   }
 
