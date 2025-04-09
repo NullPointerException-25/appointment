@@ -21,9 +21,13 @@ class LoginUseCase extends UseCase<void> {
   @override
   Future<void> perform({UserEntity? user}) async {
     if(user == null) {
-      throw Exception("User cannot be null");
+      throw Exception("User is null");
+    }
+    if(user.remoteId.isNotEmpty){
+      await _authRepositoryImpl.requestAuth(user.toModel());
     }
     await _repositoryImpLocal.changeUser(user.localId);
+
     Get.offAllNamed(Routes.home);
   }
 }
