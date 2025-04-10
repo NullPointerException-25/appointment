@@ -99,7 +99,7 @@ class Translator extends Translations {
           "bySigningIn": "By signing in, you agree to our ",
           "termsOfService": "Terms of Service",
           "useProfileLocally": "Use this profile locally",
-
+          "incorrectCredential": "Either email or password is wrong"
         },
         'es': {
           'title': 'Gestor de Citas',
@@ -283,5 +283,7 @@ class Translator extends Translations {
   static String get termsOfService => "termsOfService";
 
   static String get useProfileLocally => "useProfileLocally";
+
+  static String get incorrectCredential=> "incorrectCredential";
 
 }

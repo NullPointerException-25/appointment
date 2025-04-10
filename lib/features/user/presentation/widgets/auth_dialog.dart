@@ -1,12 +1,18 @@
+import 'package:appointments_manager/core/utils/colors.dart';
 import 'package:appointments_manager/core/utils/global_values.dart';
+import 'package:appointments_manager/core/utils/translations.dart';
 import 'package:appointments_manager/core/widgets/text_form_field_core.dart';
+import 'package:appointments_manager/features/user/domain/entities/user_entity.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:hugeicons/hugeicons.dart';
 
 class AuthDialog extends StatelessWidget {
-  AuthDialog({super.key, required this.email});
+  AuthDialog({super.key, required this.user});
 
   final passwordController = TextEditingController();
-  final String email;
+  final formKey = GlobalKey<FormState>();
+  final UserEntity user;
 
   @override
   Widget build(BuildContext context) {
@@ -16,24 +22,66 @@ class AuthDialog extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(kCornerRadius),
       ),
-      content: Column(
-        spacing: kSpacingL,
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Text(
-            'Authentication Required for $email',
-            style: Theme.of(context).textTheme.titleMedium,
-            softWrap: true,
-          ),
-           TextFormFieldCore(
-            controller: passwordController,
-            hintText: "Introduce password",
-          ),
-          ElevatedButton(
-            onPressed: () {},
-            child: const Text('Authenticate'),
-          ),
-        ],
+      content: Form(
+        key: formKey,
+        child: Column(
+          spacing: kSpacingL,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Row(
+              spacing: kSpacing,
+              children: [
+                user.localImage.value != null
+                    ? CircleAvatar(
+                        backgroundImage: FileImage(user.localImage.value!))
+                    : Icon(HugeIcons.strokeRoundedUser, color:  Theme.of(context).primaryColor,),
+                Text(
+                  'Authentication Required for \n${user.name}',
+                  style: Theme.of(context).textTheme.titleSmall,
+                  softWrap: true,
+                ),
+              ],
+            ),
+            TextFormFieldCore(
+              onFieldSubmitted: (value){
+                if (formKey.currentState!.validate()) {
+                  Navigator.pop(context, passwordController.text);
+                }
+              },
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return Translator.pleaseEnterSomeText.tr;
+                }
+
+                return null;
+              },
+              maxLines: 1,
+              obscureText: true,
+              controller: passwordController,
+              hintText: "Introduce password",
+            ),
+            ElevatedButton(
+              onPressed: () {
+                if (formKey.currentState!.validate()) {
+                  Navigator.pop(context, passwordController.text);
+                }
+              },
+              child: const Text('Authenticate'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text(
+                'I forgot my password',
+                style: Theme.of(context)
+                    .textTheme
+                    .displaySmall
+                    ?.copyWith(color: ThemeColors.lightBlue),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

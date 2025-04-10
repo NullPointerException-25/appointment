@@ -24,7 +24,9 @@ class LoginUseCase extends UseCase<void> {
       throw Exception("User is null");
     }
     if(user.remoteId.isNotEmpty){
-      await _authRepositoryImpl.requestAuth(user.toModel());
+      if(!await _authRepositoryImpl.requestAuth(user.toModel())){
+        return;
+      }
     }
     await _repositoryImpLocal.changeUser(user.localId);
 
