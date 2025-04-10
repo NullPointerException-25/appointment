@@ -63,7 +63,7 @@ class AuthDialog extends StatelessWidget {
             ElevatedButton(
               onPressed: () {
                 if (formKey.currentState!.validate()) {
-                  Navigator.pop(context, passwordController.text);
+                  Navigator.pop(context, passwordController.text.trim());
                 }
               },
               child: const Text('Authenticate'),

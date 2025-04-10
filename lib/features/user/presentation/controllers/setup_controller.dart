@@ -52,6 +52,7 @@ class SetupController extends GetxController {
         name: name.value,
         email: email.value,
         imagePath: image.value?.path ?? "",
+        password: password.value
       ).perform(isRemoteSignUp: true);
     }
   }

@@ -10,23 +10,28 @@ class SetupUserUseCase extends UseCase {
   final String name;
   final String email;
   final String imagePath;
-   String remoteId="";
+  final String? password;
+  String remoteId = "";
 
   SetupUserUseCase({
     required this.name,
     required this.email,
     required this.imagePath,
+    this.password,
   });
 
   @override
-  Future<void> perform({bool isRemoteSignUp=false}) async {
-    if (isRemoteSignUp){
+  Future<void> perform({bool isRemoteSignUp = false}) async {
+    if (isRemoteSignUp) {
+      assert(password != null);
       remoteId = await SignUpUseCase(
         email: email,
-        password: email,
+        password: password!,
       ).perform();
     }
-    await CreateNewUser(imagePath: imagePath, name: name, email: email, remoteId: remoteId).perform();
+    await CreateNewUser(
+            imagePath: imagePath, name: name, email: email, remoteId: remoteId)
+        .perform();
     if (imagePath.isNotEmpty) {
       final result =
           await SaveProfileImageOnStorageUseCase(imagePath).perform();
