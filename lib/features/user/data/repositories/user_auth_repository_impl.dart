@@ -25,15 +25,14 @@ class UserAuthRepositoryImpl extends GetxService implements UserAuthRepository {
   }
 
   @override
-  Future<bool> signInWithEmailAndPassword(String email, String password) async {
+  Future<UserCredential?> signInWithEmailAndPassword(String email, String password) async {
     try {
-      await _firebaseAuthDatasource.signInWithEmailAndPassword(email, password);
-      return true;
+      return await _firebaseAuthDatasource.signInWithEmailAndPassword(email, password);
     } on FirebaseAuthException catch (error, _) {
       debugPrint(error.toString());
       InAppNotificationService.to
           .showNotificationError(Translator.incorrectCredential.tr);
-      return false;
+      return null;
     }
   }
 
@@ -60,6 +59,6 @@ class UserAuthRepositoryImpl extends GetxService implements UserAuthRepository {
     if (result == null || result.isEmpty) {
       return false;
     }
-    return await signInWithEmailAndPassword(user.email.trim().toLowerCase(), result);
+    return await signInWithEmailAndPassword(user.email.trim().toLowerCase(), result)!=null;
   }
 }

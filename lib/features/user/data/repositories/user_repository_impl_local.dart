@@ -20,6 +20,10 @@ class UserRepositoryImpLocal extends GetxService implements UserRepository {
         deviceStorageUserDatastore ?? DeviceStorageUserDatastore.to;
   }
 
+  Future<UserModel?> getUserByRemoteId(String remoteId) async {
+    return await _localUserDatasource.getUserByRemoteId(remoteId);
+  }
+
   @override
   Future<UserModel> getUser() async {
     return await _localUserDatasource.getUser();

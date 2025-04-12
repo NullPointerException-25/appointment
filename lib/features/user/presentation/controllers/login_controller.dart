@@ -21,7 +21,9 @@ class LoginController extends GetxController {
     _getUsers();
   }
 
-  void login()async {}
+  void login()async {
+    await LoginUseCase().perform(email: email.value, password: password.value);
+  }
 
   void _getUsers() async {
     final result = await GetAllUsersUseCase().perform();

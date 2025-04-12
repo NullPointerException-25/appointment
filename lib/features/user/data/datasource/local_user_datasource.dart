@@ -35,6 +35,10 @@ class LocalUserDatasource extends GetxService {
     Get.offAllNamed(Routes.home);
   }
 
+  Future<UserModel?> getUserByRemoteId(String remoteId) async {
+    return _store.value.box<UserModel>().query(UserModel_.remoteId.equals(remoteId)).build().findFirst();
+  }
+
   Future<UserModel> getUser() async {
     return _user.value;
   }
