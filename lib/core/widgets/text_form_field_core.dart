@@ -84,15 +84,15 @@ class TextFormFieldCore extends StatelessWidget {
           fontFamily: FontFamily.montserrat,
           fontWeight: FontWeight.w300,
           color: Theme.of(context).brightness == Brightness.dark
-              ? ThemeColors.white.withOpacity(0.5)
-              : ThemeColors.dark.withOpacity(0.5),
+              ? ThemeColors.white.withValues(alpha: 0.5)
+              : ThemeColors.dark.withValues(alpha: 0.5),
         ),
         labelStyle: TextStyle(
           fontFamily: FontFamily.montserrat,
           fontWeight: FontWeight.w300,
           color: Theme.of(context).brightness == Brightness.dark
-              ? ThemeColors.white.withOpacity(0.9)
-              : ThemeColors.dark.withOpacity(0.5),
+              ? ThemeColors.white.withValues(alpha: 0.9)
+              : ThemeColors.dark.withValues(alpha: 0.5)
         ),
         suffixIcon: suffixIcon,
         prefixIcon: prefixIcon,
@@ -133,8 +133,8 @@ class TextFormFieldCore extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
           borderSide: BorderSide(
             color: Theme.of(context).brightness == Brightness.dark
-                ? ThemeColors.white.withOpacity(0.5)
-                : ThemeColors.dark.withOpacity(0.5),
+                ? ThemeColors.white.withValues(alpha: 0.5)
+                : ThemeColors.dark.withValues(alpha: 0.5),
           ),
         ),
         errorStyle: TextStyle(

@@ -15,9 +15,15 @@ class _CircularHomeFloatingActionButtonState extends State<CircularHomeFloatingA
   final controller = HomeController.to;
 
   @override
+  void initState() {
+    super.initState();
+    controller.circularKey = GlobalKey<CircularMenuState>();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return CircularMenu(
-        key: controller.circularMenuKey,
+        key: controller.circularKey,
         toggleButtonOnPressed: (){
           controller.isCircularMenuOpened.value =
           !controller.isCircularMenuOpened.value;

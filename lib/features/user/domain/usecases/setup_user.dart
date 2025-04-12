@@ -1,10 +1,8 @@
 import 'package:appointments_manager/core/abstractions/usecases.dart';
 import 'package:appointments_manager/core/utils/routes.dart';
-import 'package:appointments_manager/features/user/domain/entities/user_entity.dart';
-import 'package:appointments_manager/features/user/domain/usecases/check_if_setup_completed_use_case.dart';
-import 'package:appointments_manager/features/user/domain/usecases/save_email_for_news.dart';
+import 'package:appointments_manager/features/user/domain/usecases/create_new_user.dart';
 import 'package:appointments_manager/features/user/domain/usecases/save_profile_image_on_storage_use_case.dart';
-import 'package:appointments_manager/features/user/domain/usecases/save_user_use_case.dart';
+import 'package:appointments_manager/features/user/domain/usecases/signup.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 
@@ -12,15 +10,28 @@ class SetupUserUseCase extends UseCase {
   final String name;
   final String email;
   final String imagePath;
+  final String? password;
+  String remoteId = "";
 
   SetupUserUseCase({
     required this.name,
     required this.email,
     required this.imagePath,
+    this.password,
   });
 
   @override
-  Future<void> perform() async {
+  Future<void> perform({bool isRemoteSignUp = false}) async {
+    if (isRemoteSignUp) {
+      assert(password != null);
+      remoteId = await SignUpUseCase(
+        email: email,
+        password: password!,
+      ).perform();
+    }
+    await CreateNewUser(
+            imagePath: imagePath, name: name, email: email, remoteId: remoteId)
+        .perform();
     if (imagePath.isNotEmpty) {
       final result =
           await SaveProfileImageOnStorageUseCase(imagePath).perform();
@@ -28,16 +39,6 @@ class SetupUserUseCase extends UseCase {
         return;
       }
     }
-    await SaveEmailForNewsUseCase(email).perform();
-    await SaveUserUseCase(
-      UserEntity(
-        email: email,
-        imagePath: imagePath,
-        name: name,
-        lastUpdate: DateTime.now(),
-      ),
-    ).perform();
-    SetSetupCompletedUseCase().perform();
     Get.offAllNamed(Routes.home);
   }
 }

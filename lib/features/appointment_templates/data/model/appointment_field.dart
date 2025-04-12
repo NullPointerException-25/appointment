@@ -1,4 +1,6 @@
 import 'package:appointments_manager/core/abstractions/model.dart';
+import 'package:appointments_manager/features/appointment/data/models/appointment.dart';
+import 'package:appointments_manager/features/appointment_templates/data/model/appointment_template.dart';
 import 'package:appointments_manager/features/appointment_templates/domain/entities/appointment_field_entity.dart';
 import 'package:objectbox/objectbox.dart';
 
@@ -14,7 +16,8 @@ class AppointmentFieldModel extends CoreModel<AppointmentFieldEntity> {
   late DateTime lastUpdate;
   @override
   String remoteId;
-
+  final appointment= ToOne<AppointmentModel>();
+  final template = ToOne<AppointmentTemplateModel>();
   AppointmentFieldModel(this.title, this.formFieldType,
       {this.localId = 0, this.remoteId = "", DateTime? lastUpdate}) {
     this.lastUpdate = lastUpdate ?? DateTime.now();
@@ -28,6 +31,12 @@ class AppointmentFieldModel extends CoreModel<AppointmentFieldEntity> {
         lastUpdate: lastUpdate,
         remoteId: remoteId,
         localId: localId);
+  }
+
+  @override
+  toJson() {
+    // TODO: implement toJson
+    throw UnimplementedError();
   }
 }
 

@@ -14,8 +14,6 @@ import 'package:appointments_manager/features/user/presentation/pages/setup.dart
 import 'package:appointments_manager/home/presentation/bindings/binding.dart';
 import 'package:appointments_manager/home/presentation/pages/home.dart';
 import 'package:appointments_manager/splash/presentation/pages/splash.dart';
-import 'package:device_preview_plus/device_preview_plus.dart'
-    show DevicePreview;
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -25,6 +23,7 @@ import 'package:responsive_framework/responsive_framework.dart';
 import 'core/services/in_app_notification_service.dart';
 import 'features/appointment/presentation/bindings/details_binding.dart';
 import 'features/appointment/presentation/pages/create/create.dart';
+import 'features/user/presentation/bindings/binding.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -38,9 +37,10 @@ initServices() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   await loadObjectBoxLibraryAndroidCompat();
-  await Get.putAsync(() => ProfileService().init());
-  await Get.putAsync(
-      () => ObjectBoxService().init(ProfileService.to.profile.value));
+
+  final profileService= Get.put(ProfileService());
+  Get.put(ObjectBoxService());
+  await profileService.init();
   Get.put(InAppNotificationService());
 }
 
@@ -72,7 +72,10 @@ class MyApp extends StatelessWidget {
             name: Routes.home,
             page: () => HomePage(),
             bindings: [HomeBinding(), QueryClientsBinding()]),
-        GetPage(name: Routes.setup, page: () => SetupPage()),
+        GetPage(
+            name: Routes.setup,
+            page: () => SetupPage(),
+            binding: SetupBinding()),
         GetPage(name: Routes.splash, page: () => const SplashPage()),
         GetPage(
             name: Routes.client,

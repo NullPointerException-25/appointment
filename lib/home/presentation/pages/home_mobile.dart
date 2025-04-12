@@ -62,7 +62,8 @@ class HomeMobilePage extends GetResponsiveView<HomeController> {
             child: GestureDetector(
               key: const Key('circular_menu'),
               onTap: () {
-                controller.circularMenuKey.currentState!.reverseAnimation();
+                controller.circularKey.currentState!.reverseAnimation();
+
                 controller.isCircularMenuOpened.value = false;
               },
               child: Container(

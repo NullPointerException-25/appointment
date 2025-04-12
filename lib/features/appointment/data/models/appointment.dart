@@ -19,7 +19,8 @@ class AppointmentModel extends CoreModel<AppointmentEntity>{
   @Property(type: PropertyType.date)
   DateTime lastUpdate;
   final client = ToOne<ClientModel>();
-  @Backlink('customFields')
+
+  @Backlink('appointment')
   final fields = ToMany<AppointmentFieldModel>();
 
 
@@ -47,5 +48,11 @@ class AppointmentModel extends CoreModel<AppointmentEntity>{
        localId: localId,
        client: client.target!.toEntity(),
      );
+  }
+
+  @override
+  toJson() {
+    // TODO: implement toJson
+    throw UnimplementedError();
   }
 }

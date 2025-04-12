@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:appointments_manager/core/abstractions/model.dart';
 import 'package:appointments_manager/features/user/domain/entities/user_entity.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:objectbox/objectbox.dart';
 
@@ -33,9 +34,14 @@ class UserModel extends CoreModel<UserEntity> {
       this.isCurrentUser = false,
       this.isSetupComplete = false,
       this.imageUrl = "",
+      DateTime? lastUpdate,
       this.remoteId = ""}) {
     if (id != null) {
       this.id = id;
+
+    }
+    if (lastUpdate != null) {
+      this.lastUpdate = lastUpdate;
     }
   }
 
@@ -67,6 +73,31 @@ class UserModel extends CoreModel<UserEntity> {
       lastUpdate: lastUpdate,
       imageUrl: imageUrl,
       imagePath: imagePath,
+    );
+  }
+
+  @override
+  toJson() {
+    return {
+      'name': name,
+      'email': email,
+      'imageUrl': imageUrl,
+      'isSetupComplete': isSetupComplete,
+      'remoteId': remoteId,
+      'lastUpdate': Timestamp.fromDate(lastUpdate),
+    };
+  }
+
+  @override
+  factory UserModel.fromJson(Map<String, dynamic> json) {
+    return UserModel(
+      name: json['name'] as String,
+      email: json['email'] as String,
+      imagePath: "",
+      imageUrl: json['imageUrl'] as String,
+      isSetupComplete: json['isSetupComplete'] as bool,
+      remoteId: json['remoteId'] as String,
+      lastUpdate: (json['lastUpdate'] as Timestamp).toDate(),
     );
   }
 }

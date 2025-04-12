@@ -24,26 +24,27 @@ class HomeAppBar extends GetView<HomeController> {
                   : ThemeColors.black,
               fontSize: 18)),
       actions: [
-        Padding(
-          padding: const EdgeInsets.only(right: kPadding),
-          child: Obx(
-            () => controller.user.value == null
-                ? CircleAvatar(
-                    backgroundColor:
-                        Theme.of(context).brightness == Brightness.dark
-                            ? ThemeColors.black
-                            : ThemeColors.lightBlue,
-                    child: IconButton(
-                      icon: const Icon(HugeIcons.strokeRoundedUser),
-                      onPressed: () {},
-                      color: ThemeColors.darkBlue,
+        GestureDetector(
+          onTapDown: (details) {
+            controller.openAvatarMenu(context, details);
+          },
+          child: Padding(
+            padding: const EdgeInsets.only(right: kPadding),
+            child: Obx(
+              () => controller.user.value == null
+                  ? CircleAvatar(
+                      backgroundColor:
+                          Theme.of(context).brightness == Brightness.dark
+                              ? ThemeColors.black
+                              : ThemeColors.lightBlue,
+                      child: const Icon(HugeIcons.strokeRoundedUser),
+                    )
+                  : CircleAvatar(
+                      backgroundImage: controller.user.value!.localImage.value != null
+                          ? FileImage(controller.user.value!.localImage.value!)
+                          : null,
                     ),
-                  )
-                : CircleAvatar(
-                    backgroundImage: controller.user.value!.localImage.value != null
-                        ? FileImage(controller.user.value!.localImage.value!)
-                        : null,
-                  ),
+            ),
           ),
         ),
       ],

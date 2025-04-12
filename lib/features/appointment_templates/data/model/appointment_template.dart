@@ -16,7 +16,7 @@ class AppointmentTemplateModel extends CoreModel<AppointmentTemplateEntity> {
   @Unique()
   final String name;
 
-
+  @Backlink('template')
   final fields= ToMany<AppointmentFieldModel>();
 
   AppointmentTemplateModel(this.remoteId, this.lastUpdate,
@@ -25,5 +25,11 @@ class AppointmentTemplateModel extends CoreModel<AppointmentTemplateEntity> {
   @override
   AppointmentTemplateEntity toEntity() {
     return AppointmentTemplateEntity(name: name, remoteId: remoteId, localId: localId, lastUpdate: lastUpdate );
+  }
+
+  @override
+  toJson() {
+    // TODO: implement toJson
+    throw UnimplementedError();
   }
 }

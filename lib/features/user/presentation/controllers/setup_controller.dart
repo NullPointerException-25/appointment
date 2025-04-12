@@ -5,21 +5,19 @@ import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
 class SetupController extends GetxController {
-  static SetupController get to {
-    try {
-      return Get.find<SetupController>();
-    } catch (e) {
-      return Get.put(SetupController());
-    }
-  }
+  static SetupController get to => Get.find<SetupController>();
 
   final Rxn<File> image = Rxn<File>();
   final Rx<String> name = Rx<String>("");
   final Rx<String> email = Rx<String>("");
+  final Rx<String> password = Rx<String>("");
+  final Rx<String> confirmPassword = Rx<String>("");
   final RxInt step = 0.obs;
   late PageController pageController;
   final TextEditingController emailController = TextEditingController();
   final TextEditingController nameController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmPasswordController = TextEditingController();
   late final Map<int, bool Function()> _stepRequirements;
   final GlobalKey<FormState> emailFormKey = GlobalKey<FormState>();
 
@@ -27,9 +25,10 @@ class SetupController extends GetxController {
   void onInit() {
     super.onInit();
     _stepRequirements = {
-      0: () => name.value.isNotEmpty,
-      1: () => true,
+      0: () => true,
+      1: () => name.value.isNotEmpty,
       2: () => true,
+      3: () => true,
     };
   }
 
@@ -37,13 +36,24 @@ class SetupController extends GetxController {
     if (!_stepRequirements[step.value]!()) {
       return;
     }
-    if (step.value == 2) {
+    if (step.value == 3) {
       _saveUserChanges();
     }
-    if (step.value != 2) {
+    if (step.value != 3) {
       step.value++;
       pageController.nextPage(
           duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
+    }
+  }
+
+  void signUp() async {
+    if (step.value == 3) {
+      SetupUserUseCase(
+        name: name.value,
+        email: email.value,
+        imagePath: image.value?.path ?? "",
+        password: password.value
+      ).perform(isRemoteSignUp: true);
     }
   }
 
@@ -55,10 +65,18 @@ class SetupController extends GetxController {
     ).perform();
   }
 
+
+
   void previousStep() {
     pageController.previousPage(
         duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
     step.value--;
+  }
+
+  void goToLoginStep() {
+    step.value = 0;
+    pageController.animateToPage(0,
+        duration: const Duration(milliseconds: 300), curve: Curves.easeInOut);
   }
 
   void pickImage() async {

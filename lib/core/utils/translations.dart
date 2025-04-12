@@ -83,6 +83,23 @@ class Translator extends Translations {
           "images": "Images",
           "removeField": "Remove field",
           "somethingWentWrong": "Something went wrong",
+          "signUp": "Sign up",
+          "password": "Password",
+          "continueWithoutAccount": "Continue without account",
+          "passwordTooShort": "Password must be at least 8 characters long",
+          "passwordNotMatch": "Passwords do not match",
+          "confirmPassword": "Confirm password",
+          "youCanCreateAccountLater": "Don't worry, You can create and link an account later",
+          "letsGetStarted": "Let's get started",
+          "whatsYourName": "What's your name?",
+          "savedAccounts": "Saved accounts",
+          "newProfile": "New profile",
+          "alreadyHaveAnAccount": "Do you already have an account? ",
+          "signInHere": "Sign in here",
+          "bySigningIn": "By signing in, you agree to our ",
+          "termsOfService": "Terms of Service",
+          "useProfileLocally": "Use this profile locally",
+          "incorrectCredential": "Either email or password is wrong"
         },
         'es': {
           'title': 'Gestor de Citas',
@@ -238,4 +255,35 @@ class Translator extends Translations {
   static String get removeField => "removeField";
 
   static String get somethingWentWrong => "somethingWentWrong";
+
+  static String get signUp => "signUp";
+
+  static String get password => "password";
+
+  static String get continueWithoutAccount => "continueWithoutAccount";
+
+  static String get passwordTooShort => "passwordTooShort";
+
+  static String get passwordNotMatch => "passwordNotMatch";
+
+  static String get confirmPassword => "confirmPassword";
+
+  static String get youCanCreateAccountLater => "youCanCreateAccountLater";
+
+  static String get savedAccounts => "savedAccounts";
+
+  static String get newProfile => "newProfile";
+
+  static String get alreadyHaveAnAccount => "alreadyHaveAnAccount";
+
+  static String get signInHere => "signInHere";
+
+  static String get bySigningIn => "bySigningIn";
+
+  static String get termsOfService => "termsOfService";
+
+  static String get useProfileLocally => "useProfileLocally";
+
+  static String get incorrectCredential=> "incorrectCredential";
+
 }

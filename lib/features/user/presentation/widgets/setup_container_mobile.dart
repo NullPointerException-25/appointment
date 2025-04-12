@@ -1,12 +1,14 @@
 
 import 'package:appointments_manager/core/utils/translations.dart';
 import 'package:appointments_manager/features/user/presentation/controllers/setup_controller.dart';
-import 'package:appointments_manager/features/user/presentation/pagers/email_pager.dart';
 import 'package:appointments_manager/features/user/presentation/pagers/image_pager.dart';
+import 'package:appointments_manager/features/user/presentation/pagers/login_pager.dart';
 import 'package:appointments_manager/features/user/presentation/pagers/name_pager.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hugeicons/hugeicons.dart';
+
+import '../pagers/setup_pager.dart';
 
 class SetupContainerMobile extends StatelessWidget {
   const SetupContainerMobile({super.key});
@@ -69,9 +71,10 @@ class SetupContainerMobile extends StatelessWidget {
                   controller: SetupController.to.initPageController(),
                   physics: const NeverScrollableScrollPhysics(),
                   children: const [
+                    LoginPager(),
                     NamePager(),
                     ImagePager(),
-                    EmailPager()
+                    SignUpPager()
                   ],
                 ),
               ),

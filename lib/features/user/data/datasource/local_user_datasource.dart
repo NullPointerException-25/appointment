@@ -1,3 +1,4 @@
+import 'package:appointments_manager/core/services/object_box_service.dart';
 import 'package:appointments_manager/core/services/profile_service.dart';
 import 'package:appointments_manager/core/utils/routes.dart';
 import 'package:appointments_manager/features/user/data/models/users_model.dart';
@@ -9,9 +10,11 @@ class LocalUserDatasource extends GetxService {
   late final Rx<UserModel> _user;
   late final Rx<Store> _store;
   late final ProfileService _profileService;
+  late final ObjectBoxService _objectBoxService;
 
-  LocalUserDatasource({ProfileService? profileService}){
+  LocalUserDatasource({ProfileService? profileService, ObjectBoxService? objectBoxService}) {
     _profileService = profileService ?? ProfileService.to;
+    _objectBoxService= objectBoxService ?? ObjectBoxService.to;
     _user = _profileService.user;
     _store = _profileService.store;
   }
@@ -25,13 +28,15 @@ class LocalUserDatasource extends GetxService {
   }
 
 
-  String checkUserSetup(UserModel user) {
+  void checkUserSetup(UserModel user) {
     if(!user.isSetupComplete){
       Get.offAllNamed(Routes.setup);
-      return (Routes.setup);
     }
     Get.offAllNamed(Routes.home);
-    return (Routes.home);
+  }
+
+  Future<UserModel?> getUserByRemoteId(String remoteId) async {
+    return _store.value.box<UserModel>().query(UserModel_.remoteId.equals(remoteId)).build().findFirst();
   }
 
   Future<UserModel> getUser() async {
@@ -74,5 +79,39 @@ class LocalUserDatasource extends GetxService {
     _store.value.box<UserModel>().put(_user.value);
     _user.value= _store.value.box<UserModel>().get(_user.value.id)!;
     return Future.value();
+  }
+
+  Future<List<UserModel>> getUsers() {
+    final users = _store.value.box<UserModel>().getAll();
+    return Future.value(users);
+  }
+
+  Future<UserModel> createUser(UserModel user) async {
+    final id = _store.value.box<UserModel>().put(user);
+    user.id = id;
+    _profileService.changeProfile(id);
+    return user;
+  }
+
+  Future<void> changeUser(int id) async {
+    await _profileService.changeProfile(id);
+    return;
+  }
+
+  Future<void> detachUserDatabase() {
+    _objectBoxService.requestToCloseDatabase();
+    return Future.value();
+  }
+
+  Future<bool>requestPasswordIfLinked(int id) async {
+    final user = _store.value.box<UserModel>().get(id);
+    if(user == null) {
+      return false;
+    }
+    if(user.email.isNotEmpty){
+      
+      return true;
+    }
+    return false;
   }
 }

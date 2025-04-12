@@ -13,8 +13,8 @@ class TemplateFieldBuilder extends StatelessWidget {
     if(field.fieldType == FormFieldType.number) {
       //return CustomFieldEditing(field: field);
     }
-    return Padding(
-      padding: const EdgeInsets.all(kPaddingM),
+    return const Padding(
+      padding: EdgeInsets.all(kPaddingM),
       child: Text("If you see this, this field is not compatible with your version, try updating the app"),
     );
   }

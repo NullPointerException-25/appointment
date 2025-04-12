@@ -55,8 +55,8 @@ class SearchBarHeaderSliver extends StatelessWidget {
                           fontFamily: FontFamily.montserrat,
                           color: Theme.of(context).brightness ==
                               Brightness.dark
-                              ? ThemeColors.white.withOpacity(0.8)
-                              : ThemeColors.black.withOpacity(0.8)),
+                              ? ThemeColors.white.withValues(alpha: 0.8)
+                              : ThemeColors.black.withValues(alpha: 0.8)),
                       border: InputBorder.none,
                       prefixIcon: Icon(
                         HugeIcons.strokeRoundedSearch02,
