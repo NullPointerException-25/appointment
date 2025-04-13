@@ -10,6 +10,7 @@ import 'package:hugeicons/hugeicons.dart';
 import 'package:jiffy/jiffy.dart';
 
 import '../../../../../home/presentation/widgets/appbar.dart';
+import '../../../../appointment_templates/presentation/widgets/template_field_builder.dart';
 
 class DetailsAppointmentMobilePage
     extends GetView<DetailsAppointmentController> {
@@ -68,6 +69,13 @@ class DetailsAppointmentMobilePage
                 ],
               );
             }, controller.appointmentEntity),
+          ),
+          SliverList.builder(
+              itemCount: controller.customFields.length,
+              itemBuilder: (context, index) =>
+            TemplateFieldBuilder(
+              field: controller.customFields[index],
+            )
           )
         ],
       )),

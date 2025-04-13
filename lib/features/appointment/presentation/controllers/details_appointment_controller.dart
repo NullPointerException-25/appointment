@@ -12,6 +12,7 @@ class DetailsAppointmentController extends GetxController
       Get.find<DetailsAppointmentController>();
   late final Rx<AppointmentEntity> appointmentEntity;
   late final RxList<AppointmentFieldEntity> customFields;
+
   final Rx<int> currentProgressMinutes=0.obs;
   final Rx<int> diffInitialEndTimeMinutes=0.obs;
 
