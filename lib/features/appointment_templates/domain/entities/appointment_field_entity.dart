@@ -1,6 +1,8 @@
 import 'package:appointments_manager/core/abstractions/entity.dart';
 import 'package:appointments_manager/features/appointment_templates/data/model/appointment_field.dart';
 
+import '../../../../core/utils/global_values.dart';
+
 class AppointmentFieldEntity extends CoreEntity<AppointmentFieldModel> {
   @override
   late DateTime lastUpdate;
@@ -21,7 +23,7 @@ class AppointmentFieldEntity extends CoreEntity<AppointmentFieldModel> {
       this.remoteId = "",
       required this.title, int fieldType=1}) {
     this.lastUpdate = lastUpdate ?? DateTime.now();
-    this.fieldType = _formFieldTypeMap[fieldType] ?? FormFieldType.unknown;
+    this.fieldType = formFieldTypeMap[fieldType] ?? FormFieldType.unknown;
   }
 
 
@@ -29,7 +31,7 @@ class AppointmentFieldEntity extends CoreEntity<AppointmentFieldModel> {
   AppointmentFieldModel toModel() {
     return AppointmentFieldModel(
         title,
-        _formFieldTypeMap.entries
+        formFieldTypeMap.entries
                 .firstWhere((element) => element.value == fieldType)
                 .key,
         localId: localId,
@@ -37,14 +39,5 @@ class AppointmentFieldEntity extends CoreEntity<AppointmentFieldModel> {
         remoteId: remoteId);
   }
 
-  static const Map<int, FormFieldType> _formFieldTypeMap = {
-    0: FormFieldType.unknown,
-    1: FormFieldType.number,
-    2: FormFieldType.shortText,
-    3: FormFieldType.largeText,
-    4: FormFieldType.date,
-    5: FormFieldType.imageList,
-    6: FormFieldType.phoneNumber,
-    7: FormFieldType.audio
-  };
+
 }

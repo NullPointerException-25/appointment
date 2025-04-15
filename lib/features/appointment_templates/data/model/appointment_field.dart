@@ -40,4 +40,4 @@ class AppointmentFieldModel extends CoreModel<AppointmentFieldEntity> {
   }
 }
 
-enum FormFieldType { number, shortText, largeText, date, imageList, unknown, phoneNumber, audio }
+
