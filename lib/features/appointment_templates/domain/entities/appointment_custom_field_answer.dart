@@ -17,12 +17,14 @@ class AppointmentCustomFieldAnswerEntity<T> extends CoreEntity<AppointmentCustom
   late DateTime lastUpdate;
   late FormFieldType formFieldType;
   T value;
+  T? remoteValue;
 
   AppointmentCustomFieldAnswerEntity({
     this.localId = 0,
     this.remoteId = "",
     required this.formFieldType,
     required this.value,
+    this.remoteValue,
     DateTime? lastUpdate,
   }) {
     this.lastUpdate = lastUpdate ?? DateTime.now();

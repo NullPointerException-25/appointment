@@ -15,6 +15,7 @@ import 'package:objectbox/objectbox.dart' as obx;
 import 'package:objectbox_flutter_libs/objectbox_flutter_libs.dart';
 
 import 'features/appointment/data/models/appointment.dart';
+import 'features/appointment_templates/data/model/appointment_custom_field_answer.dart';
 import 'features/appointment_templates/data/model/appointment_field.dart';
 import 'features/appointment_templates/data/model/appointment_template.dart';
 import 'features/client/data/models/client.dart';
@@ -26,7 +27,7 @@ final _entities = <obx_int.ModelEntity>[
   obx_int.ModelEntity(
       id: const obx_int.IdUid(1, 6),
       name: 'AppointmentFieldModel',
-      lastPropertyId: const obx_int.IdUid(7, 6963785314595703275),
+      lastPropertyId: const obx_int.IdUid(10, 8830871549609841818),
       flags: 0,
       properties: <obx_int.ModelProperty>[
         obx_int.ModelProperty(
@@ -67,7 +68,14 @@ final _entities = <obx_int.ModelEntity>[
             type: 11,
             flags: 520,
             indexId: const obx_int.IdUid(4, 2364838510077903882),
-            relationTarget: 'AppointmentTemplateModel')
+            relationTarget: 'AppointmentTemplateModel'),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(10, 8830871549609841818),
+            name: 'answerId',
+            type: 11,
+            flags: 520,
+            indexId: const obx_int.IdUid(7, 1538505947759255273),
+            relationTarget: 'AppointmentCustomFieldAnswerModel')
       ],
       relations: <obx_int.ModelRelation>[],
       backlinks: <obx_int.ModelBacklink>[]),
@@ -259,6 +267,70 @@ final _entities = <obx_int.ModelEntity>[
             flags: 0)
       ],
       relations: <obx_int.ModelRelation>[],
+      backlinks: <obx_int.ModelBacklink>[]),
+  obx_int.ModelEntity(
+      id: const obx_int.IdUid(6, 7),
+      name: 'AppointmentCustomFieldAnswerModel',
+      lastPropertyId: const obx_int.IdUid(11, 3513794434058134240),
+      flags: 0,
+      properties: <obx_int.ModelProperty>[
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(1, 2711061456828049753),
+            name: 'localId',
+            type: 6,
+            flags: 1),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(2, 4080289837642348930),
+            name: 'remoteId',
+            type: 9,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(3, 2822521050917903223),
+            name: 'lastUpdate',
+            type: 10,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(4, 1283755720882257258),
+            name: 'formFieldType',
+            type: 6,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(5, 6041939630560057387),
+            name: 'localDocs',
+            type: 30,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(6, 2470905089050333725),
+            name: 'remoteDocs',
+            type: 30,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(7, 3309768463166875603),
+            name: 'singleDoc',
+            type: 9,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(8, 8157408356628389927),
+            name: 'singleDocUrl',
+            type: 9,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(9, 7011602480011915961),
+            name: 'numberValue',
+            type: 6,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(10, 4940469889377361761),
+            name: 'textValue',
+            type: 9,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(11, 3513794434058134240),
+            name: 'dateValue',
+            type: 10,
+            flags: 0)
+      ],
+      relations: <obx_int.ModelRelation>[],
       backlinks: <obx_int.ModelBacklink>[])
 ];
 
@@ -297,13 +369,17 @@ Future<obx.Store> openStore(
 obx_int.ModelDefinition getObjectBoxModel() {
   final model = obx_int.ModelInfo(
       entities: _entities,
-      lastEntityId: const obx_int.IdUid(5, 1),
-      lastIndexId: const obx_int.IdUid(4, 2364838510077903882),
+      lastEntityId: const obx_int.IdUid(6, 7),
+      lastIndexId: const obx_int.IdUid(7, 1538505947759255273),
       lastRelationId: const obx_int.IdUid(2, 4933571554284600610),
       lastSequenceId: const obx_int.IdUid(0, 0),
       retiredEntityUids: const [],
-      retiredIndexUids: const [],
-      retiredPropertyUids: const [1701739923913506732],
+      retiredIndexUids: const [9130270367226397310, 2353577699014373951],
+      retiredPropertyUids: const [
+        1701739923913506732,
+        7973595731220429514,
+        504081564580996350
+      ],
       retiredRelationUids: const [6766621169241648557, 4933571554284600610],
       modelVersion: 5,
       modelVersionParserMinimum: 5,
@@ -313,7 +389,7 @@ obx_int.ModelDefinition getObjectBoxModel() {
     AppointmentFieldModel: obx_int.EntityDefinition<AppointmentFieldModel>(
         model: _entities[0],
         toOneRelations: (AppointmentFieldModel object) =>
-            [object.appointment, object.template],
+            [object.appointment, object.template, object.answer],
         toManyRelations: (AppointmentFieldModel object) => {},
         getId: (AppointmentFieldModel object) => object.localId,
         setId: (AppointmentFieldModel object, int id) {
@@ -322,7 +398,7 @@ obx_int.ModelDefinition getObjectBoxModel() {
         objectToFB: (AppointmentFieldModel object, fb.Builder fbb) {
           final titleOffset = fbb.writeString(object.title);
           final remoteIdOffset = fbb.writeString(object.remoteId);
-          fbb.startTable(8);
+          fbb.startTable(11);
           fbb.addInt64(0, object.localId);
           fbb.addOffset(1, titleOffset);
           fbb.addInt64(2, object.lastUpdate.millisecondsSinceEpoch);
@@ -330,6 +406,7 @@ obx_int.ModelDefinition getObjectBoxModel() {
           fbb.addInt64(4, object.formFieldType);
           fbb.addInt64(5, object.appointment.targetId);
           fbb.addInt64(6, object.template.targetId);
+          fbb.addInt64(9, object.answer.targetId);
           fbb.finish(fbb.endTable());
           return object.localId;
         },
@@ -356,6 +433,9 @@ obx_int.ModelDefinition getObjectBoxModel() {
           object.template.targetId =
               const fb.Int64Reader().vTableGet(buffer, rootOffset, 16, 0);
           object.template.attach(store);
+          object.answer.targetId =
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 22, 0);
+          object.answer.attach(store);
           return object;
         }),
     AppointmentModel: obx_int.EntityDefinition<AppointmentModel>(
@@ -591,6 +671,84 @@ obx_int.ModelDefinition getObjectBoxModel() {
               remoteId: remoteIdParam);
 
           return object;
+        }),
+    AppointmentCustomFieldAnswerModel: obx_int.EntityDefinition<
+            AppointmentCustomFieldAnswerModel>(
+        model: _entities[5],
+        toOneRelations: (AppointmentCustomFieldAnswerModel object) => [],
+        toManyRelations: (AppointmentCustomFieldAnswerModel object) => {},
+        getId: (AppointmentCustomFieldAnswerModel object) => object.localId,
+        setId: (AppointmentCustomFieldAnswerModel object, int id) {
+          object.localId = id;
+        },
+        objectToFB: (AppointmentCustomFieldAnswerModel object, fb.Builder fbb) {
+          final remoteIdOffset = fbb.writeString(object.remoteId);
+          final localDocsOffset = fbb.writeList(
+              object.localDocs.map(fbb.writeString).toList(growable: false));
+          final remoteDocsOffset = fbb.writeList(
+              object.remoteDocs.map(fbb.writeString).toList(growable: false));
+          final singleDocOffset = fbb.writeString(object.singleDoc);
+          final singleDocUrlOffset = fbb.writeString(object.singleDocUrl);
+          final textValueOffset = fbb.writeString(object.textValue);
+          fbb.startTable(12);
+          fbb.addInt64(0, object.localId);
+          fbb.addOffset(1, remoteIdOffset);
+          fbb.addInt64(2, object.lastUpdate.millisecondsSinceEpoch);
+          fbb.addInt64(3, object.formFieldType);
+          fbb.addOffset(4, localDocsOffset);
+          fbb.addOffset(5, remoteDocsOffset);
+          fbb.addOffset(6, singleDocOffset);
+          fbb.addOffset(7, singleDocUrlOffset);
+          fbb.addInt64(8, object.numberValue);
+          fbb.addOffset(9, textValueOffset);
+          fbb.addInt64(10, object.dateValue.millisecondsSinceEpoch);
+          fbb.finish(fbb.endTable());
+          return object.localId;
+        },
+        objectFromFB: (obx.Store store, ByteData fbData) {
+          final buffer = fb.BufferContext(fbData);
+          final rootOffset = buffer.derefObject(0);
+          final localIdParam =
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0);
+          final remoteIdParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGet(buffer, rootOffset, 6, '');
+          final formFieldTypeParam =
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 10, 0);
+          final localDocsParam = const fb.ListReader<String>(
+                  fb.StringReader(asciiOptimization: true),
+                  lazy: false)
+              .vTableGet(buffer, rootOffset, 12, []);
+          final remoteDocsParam = const fb.ListReader<String>(
+                  fb.StringReader(asciiOptimization: true),
+                  lazy: false)
+              .vTableGet(buffer, rootOffset, 14, []);
+          final singleDocParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGet(buffer, rootOffset, 16, '');
+          final singleDocUrlParam =
+              const fb.StringReader(asciiOptimization: true)
+                  .vTableGet(buffer, rootOffset, 18, '');
+          final numberValueParam =
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 20, 0);
+          final textValueParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGet(buffer, rootOffset, 22, '');
+          final dateValueParam = DateTime.fromMillisecondsSinceEpoch(
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 24, 0));
+          final lastUpdateParam = DateTime.fromMillisecondsSinceEpoch(
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 8, 0));
+          final object = AppointmentCustomFieldAnswerModel(
+              localId: localIdParam,
+              remoteId: remoteIdParam,
+              formFieldType: formFieldTypeParam,
+              localDocs: localDocsParam,
+              remoteDocs: remoteDocsParam,
+              singleDoc: singleDocParam,
+              singleDocUrl: singleDocUrlParam,
+              numberValue: numberValueParam,
+              textValue: textValueParam,
+              dateValue: dateValueParam,
+              lastUpdate: lastUpdateParam);
+
+          return object;
         })
   };
 
@@ -628,6 +786,10 @@ class AppointmentFieldModel_ {
   static final template =
       obx.QueryRelationToOne<AppointmentFieldModel, AppointmentTemplateModel>(
           _entities[0].properties[6]);
+
+  /// See [AppointmentFieldModel.answer].
+  static final answer = obx.QueryRelationToOne<AppointmentFieldModel,
+      AppointmentCustomFieldAnswerModel>(_entities[0].properties[7]);
 }
 
 /// [AppointmentModel] entity fields to define ObjectBox queries.
@@ -763,4 +925,62 @@ class UserModel_ {
   /// See [UserModel.remoteId].
   static final remoteId =
       obx.QueryStringProperty<UserModel>(_entities[4].properties[7]);
+}
+
+/// [AppointmentCustomFieldAnswerModel] entity fields to define ObjectBox queries.
+class AppointmentCustomFieldAnswerModel_ {
+  /// See [AppointmentCustomFieldAnswerModel.localId].
+  static final localId =
+      obx.QueryIntegerProperty<AppointmentCustomFieldAnswerModel>(
+          _entities[5].properties[0]);
+
+  /// See [AppointmentCustomFieldAnswerModel.remoteId].
+  static final remoteId =
+      obx.QueryStringProperty<AppointmentCustomFieldAnswerModel>(
+          _entities[5].properties[1]);
+
+  /// See [AppointmentCustomFieldAnswerModel.lastUpdate].
+  static final lastUpdate =
+      obx.QueryDateProperty<AppointmentCustomFieldAnswerModel>(
+          _entities[5].properties[2]);
+
+  /// See [AppointmentCustomFieldAnswerModel.formFieldType].
+  static final formFieldType =
+      obx.QueryIntegerProperty<AppointmentCustomFieldAnswerModel>(
+          _entities[5].properties[3]);
+
+  /// See [AppointmentCustomFieldAnswerModel.localDocs].
+  static final localDocs =
+      obx.QueryStringVectorProperty<AppointmentCustomFieldAnswerModel>(
+          _entities[5].properties[4]);
+
+  /// See [AppointmentCustomFieldAnswerModel.remoteDocs].
+  static final remoteDocs =
+      obx.QueryStringVectorProperty<AppointmentCustomFieldAnswerModel>(
+          _entities[5].properties[5]);
+
+  /// See [AppointmentCustomFieldAnswerModel.singleDoc].
+  static final singleDoc =
+      obx.QueryStringProperty<AppointmentCustomFieldAnswerModel>(
+          _entities[5].properties[6]);
+
+  /// See [AppointmentCustomFieldAnswerModel.singleDocUrl].
+  static final singleDocUrl =
+      obx.QueryStringProperty<AppointmentCustomFieldAnswerModel>(
+          _entities[5].properties[7]);
+
+  /// See [AppointmentCustomFieldAnswerModel.numberValue].
+  static final numberValue =
+      obx.QueryIntegerProperty<AppointmentCustomFieldAnswerModel>(
+          _entities[5].properties[8]);
+
+  /// See [AppointmentCustomFieldAnswerModel.textValue].
+  static final textValue =
+      obx.QueryStringProperty<AppointmentCustomFieldAnswerModel>(
+          _entities[5].properties[9]);
+
+  /// See [AppointmentCustomFieldAnswerModel.dateValue].
+  static final dateValue =
+      obx.QueryDateProperty<AppointmentCustomFieldAnswerModel>(
+          _entities[5].properties[10]);
 }

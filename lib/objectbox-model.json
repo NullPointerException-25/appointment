@@ -5,7 +5,7 @@
   "entities": [
     {
       "id": "1:6",
-      "lastPropertyId": "7:6963785314595703275",
+      "lastPropertyId": "10:8830871549609841818",
       "name": "AppointmentFieldModel",
       "properties": [
         {
@@ -49,6 +49,14 @@
           "flags": 520,
           "indexId": "4:2364838510077903882",
           "relationTarget": "AppointmentTemplateModel"
+        },
+        {
+          "id": "10:8830871549609841818",
+          "name": "answerId",
+          "type": 11,
+          "flags": 520,
+          "indexId": "7:1538505947759255273",
+          "relationTarget": "AppointmentCustomFieldAnswerModel"
         }
       ],
       "relations": []
@@ -228,18 +236,87 @@
         }
       ],
       "relations": []
+    },
+    {
+      "id": "6:7",
+      "lastPropertyId": "11:3513794434058134240",
+      "name": "AppointmentCustomFieldAnswerModel",
+      "properties": [
+        {
+          "id": "1:2711061456828049753",
+          "name": "localId",
+          "type": 6,
+          "flags": 1
+        },
+        {
+          "id": "2:4080289837642348930",
+          "name": "remoteId",
+          "type": 9
+        },
+        {
+          "id": "3:2822521050917903223",
+          "name": "lastUpdate",
+          "type": 10
+        },
+        {
+          "id": "4:1283755720882257258",
+          "name": "formFieldType",
+          "type": 6
+        },
+        {
+          "id": "5:6041939630560057387",
+          "name": "localDocs",
+          "type": 30
+        },
+        {
+          "id": "6:2470905089050333725",
+          "name": "remoteDocs",
+          "type": 30
+        },
+        {
+          "id": "7:3309768463166875603",
+          "name": "singleDoc",
+          "type": 9
+        },
+        {
+          "id": "8:8157408356628389927",
+          "name": "singleDocUrl",
+          "type": 9
+        },
+        {
+          "id": "9:7011602480011915961",
+          "name": "numberValue",
+          "type": 6
+        },
+        {
+          "id": "10:4940469889377361761",
+          "name": "textValue",
+          "type": 9
+        },
+        {
+          "id": "11:3513794434058134240",
+          "name": "dateValue",
+          "type": 10
+        }
+      ],
+      "relations": []
     }
   ],
-  "lastEntityId": "5:1",
-  "lastIndexId": "4:2364838510077903882",
+  "lastEntityId": "6:7",
+  "lastIndexId": "7:1538505947759255273",
   "lastRelationId": "2:4933571554284600610",
   "lastSequenceId": "0:0",
   "modelVersion": 5,
   "modelVersionParserMinimum": 5,
   "retiredEntityUids": [],
-  "retiredIndexUids": [],
+  "retiredIndexUids": [
+    9130270367226397310,
+    2353577699014373951
+  ],
   "retiredPropertyUids": [
-    1701739923913506732
+    1701739923913506732,
+    7973595731220429514,
+    504081564580996350
   ],
   "retiredRelationUids": [
     6766621169241648557,

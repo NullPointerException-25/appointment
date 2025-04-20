@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hugeicons/hugeicons.dart';
 
 import '../../../../../core/utils/global_values.dart';
-import '../../../data/model/appointment_field.dart';
 import '../../../domain/entities/appointment_field_entity.dart';
 
 class ImageListTemplateField extends StatelessWidget {

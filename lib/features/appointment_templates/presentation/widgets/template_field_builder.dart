@@ -1,5 +1,7 @@
 import 'package:appointments_manager/core/utils/global_values.dart';
 import 'package:appointments_manager/features/appointment_templates/domain/entities/appointment_field_entity.dart';
+import 'package:appointments_manager/features/appointment_templates/presentation/widgets/fields/audio.dart';
+import 'package:appointments_manager/features/appointment_templates/presentation/widgets/fields/number.dart';
 import 'package:appointments_manager/features/appointment_templates/presentation/widgets/fields/phone.dart';
 import 'package:flutter/material.dart';
 
@@ -17,7 +19,7 @@ class TemplateFieldBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
 
     if(field.fieldType == FormFieldType.number) {
-      //return CustomFieldEditing(field: field);
+      return NumberTemplateField(field);
     }
 
     if(field.fieldType == FormFieldType.shortText) {
@@ -38,6 +40,10 @@ class TemplateFieldBuilder extends StatelessWidget {
     if(field.fieldType == FormFieldType.phoneNumber){
       return PhoneNumberTemplateField(field);
     }
+    if(field.fieldType == FormFieldType.audio){
+      return AudioTemplateField(field);
+    }
+
     return const Padding(
       padding: EdgeInsets.all(kPaddingM),
       child: Text("If you see this, this field is not compatible with your version, try updating the app"),

@@ -76,7 +76,8 @@ class DetailsAppointmentMobilePage
             TemplateFieldBuilder(
               field: controller.customFields[index],
             )
-          )
+          ),
+          const SliverPadding(padding: EdgeInsets.symmetric(vertical: kPaddingXXL)),
         ],
       )),
     );

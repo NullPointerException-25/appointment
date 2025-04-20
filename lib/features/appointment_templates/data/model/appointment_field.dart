@@ -2,7 +2,10 @@ import 'package:appointments_manager/core/abstractions/model.dart';
 import 'package:appointments_manager/features/appointment/data/models/appointment.dart';
 import 'package:appointments_manager/features/appointment_templates/data/model/appointment_template.dart';
 import 'package:appointments_manager/features/appointment_templates/domain/entities/appointment_field_entity.dart';
+import 'package:appointments_manager/features/appointment_templates/mappers/custom_field_answer_mapper.dart';
 import 'package:objectbox/objectbox.dart';
+
+import 'appointment_custom_field_answer.dart';
 
 @Entity(uid: 6)
 class AppointmentFieldModel extends CoreModel<AppointmentFieldEntity> {
@@ -16,16 +19,27 @@ class AppointmentFieldModel extends CoreModel<AppointmentFieldEntity> {
   late DateTime lastUpdate;
   @override
   String remoteId;
-  final appointment= ToOne<AppointmentModel>();
+  final appointment = ToOne<AppointmentModel>();
   final template = ToOne<AppointmentTemplateModel>();
-  AppointmentFieldModel(this.title, this.formFieldType,
-      {this.localId = 0, this.remoteId = "", DateTime? lastUpdate}) {
+
+  final answer = ToOne<AppointmentCustomFieldAnswerModel>();
+
+  AppointmentFieldModel(
+    this.title,
+    this.formFieldType, {
+    this.localId = 0,
+    this.remoteId = "",
+    DateTime? lastUpdate,
+  }) {
     this.lastUpdate = lastUpdate ?? DateTime.now();
   }
 
   @override
   AppointmentFieldEntity toEntity() {
     return AppointmentFieldEntity(
+        answer: answer.target != null
+            ? CustomFieldAnswerMapper.mapToEntity(answer.target!)
+            : null,
         title: title,
         fieldType: formFieldType,
         lastUpdate: lastUpdate,
@@ -39,5 +53,3 @@ class AppointmentFieldModel extends CoreModel<AppointmentFieldEntity> {
     throw UnimplementedError();
   }
 }
-
-
