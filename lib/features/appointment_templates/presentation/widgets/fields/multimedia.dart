@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hugeicons/hugeicons.dart';
 
 import '../../../../../core/utils/global_values.dart';
-import '../../../domain/entities/appointment_field_entity.dart';
+import '../../../domain/entities/field.dart';
 
 class ImageListTemplateField extends StatelessWidget {
   ImageListTemplateField(this.field, {super.key}) {
@@ -10,7 +10,7 @@ class ImageListTemplateField extends StatelessWidget {
     "Field type must be image list");
   }
 
-  final AppointmentFieldEntity field;
+  final FieldEntity field;
 
   @override
   Widget build(BuildContext context) {

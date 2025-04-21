@@ -1,6 +1,6 @@
 import 'package:appointments_manager/core/abstractions/model.dart';
 import 'package:appointments_manager/features/appointment/domain/entities/appointment_entity.dart';
-import 'package:appointments_manager/features/appointment_templates/data/model/appointment_field.dart';
+import 'package:appointments_manager/features/appointment_templates/data/model/field.dart';
 import 'package:appointments_manager/features/client/data/models/client.dart';
 import 'package:objectbox/objectbox.dart';
 
@@ -21,7 +21,7 @@ class AppointmentModel extends CoreModel<AppointmentEntity>{
   final client = ToOne<ClientModel>();
 
   @Backlink('appointment')
-  final fields = ToMany<AppointmentFieldModel>();
+  final fields = ToMany<FieldModel>();
 
 
   AppointmentModel({

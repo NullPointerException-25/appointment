@@ -1,6 +1,6 @@
 import 'package:appointments_manager/core/abstractions/model.dart';
-import 'package:appointments_manager/features/appointment_templates/data/model/appointment_field.dart';
-import 'package:appointments_manager/features/appointment_templates/domain/entities/appointment_template_entity.dart';
+import 'package:appointments_manager/features/appointment_templates/data/model/field.dart';
+import 'package:appointments_manager/features/appointment_templates/domain/entities/template.dart';
 import 'package:objectbox/objectbox.dart';
 
 @Entity(uid: 5)
@@ -17,7 +17,7 @@ class AppointmentTemplateModel extends CoreModel<AppointmentTemplateEntity> {
   final String name;
 
   @Backlink('template')
-  final fields= ToMany<AppointmentFieldModel>();
+  final fields= ToMany<FieldModel>();
 
   AppointmentTemplateModel(this.remoteId, this.lastUpdate,
       {required this.name, this.localId = 0});

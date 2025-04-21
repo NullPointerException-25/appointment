@@ -15,9 +15,9 @@ import 'package:objectbox/objectbox.dart' as obx;
 import 'package:objectbox_flutter_libs/objectbox_flutter_libs.dart';
 
 import 'features/appointment/data/models/appointment.dart';
-import 'features/appointment_templates/data/model/appointment_custom_field_answer.dart';
-import 'features/appointment_templates/data/model/appointment_field.dart';
-import 'features/appointment_templates/data/model/appointment_template.dart';
+import 'features/appointment_templates/data/model/field_answer.dart';
+import 'features/appointment_templates/data/model/field.dart';
+import 'features/appointment_templates/data/model/template.dart';
 import 'features/client/data/models/client.dart';
 import 'features/user/data/models/users_model.dart';
 
@@ -386,16 +386,16 @@ obx_int.ModelDefinition getObjectBoxModel() {
       version: 1);
 
   final bindings = <Type, obx_int.EntityDefinition>{
-    AppointmentFieldModel: obx_int.EntityDefinition<AppointmentFieldModel>(
+    FieldModel: obx_int.EntityDefinition<FieldModel>(
         model: _entities[0],
-        toOneRelations: (AppointmentFieldModel object) =>
+        toOneRelations: (FieldModel object) =>
             [object.appointment, object.template, object.answer],
-        toManyRelations: (AppointmentFieldModel object) => {},
-        getId: (AppointmentFieldModel object) => object.localId,
-        setId: (AppointmentFieldModel object, int id) {
+        toManyRelations: (FieldModel object) => {},
+        getId: (FieldModel object) => object.localId,
+        setId: (FieldModel object, int id) {
           object.localId = id;
         },
-        objectToFB: (AppointmentFieldModel object, fb.Builder fbb) {
+        objectToFB: (FieldModel object, fb.Builder fbb) {
           final titleOffset = fbb.writeString(object.title);
           final remoteIdOffset = fbb.writeString(object.remoteId);
           fbb.startTable(11);
@@ -423,7 +423,7 @@ obx_int.ModelDefinition getObjectBoxModel() {
               .vTableGet(buffer, rootOffset, 10, '');
           final lastUpdateParam = DateTime.fromMillisecondsSinceEpoch(
               const fb.Int64Reader().vTableGet(buffer, rootOffset, 8, 0));
-          final object = AppointmentFieldModel(titleParam, formFieldTypeParam,
+          final object = FieldModel(titleParam, formFieldTypeParam,
               localId: localIdParam,
               remoteId: remoteIdParam,
               lastUpdate: lastUpdateParam);
@@ -442,10 +442,10 @@ obx_int.ModelDefinition getObjectBoxModel() {
         model: _entities[1],
         toOneRelations: (AppointmentModel object) => [object.client],
         toManyRelations: (AppointmentModel object) => {
-              obx_int.RelInfo<AppointmentFieldModel>.toOneBacklink(
+              obx_int.RelInfo<FieldModel>.toOneBacklink(
                   6,
                   object.localId,
-                  (AppointmentFieldModel srcObject) =>
+                  (FieldModel srcObject) =>
                       srcObject.appointment): object.fields
             },
         getId: (AppointmentModel object) => object.localId,
@@ -488,10 +488,10 @@ obx_int.ModelDefinition getObjectBoxModel() {
           obx_int.InternalToManyAccess.setRelInfo<AppointmentModel>(
               object.fields,
               store,
-              obx_int.RelInfo<AppointmentFieldModel>.toOneBacklink(
+              obx_int.RelInfo<FieldModel>.toOneBacklink(
                   6,
                   object.localId,
-                  (AppointmentFieldModel srcObject) => srcObject.appointment));
+                  (FieldModel srcObject) => srcObject.appointment));
           return object;
         }),
     AppointmentTemplateModel:
@@ -499,10 +499,10 @@ obx_int.ModelDefinition getObjectBoxModel() {
             model: _entities[2],
             toOneRelations: (AppointmentTemplateModel object) => [],
             toManyRelations: (AppointmentTemplateModel object) => {
-                  obx_int.RelInfo<AppointmentFieldModel>.toOneBacklink(
+                  obx_int.RelInfo<FieldModel>.toOneBacklink(
                       7,
                       object.localId,
-                      (AppointmentFieldModel srcObject) =>
+                      (FieldModel srcObject) =>
                           srcObject.template): object.fields
                 },
             getId: (AppointmentTemplateModel object) => object.localId,
@@ -538,10 +538,10 @@ obx_int.ModelDefinition getObjectBoxModel() {
               obx_int.InternalToManyAccess.setRelInfo<AppointmentTemplateModel>(
                   object.fields,
                   store,
-                  obx_int.RelInfo<AppointmentFieldModel>.toOneBacklink(
+                  obx_int.RelInfo<FieldModel>.toOneBacklink(
                       7,
                       object.localId,
-                      (AppointmentFieldModel srcObject) => srcObject.template));
+                      (FieldModel srcObject) => srcObject.template));
               return object;
             }),
     ClientModel: obx_int.EntityDefinition<ClientModel>(
@@ -672,16 +672,16 @@ obx_int.ModelDefinition getObjectBoxModel() {
 
           return object;
         }),
-    AppointmentCustomFieldAnswerModel: obx_int.EntityDefinition<
-            AppointmentCustomFieldAnswerModel>(
+    FieldAnswerModel: obx_int.EntityDefinition<
+            FieldAnswerModel>(
         model: _entities[5],
-        toOneRelations: (AppointmentCustomFieldAnswerModel object) => [],
-        toManyRelations: (AppointmentCustomFieldAnswerModel object) => {},
-        getId: (AppointmentCustomFieldAnswerModel object) => object.localId,
-        setId: (AppointmentCustomFieldAnswerModel object, int id) {
+        toOneRelations: (FieldAnswerModel object) => [],
+        toManyRelations: (FieldAnswerModel object) => {},
+        getId: (FieldAnswerModel object) => object.localId,
+        setId: (FieldAnswerModel object, int id) {
           object.localId = id;
         },
-        objectToFB: (AppointmentCustomFieldAnswerModel object, fb.Builder fbb) {
+        objectToFB: (FieldAnswerModel object, fb.Builder fbb) {
           final remoteIdOffset = fbb.writeString(object.remoteId);
           final localDocsOffset = fbb.writeList(
               object.localDocs.map(fbb.writeString).toList(growable: false));
@@ -735,7 +735,7 @@ obx_int.ModelDefinition getObjectBoxModel() {
               const fb.Int64Reader().vTableGet(buffer, rootOffset, 24, 0));
           final lastUpdateParam = DateTime.fromMillisecondsSinceEpoch(
               const fb.Int64Reader().vTableGet(buffer, rootOffset, 8, 0));
-          final object = AppointmentCustomFieldAnswerModel(
+          final object = FieldAnswerModel(
               localId: localIdParam,
               remoteId: remoteIdParam,
               formFieldType: formFieldTypeParam,
@@ -755,41 +755,41 @@ obx_int.ModelDefinition getObjectBoxModel() {
   return obx_int.ModelDefinition(model, bindings);
 }
 
-/// [AppointmentFieldModel] entity fields to define ObjectBox queries.
+/// [FieldModel] entity fields to define ObjectBox queries.
 class AppointmentFieldModel_ {
-  /// See [AppointmentFieldModel.localId].
-  static final localId = obx.QueryIntegerProperty<AppointmentFieldModel>(
+  /// See [FieldModel.localId].
+  static final localId = obx.QueryIntegerProperty<FieldModel>(
       _entities[0].properties[0]);
 
-  /// See [AppointmentFieldModel.title].
-  static final title = obx.QueryStringProperty<AppointmentFieldModel>(
+  /// See [FieldModel.title].
+  static final title = obx.QueryStringProperty<FieldModel>(
       _entities[0].properties[1]);
 
-  /// See [AppointmentFieldModel.lastUpdate].
+  /// See [FieldModel.lastUpdate].
   static final lastUpdate =
-      obx.QueryDateProperty<AppointmentFieldModel>(_entities[0].properties[2]);
+      obx.QueryDateProperty<FieldModel>(_entities[0].properties[2]);
 
-  /// See [AppointmentFieldModel.remoteId].
-  static final remoteId = obx.QueryStringProperty<AppointmentFieldModel>(
+  /// See [FieldModel.remoteId].
+  static final remoteId = obx.QueryStringProperty<FieldModel>(
       _entities[0].properties[3]);
 
-  /// See [AppointmentFieldModel.formFieldType].
-  static final formFieldType = obx.QueryIntegerProperty<AppointmentFieldModel>(
+  /// See [FieldModel.formFieldType].
+  static final formFieldType = obx.QueryIntegerProperty<FieldModel>(
       _entities[0].properties[4]);
 
-  /// See [AppointmentFieldModel.appointment].
+  /// See [FieldModel.appointment].
   static final appointment =
-      obx.QueryRelationToOne<AppointmentFieldModel, AppointmentModel>(
+      obx.QueryRelationToOne<FieldModel, AppointmentModel>(
           _entities[0].properties[5]);
 
-  /// See [AppointmentFieldModel.template].
+  /// See [FieldModel.template].
   static final template =
-      obx.QueryRelationToOne<AppointmentFieldModel, AppointmentTemplateModel>(
+      obx.QueryRelationToOne<FieldModel, AppointmentTemplateModel>(
           _entities[0].properties[6]);
 
-  /// See [AppointmentFieldModel.answer].
-  static final answer = obx.QueryRelationToOne<AppointmentFieldModel,
-      AppointmentCustomFieldAnswerModel>(_entities[0].properties[7]);
+  /// See [FieldModel.answer].
+  static final answer = obx.QueryRelationToOne<FieldModel,
+      FieldAnswerModel>(_entities[0].properties[7]);
 }
 
 /// [AppointmentModel] entity fields to define ObjectBox queries.
@@ -820,7 +820,7 @@ class AppointmentModel_ {
 
   /// see [AppointmentModel.fields]
   static final fields =
-      obx.QueryBacklinkToMany<AppointmentFieldModel, AppointmentModel>(
+      obx.QueryBacklinkToMany<FieldModel, AppointmentModel>(
           AppointmentFieldModel_.appointment);
 }
 
@@ -844,7 +844,7 @@ class AppointmentTemplateModel_ {
 
   /// see [AppointmentTemplateModel.fields]
   static final fields =
-      obx.QueryBacklinkToMany<AppointmentFieldModel, AppointmentTemplateModel>(
+      obx.QueryBacklinkToMany<FieldModel, AppointmentTemplateModel>(
           AppointmentFieldModel_.template);
 }
 
@@ -927,60 +927,60 @@ class UserModel_ {
       obx.QueryStringProperty<UserModel>(_entities[4].properties[7]);
 }
 
-/// [AppointmentCustomFieldAnswerModel] entity fields to define ObjectBox queries.
+/// [FieldAnswerModel] entity fields to define ObjectBox queries.
 class AppointmentCustomFieldAnswerModel_ {
-  /// See [AppointmentCustomFieldAnswerModel.localId].
+  /// See [FieldAnswerModel.localId].
   static final localId =
-      obx.QueryIntegerProperty<AppointmentCustomFieldAnswerModel>(
+      obx.QueryIntegerProperty<FieldAnswerModel>(
           _entities[5].properties[0]);
 
-  /// See [AppointmentCustomFieldAnswerModel.remoteId].
+  /// See [FieldAnswerModel.remoteId].
   static final remoteId =
-      obx.QueryStringProperty<AppointmentCustomFieldAnswerModel>(
+      obx.QueryStringProperty<FieldAnswerModel>(
           _entities[5].properties[1]);
 
-  /// See [AppointmentCustomFieldAnswerModel.lastUpdate].
+  /// See [FieldAnswerModel.lastUpdate].
   static final lastUpdate =
-      obx.QueryDateProperty<AppointmentCustomFieldAnswerModel>(
+      obx.QueryDateProperty<FieldAnswerModel>(
           _entities[5].properties[2]);
 
-  /// See [AppointmentCustomFieldAnswerModel.formFieldType].
+  /// See [FieldAnswerModel.formFieldType].
   static final formFieldType =
-      obx.QueryIntegerProperty<AppointmentCustomFieldAnswerModel>(
+      obx.QueryIntegerProperty<FieldAnswerModel>(
           _entities[5].properties[3]);
 
-  /// See [AppointmentCustomFieldAnswerModel.localDocs].
+  /// See [FieldAnswerModel.localDocs].
   static final localDocs =
-      obx.QueryStringVectorProperty<AppointmentCustomFieldAnswerModel>(
+      obx.QueryStringVectorProperty<FieldAnswerModel>(
           _entities[5].properties[4]);
 
-  /// See [AppointmentCustomFieldAnswerModel.remoteDocs].
+  /// See [FieldAnswerModel.remoteDocs].
   static final remoteDocs =
-      obx.QueryStringVectorProperty<AppointmentCustomFieldAnswerModel>(
+      obx.QueryStringVectorProperty<FieldAnswerModel>(
           _entities[5].properties[5]);
 
-  /// See [AppointmentCustomFieldAnswerModel.singleDoc].
+  /// See [FieldAnswerModel.singleDoc].
   static final singleDoc =
-      obx.QueryStringProperty<AppointmentCustomFieldAnswerModel>(
+      obx.QueryStringProperty<FieldAnswerModel>(
           _entities[5].properties[6]);
 
-  /// See [AppointmentCustomFieldAnswerModel.singleDocUrl].
+  /// See [FieldAnswerModel.singleDocUrl].
   static final singleDocUrl =
-      obx.QueryStringProperty<AppointmentCustomFieldAnswerModel>(
+      obx.QueryStringProperty<FieldAnswerModel>(
           _entities[5].properties[7]);
 
-  /// See [AppointmentCustomFieldAnswerModel.numberValue].
+  /// See [FieldAnswerModel.numberValue].
   static final numberValue =
-      obx.QueryIntegerProperty<AppointmentCustomFieldAnswerModel>(
+      obx.QueryIntegerProperty<FieldAnswerModel>(
           _entities[5].properties[8]);
 
-  /// See [AppointmentCustomFieldAnswerModel.textValue].
+  /// See [FieldAnswerModel.textValue].
   static final textValue =
-      obx.QueryStringProperty<AppointmentCustomFieldAnswerModel>(
+      obx.QueryStringProperty<FieldAnswerModel>(
           _entities[5].properties[9]);
 
-  /// See [AppointmentCustomFieldAnswerModel.dateValue].
+  /// See [FieldAnswerModel.dateValue].
   static final dateValue =
-      obx.QueryDateProperty<AppointmentCustomFieldAnswerModel>(
+      obx.QueryDateProperty<FieldAnswerModel>(
           _entities[5].properties[10]);
 }

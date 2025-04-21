@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../../core/utils/global_values.dart';
-import '../../../data/model/appointment_field.dart';
-import '../../../domain/entities/appointment_field_entity.dart';
+import '../../../data/model/field.dart';
+import '../../../domain/entities/field.dart';
 
 class LargeTextTemplateField extends StatelessWidget {
   LargeTextTemplateField(this.field, {super.key}){
     assert(field.fieldType == FormFieldType.largeText, "Field type must be large text");
   }
-  final AppointmentFieldEntity field;
+  final FieldEntity field;
 
   @override
   Widget build(BuildContext context) {

@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:appointments_manager/features/appointment/domain/entities/appointment_entity.dart';
-import 'package:appointments_manager/features/appointment_templates/domain/entities/appointment_field_entity.dart';
+import 'package:appointments_manager/features/appointment_templates/domain/entities/field.dart';
 import 'package:get/get.dart';
 
 import '../../../client/presentation/abstractions/controller_card_previewable.dart';
@@ -11,7 +11,7 @@ class DetailsAppointmentController extends GetxController
   static DetailsAppointmentController get to =>
       Get.find<DetailsAppointmentController>();
   late final Rx<AppointmentEntity> appointmentEntity;
-  late final RxList<AppointmentFieldEntity> customFields;
+  late final RxList<FieldEntity> customFields;
 
   final Rx<int> currentProgressMinutes=0.obs;
   final Rx<int> diffInitialEndTimeMinutes=0.obs;

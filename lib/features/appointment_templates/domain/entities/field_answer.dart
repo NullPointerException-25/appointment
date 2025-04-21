@@ -1,11 +1,11 @@
 import 'package:appointments_manager/core/abstractions/entity.dart';
-import 'package:appointments_manager/features/appointment_templates/data/model/appointment_custom_field_answer.dart';
-import 'package:appointments_manager/features/appointment_templates/mappers/custom_field_answer_mapper.dart';
+import 'package:appointments_manager/features/appointment_templates/data/model/field_answer.dart';
+import 'package:appointments_manager/features/appointment_templates/mappers/field_answer_mapper.dart';
 
 import '../../../../core/utils/global_values.dart';
 import '../../../../objectbox.g.dart';
 
-class AppointmentCustomFieldAnswerEntity<T> extends CoreEntity<AppointmentCustomFieldAnswerModel> {
+class FieldAnswerEntity<T> extends CoreEntity<FieldAnswerModel> {
 
   @override
   @Id()
@@ -19,7 +19,7 @@ class AppointmentCustomFieldAnswerEntity<T> extends CoreEntity<AppointmentCustom
   T value;
   T? remoteValue;
 
-  AppointmentCustomFieldAnswerEntity({
+  FieldAnswerEntity({
     this.localId = 0,
     this.remoteId = "",
     required this.formFieldType,
@@ -31,8 +31,8 @@ class AppointmentCustomFieldAnswerEntity<T> extends CoreEntity<AppointmentCustom
   }
 
   @override
-  AppointmentCustomFieldAnswerModel toModel() {
-    return CustomFieldAnswerMapper.mapToModel(this);
+  FieldAnswerModel toModel() {
+    return FieldAnswerMapper.mapToModel(this);
   }
 
 

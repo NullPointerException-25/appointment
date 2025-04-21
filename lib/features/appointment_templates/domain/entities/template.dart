@@ -1,5 +1,5 @@
 import 'package:appointments_manager/core/abstractions/entity.dart';
-import 'package:appointments_manager/features/appointment_templates/data/model/appointment_template.dart';
+import 'package:appointments_manager/features/appointment_templates/data/model/template.dart';
 
 class AppointmentTemplateEntity extends CoreEntity<AppointmentTemplateModel>{
   @override

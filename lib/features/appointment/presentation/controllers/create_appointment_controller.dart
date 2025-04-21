@@ -13,7 +13,7 @@ import 'package:get/get.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 import '../../../../core/utils/routes.dart';
-import '../../../appointment_templates/domain/entities/appointment_field_entity.dart';
+import '../../../appointment_templates/domain/entities/field.dart';
 
 class CreateAppointmentController extends GetxController {
   static CreateAppointmentController get to =>
@@ -37,7 +37,7 @@ class CreateAppointmentController extends GetxController {
   final calendarFormat = Rx<CalendarFormat>(CalendarFormat.month);
   final todayAppointments = <AppointmentContract>[].obs;
   final selectedAppointmentPreview = Rxn<AppointmentPreview>();
-  final customFields = RxList<AppointmentFieldEntity>([]);
+  final customFields = RxList<FieldEntity>([]);
 
   @override
   void onInit() {
@@ -118,12 +118,12 @@ class CreateAppointmentController extends GetxController {
   }
 
   void addNewField() {
-    customFields.add(AppointmentFieldEntity(
+    customFields.add(FieldEntity(
       title: "",
     ));
   }
 
-  void removeField(AppointmentFieldEntity field) {
+  void removeField(FieldEntity field) {
     customFields.remove(field);
   }
 

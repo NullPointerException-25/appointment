@@ -1,11 +1,11 @@
 import 'package:appointments_manager/core/abstractions/entity.dart';
-import 'package:appointments_manager/features/appointment_templates/data/model/appointment_field.dart';
-import 'package:appointments_manager/features/appointment_templates/domain/entities/appointment_custom_field_answer.dart';
-import 'package:appointments_manager/features/appointment_templates/mappers/custom_field_answer_mapper.dart';
+import 'package:appointments_manager/features/appointment_templates/data/model/field.dart';
+import 'package:appointments_manager/features/appointment_templates/mappers/field_answer_mapper.dart';
 
 import '../../../../core/utils/global_values.dart';
+import 'field_answer.dart';
 
-class AppointmentFieldEntity extends CoreEntity<AppointmentFieldModel> {
+class FieldEntity extends CoreEntity<FieldModel> {
   @override
   late DateTime lastUpdate;
 
@@ -19,9 +19,9 @@ class AppointmentFieldEntity extends CoreEntity<AppointmentFieldModel> {
 
   late FormFieldType fieldType;
 
-  AppointmentCustomFieldAnswerEntity? answer;
+  FieldAnswerEntity? answer;
 
-  AppointmentFieldEntity(
+  FieldEntity(
       {DateTime? lastUpdate,
       this.localId = 0,
       this.remoteId = "",
@@ -33,14 +33,14 @@ class AppointmentFieldEntity extends CoreEntity<AppointmentFieldModel> {
   }
 
   @override
-  AppointmentFieldModel toModel() {
-    return AppointmentFieldModel(
+  FieldModel toModel() {
+    return FieldModel(
         title,
         formFieldTypeMap.entries
             .firstWhere((element) => element.value == fieldType)
             .key,
         localId: localId,
         lastUpdate: lastUpdate,
-        remoteId: remoteId)..answer.target= CustomFieldAnswerMapper.mapToModel(answer!);
+        remoteId: remoteId)..answer.target= FieldAnswerMapper.mapToModel(answer!);
   }
 }

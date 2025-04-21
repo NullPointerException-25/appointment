@@ -7,13 +7,13 @@ import '../../../../../core/utils/colors.dart';
 import '../../../../../core/utils/global_values.dart';
 import '../../../../../core/utils/translations.dart';
 import '../../../../../core/widgets/text_form_field_core.dart';
-import '../../../domain/entities/appointment_field_entity.dart';
+import '../../../domain/entities/field.dart';
 
 class AudioTemplateField extends StatelessWidget {
   AudioTemplateField(this.field, {super.key}){
     assert(field.fieldType == FormFieldType.audio, "Field type must be audio");
   }
-  final AppointmentFieldEntity field;
+  final FieldEntity field;
 
   @override
   Widget build(BuildContext context) {

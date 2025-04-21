@@ -6,15 +6,15 @@ import 'package:get/get.dart';
 import 'package:hugeicons/hugeicons.dart';
 
 import '../../../../../core/utils/global_values.dart';
-import '../../../data/model/appointment_field.dart';
-import '../../../domain/entities/appointment_field_entity.dart';
+import '../../../data/model/field.dart';
+import '../../../domain/entities/field.dart';
 
 class DateTemplateField extends StatelessWidget {
   DateTemplateField(this.field, {super.key}) {
     assert(field.fieldType == FormFieldType.date, "Field type must be date");
   }
 
-  final AppointmentFieldEntity field;
+  final FieldEntity field;
 
   @override
   Widget build(BuildContext context) {

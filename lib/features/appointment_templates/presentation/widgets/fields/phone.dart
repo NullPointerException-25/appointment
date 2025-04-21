@@ -7,14 +7,14 @@ import 'package:hugeicons/hugeicons.dart';
 
 import '../../../../../core/utils/colors.dart';
 import '../../../../../core/utils/global_values.dart';
-import '../../../data/model/appointment_field.dart';
-import '../../../domain/entities/appointment_field_entity.dart';
+import '../../../data/model/field.dart';
+import '../../../domain/entities/field.dart';
 
 class PhoneNumberTemplateField extends StatelessWidget {
   PhoneNumberTemplateField(this.field, {super.key}){
     assert(field.fieldType == FormFieldType.phoneNumber, "Field type must be phone number");
   }
-  final AppointmentFieldEntity field;
+  final FieldEntity field;
 
   @override
   Widget build(BuildContext context) {

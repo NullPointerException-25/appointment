@@ -1,7 +1,7 @@
 import 'package:appointments_manager/features/appointment/data/models/appointment.dart';
 import 'package:appointments_manager/features/appointment_templates/data/datasource/local_custom_fields.dart';
-import 'package:appointments_manager/features/appointment_templates/data/model/appointment_field.dart';
-import 'package:appointments_manager/features/appointment_templates/domain/entities/appointment_template_entity.dart';
+import 'package:appointments_manager/features/appointment_templates/data/model/field.dart';
+import 'package:appointments_manager/features/appointment_templates/domain/entities/template.dart';
 import 'package:appointments_manager/features/appointment_templates/domain/repositories/appointment_custom_fields_repository.dart';
 import 'package:get/get.dart';
 
@@ -15,24 +15,24 @@ class LocalCustomFieldsRepositoryImpl extends GetxService implements Appointment
   }
 
   @override
-  Future<void> attachCustomFields(AppointmentModel appointment, List<AppointmentFieldModel> customFields) async {
+  Future<void> attachCustomFields(AppointmentModel appointment, List<FieldModel> customFields) async {
     _localCustomFieldsDataSource.attachCustomFields(appointment, customFields);
     return;
   }
 
   @override
-  Future<List<AppointmentFieldModel>> getCustomFields(AppointmentModel appointment) async {
+  Future<List<FieldModel>> getCustomFields(AppointmentModel appointment) async {
     return _localCustomFieldsDataSource.getCustomFields(appointment);
   }
 
   @override
-  Future<List<AppointmentFieldModel>> getCustomFieldsByTemplate(AppointmentTemplateEntity template) {
+  Future<List<FieldModel>> getCustomFieldsByTemplate(AppointmentTemplateEntity template) {
     // TODO: implement getCustomFieldsByTemplate
     throw UnimplementedError();
   }
 
   @override
-  Future<void> removeCustomField(AppointmentModel appointment, AppointmentFieldModel customField) async {
+  Future<void> removeCustomField(AppointmentModel appointment, FieldModel customField) async {
       _localCustomFieldsDataSource.removeCustomField(appointment, customField);
   }
 

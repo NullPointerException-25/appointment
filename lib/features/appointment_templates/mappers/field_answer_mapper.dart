@@ -1,19 +1,20 @@
-import 'package:appointments_manager/features/appointment_templates/data/model/appointment_custom_field_answer.dart';
-import 'package:appointments_manager/features/appointment_templates/domain/entities/appointment_field_entity.dart';
+import 'package:appointments_manager/features/appointment_templates/data/model/field_answer.dart';
+import 'package:appointments_manager/features/appointment_templates/domain/entities/field.dart';
 
 import '../../../core/utils/global_values.dart';
-import '../domain/entities/appointment_custom_field_answer.dart';
+import '../domain/entities/field_answer.dart';
 
-class CustomFieldAnswerMapper {
-  static AppointmentCustomFieldAnswerModel mapToModel(
-      AppointmentCustomFieldAnswerEntity entity) {
+
+class FieldAnswerMapper {
+  static FieldAnswerModel mapToModel(
+      FieldAnswerEntity entity) {
     final type = formFieldTypeMap.entries
         .firstWhere((element) => element.value == entity.formFieldType)
         .key;
     final formFieldType = formFieldTypeMap[type] ?? FormFieldType.unknown;
     switch (formFieldType) {
       case FormFieldType.largeText:
-        return AppointmentCustomFieldAnswerModel(
+        return FieldAnswerModel(
           localId: entity.localId,
           remoteId: entity.remoteId,
           lastUpdate: entity.lastUpdate,
@@ -21,7 +22,7 @@ class CustomFieldAnswerMapper {
           textValue: entity.value as String,
         );
       case FormFieldType.number:
-        return AppointmentCustomFieldAnswerModel(
+        return FieldAnswerModel(
           localId: entity.localId,
           remoteId: entity.remoteId,
           lastUpdate: entity.lastUpdate,
@@ -29,7 +30,7 @@ class CustomFieldAnswerMapper {
           numberValue: entity.value as int,
         );
       case FormFieldType.date:
-        return AppointmentCustomFieldAnswerModel(
+        return FieldAnswerModel(
           localId: entity.localId,
           remoteId: entity.remoteId,
           lastUpdate: entity.lastUpdate,
@@ -38,7 +39,7 @@ class CustomFieldAnswerMapper {
         );
 
       case FormFieldType.shortText:
-        return AppointmentCustomFieldAnswerModel(
+        return FieldAnswerModel(
           localId: entity.localId,
           remoteId: entity.remoteId,
           lastUpdate: entity.lastUpdate,
@@ -46,7 +47,7 @@ class CustomFieldAnswerMapper {
           textValue: entity.value as String,
         );
       case FormFieldType.imageList:
-        return AppointmentCustomFieldAnswerModel(
+        return FieldAnswerModel(
           localId: entity.localId,
           remoteId: entity.remoteId,
           lastUpdate: entity.lastUpdate,
@@ -56,7 +57,7 @@ class CustomFieldAnswerMapper {
         );
 
       case FormFieldType.phoneNumber:
-        return AppointmentCustomFieldAnswerModel(
+        return FieldAnswerModel(
           localId: entity.localId,
           remoteId: entity.remoteId,
           lastUpdate: entity.lastUpdate,
@@ -64,7 +65,7 @@ class CustomFieldAnswerMapper {
           numberValue: entity.value as int,
         );
       case FormFieldType.audio:
-        return AppointmentCustomFieldAnswerModel(
+        return FieldAnswerModel(
           localId: entity.localId,
           remoteId: entity.remoteId,
           lastUpdate: entity.lastUpdate,
@@ -73,17 +74,17 @@ class CustomFieldAnswerMapper {
           singleDocUrl: entity.remoteValue as String? ?? "",
         );
       default:
-        return AppointmentCustomFieldAnswerModel(
+        return FieldAnswerModel(
             localId: 0, remoteId: "", formFieldType: type);
     }
   }
 
-  static AppointmentCustomFieldAnswerEntity mapToEntity(
-      AppointmentCustomFieldAnswerModel model) {
+  static FieldAnswerEntity mapToEntity(
+      FieldAnswerModel model) {
     final type =  formFieldTypeMap[model.formFieldType] ?? FormFieldType.unknown;
     switch(type) {
       case FormFieldType.largeText:
-        return AppointmentCustomFieldAnswerEntity<String>(
+        return FieldAnswerEntity<String>(
           localId: model.localId,
           remoteId: model.remoteId,
           lastUpdate: model.lastUpdate,
@@ -91,7 +92,7 @@ class CustomFieldAnswerMapper {
           value: model.textValue,
         );
       case FormFieldType.number:
-        return AppointmentCustomFieldAnswerEntity<int>(
+        return FieldAnswerEntity<int>(
           localId: model.localId,
           remoteId: model.remoteId,
           lastUpdate: model.lastUpdate,
@@ -99,7 +100,7 @@ class CustomFieldAnswerMapper {
           value: model.numberValue,
         );
       case FormFieldType.date:
-        return AppointmentCustomFieldAnswerEntity<DateTime>(
+        return FieldAnswerEntity<DateTime>(
           localId: model.localId,
           remoteId: model.remoteId,
           lastUpdate: model.lastUpdate,
@@ -108,7 +109,7 @@ class CustomFieldAnswerMapper {
         );
 
       case FormFieldType.shortText:
-        return AppointmentCustomFieldAnswerEntity<String>(
+        return FieldAnswerEntity<String>(
           localId: model.localId,
           remoteId: model.remoteId,
           lastUpdate: model.lastUpdate,
@@ -117,7 +118,7 @@ class CustomFieldAnswerMapper {
         );
       case FormFieldType.imageList:
 
-        return AppointmentCustomFieldAnswerEntity<List<String>>(
+        return FieldAnswerEntity<List<String>>(
           localId: model.localId,
           remoteId: model.remoteId,
           lastUpdate: model.lastUpdate,
@@ -127,7 +128,7 @@ class CustomFieldAnswerMapper {
         );
 
       case FormFieldType.phoneNumber:
-        return AppointmentCustomFieldAnswerEntity<int>(
+        return FieldAnswerEntity<int>(
           localId: model.localId,
           remoteId: model.remoteId,
           lastUpdate: model.lastUpdate,
@@ -135,7 +136,7 @@ class CustomFieldAnswerMapper {
           value: model.numberValue,
         );
       case FormFieldType.audio:
-        return AppointmentCustomFieldAnswerEntity<String>(
+        return FieldAnswerEntity<String>(
           localId: model.localId,
           remoteId: model.remoteId,
           lastUpdate: model.lastUpdate,
@@ -144,7 +145,7 @@ class CustomFieldAnswerMapper {
           remoteValue: model.singleDocUrl
         );
       default:
-        return AppointmentCustomFieldAnswerEntity(
+        return FieldAnswerEntity(
           localId: model.localId,
           remoteId: model.remoteId,
           lastUpdate: model.lastUpdate,
@@ -154,11 +155,11 @@ class CustomFieldAnswerMapper {
     }
   }
 
-  static AppointmentCustomFieldAnswerEntity defaultAnswer(AppointmentFieldEntity field){
+  static FieldAnswerEntity defaultAnswer(FieldEntity field){
     final type =  field.fieldType;
     switch (type){
       case FormFieldType.largeText:
-        return AppointmentCustomFieldAnswerEntity<String>(
+        return FieldAnswerEntity<String>(
           localId: field.localId,
           remoteId: field.remoteId,
           lastUpdate: field.lastUpdate,
@@ -166,7 +167,7 @@ class CustomFieldAnswerMapper {
           value: "",
         );
       case FormFieldType.number:
-        return AppointmentCustomFieldAnswerEntity<int>(
+        return FieldAnswerEntity<int>(
           localId: field.localId,
           remoteId: field.remoteId,
           lastUpdate: field.lastUpdate,
@@ -174,7 +175,7 @@ class CustomFieldAnswerMapper {
           value: 0,
         );
       case FormFieldType.date:
-        return AppointmentCustomFieldAnswerEntity<DateTime>(
+        return FieldAnswerEntity<DateTime>(
           localId: field.localId,
           remoteId: field.remoteId,
           lastUpdate: field.lastUpdate,
@@ -183,7 +184,7 @@ class CustomFieldAnswerMapper {
         );
 
       case FormFieldType.shortText:
-        return AppointmentCustomFieldAnswerEntity<String>(
+        return FieldAnswerEntity<String>(
           localId: field.localId,
           remoteId: field.remoteId,
           lastUpdate: field.lastUpdate,
@@ -192,7 +193,7 @@ class CustomFieldAnswerMapper {
         );
       case FormFieldType.imageList:
 
-        return AppointmentCustomFieldAnswerEntity<List<String>>(
+        return FieldAnswerEntity<List<String>>(
           localId: field.localId,
           remoteId: field.remoteId,
           lastUpdate: field.lastUpdate,
@@ -202,7 +203,7 @@ class CustomFieldAnswerMapper {
         );
 
       case FormFieldType.phoneNumber:
-        return AppointmentCustomFieldAnswerEntity<int>(
+        return FieldAnswerEntity<int>(
           localId: field.localId,
           remoteId: field.remoteId,
           lastUpdate: field.lastUpdate,
@@ -210,7 +211,7 @@ class CustomFieldAnswerMapper {
           value: 0,
         );
       case FormFieldType.audio:
-        return AppointmentCustomFieldAnswerEntity<String>(
+        return FieldAnswerEntity<String>(
             localId: field.localId,
             remoteId: field.remoteId,
             lastUpdate: field.lastUpdate,
@@ -220,7 +221,7 @@ class CustomFieldAnswerMapper {
         );
 
       case FormFieldType.unknown:
-        return AppointmentCustomFieldAnswerEntity(
+        return FieldAnswerEntity(
             localId: 0, remoteId:"", formFieldType:type, value:"");
     }
 

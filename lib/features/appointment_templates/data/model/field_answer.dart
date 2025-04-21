@@ -1,12 +1,12 @@
 import 'package:appointments_manager/core/abstractions/model.dart';
-import 'package:appointments_manager/features/appointment_templates/domain/entities/appointment_custom_field_answer.dart';
 import 'package:objectbox/objectbox.dart';
-import '../../mappers/custom_field_answer_mapper.dart';
+import '../../domain/entities/field_answer.dart';
+import '../../mappers/field_answer_mapper.dart';
 
 
 
 @Entity(uid: 7)
-class AppointmentCustomFieldAnswerModel extends CoreModel<AppointmentCustomFieldAnswerEntity> {
+class FieldAnswerModel extends CoreModel<FieldAnswerEntity> {
   @override
   @Id()
   int localId;
@@ -26,7 +26,7 @@ class AppointmentCustomFieldAnswerModel extends CoreModel<AppointmentCustomField
    DateTime dateValue = DateTime.now();
 
 
-  AppointmentCustomFieldAnswerModel(
+  FieldAnswerModel(
       {
       this.localId = 0,
       this.remoteId = "",
@@ -49,7 +49,7 @@ class AppointmentCustomFieldAnswerModel extends CoreModel<AppointmentCustomField
   }
 
   @override
-  AppointmentCustomFieldAnswerEntity toEntity() {
-      return CustomFieldAnswerMapper.mapToEntity(this);
+  FieldAnswerEntity toEntity() {
+      return FieldAnswerMapper.mapToEntity(this);
   }
 }

@@ -1,17 +1,17 @@
 import 'package:appointments_manager/core/utils/global_values.dart';
 import 'package:appointments_manager/core/widgets/text_form_field_core.dart';
 import 'package:appointments_manager/features/appointment/presentation/controllers/create_appointment_controller.dart';
-import 'package:appointments_manager/features/appointment_templates/data/model/appointment_field.dart';
+import 'package:appointments_manager/features/appointment_templates/data/model/field.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hugeicons/hugeicons.dart';
 
 import '../../../../core/utils/translations.dart';
-import '../../domain/entities/appointment_field_entity.dart';
+import '../../domain/entities/field.dart';
 
 class CustomFieldEditing extends GetView<CreateAppointmentController> {
   const CustomFieldEditing({super.key, required this.field});
-  final AppointmentFieldEntity field;
+  final FieldEntity field;
 
 
   @override
