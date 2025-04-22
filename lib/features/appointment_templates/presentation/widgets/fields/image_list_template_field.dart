@@ -27,7 +27,15 @@ class ImageListTemplateField extends StatelessWidget {
     imagesURL.value= remoteValue.value;
   }
 
+void _addImage(String imagePath) {
+  images.add(imagePath);
+  (field.answer as FieldAnswerEntity<List<String>>).value = List.from(images);
+}
 
+void _removeImage(int index) {
+  images.removeAt(index);
+  (field.answer as FieldAnswerEntity<List<String>>).value = List.from(images);
+}
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +78,7 @@ class ImageListTemplateField extends StatelessWidget {
                     onTap: () async {
                      final image = await ImagePicker().pickImage(source: ImageSource.gallery);
                      if(image != null){
-                       images.add(image.path);
+                       _addImage(image.path);
                      }
                     },
                     child: Container(
@@ -112,7 +120,7 @@ class ImageListTemplateField extends StatelessWidget {
                             icon: const Icon(HugeIcons.strokeRoundedCancel01),
                             color: Theme.of(context).primaryColor,
                             onPressed: () {
-                              images.removeAt(index);
+                              _removeImage(index);
                             },
                           ),
                         ),

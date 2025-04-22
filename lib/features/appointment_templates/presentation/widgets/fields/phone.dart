@@ -7,14 +7,19 @@ import 'package:hugeicons/hugeicons.dart';
 
 import '../../../../../core/utils/colors.dart';
 import '../../../../../core/utils/global_values.dart';
-import '../../../data/model/field.dart';
 import '../../../domain/entities/field.dart';
+import '../../../domain/entities/field_answer.dart';
 
 class PhoneNumberTemplateField extends StatelessWidget {
+  final FieldEntity field;
+  final editingController = TextEditingController();
+  late final FieldAnswerEntity<int> answer;
+
   PhoneNumberTemplateField(this.field, {super.key}){
     assert(field.fieldType == FormFieldType.phoneNumber, "Field type must be phone number");
+    answer = field.answer as FieldAnswerEntity<int>;
+    editingController.text = answer.value != 0 ? answer.value.toString() : "";
   }
-  final FieldEntity field;
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +34,7 @@ class PhoneNumberTemplateField extends StatelessWidget {
             style: Theme.of(context).textTheme.bodyMedium,
           ),
           TextFormFieldCore(
+            controller: editingController,
             inputFormatters: [
               FilteringTextInputFormatter.digitsOnly
             ],
@@ -40,6 +46,11 @@ class PhoneNumberTemplateField extends StatelessWidget {
             ),
             keyboardType: TextInputType.phone,
             onChanged: (value) {
+              if (value.isNotEmpty) {
+                answer.value = int.parse(value);
+              } else {
+                answer.value = 0;
+              }
             },
             hintText: Translator.pleaseEnterSomeText.tr,
           ),

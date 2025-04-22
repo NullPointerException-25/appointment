@@ -6,12 +6,21 @@ import 'package:get/get.dart';
 import '../../../../../core/utils/global_values.dart';
 import '../../../data/model/field.dart';
 import '../../../domain/entities/field.dart';
+import '../../../domain/entities/field_answer.dart';
 
 class ShortTextTemplateField extends StatelessWidget {
+  final FieldEntity field;
+  final editingController = TextEditingController();
+  final RxString text = "".obs;
+
    ShortTextTemplateField(this.field, {super.key}){
     assert(field.fieldType == FormFieldType.shortText, "Field type must be short text");
+    final FieldAnswerEntity<String> value =
+    field.answer as FieldAnswerEntity<String>;
+    text.value = value.value;
+    editingController.text = value.value;
   }
-  final FieldEntity field;
+
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +35,10 @@ class ShortTextTemplateField extends StatelessWidget {
             style: Theme.of(context).textTheme.bodyMedium,
           ),
           TextFormFieldCore(
+            controller: editingController,
             onChanged: (value) {
+              text.value = value;
+              field.answer!.value= value;
             },
             hintText: Translator.pleaseEnterSomeText.tr,
           ),

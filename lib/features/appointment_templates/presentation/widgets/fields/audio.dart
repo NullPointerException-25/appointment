@@ -8,13 +8,26 @@ import '../../../../../core/utils/global_values.dart';
 import '../../../../../core/utils/translations.dart';
 import '../../../../../core/widgets/text_form_field_core.dart';
 import '../../../domain/entities/field.dart';
+import 'package:waveform_recorder/waveform_recorder.dart';
 
-class AudioTemplateField extends StatelessWidget {
+class AudioTemplateField extends StatefulWidget {
   AudioTemplateField(this.field, {super.key}){
     assert(field.fieldType == FormFieldType.audio, "Field type must be audio");
   }
   final FieldEntity field;
 
+  @override
+  State<AudioTemplateField> createState() => _AudioTemplateFieldState();
+}
+
+class _AudioTemplateFieldState extends State<AudioTemplateField> {
+  final _waveController = WaveformRecorderController();
+
+  @override
+  void dispose() {
+    _waveController.dispose();
+    super.dispose();
+  }
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -24,7 +37,7 @@ class AudioTemplateField extends StatelessWidget {
         spacing: kSpacing,
         children: [
           Text(
-            field.title,
+            widget.field.title,
             style: Theme.of(context).textTheme.bodyMedium,
           ),
           Row(
