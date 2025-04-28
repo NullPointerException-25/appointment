@@ -46,11 +46,6 @@ class DetailsAppointmentController extends GetxController
     final appointment=Get.arguments as AppointmentEntity;
     appointmentEntity=appointment.obs;
     customFields=appointment.customFields.obs;
-    debugPrint("customFields: ${customFields.length}");
-    for (final field in customFields) {
-      debugPrint("customField: ${field.answer?.value}");
-    }
-
     currentProgressMinutes.value=DateTime.now().difference(appointment.fromDate).inMinutes;
     diffInitialEndTimeMinutes.value=appointment.toDate.difference(appointment.fromDate).inMinutes;
   }

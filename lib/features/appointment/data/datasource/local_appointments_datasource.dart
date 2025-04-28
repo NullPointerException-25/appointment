@@ -1,7 +1,11 @@
 import 'package:appointments_manager/core/services/object_box_service.dart';
 import 'package:appointments_manager/features/appointment/data/models/appointment.dart';
 import 'package:appointments_manager/objectbox.g.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+
+import '../../../appointment_templates/data/model/field.dart';
+import '../../../appointment_templates/data/model/field_answer.dart';
 
 class LocalAppointmentsDatasource extends GetxService {
   late final ObjectBoxService _objectBoxService;
@@ -15,7 +19,17 @@ class LocalAppointmentsDatasource extends GetxService {
 
   AppointmentModel saveAppointment(AppointmentModel appointment) {
     final box = _objectBoxService.store.value!.box<AppointmentModel>();
+    final answerBox =
+        _objectBoxService.store.value!.box<FieldAnswerModel>();
+    final fieldBox = _objectBoxService.store.value!.box<FieldModel>();
+    for (var field in appointment.fields) {
+      if (field.answer.target != null) {
+        field.answer.target!.localId = answerBox.put(field.answer.target!);
+      }
+      field.localId = fieldBox.put(field);
+    }
     final result = box.put(appointment);
+
     if (result == 0) {
       throw Exception("Failed to save appointment");
     }
