@@ -845,6 +845,51 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "2.3.0"
+  permission_handler:
+    dependency: "direct overridden"
+    description:
+      path: permission_handler
+      ref: master
+      resolved-ref: "5f9cd3a698dd64975f68a36c581a1097bc47563c"
+      url: "https://github.com/bvoq/flutter-permission-handler.git"
+    source: git
+    version: "10.2.0"
+  permission_handler_android:
+    dependency: transitive
+    description:
+      path: permission_handler_android
+      ref: master
+      resolved-ref: "5f9cd3a698dd64975f68a36c581a1097bc47563c"
+      url: "https://github.com/bvoq/flutter-permission-handler.git"
+    source: git
+    version: "10.2.0"
+  permission_handler_apple:
+    dependency: transitive
+    description:
+      path: permission_handler_apple
+      ref: master
+      resolved-ref: "5f9cd3a698dd64975f68a36c581a1097bc47563c"
+      url: "https://github.com/bvoq/flutter-permission-handler.git"
+    source: git
+    version: "9.0.7"
+  permission_handler_platform_interface:
+    dependency: transitive
+    description:
+      path: permission_handler_platform_interface
+      ref: master
+      resolved-ref: "5f9cd3a698dd64975f68a36c581a1097bc47563c"
+      url: "https://github.com/bvoq/flutter-permission-handler.git"
+    source: git
+    version: "3.9.0"
+  permission_handler_windows:
+    dependency: transitive
+    description:
+      path: permission_handler_windows
+      ref: master
+      resolved-ref: "5f9cd3a698dd64975f68a36c581a1097bc47563c"
+      url: "https://github.com/bvoq/flutter-permission-handler.git"
+    source: git
+    version: "0.1.2"
   petitparser:
     dependency: transitive
     description:
@@ -934,7 +979,7 @@ packages:
     source: hosted
     version: "1.5.0"
   record:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: record
       sha256: daeb3f9b3fea9797094433fe6e49a879d8e4ca4207740bc6dc7e4a58764f0817
@@ -1186,22 +1231,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.1.1"
-  waveform_flutter:
-    dependency: transitive
-    description:
-      name: waveform_flutter
-      sha256: "08c9e98d4cf119428d8b3c083ed42c11c468623eaffdf30420ae38e36662922a"
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.2.0"
-  waveform_recorder:
-    dependency: "direct main"
-    description:
-      name: waveform_recorder
-      sha256: a6a42695bca9d06a68b721812c9d002e31328f64a2f802bbaf3b6ac27fd78bc6
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.7.0"
   web:
     dependency: transitive
     description:

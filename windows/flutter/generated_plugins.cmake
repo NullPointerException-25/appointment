@@ -8,6 +8,7 @@ list(APPEND FLUTTER_PLUGIN_LIST
   firebase_auth
   firebase_core
   objectbox_flutter_libs
+  permission_handler_windows
   record_windows
 )
 
