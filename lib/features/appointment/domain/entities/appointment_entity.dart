@@ -36,8 +36,10 @@ class AppointmentEntity extends CoreEntity<AppointmentModel>
   @override
   AppointmentModel toModel() {
     final appointment = AppointmentModel(
+        id: localId,
         fromDate: fromDate, toDate: toDate, lastUpdate: lastUpdate);
     appointment.client.target = client.toModel();
+    appointment.fields.clear();
     appointment.fields.addAll(customFields.map((e) => e.toModel()));
     return appointment;
   }

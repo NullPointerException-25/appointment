@@ -14,6 +14,8 @@ class LargeTextTemplateField extends StatelessWidget {
     assert(field.answer is FieldAnswerEntity<String>,
         "Field answer must be of type String");
     final FieldAnswerEntity<String> value =
+
+
         field.answer as FieldAnswerEntity<String>;
     text.value = value.value;
     editingController.text = value.value;
@@ -42,6 +44,7 @@ class LargeTextTemplateField extends StatelessWidget {
             onChanged: (value) {
               text.value = value;
               field.answer!.value= value;
+
             },
             hintText: Translator.pleaseEnterSomeText.tr,
           ),

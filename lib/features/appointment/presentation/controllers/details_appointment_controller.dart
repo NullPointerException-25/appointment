@@ -2,6 +2,8 @@ import 'dart:io';
 
 import 'package:appointments_manager/features/appointment/domain/entities/appointment_entity.dart';
 import 'package:appointments_manager/features/appointment_templates/domain/entities/field.dart';
+import 'package:appointments_manager/features/appointment_templates/domain/usecases/save_appointment_data.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 import '../../../client/presentation/abstractions/controller_card_previewable.dart';
@@ -44,7 +46,16 @@ class DetailsAppointmentController extends GetxController
     final appointment=Get.arguments as AppointmentEntity;
     appointmentEntity=appointment.obs;
     customFields=appointment.customFields.obs;
+    debugPrint("customFields: ${customFields.length}");
+    for (final field in customFields) {
+      debugPrint("customField: ${field.answer?.value}");
+    }
+
     currentProgressMinutes.value=DateTime.now().difference(appointment.fromDate).inMinutes;
     diffInitialEndTimeMinutes.value=appointment.toDate.difference(appointment.fromDate).inMinutes;
+  }
+
+  void saveData() async {
+    SaveAppointmentDataUseCase(appointmentEntity.value, customFields.toList()).perform();
   }
 }

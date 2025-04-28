@@ -40,6 +40,14 @@ class FieldAnswerModel extends CoreModel<FieldAnswerEntity> {
         DateTime? dateValue,
       DateTime? lastUpdate}) {
     this.lastUpdate = lastUpdate ?? DateTime.now();
+    this.localDocs = localDocs ?? [];
+    this.remoteDocs = remoteDocs ?? [];
+    this.singleDoc = singleDoc ?? "";
+    this.singleDocUrl = singleDocUrl ?? "";
+    this.numberValue = numberValue ?? 0;
+    this.textValue = textValue ?? "";
+    this.dateValue = dateValue ?? DateTime.now();
+
   }
 
   @override
