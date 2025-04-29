@@ -101,6 +101,8 @@ class Translator extends Translations {
           "useProfileLocally": "Use this profile locally",
           "incorrectCredential": "Either email or password is wrong",
           "clickToChangeDate": "Click to change date",
+          "notifications": "Notifications",
+          "clients": "Clients"
         },
         'es': {
           'title': 'Gestor de Citas',
@@ -288,5 +290,9 @@ class Translator extends Translations {
   static String get incorrectCredential=> "incorrectCredential";
 
   static String get clickToChangeDate => "clickToChangeDate";
+
+  static String get notifications=>"notifications";
+
+  static String get clients=>"clients";
 
 }

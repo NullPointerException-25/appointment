@@ -14,7 +14,7 @@ class HomeController extends GetxController {
   final RxnDouble bottomAppBarHeight = RxnDouble();
   final RxBool isCircularMenuOpened = RxBool(false);
   late GlobalKey<CircularMenuState> circularKey;
-  final selectedIndex = RxnInt(0);
+  final selectedIndex = RxInt(0);
 
 
   HomeController() {
