@@ -22,6 +22,9 @@ class HomeController extends GetxController {
   }
 
   void changePage(int index) {
+    if(pageController.positions.isEmpty){
+      return;
+    }
     pageController.animateToPage(index,
         duration: const Duration(milliseconds: 300), curve: Curves.ease);
   }

@@ -9,6 +9,7 @@ import '../../../features/client/presentation/pagers/clients_home_pager.dart';
 import '../controllers/home_controller.dart';
 import '../pagers/home_pager.dart';
 import '../widgets/appbar.dart';
+import '../widgets/appbar_small.dart';
 
 class HomeDesktopPage extends GetResponsiveView<HomeController> {
   HomeDesktopPage({super.key});
@@ -40,57 +41,64 @@ class HomeDesktopPage extends GetResponsiveView<HomeController> {
         child: Row(
           children: [
             Obx(
-              () => NavigationRail(
-                onDestinationSelected: (value) {
-                  controller.selectedIndex.value = value;
-                  controller.changePage(value);
-                },
-                extended: true,
-                destinations: [
-                  NavigationRailDestination(
-                    icon: Icon(HugeIcons.strokeRoundedHome01,
-                        size: kIconSize,
-                        color: Theme.of(context).brightness == Brightness.dark
-                            ? ThemeColors.white
-                            : ThemeColors.dark),
-                    label: Text(Translator.home.tr,
-                        style: Theme.of(context).textTheme.bodyLarge),
-                  ),
-                  NavigationRailDestination(
-                    icon: Icon(HugeIcons.strokeRoundedCalendar01,
-                        size: kIconSize,
-                        color: Theme.of(context).brightness == Brightness.dark
-                            ? ThemeColors.white
-                            : ThemeColors.dark),
-                    label: Text(Translator.calendar.tr,
-                        style: Theme.of(context).textTheme.bodyLarge),
-                  ),
-                  NavigationRailDestination(
-                    icon: Icon(HugeIcons.strokeRoundedNotification01,
-                        size: kIconSize,
-                        color: Theme.of(context).brightness == Brightness.dark
-                            ? ThemeColors.white
-                            : ThemeColors.dark),
-                    label: Text(Translator.notifications.tr,
-                        style: Theme.of(context).textTheme.bodyLarge),
-                  ),
-                  NavigationRailDestination(
-                    icon: Icon(HugeIcons.strokeRoundedUser,
-                        size: kIconSize,
-                        color: Theme.of(context).brightness == Brightness.dark
-                            ? ThemeColors.white
-                            : ThemeColors.dark),
-                    label: Text(Translator.clients.tr,
-                        style: Theme.of(context).textTheme.bodyLarge),
+              () => Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const HomeAppBarSmall(),
+                  Expanded(
+                    child: NavigationRail(
+                      onDestinationSelected: (value) {
+                        controller.selectedIndex.value = value;
+                        controller.changePage(value);
+                      },
+                      extended: true,
+                      destinations: [
+                        NavigationRailDestination(
+                          icon: Icon(HugeIcons.strokeRoundedHome01,
+                              size: kIconSize,
+                              color: Theme.of(context).brightness == Brightness.dark
+                                  ? ThemeColors.white
+                                  : ThemeColors.dark),
+                          label: Text(Translator.home.tr,
+                              style: Theme.of(context).textTheme.bodyLarge),
+                        ),
+                        NavigationRailDestination(
+                          icon: Icon(HugeIcons.strokeRoundedCalendar01,
+                              size: kIconSize,
+                              color: Theme.of(context).brightness == Brightness.dark
+                                  ? ThemeColors.white
+                                  : ThemeColors.dark),
+                          label: Text(Translator.calendar.tr,
+                              style: Theme.of(context).textTheme.bodyLarge),
+                        ),
+                        NavigationRailDestination(
+                          icon: Icon(HugeIcons.strokeRoundedNotification01,
+                              size: kIconSize,
+                              color: Theme.of(context).brightness == Brightness.dark
+                                  ? ThemeColors.white
+                                  : ThemeColors.dark),
+                          label: Text(Translator.notifications.tr,
+                              style: Theme.of(context).textTheme.bodyLarge),
+                        ),
+                        NavigationRailDestination(
+                          icon: Icon(HugeIcons.strokeRoundedUser,
+                              size: kIconSize,
+                              color: Theme.of(context).brightness == Brightness.dark
+                                  ? ThemeColors.white
+                                  : ThemeColors.dark),
+                          label: Text(Translator.clients.tr,
+                              style: Theme.of(context).textTheme.bodyLarge),
+                        ),
+                      ],
+                      selectedIndex: controller.selectedIndex.value,
+                    ),
                   ),
                 ],
-                selectedIndex: controller.selectedIndex.value,
               ),
             ),
             Expanded(
                 child: CustomScrollView(
               slivers: [
-                const HomeAppBar(),
                 SliverFillRemaining(
                   child: ObxValue<RxInt>(
                       (value) => pagers(context)[controller.selectedIndex.value],
