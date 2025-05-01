@@ -3,7 +3,9 @@ import 'package:appointments_manager/features/appointment/presentation/controlle
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class DurationSlider extends GetView<CreateAppointmentController> {
+import '../../../appointment_templates/domain/contracts/slidable_controller.dart';
+
+class DurationSlider<T extends SlidableController> extends GetView<T> {
   const DurationSlider({super.key});
 
   @override

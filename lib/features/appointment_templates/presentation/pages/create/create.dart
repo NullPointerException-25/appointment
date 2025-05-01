@@ -10,9 +10,9 @@ class CreateTemplatesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const ResponsiveLayout(
+    return  ResponsiveLayout(
         mobile: MobileCreateTemplatePage(),
-        tablet: TabletCreateTemplatePage(),
-        desktop: DesktopCreateTemplatePage());
+        tablet: const TabletCreateTemplatePage(),
+        desktop: const DesktopCreateTemplatePage());
   }
 }
