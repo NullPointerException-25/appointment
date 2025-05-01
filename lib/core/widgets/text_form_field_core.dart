@@ -2,6 +2,7 @@ import 'package:appointments_manager/core/utils/colors.dart';
 import 'package:appointments_manager/core/utils/fonts.dart';
 import 'package:appointments_manager/core/utils/global_values.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class TextFormFieldCore extends StatelessWidget {
   const TextFormFieldCore(
@@ -27,6 +28,7 @@ class TextFormFieldCore extends StatelessWidget {
       this.maxLength,
       this.autofillHints,
       this.contentPadding,
+      this.inputFormatters,
         this.onTap});
 
   final TextEditingController? controller;
@@ -51,10 +53,12 @@ class TextFormFieldCore extends StatelessWidget {
   final String? autofillHints;
   final int? maxLength;
   final VoidCallback? onTap;
+  final List<TextInputFormatter>? inputFormatters;
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      inputFormatters: inputFormatters,
       onTap: onTap,
       maxLength: maxLength,
       validator: validator,

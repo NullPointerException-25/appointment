@@ -14,7 +14,7 @@ class HomeController extends GetxController {
   final RxnDouble bottomAppBarHeight = RxnDouble();
   final RxBool isCircularMenuOpened = RxBool(false);
   late GlobalKey<CircularMenuState> circularKey;
-  final selectedIndex = RxnInt(0);
+  final selectedIndex = RxInt(0);
 
 
   HomeController() {
@@ -22,6 +22,9 @@ class HomeController extends GetxController {
   }
 
   void changePage(int index) {
+    if(pageController.positions.isEmpty){
+      return;
+    }
     pageController.animateToPage(index,
         duration: const Duration(milliseconds: 300), curve: Curves.ease);
   }

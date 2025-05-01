@@ -10,6 +10,7 @@ import 'package:hugeicons/hugeicons.dart';
 import 'package:jiffy/jiffy.dart';
 
 import '../../../../../home/presentation/widgets/appbar.dart';
+import '../../../../appointment_templates/presentation/widgets/template_field_builder.dart';
 
 class DetailsAppointmentMobilePage
     extends GetView<DetailsAppointmentController> {
@@ -18,10 +19,25 @@ class DetailsAppointmentMobilePage
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: const HugeIcon(
-            icon: HugeIcons.strokeRoundedAdd01, color: ThemeColors.white),
+      floatingActionButton: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          FloatingActionButton(
+            heroTag: "save",
+            onPressed: () {
+              controller.saveData();
+            },
+            child: const HugeIcon(
+                icon: HugeIcons.strokeRoundedFloppyDisk, color: ThemeColors.white),
+          ),
+          const SizedBox(height: kSpacing),
+          FloatingActionButton(
+            heroTag: "add",
+            onPressed: () {},
+            child: const HugeIcon(
+                icon: HugeIcons.strokeRoundedAdd01, color: ThemeColors.white),
+          ),
+        ],
       ),
       body: SafeArea(
           child: CustomScrollView(
@@ -68,7 +84,14 @@ class DetailsAppointmentMobilePage
                 ],
               );
             }, controller.appointmentEntity),
-          )
+          ),
+          SliverList.builder(
+              itemCount: controller.customFields.length,
+              itemBuilder: (context, index) => TemplateFieldBuilder(
+                    field: controller.customFields[index],
+                  )),
+          const SliverPadding(
+              padding: EdgeInsets.symmetric(vertical: kPaddingXXL)),
         ],
       )),
     );

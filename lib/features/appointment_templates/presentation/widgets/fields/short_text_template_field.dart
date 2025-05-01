@@ -1,25 +1,26 @@
 import 'package:appointments_manager/core/utils/translations.dart';
 import 'package:appointments_manager/core/widgets/text_form_field_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:hugeicons/hugeicons.dart';
 
-import '../../../../../core/utils/colors.dart';
 import '../../../../../core/utils/global_values.dart';
+import '../../../data/model/field.dart';
 import '../../../domain/entities/field.dart';
 import '../../../domain/entities/field_answer.dart';
 
-class PhoneNumberTemplateField extends StatelessWidget {
+class ShortTextTemplateField extends StatelessWidget {
   final FieldEntity field;
   final editingController = TextEditingController();
-  late final FieldAnswerEntity<int> answer;
+  final RxString text = "".obs;
 
-  PhoneNumberTemplateField(this.field, {super.key}){
-    assert(field.fieldType == FormFieldType.phoneNumber, "Field type must be phone number");
-    answer = field.answer as FieldAnswerEntity<int>;
-    editingController.text = answer.value != 0 ? answer.value.toString() : "";
+   ShortTextTemplateField(this.field, {super.key}){
+    assert(field.fieldType == FormFieldType.shortText, "Field type must be short text");
+    final FieldAnswerEntity<String> value =
+    field.answer as FieldAnswerEntity<String>;
+    text.value = value.value;
+    editingController.text = value.value;
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -35,22 +36,9 @@ class PhoneNumberTemplateField extends StatelessWidget {
           ),
           TextFormFieldCore(
             controller: editingController,
-            inputFormatters: [
-              FilteringTextInputFormatter.digitsOnly
-            ],
-            maxLines: 1,
-            prefixIcon:  Icon(HugeIcons.strokeRoundedCall,
-              color: Theme.of(context).brightness== Brightness.light
-                  ? ThemeColors.dark
-                  : ThemeColors.white,
-            ),
-            keyboardType: TextInputType.phone,
             onChanged: (value) {
-              if (value.isNotEmpty) {
-                answer.value = int.parse(value);
-              } else {
-                answer.value = 0;
-              }
+              text.value = value;
+              field.answer!.value= value;
             },
             hintText: Translator.pleaseEnterSomeText.tr,
           ),

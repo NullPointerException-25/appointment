@@ -1,7 +1,7 @@
 import 'package:appointments_manager/core/abstractions/entity.dart';
 import 'package:appointments_manager/features/appointment/data/models/appointment.dart';
 import 'package:appointments_manager/features/appointment/domain/contracts/appointment_contract.dart';
-import 'package:appointments_manager/features/appointment_templates/domain/entities/appointment_field_entity.dart';
+import 'package:appointments_manager/features/appointment_templates/domain/entities/field.dart';
 import 'package:appointments_manager/features/client/domain/entities/client_entity.dart';
 
 class AppointmentEntity extends CoreEntity<AppointmentModel>
@@ -17,7 +17,7 @@ class AppointmentEntity extends CoreEntity<AppointmentModel>
   @override
   DateTime toDate;
   ClientEntity client;
-  List<AppointmentFieldEntity> customFields;
+  List<FieldEntity> customFields;
 
   @override
   Duration get duration => toDate.difference(fromDate);
@@ -36,8 +36,10 @@ class AppointmentEntity extends CoreEntity<AppointmentModel>
   @override
   AppointmentModel toModel() {
     final appointment = AppointmentModel(
+        id: localId,
         fromDate: fromDate, toDate: toDate, lastUpdate: lastUpdate);
     appointment.client.target = client.toModel();
+    appointment.fields.clear();
     appointment.fields.addAll(customFields.map((e) => e.toModel()));
     return appointment;
   }

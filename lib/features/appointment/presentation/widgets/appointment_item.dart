@@ -33,7 +33,12 @@ class AppointmentItem extends StatelessWidget {
             ? CircleAvatar(
                 backgroundImage: FileImage(appointment.client.image.value!),
               )
-            : const Icon(HugeIcons.strokeRoundedUser),
+            : Icon(
+                HugeIcons.strokeRoundedUser,
+                color: Theme.of(context).brightness == Brightness.light
+                    ? ThemeColors.dark
+                    : ThemeColors.white,
+              ),
         title: Text(
           appointment.client.name,
           style: TextStyle(

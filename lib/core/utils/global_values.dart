@@ -116,3 +116,16 @@ enum AspectRatioResponsive{
     twentyOneNine,
     thirtyTwoNine,
 }
+
+const Map<int, FormFieldType> formFieldTypeMap = {
+  0: FormFieldType.unknown,
+  1: FormFieldType.number,
+  2: FormFieldType.shortText,
+  3: FormFieldType.largeText,
+  4: FormFieldType.date,
+  5: FormFieldType.imageList,
+  6: FormFieldType.phoneNumber,
+  7: FormFieldType.audio
+};
+
+enum FormFieldType { number, shortText, largeText, date, imageList, unknown, phoneNumber, audio }
