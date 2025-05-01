@@ -102,7 +102,8 @@ class Translator extends Translations {
           "incorrectCredential": "Either email or password is wrong",
           "clickToChangeDate": "Click to change date",
           "notifications": "Notifications",
-          "clients": "Clients"
+          "clients": "Clients",
+          "templates": "Templates",
         },
         'es': {
           'title': 'Gestor de Citas',
@@ -294,5 +295,7 @@ class Translator extends Translations {
   static String get notifications=>"notifications";
 
   static String get clients=>"clients";
+
+  static String get templates=>"templates";
 
 }

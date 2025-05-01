@@ -43,6 +43,10 @@ class HomeController extends GetxController {
     Get.toNamed(Routes.newAppointment);
   }
 
+  void goToCreateAppointmentTemplatePage() {
+    Get.toNamed(Routes.newTemplate);
+  }
+
   static HomeController get to {
     try {
       return Get.find<HomeController>();

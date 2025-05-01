@@ -60,7 +60,9 @@ class _CircularHomeFloatingActionButtonState extends State<CircularHomeFloatingA
             boxShadow: const [],
             color: Theme.of(context).colorScheme.primary,
             icon: HugeIcons.strokeRoundedFileAdd,
-            onTap: () {},
+            onTap: () {
+              HomeController.to.goToCreateAppointmentTemplatePage();
+            },
           ),
         ]);
   }

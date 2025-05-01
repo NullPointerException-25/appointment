@@ -9,4 +9,5 @@ abstract class Routes {
   static const String newAppointment = "$appointment/new";
   static const String appointmentDetail = "$appointment/detail";
   static const String templates="/templates";
+  static const String newTemplate = "$templates/new";
 }
