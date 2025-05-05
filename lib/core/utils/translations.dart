@@ -104,6 +104,9 @@ class Translator extends Translations {
           "notifications": "Notifications",
           "clients": "Clients",
           "templates": "Templates",
+          "templateName": "Template name",
+          "exampleTemplateName": "Ex. New client template",
+          "defaultDuration": "Default duration"
         },
         'es': {
           'title': 'Gestor de Citas',
@@ -298,4 +301,9 @@ class Translator extends Translations {
 
   static String get templates=>"templates";
 
+  static String get templateName=>"templateName";
+
+  static String get exampleTemplateName=>"exampleTemplateName";
+
+  static String get defaultDuration=>"defaultDuration";
 }

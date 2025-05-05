@@ -38,6 +38,12 @@ class CreateAppointmentController extends SlidableController{
   final selectedAppointmentPreview = Rxn<AppointmentPreview>();
   final customFields = RxList<FieldEntity>([]);
 
+  CreateAppointmentController(){
+    sliderValue=RxDouble(1);
+    selectedDurationString=RxString("");
+    selectedDuration=RxInt(1);
+  }
+
   @override
   void onInit() {
     super.onInit();
