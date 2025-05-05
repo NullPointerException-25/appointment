@@ -11,6 +11,7 @@ const double kPaddingL = 25.0;
 const double kPaddingXL = 30.0;
 const double kPaddingXXL = 40.0;
 const double kCornerRadius = 10.0;
+const double kCornerRadiusXS = 3.0;
 const double kCornerRadiusS = 5.0;
 const double kCornerRadiusM = 15.0;
 const double kCornerRadiusL = 20.0;

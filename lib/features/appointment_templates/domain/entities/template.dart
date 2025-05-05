@@ -13,11 +13,13 @@ class AppointmentTemplateEntity extends CoreEntity<AppointmentTemplateModel>{
 
   String name;
 
-  AppointmentTemplateEntity({this.localId=0, this.remoteId="", required this.name, DateTime? lastUpdate}){
+  int? duration;
+
+  AppointmentTemplateEntity({this.localId=0, this.remoteId="", this.duration, required this.name, DateTime? lastUpdate}){
     this.lastUpdate= lastUpdate?? DateTime.now();
   }
   @override
   AppointmentTemplateModel toModel() {
-     return AppointmentTemplateModel(remoteId, lastUpdate, name: name);
+     return AppointmentTemplateModel(remoteId, lastUpdate, name: name, localId: localId);
   }
 }
