@@ -9,7 +9,6 @@ class CreateTemplateController extends SlidableController {
   static CreateTemplateController get to =>
       Get.find<CreateTemplateController>();
   final RxString templateName = ''.obs;
-  final RxString templateDuration = ''.obs;
   final RxList<FieldEntity> fields = <FieldEntity>[].obs;
   final RxBool durationSliderEnabled = true.obs;
 
@@ -43,7 +42,7 @@ class CreateTemplateController extends SlidableController {
   void createTemplate() async {
     final AppointmentTemplateEntity template = AppointmentTemplateEntity(
       name: templateName.value,
-      duration: durationSliderEnabled.value ? selectedDuration.value : null,
+      duration: durationSliderEnabled.value ? sliderValue.value.toInt() : null,
     );
     await SaveTemplateUseCase(template, fields).perform();
   }

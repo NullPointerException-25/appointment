@@ -30,6 +30,8 @@ class AppointmentTemplateModel extends CoreModel<AppointmentTemplateEntity> {
         name: name,
         remoteId: remoteId,
         localId: localId,
+        duration: duration,
+        fields: fields.map((e) => e.toEntity()).toList(),
         lastUpdate: lastUpdate);
   }
 

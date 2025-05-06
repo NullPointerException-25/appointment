@@ -43,6 +43,10 @@ class MobileCreateTemplatePage extends GetView<CreateTemplateController> {
                           textAlign: TextAlign.start,
                         ),
                         TextFormFieldCore(
+                          controller: TextEditingController(text: controller.templateName.value),
+                          onChanged: (value) {
+                            controller.templateName.value = value;
+                          },
                           validator: (value) {
                             if (value == null || value.isEmpty) {
                               return Translator.pleaseEnterSomeText.tr;

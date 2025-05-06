@@ -5,7 +5,9 @@ import 'package:appointments_manager/features/appointment/domain/entities/appoin
 import 'package:appointments_manager/features/appointment/domain/usecases/create_appointment_previews.dart';
 import 'package:appointments_manager/features/appointment/domain/usecases/create_appointment_use_case.dart';
 import 'package:appointments_manager/features/appointment/domain/usecases/get_appointments_by_date.dart';
+import 'package:appointments_manager/features/appointment/presentation/widgets/select_appointment_buttom_sheet.dart';
 import 'package:appointments_manager/features/appointment_templates/domain/contracts/slidable_controller.dart';
+import 'package:appointments_manager/features/appointment_templates/domain/usecases/delete_template.dart';
 import 'package:appointments_manager/features/client/domain/entities/client_entity.dart';
 import 'package:appointments_manager/features/client/domain/entities/client_query_params.dart';
 import 'package:appointments_manager/features/client/domain/usecases/get_clients_by_params.dart';
@@ -15,6 +17,8 @@ import 'package:table_calendar/table_calendar.dart';
 
 import '../../../../core/utils/routes.dart';
 import '../../../appointment_templates/domain/entities/field.dart';
+import '../../../appointment_templates/domain/entities/template.dart';
+import '../../../appointment_templates/domain/usecases/get_templates.dart';
 
 class CreateAppointmentController extends SlidableController{
   static CreateAppointmentController get to =>
@@ -37,6 +41,7 @@ class CreateAppointmentController extends SlidableController{
   final todayAppointments = <AppointmentContract>[].obs;
   final selectedAppointmentPreview = Rxn<AppointmentPreview>();
   final customFields = RxList<FieldEntity>([]);
+  final templates = <AppointmentTemplateEntity>[].obs;
 
   CreateAppointmentController(){
     sliderValue=RxDouble(1);
@@ -46,6 +51,7 @@ class CreateAppointmentController extends SlidableController{
 
   @override
   void onInit() {
+    fetchTemplates();
     super.onInit();
     fetchClients();
     setDuration(1);
@@ -55,6 +61,21 @@ class CreateAppointmentController extends SlidableController{
     );
     ever(selectedDateTime, (callback) => fetchAppointments());
     ever(sliderValue, (callback) => fetchAppointments());
+  }
+
+  void fetchTemplates() async {
+    templates.value = await GetTemplatesUseCase().perform();
+    if(templates.isEmpty){
+      return;
+    }
+    debugPrint("templates: ${templates[2].duration}");
+    debugPrint(templates.map((e)=> e.name).toList().toString());
+    Get.bottomSheet(SelectAppointmentBottomSheet(templates));
+  }
+
+  void loadFields(AppointmentTemplateEntity template) {
+    customFields.value = template.fields;
+    sliderValue.value = template.duration!=null? template.duration!.toDouble(): 1;
   }
 
   Future<void> fetchClients() async {
@@ -130,6 +151,11 @@ class CreateAppointmentController extends SlidableController{
 
   void removeField(FieldEntity field) {
     customFields.remove(field);
+  }
+
+  void deleteTemplate(AppointmentTemplateEntity template) {
+    DeleteTemplateUseCase(template).perform();
+    templates.remove(template);
   }
 
 

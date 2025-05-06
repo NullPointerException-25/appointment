@@ -32,4 +32,15 @@ class TemplateLocalDatasource extends GetxService {
     box.put(templateModel);
   }
 
+  Future<List<AppointmentTemplateModel>> getAllTemplates() async {
+    final templateBox = _objectBoxService.store.value!.box<AppointmentTemplateModel>();
+    return templateBox.getAll();
+
+  }
+
+  Future<void> deleteTemplate(AppointmentTemplateModel templateModel) async {
+    final templateBox = _objectBoxService.store.value!.box<AppointmentTemplateModel>();
+    templateBox.remove(templateModel.localId);
+  }
+
 }

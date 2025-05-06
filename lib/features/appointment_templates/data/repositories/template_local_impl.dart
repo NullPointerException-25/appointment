@@ -26,15 +26,15 @@ class TemplateRepositoryLocalImpl extends GetxService implements TemplateReposit
   }
 
   @override
-  Future<void> deleteTemplate(AppointmentTemplateEntity template) {
-    // TODO: implement deleteTemplate
-    throw UnimplementedError();
+  Future<void> deleteTemplate(AppointmentTemplateEntity template) async {
+    final templateModel = template.toModel();
+    return await _templateLocalDatasource.deleteTemplate(templateModel);
   }
 
   @override
-  Future<List<AppointmentTemplateEntity>> getAllTemplates() {
-    // TODO: implement getAllTemplates
-    throw UnimplementedError();
+  Future<List<AppointmentTemplateEntity>> getAllTemplates() async {
+    final templatesModel = await _templateLocalDatasource.getAllTemplates();
+    return templatesModel.map((e) => e.toEntity()).toList();
   }
 
   @override

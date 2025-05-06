@@ -9,6 +9,7 @@ class DurationSlider<T extends SlidableController> extends GetView<T> {
 
   @override
   Widget build(BuildContext context) {
+
     return Obx(
           () => Slider(
         value: controller.sliderValue.value,
