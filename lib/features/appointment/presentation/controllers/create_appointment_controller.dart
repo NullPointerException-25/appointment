@@ -68,13 +68,17 @@ class CreateAppointmentController extends SlidableController{
     if(templates.isEmpty){
       return;
     }
-    debugPrint("templates: ${templates[2].duration}");
-    debugPrint(templates.map((e)=> e.name).toList().toString());
     Get.bottomSheet(SelectAppointmentBottomSheet(templates));
   }
 
   void loadFields(AppointmentTemplateEntity template) {
     customFields.value = template.fields;
+    for (var e in template.fields) {
+      debugPrint(e.localId.toString());
+      debugPrint(e.answer?.localId.toString());
+      e.answer?.localId=0;
+      e.localId=0;
+    }
     sliderValue.value = template.duration!=null? template.duration!.toDouble(): 1;
   }
 
