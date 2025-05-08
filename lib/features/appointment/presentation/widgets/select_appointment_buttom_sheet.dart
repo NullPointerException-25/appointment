@@ -1,5 +1,3 @@
-
-
 import 'package:appointments_manager/core/utils/colors.dart';
 import 'package:appointments_manager/core/utils/global_values.dart';
 import 'package:appointments_manager/features/appointment/presentation/controllers/create_appointment_controller.dart';
@@ -9,7 +7,8 @@ import 'package:get/get.dart';
 
 import 'package:hugeicons/hugeicons.dart';
 
-class SelectAppointmentBottomSheet extends GetView<CreateAppointmentController> {
+class SelectAppointmentBottomSheet
+    extends GetView<CreateAppointmentController> {
   const SelectAppointmentBottomSheet(
     this._templates, {
     super.key,
@@ -49,35 +48,42 @@ class SelectAppointmentBottomSheet extends GetView<CreateAppointmentController> 
             ),
             Expanded(
                 child: Obx(
-                    () => ListView.builder(
-                                itemBuilder: (context, index) => ListTile(
-                  onTap: (){
-                     controller.loadFields(_templates[index]);
-                     Get.back();
-                  },
-                  tileColor: ThemeColors.darkGrey,
-                  selectedTileColor: ThemeColors.darkGrey,
-                  trailing: IconButton(
-                    onPressed: (){
+              () => Padding(
+                padding:  EdgeInsets.symmetric(horizontal: kPadding),
+                child: GridView.builder(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: (MediaQuery.of(context).size.width/150).toInt(), childAspectRatio: 1),
+                  itemBuilder: (context, index) => InkWell(
+                    onLongPress: (){
                       controller.deleteTemplate(_templates[index]);
                     },
-                    icon: HugeIcon(
-                        icon: HugeIcons.strokeRoundedDelete01,
-                        color: Theme.of(context).brightness == Brightness.light
-                            ? ThemeColors.black
-                            : ThemeColors.white),
+                    onTap: () {
+                      controller.loadFields(_templates[index]);
+                      Get.back();
+                    },
+                    child: Card(
+                      shape: const  RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(kCornerRadius))),
+                      color: Theme.of(context).brightness == Brightness.dark
+                          ? ThemeColors.darkGrey
+                          : ThemeColors.whiteDarker,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            _templates[index].name,
+                            style: TextStyle(
+                                color: Theme.of(context).brightness ==
+                                        Brightness.light
+                                    ? ThemeColors.black
+                                    : ThemeColors.white),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
-                  title: Text(
-                    _templates[index].name,
-                    style: TextStyle(
-                        color: Theme.of(context).brightness == Brightness.light
-                            ? ThemeColors.black
-                            : ThemeColors.white),
-                  ),
-                                ),
-                                itemCount: _templates.length,
-                              ),
-                )),
+                  itemCount: _templates.length,
+                ),
+              ),
+            )),
             Row(
               children: [
                 Expanded(
@@ -86,7 +92,8 @@ class SelectAppointmentBottomSheet extends GetView<CreateAppointmentController> 
                   child: ElevatedButton(
                       onPressed: () {
                         Get.back();
-                      }, child: Text("Continue without template")),
+                      },
+                      child: Text("Continue without template")),
                 )),
               ],
             )
