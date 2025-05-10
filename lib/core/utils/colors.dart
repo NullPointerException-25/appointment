@@ -8,7 +8,9 @@ abstract class ThemeColors {
   static const Color darkBlue = Color(0xFF0f4c75);
   static const Color darkerBlue= Color(0xFF0b3954);
   static const Color white = Color(0xFFf5f5f5);
+  static const Color whiteDarker = Color(0xffeeeeee);
   static const Color ultraWhite = Color(0xFFffffff);
+  static const Color darkGrey = Color(0xFF424242);
   static const Color dark = Color(0xFF272727);
   static const Color black = Color(0xFF19191a);
   static const Color error = Color(0xFFFF9800);

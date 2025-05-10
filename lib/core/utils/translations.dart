@@ -102,7 +102,13 @@ class Translator extends Translations {
           "incorrectCredential": "Either email or password is wrong",
           "clickToChangeDate": "Click to change date",
           "notifications": "Notifications",
-          "clients": "Clients"
+          "clients": "Clients",
+          "templates": "Templates",
+          "templateName": "Template name",
+          "exampleTemplateName": "Ex. New client template",
+          "defaultDuration": "Default duration",
+          "useDefaultDuration": "Use default duration",
+          "templateCreated": "Template created",
         },
         'es': {
           'title': 'Gestor de Citas',
@@ -295,4 +301,15 @@ class Translator extends Translations {
 
   static String get clients=>"clients";
 
+  static String get templates=>"templates";
+
+  static String get templateName=>"templateName";
+
+  static String get exampleTemplateName=>"exampleTemplateName";
+
+  static String get defaultDuration=>"defaultDuration";
+
+  static String get useDefaultDuration=>"useDefaultDuration";
+
+  static String get templateCreated=>"templateCreated";
 }

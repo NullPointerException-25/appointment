@@ -74,7 +74,7 @@ class NewAppointmentMobilePage extends GetView<CreateAppointmentController> {
                             const SizedBox(
                               height: kPaddingS,
                             ),
-                            const DurationSlider(),
+                            const DurationSlider<CreateAppointmentController>(),
                             Obx(
                                   () => Padding(
                                 padding: const EdgeInsets.all(kPaddingS),

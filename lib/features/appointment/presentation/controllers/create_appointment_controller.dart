@@ -5,6 +5,9 @@ import 'package:appointments_manager/features/appointment/domain/entities/appoin
 import 'package:appointments_manager/features/appointment/domain/usecases/create_appointment_previews.dart';
 import 'package:appointments_manager/features/appointment/domain/usecases/create_appointment_use_case.dart';
 import 'package:appointments_manager/features/appointment/domain/usecases/get_appointments_by_date.dart';
+import 'package:appointments_manager/features/appointment/presentation/widgets/select_appointment_buttom_sheet.dart';
+import 'package:appointments_manager/features/appointment_templates/domain/contracts/slidable_controller.dart';
+import 'package:appointments_manager/features/appointment_templates/domain/usecases/delete_template.dart';
 import 'package:appointments_manager/features/client/domain/entities/client_entity.dart';
 import 'package:appointments_manager/features/client/domain/entities/client_query_params.dart';
 import 'package:appointments_manager/features/client/domain/usecases/get_clients_by_params.dart';
@@ -14,8 +17,10 @@ import 'package:table_calendar/table_calendar.dart';
 
 import '../../../../core/utils/routes.dart';
 import '../../../appointment_templates/domain/entities/field.dart';
+import '../../../appointment_templates/domain/entities/template.dart';
+import '../../../appointment_templates/domain/usecases/get_templates.dart';
 
-class CreateAppointmentController extends GetxController {
+class CreateAppointmentController extends SlidableController{
   static CreateAppointmentController get to =>
       Get.find<CreateAppointmentController>();
   final formKey = GlobalKey<FormState>();
@@ -28,8 +33,6 @@ class CreateAppointmentController extends GetxController {
   final startDateTimeTextController = TextEditingController();
   final durationTextController = TextEditingController();
 
-  final sliderValue = 1.0.obs;
-  final selectedDurationString = "".obs;
   final selectedClient = Rxn<ClientEntity>();
   final Rx<DateTime> selectedDateTime = DateTime.now().obs;
   final clientNameSearchFocusNode = FocusNode();
@@ -38,9 +41,17 @@ class CreateAppointmentController extends GetxController {
   final todayAppointments = <AppointmentContract>[].obs;
   final selectedAppointmentPreview = Rxn<AppointmentPreview>();
   final customFields = RxList<FieldEntity>([]);
+  final templates = <AppointmentTemplateEntity>[].obs;
+
+  CreateAppointmentController(){
+    sliderValue=RxDouble(1);
+    selectedDurationString=RxString("");
+    selectedDuration=RxInt(1);
+  }
 
   @override
   void onInit() {
+    fetchTemplates();
     super.onInit();
     fetchClients();
     setDuration(1);
@@ -50,6 +61,25 @@ class CreateAppointmentController extends GetxController {
     );
     ever(selectedDateTime, (callback) => fetchAppointments());
     ever(sliderValue, (callback) => fetchAppointments());
+  }
+
+  void fetchTemplates() async {
+    templates.value = await GetTemplatesUseCase().perform();
+    if(templates.isEmpty){
+      return;
+    }
+    Get.bottomSheet(SelectAppointmentBottomSheet(templates));
+  }
+
+  void loadFields(AppointmentTemplateEntity template) {
+    customFields.value = template.fields;
+    for (var e in template.fields) {
+      debugPrint(e.localId.toString());
+      debugPrint(e.answer?.localId.toString());
+      e.answer?.localId=0;
+      e.localId=0;
+    }
+    sliderValue.value = template.duration!=null? template.duration!.toDouble(): 1;
   }
 
   Future<void> fetchClients() async {
@@ -73,7 +103,7 @@ class CreateAppointmentController extends GetxController {
 
   void getAppointmentPreviews() async {
     todayAppointments.value = await CreateAppointmentPreviews(
-      appointmentDuration: _intToDuration[sliderValue.toInt()]!,
+      appointmentDuration: intToDuration[sliderValue.toInt()]!,
       appointments: todayAppointments,
       selectedDay: selectedDateTime.value,
     ).perform();
@@ -102,7 +132,7 @@ class CreateAppointmentController extends GetxController {
     await CreateAppointmentUseCase(
             selectedClient.value!,
             selectedAppointmentPreview.value!.fromDate,
-            _intToDuration[sliderValue.toInt()]!,
+            intToDuration[sliderValue.toInt()]!,
             customFields.toList())
         .perform();
     InAppNotificationService.to
@@ -110,11 +140,11 @@ class CreateAppointmentController extends GetxController {
     Get.offAllNamed(Routes.home);
   }
 
-  int get optionsLength => _intToDuration.length;
+
 
   void setDuration(int index) {
     selectedDurationString.value =
-        _durationTextMap[_intToDuration[index]!.inMinutes]!;
+        durationTextMap[intToDuration[index]!.inMinutes]!;
   }
 
   void addNewField() {
@@ -127,33 +157,12 @@ class CreateAppointmentController extends GetxController {
     customFields.remove(field);
   }
 
-  final Map<int, String> _durationTextMap = {
-    15: Translator.minutes.trParams({"minutes": "15"}),
-    30: Translator.minutes.trParams({"minutes": "30"}),
-    45: Translator.minutes.trParams({"minutes": "45"}),
-    60: Translator.hour.trParams({"hours": "1"}),
-    90: Translator.hourMinutes.trParams({"hours": "1", "minutes": "30"}),
-    120: Translator.hour.trParams({"hours": "2"}),
-    150: Translator.hourMinutes.trParams({"hours": "2", "minutes": "30"}),
-    180: Translator.hour.trParams({"hours": "3"}),
-    240: Translator.hour.trParams({"hours": "4"}),
-    300: Translator.hour.trParams({"hours": "5"}),
-    360: Translator.hour.trParams({"hours": "6"}),
-    420: Translator.hour.trParams({"hours": "7"}),
-  };
+  void deleteTemplate(AppointmentTemplateEntity template) {
+    DeleteTemplateUseCase(template).perform();
+    templates.remove(template);
+  }
 
-  final Map<int, Duration> _intToDuration = {
-    1: const Duration(minutes: 15),
-    2: const Duration(minutes: 30),
-    3: const Duration(minutes: 45),
-    4: const Duration(hours: 1),
-    5: const Duration(hours: 1, minutes: 30),
-    6: const Duration(hours: 2),
-    7: const Duration(hours: 2, minutes: 30),
-    8: const Duration(hours: 3),
-    9: const Duration(hours: 4),
-    10: const Duration(hours: 5),
-    11: const Duration(hours: 6),
-    12: const Duration(hours: 7),
-  };
+
+
+
 }

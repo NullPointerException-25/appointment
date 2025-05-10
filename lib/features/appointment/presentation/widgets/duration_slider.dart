@@ -1,13 +1,15 @@
 import 'package:appointments_manager/core/utils/colors.dart';
-import 'package:appointments_manager/features/appointment/presentation/controllers/create_appointment_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class DurationSlider extends GetView<CreateAppointmentController> {
+import '../../../appointment_templates/domain/contracts/slidable_controller.dart';
+
+class DurationSlider<T extends SlidableController> extends GetView<T> {
   const DurationSlider({super.key});
 
   @override
   Widget build(BuildContext context) {
+
     return Obx(
           () => Slider(
         value: controller.sliderValue.value,

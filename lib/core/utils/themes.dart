@@ -1,5 +1,6 @@
 
 import 'package:appointments_manager/core/utils/fonts.dart';
+import 'package:appointments_manager/core/utils/global_values.dart';
 import 'package:flutter/material.dart';
 import 'package:hugeicons/hugeicons.dart';
 

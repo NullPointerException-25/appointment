@@ -5,6 +5,7 @@ import 'package:appointments_manager/core/utils/themes.dart';
 import 'package:appointments_manager/core/utils/translations.dart';
 import 'package:appointments_manager/features/appointment/presentation/bindings/create_appointment_binding.dart';
 import 'package:appointments_manager/features/appointment/presentation/pages/details/details.dart';
+import 'package:appointments_manager/features/appointment_templates/presentation/pages/create/create.dart';
 import 'package:appointments_manager/features/client/presentation/bindings/clients_details_binding.dart';
 import 'package:appointments_manager/features/client/presentation/bindings/create_client_binding.dart';
 import 'package:appointments_manager/features/client/presentation/bindings/query_clients_binding.dart';
@@ -23,6 +24,7 @@ import 'package:responsive_framework/responsive_framework.dart';
 import 'core/services/in_app_notification_service.dart';
 import 'features/appointment/presentation/bindings/details_binding.dart';
 import 'features/appointment/presentation/pages/create/create.dart';
+import 'features/appointment_templates/presentation/bindings/create_binding.dart';
 import 'features/user/presentation/bindings/binding.dart';
 import 'firebase_options.dart';
 
@@ -38,7 +40,7 @@ initServices() async {
   );
   await loadObjectBoxLibraryAndroidCompat();
 
-  final profileService= Get.put(ProfileService());
+  final profileService = Get.put(ProfileService());
   Get.put(ObjectBoxService());
   await profileService.init();
   Get.put(InAppNotificationService());
@@ -92,8 +94,14 @@ class MyApp extends StatelessWidget {
         GetPage(
             name: Routes.appointmentDetail,
             binding: DetailsAppointmentBinding(),
-            page: () => const DetailsAppointmentPage())
+            page: () => const DetailsAppointmentPage()),
+        GetPage(
+          name: Routes.newTemplate,
+          binding: CreateTemplateBinding(),
+          page: () => const CreateTemplatesPage(),
+        )
       ],
+
       initialRoute: Routes.splash,
     );
   }
