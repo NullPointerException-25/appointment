@@ -5,7 +5,6 @@ import 'package:appointments_manager/features/appointment_templates/domain/entit
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import 'package:hugeicons/hugeicons.dart';
 
 class SelectAppointmentBottomSheet
     extends GetView<CreateAppointmentController> {
@@ -31,14 +30,14 @@ class SelectAppointmentBottomSheet
             Container(
               height: 5,
               width: 50,
-              margin: EdgeInsets.symmetric(vertical: kPadding),
+              margin: const EdgeInsets.symmetric(vertical: kPadding),
               decoration: BoxDecoration(
                 color: Theme.of(context).colorScheme.secondary,
                 borderRadius: BorderRadius.circular(kCornerRadiusM),
               ),
             ),
             const Padding(
-              padding: const EdgeInsets.only(bottom: kPadding),
+              padding: EdgeInsets.only(bottom: kPadding),
               child: Text(
                 "Your templates",
                 style: TextStyle(
@@ -49,7 +48,7 @@ class SelectAppointmentBottomSheet
             Expanded(
                 child: Obx(
               () => Padding(
-                padding:  EdgeInsets.symmetric(horizontal: kPadding),
+                padding:  const EdgeInsets.symmetric(horizontal: kPadding),
                 child: GridView.builder(
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: (MediaQuery.of(context).size.width/150).toInt(), childAspectRatio: 1),
                   itemBuilder: (context, index) => InkWell(
@@ -93,7 +92,7 @@ class SelectAppointmentBottomSheet
                       onPressed: () {
                         Get.back();
                       },
-                      child: Text("Continue without template")),
+                      child: const Text("Continue without template")),
                 )),
               ],
             )
