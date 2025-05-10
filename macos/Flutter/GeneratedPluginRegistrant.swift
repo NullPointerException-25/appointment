@@ -12,7 +12,6 @@ import firebase_core
 import flutter_local_notifications
 import objectbox_flutter_libs
 import path_provider_foundation
-import permission_handler_apple
 import record_macos
 
 func RegisterGeneratedPlugins(registry: FlutterPluginRegistry) {
@@ -23,6 +22,5 @@ func RegisterGeneratedPlugins(registry: FlutterPluginRegistry) {
   FlutterLocalNotificationsPlugin.register(with: registry.registrar(forPlugin: "FlutterLocalNotificationsPlugin"))
   ObjectboxFlutterLibsPlugin.register(with: registry.registrar(forPlugin: "ObjectboxFlutterLibsPlugin"))
   PathProviderPlugin.register(with: registry.registrar(forPlugin: "PathProviderPlugin"))
-  PermissionHandlerPlugin.register(with: registry.registrar(forPlugin: "PermissionHandlerPlugin"))
   RecordMacOsPlugin.register(with: registry.registrar(forPlugin: "RecordMacOsPlugin"))
 }

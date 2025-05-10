@@ -15,6 +15,7 @@ import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/route_manager.dart';
 import 'package:jiffy/jiffy.dart';
 
+import '../core/services/background_notifications_service.dart';
 import '../features/user/data/datasource/user_remote_firestore_datasource.dart';
 import '../features/user/data/repositories/user_auth_repository_impl.dart';
 import '../features/user/data/repositories/user_repository_firebase_impl.dart';
@@ -26,7 +27,9 @@ class CoreServicesInitializer {
     Jiffy.setLocale(Get.deviceLocale?.languageCode ?? "en");
     if (!kIsWeb) {
       //Set up Repositories and services for mobile and desktop
-
+      //Notifications
+        //Services
+          Get.put(BackgroundNotificationsService());
       //User
       //Datasources
       Get.put(LocalUserDatasource());
