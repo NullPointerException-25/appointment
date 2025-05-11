@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 
+import 'package:timezone/timezone.dart' as tz;
+
 class BackgroundNotificationsService extends GetxService {
   static BackgroundNotificationsService get to => Get.find();
   late FlutterLocalNotificationsPlugin _flutterLocalNotificationsPlugin;
@@ -98,5 +100,26 @@ class BackgroundNotificationsService extends GetxService {
   void onInit() {
     _initPlugin();
     super.onInit();
+  }
+
+  Future<void> setScheduleNotification(
+      String title, String body, DateTime date) async {
+    await _flutterLocalNotificationsPlugin.zonedSchedule(
+        date.millisecond,
+        title,
+        body,
+        tz.TZDateTime.now(tz.local).add(const Duration(seconds: 5)),
+        const NotificationDetails(
+            iOS: DarwinNotificationDetails(
+              presentBadge: true,
+            ),
+            macOS: DarwinNotificationDetails(
+              presentBadge: true,
+            ),
+            windows: WindowsNotificationDetails(),
+            android: AndroidNotificationDetails(
+                'notifications', 'appointments_manager',
+                channelDescription: 'None')),
+        androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle);
   }
 }
