@@ -6,6 +6,7 @@ import 'package:appointments_manager/features/appointment_templates/data/reposit
 import 'package:appointments_manager/features/appointment_templates/domain/entities/field.dart';
 import 'package:appointments_manager/features/appointment_templates/mappers/field_answer_mapper.dart';
 import 'package:appointments_manager/features/client/domain/entities/client_entity.dart';
+import 'package:appointments_manager/features/notifications/domain/usecases/save_notification.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
@@ -28,8 +29,8 @@ class CreateAppointmentUseCase extends UseCase<void> {
       LocalCustomFieldsRepositoryImpl? localCustomFieldsRepositoryImpl}) {
     _appointmentsRepository =
         appointmentsRepositoryLocal ?? AppointmentsRepositoryImpLocal.to;
-    for(final field in customFields){
-      field.answer= FieldAnswerMapper.defaultAnswer(field);
+    for (final field in customFields) {
+      field.answer = FieldAnswerMapper.defaultAnswer(field);
     }
     appointment = AppointmentEntity(
         client: client,
@@ -48,6 +49,12 @@ class CreateAppointmentUseCase extends UseCase<void> {
       InAppNotificationService.to
           .showNotificationError(Translator.somethingWentWrong.tr);
     }
+    SaveNotificationUseCase(
+      "${appointment.client.name} Today ${appointment.fromDate}",
+      appointment.fromDate.subtract(const Duration(hours: 1)),
+    ).perform();
+
+
 
     return;
   }

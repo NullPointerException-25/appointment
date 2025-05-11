@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
 
@@ -11,7 +12,7 @@ class BackgroundNotificationsService extends GetxService {
   late IOSFlutterLocalNotificationsPlugin iosImplementation;
 
   Future<void> _initPlugin() async {
-    FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+     _flutterLocalNotificationsPlugin =
         FlutterLocalNotificationsPlugin();
 // initialise the plugin. app_icon needs to be a added as a drawable resource to the Android head project
     const AndroidInitializationSettings initializationSettingsAndroid =
@@ -33,7 +34,7 @@ class BackgroundNotificationsService extends GetxService {
             macOS: initializationSettingsDarwin,
             linux: initializationSettingsLinux,
             windows: initializationSettingsWindows);
-    await flutterLocalNotificationsPlugin.initialize(initializationSettings,
+    await _flutterLocalNotificationsPlugin.initialize(initializationSettings,
         onDidReceiveNotificationResponse: _onDidReceiveNotificationResponse);
   }
 
@@ -104,11 +105,16 @@ class BackgroundNotificationsService extends GetxService {
 
   Future<void> setScheduleNotification(
       String title, String body, DateTime date) async {
+    var tzDateTime = tz.TZDateTime.from(date, tz.local);
+    if(kDebugMode){
+      tzDateTime = tz.TZDateTime.now(tz.local).add(const Duration(seconds: 5));
+    }
+    debugPrint("Scheduling notification");
     await _flutterLocalNotificationsPlugin.zonedSchedule(
         date.millisecond,
         title,
         body,
-        tz.TZDateTime.now(tz.local).add(const Duration(seconds: 5)),
+        tzDateTime,
         const NotificationDetails(
             iOS: DarwinNotificationDetails(
               presentBadge: true,

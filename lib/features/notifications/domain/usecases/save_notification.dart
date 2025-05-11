@@ -5,7 +5,8 @@ import '../entities/notification.dart';
 class SaveNotificationUseCase extends UseCase<void> {
   late final NotificationRepositoryImpl _notificationRepository;
   final String body;
-  SaveNotificationUseCase(this.body,  {NotificationRepositoryImpl? notificationRepository}) {
+  final DateTime scheduledTime;
+  SaveNotificationUseCase(this.body, this.scheduledTime,  {NotificationRepositoryImpl? notificationRepository}) {
     _notificationRepository = notificationRepository ?? NotificationRepositoryImpl.to;
   }
   @override
@@ -13,7 +14,7 @@ class SaveNotificationUseCase extends UseCase<void> {
     final notification = NotificationEntity(
       lastUpdate: DateTime.now(),
       notificationText: body,
-      scheduledTime: DateTime.now(),
+      scheduledTime: scheduledTime,
     );
     await _notificationRepository.saveNotification(notification);
   }
