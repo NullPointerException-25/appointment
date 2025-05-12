@@ -337,7 +337,7 @@ final _entities = <obx_int.ModelEntity>[
   obx_int.ModelEntity(
       id: const obx_int.IdUid(7, 8),
       name: 'NotificationModel',
-      lastPropertyId: const obx_int.IdUid(5, 2689234297033107330),
+      lastPropertyId: const obx_int.IdUid(7, 1244090938929746209),
       flags: 0,
       properties: <obx_int.ModelProperty>[
         obx_int.ModelProperty(
@@ -364,6 +364,16 @@ final _entities = <obx_int.ModelEntity>[
             id: const obx_int.IdUid(5, 2689234297033107330),
             name: 'notificationText',
             type: 9,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(6, 3746578142302962713),
+            name: 'title',
+            type: 9,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(7, 1244090938929746209),
+            name: 'isRead',
+            type: 1,
             flags: 0)
       ],
       relations: <obx_int.ModelRelation>[],
@@ -794,12 +804,15 @@ obx_int.ModelDefinition getObjectBoxModel() {
           final remoteIdOffset = fbb.writeString(object.remoteId);
           final notificationTextOffset =
               fbb.writeString(object.notificationText);
-          fbb.startTable(6);
+          final titleOffset = fbb.writeString(object.title);
+          fbb.startTable(8);
           fbb.addInt64(0, object.lastUpdate.millisecondsSinceEpoch);
           fbb.addInt64(1, object.scheduledTime.millisecondsSinceEpoch);
           fbb.addInt64(2, object.localId);
           fbb.addOffset(3, remoteIdOffset);
           fbb.addOffset(4, notificationTextOffset);
+          fbb.addOffset(5, titleOffset);
+          fbb.addBool(6, object.isRead);
           fbb.finish(fbb.endTable());
           return object.localId;
         },
@@ -817,12 +830,18 @@ obx_int.ModelDefinition getObjectBoxModel() {
           final notificationTextParam =
               const fb.StringReader(asciiOptimization: true)
                   .vTableGet(buffer, rootOffset, 12, '');
+          final titleParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGet(buffer, rootOffset, 14, '');
+          final isReadParam =
+              const fb.BoolReader().vTableGet(buffer, rootOffset, 16, false);
           final object = NotificationModel(
               lastUpdate: lastUpdateParam,
               localId: localIdParam,
               remoteId: remoteIdParam,
               scheduledTime: scheduledTimeParam,
-              notificationText: notificationTextParam);
+              notificationText: notificationTextParam,
+              title: titleParam,
+              isRead: isReadParam);
 
           return object;
         })
@@ -1074,4 +1093,12 @@ class NotificationModel_ {
   /// See [NotificationModel.notificationText].
   static final notificationText =
       obx.QueryStringProperty<NotificationModel>(_entities[6].properties[4]);
+
+  /// See [NotificationModel.title].
+  static final title =
+      obx.QueryStringProperty<NotificationModel>(_entities[6].properties[5]);
+
+  /// See [NotificationModel.isRead].
+  static final isRead =
+      obx.QueryBooleanProperty<NotificationModel>(_entities[6].properties[6]);
 }

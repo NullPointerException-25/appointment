@@ -2,7 +2,6 @@ import 'package:appointments_manager/core/abstractions/entity.dart';
 import 'package:appointments_manager/features/notifications/data/models/notification_model.dart';
 
 class NotificationEntity extends CoreEntity<NotificationModel> {
-
   @override
   final DateTime lastUpdate;
 
@@ -15,14 +14,18 @@ class NotificationEntity extends CoreEntity<NotificationModel> {
   final DateTime scheduledTime;
 
   String notificationText;
-
+  String title;
+  bool isRead;
 
   @override
-  NotificationEntity({required this.lastUpdate,
-    this.localId = 0,
-     this.remoteId="",
-    this.notificationText = '',
-    required this.scheduledTime});
+  NotificationEntity(
+      {required this.lastUpdate,
+      this.localId = 0,
+      this.remoteId = "",
+      this.notificationText = '',
+      this.title = '',
+      this.isRead = false,
+      required this.scheduledTime});
 
   @override
   NotificationModel toModel() {
@@ -31,6 +34,8 @@ class NotificationEntity extends CoreEntity<NotificationModel> {
         localId: localId,
         remoteId: remoteId,
         notificationText: notificationText,
+        title: title,
+        isRead: isRead,
         scheduledTime: scheduledTime);
   }
 }

@@ -105,11 +105,10 @@ class BackgroundNotificationsService extends GetxService {
 
   Future<void> setScheduleNotification(
       String title, String body, DateTime date) async {
-    var tzDateTime = tz.TZDateTime.from(date, tz.local);
+    var tzDateTime = tz.TZDateTime.from(date.subtract(const Duration(hours: 1)), tz.local);
     if(kDebugMode){
       tzDateTime = tz.TZDateTime.now(tz.local).add(const Duration(seconds: 5));
     }
-    debugPrint("Scheduling notification");
     await _flutterLocalNotificationsPlugin.zonedSchedule(
         date.millisecond,
         title,

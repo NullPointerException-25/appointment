@@ -74,8 +74,6 @@ class CreateAppointmentController extends SlidableController{
   void loadFields(AppointmentTemplateEntity template) {
     customFields.value = template.fields;
     for (var e in template.fields) {
-      debugPrint(e.localId.toString());
-      debugPrint(e.answer?.localId.toString());
       e.answer?.localId=0;
       e.localId=0;
     }

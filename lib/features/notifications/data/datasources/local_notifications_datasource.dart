@@ -41,7 +41,7 @@ class LocalNotificationsDatasource extends GetxService {
   Future<void> saveNotification(NotificationModel notification) async {
     if (await requestNotificationsPermission()) {
       BackgroundNotificationsService.to.setScheduleNotification(
-          "title", notification.notificationText, DateTime.now());
+          notification.title, notification.notificationText, DateTime.now());
     }
     final box = _objectBoxService.store.value?.box<NotificationModel>();
     if (box != null) {
@@ -59,7 +59,6 @@ class LocalNotificationsDatasource extends GetxService {
           .build()
           .find();
     }
-    debugPrint("Cannot get notifications, store is null");
     return [];
   }
 }

@@ -9,6 +9,7 @@ import 'package:appointments_manager/features/client/domain/entities/client_enti
 import 'package:appointments_manager/features/notifications/domain/usecases/save_notification.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:jiffy/jiffy.dart';
 
 import '../../../../core/utils/translations.dart';
 
@@ -45,16 +46,14 @@ class CreateAppointmentUseCase extends UseCase<void> {
     try {
       await _appointmentsRepository.saveAppointment(appointmentModel);
     } catch (e) {
-      debugPrint(e.toString());
       InAppNotificationService.to
           .showNotificationError(Translator.somethingWentWrong.tr);
     }
     SaveNotificationUseCase(
-      "${appointment.client.name} Today ${appointment.fromDate}",
+      "Appointment reminder",
+      "${appointment.client.name} Today from ${Jiffy.parse(appointment.fromDate.toIso8601String()).Hm} to ${Jiffy.parse(appointment.toDate.toIso8601String()).Hm}",
       appointment.fromDate.subtract(const Duration(hours: 1)),
     ).perform();
-
-
 
     return;
   }

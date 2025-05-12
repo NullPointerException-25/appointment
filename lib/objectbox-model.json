@@ -308,7 +308,7 @@
     },
     {
       "id": "7:8",
-      "lastPropertyId": "5:2689234297033107330",
+      "lastPropertyId": "7:1244090938929746209",
       "name": "NotificationModel",
       "properties": [
         {
@@ -336,6 +336,16 @@
           "id": "5:2689234297033107330",
           "name": "notificationText",
           "type": 9
+        },
+        {
+          "id": "6:3746578142302962713",
+          "name": "title",
+          "type": 9
+        },
+        {
+          "id": "7:1244090938929746209",
+          "name": "isRead",
+          "type": 1
         }
       ],
       "relations": []

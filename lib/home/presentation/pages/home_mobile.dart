@@ -1,5 +1,6 @@
 import 'package:appointments_manager/core/utils/colors.dart';
 import 'package:appointments_manager/features/client/presentation/pagers/clients_home_pager.dart';
+import 'package:appointments_manager/features/notifications/presentation/pagers/notifications_pager.dart';
 import 'package:appointments_manager/home/presentation/controllers/home_controller.dart';
 import 'package:appointments_manager/home/presentation/pagers/home_pager.dart';
 import 'package:appointments_manager/home/presentation/widgets/appbar.dart';
@@ -44,12 +45,7 @@ class HomeMobilePage extends GetResponsiveView<HomeController> {
                       child: Text('Calendar'),
                     ),
                   ),
-                  Container(
-                    color: Theme.of(context).colorScheme.surface,
-                    child: const Center(
-                      child: Text('Notifications'),
-                    ),
-                  ),
+                  const NotificationsPager(),
                   const ClientsHomePager(),
                 ],
               ),
