@@ -56,6 +56,7 @@ class LocalNotificationsDatasource extends GetxService {
       return box
           .query(NotificationModel_.scheduledTime
               .lessThan(time.millisecondsSinceEpoch))
+          .order(NotificationModel_.scheduledTime, flags: Order.descending)
           .build()
           .find();
     }

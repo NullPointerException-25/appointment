@@ -1,6 +1,6 @@
 import 'package:appointments_manager/features/appointment_templates/data/model/field_answer.dart';
 import 'package:appointments_manager/features/appointment_templates/domain/entities/field.dart';
-import 'package:flutter/cupertino.dart';
+
 
 import '../../../core/utils/global_values.dart';
 import '../domain/entities/field_answer.dart';
