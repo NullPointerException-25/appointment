@@ -109,6 +109,20 @@ class Translator extends Translations {
           "defaultDuration": "Default duration",
           "useDefaultDuration": "Use default duration",
           "templateCreated": "Template created",
+          "shortMonday": "Mon",
+          "shortTuesday": "Tue",
+          "shortWednesday": "Wed",
+          "shortThursday": "Thu",
+          "shortFriday": "Fri",
+          "shortSaturday": "Sat",
+          "shortSunday": "Sun",
+          "longMonday": "Monday",
+          "longTuesday": "Tuesday",
+          "longWednesday": "Wednesday",
+          "longThursday": "Thursday",
+          "longFriday": "Friday",
+          "longSaturday": "Saturday",
+          "longSunday": "Sunday",
         },
         'es': {
           'title': 'Gestor de Citas',
@@ -312,4 +326,20 @@ class Translator extends Translations {
   static String get useDefaultDuration=>"useDefaultDuration";
 
   static String get templateCreated=>"templateCreated";
+
+  static String get shortMonday=>"shortMonday";
+  static String get shortTuesday=>"shortTuesday";
+  static String get shortWednesday=>"shortWednesday";
+  static String get shortThursday=>"shortThursday";
+  static String get shortFriday=>"shortFriday";
+  static String get shortSaturday=>"shortSaturday";
+  static String get shortSunday=>"shortSunday";
+  static String get longMonday=>"longMonday";
+  static String get longTuesday=>"longTuesday";
+  static String get longWednesday=>"longWednesday";
+  static String get longThursday=>"longThursday";
+  static String get longFriday=>"longFriday";
+  static String get longSaturday=>"longSaturday";
+  static String get longSunday=>"longSunday";
+
 }
