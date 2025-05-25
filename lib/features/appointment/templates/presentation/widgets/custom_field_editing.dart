@@ -133,7 +133,7 @@ class CustomFieldEditing extends GetView<CreateAppointmentController> {
             minLines: 1,
             maxLines: 2,
             maxLength: 50,
-            hintText: Translator.name.tr,
+            hintText: Translator.customFieldTitle.tr,
             controller: controllerText,
             onChanged: (value) {
               field.title = value;

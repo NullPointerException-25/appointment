@@ -68,7 +68,7 @@ class CreateAppointmentController extends SlidableController{
     if(templates.isEmpty){
       return;
     }
-    Get.bottomSheet(SelectAppointmentBottomSheet(templates));
+    Get.bottomSheet(SelectTemplateBottomSheet(templates));
   }
 
   void loadFields(AppointmentTemplateEntity template) {

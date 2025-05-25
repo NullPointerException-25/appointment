@@ -15,7 +15,6 @@ class DateTemplateField extends StatelessWidget {
   late final FieldAnswerEntity<DateTime> answer;
   final editingController = TextEditingController();
 
-
   DateTemplateField(this.field, {super.key}) {
     assert(field.fieldType == FormFieldType.date, "Field type must be date");
     assert(field.answer is FieldAnswerEntity<DateTime>,
@@ -25,8 +24,6 @@ class DateTemplateField extends StatelessWidget {
         ? Jiffy.parse(answer.value.toIso8601String()).yMMMd
         : "";
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -44,20 +41,23 @@ class DateTemplateField extends StatelessWidget {
           InkWell(
             onTap: () async {
               final date = await showDatePicker(
-                  context: context,
-                  firstDate: DateTime.utc(1970),
-                  lastDate: DateTime.now()..add(const Duration(days: 5000
-              )));
-              if(date==null) return;
-              answer.value=date;
-              editingController.text= Jiffy.parse(date.toIso8601String()).yMMMd;
+                context: context,
+                firstDate: DateTime.utc(1970),
+                lastDate: DateTime.now().add(
+                  const Duration(days: 3650),
+                ),
+              );
+              if (date == null) return;
+              answer.value = date;
+              editingController.text =
+                  Jiffy.parse(date.toIso8601String()).yMMMd;
             },
             child: TextFormFieldCore(
               controller: editingController,
               maxLines: 1,
               prefixIcon: Icon(
                 HugeIcons.strokeRoundedCalendar01,
-                color: Theme.of(context).brightness== Brightness.light
+                color: Theme.of(context).brightness == Brightness.light
                     ? ThemeColors.dark
                     : ThemeColors.white,
               ),

@@ -2,6 +2,7 @@
 import 'package:appointments_manager/core/utils/colors.dart';
 import 'package:appointments_manager/core/utils/translations.dart';
 import 'package:appointments_manager/core/widgets/text_form_field_core.dart';
+import 'package:appointments_manager/features/appointment/presentation/widgets/custom_field_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hugeicons/hugeicons.dart';
@@ -11,6 +12,7 @@ import '../../../../presentation/widgets/duration_slider.dart';
 import '../../controllers/create_template_controller.dart';
 import '../../widgets/appbar.dart';
 import '../../widgets/custom_field_editing.dart';
+import '../../widgets/templates_dialog.dart';
 
 class MobileCreateTemplatePage extends GetView<CreateTemplateController> {
   MobileCreateTemplatePage({super.key});
@@ -28,6 +30,9 @@ class MobileCreateTemplatePage extends GetView<CreateTemplateController> {
               child: CustomScrollView(
                 slivers: [
                   const TemplatesAppBar(),
+                  SliverToBoxAdapter(
+                    child: TemplatesDialog()
+                  ),
                   SliverToBoxAdapter(
                       child: Padding(
                     padding: const EdgeInsets.all(kPadding),
@@ -48,6 +53,7 @@ class MobileCreateTemplatePage extends GetView<CreateTemplateController> {
                           onChanged: (value) {
                             controller.templateName.value = value;
                           },
+                          maxLength: 30,
                           validator: (value) {
                             if (value == null || value.isEmpty) {
                               return Translator.pleaseEnterSomeText.tr;
@@ -118,6 +124,9 @@ class MobileCreateTemplatePage extends GetView<CreateTemplateController> {
                       ),
                     );
                   }),
+                  const SliverToBoxAdapter(
+                      child: CustomFieldDialog()
+                  ),
                   Obx(
                     () => SliverPadding(
                       padding: const EdgeInsets.all(kPaddingM),

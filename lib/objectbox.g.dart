@@ -15,9 +15,9 @@ import 'package:objectbox/objectbox.dart' as obx;
 import 'package:objectbox_flutter_libs/objectbox_flutter_libs.dart';
 
 import 'features/appointment/data/models/appointment.dart';
-import 'features/appointment_templates/data/model/field.dart';
-import 'features/appointment_templates/data/model/field_answer.dart';
-import 'features/appointment_templates/data/model/template.dart';
+import 'features/appointment/templates/data/model/field.dart';
+import 'features/appointment/templates/data/model/field_answer.dart';
+import 'features/appointment/templates/data/model/template.dart';
 import 'features/client/data/models/client.dart';
 import 'features/notifications/data/models/notification_model.dart';
 import 'features/user/data/models/users_model.dart';

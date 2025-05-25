@@ -18,6 +18,10 @@ class TimelineController extends GetxController {
     _getAppointmentsAhead();
   }
 
+  RxInt get todayAppointmentsCount {
+    return appointments.where((appointment) => appointment.fromDate.isToday()).length.obs;
+  }
+
   ///This method is used to get the appointments that are ahead of the current date
   ///It is called in the [onInit] method because we want to get today's appointments
   ///It should be called when the user scrolls to the bottom of the timeline
