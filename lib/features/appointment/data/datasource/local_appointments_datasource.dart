@@ -4,8 +4,10 @@ import 'package:appointments_manager/objectbox.g.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
-import '../../../appointment_templates/data/model/field.dart';
-import '../../../appointment_templates/data/model/field_answer.dart';
+import '../../templates/data/model/field.dart';
+import '../../templates/data/model/field_answer.dart';
+
+
 
 class LocalAppointmentsDatasource extends GetxService {
   late final ObjectBoxService _objectBoxService;

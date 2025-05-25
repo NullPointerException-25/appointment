@@ -1,8 +1,7 @@
 import 'package:appointments_manager/core/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import '../../../appointment_templates/domain/contracts/slidable_controller.dart';
+import '../../templates/domain/contracts/slidable_controller.dart';
 
 class DurationSlider<T extends SlidableController> extends GetView<T> {
   const DurationSlider({super.key});
