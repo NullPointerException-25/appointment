@@ -28,7 +28,6 @@ import 'features/appointment_templates/presentation/bindings/create_binding.dart
 import 'features/user/presentation/bindings/binding.dart';
 import 'firebase_options.dart';
 import 'package:timezone/data/latest_all.dart' as tz;
-import 'package:timezone/timezone.dart' as tz;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
