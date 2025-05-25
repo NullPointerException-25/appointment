@@ -19,6 +19,7 @@ import 'features/appointment_templates/data/model/field.dart';
 import 'features/appointment_templates/data/model/field_answer.dart';
 import 'features/appointment_templates/data/model/template.dart';
 import 'features/client/data/models/client.dart';
+import 'features/notifications/data/models/notification_model.dart';
 import 'features/user/data/models/users_model.dart';
 
 export 'package:objectbox/objectbox.dart'; // so that callers only have to import this file
@@ -332,6 +333,50 @@ final _entities = <obx_int.ModelEntity>[
             flags: 0)
       ],
       relations: <obx_int.ModelRelation>[],
+      backlinks: <obx_int.ModelBacklink>[]),
+  obx_int.ModelEntity(
+      id: const obx_int.IdUid(7, 8),
+      name: 'NotificationModel',
+      lastPropertyId: const obx_int.IdUid(7, 1244090938929746209),
+      flags: 0,
+      properties: <obx_int.ModelProperty>[
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(1, 3536485227814130725),
+            name: 'lastUpdate',
+            type: 10,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(2, 6787379011069630271),
+            name: 'scheduledTime',
+            type: 10,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(3, 6205339418755523727),
+            name: 'localId',
+            type: 6,
+            flags: 1),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(4, 4244370246944840707),
+            name: 'remoteId',
+            type: 9,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(5, 2689234297033107330),
+            name: 'notificationText',
+            type: 9,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(6, 3746578142302962713),
+            name: 'title',
+            type: 9,
+            flags: 0),
+        obx_int.ModelProperty(
+            id: const obx_int.IdUid(7, 1244090938929746209),
+            name: 'isRead',
+            type: 1,
+            flags: 0)
+      ],
+      relations: <obx_int.ModelRelation>[],
       backlinks: <obx_int.ModelBacklink>[])
 ];
 
@@ -370,7 +415,7 @@ Future<obx.Store> openStore(
 obx_int.ModelDefinition getObjectBoxModel() {
   final model = obx_int.ModelInfo(
       entities: _entities,
-      lastEntityId: const obx_int.IdUid(6, 7),
+      lastEntityId: const obx_int.IdUid(7, 8),
       lastIndexId: const obx_int.IdUid(7, 1538505947759255273),
       lastRelationId: const obx_int.IdUid(2, 4933571554284600610),
       lastSequenceId: const obx_int.IdUid(0, 0),
@@ -746,6 +791,59 @@ obx_int.ModelDefinition getObjectBoxModel() {
               lastUpdate: lastUpdateParam);
 
           return object;
+        }),
+    NotificationModel: obx_int.EntityDefinition<NotificationModel>(
+        model: _entities[6],
+        toOneRelations: (NotificationModel object) => [],
+        toManyRelations: (NotificationModel object) => {},
+        getId: (NotificationModel object) => object.localId,
+        setId: (NotificationModel object, int id) {
+          object.localId = id;
+        },
+        objectToFB: (NotificationModel object, fb.Builder fbb) {
+          final remoteIdOffset = fbb.writeString(object.remoteId);
+          final notificationTextOffset =
+              fbb.writeString(object.notificationText);
+          final titleOffset = fbb.writeString(object.title);
+          fbb.startTable(8);
+          fbb.addInt64(0, object.lastUpdate.millisecondsSinceEpoch);
+          fbb.addInt64(1, object.scheduledTime.millisecondsSinceEpoch);
+          fbb.addInt64(2, object.localId);
+          fbb.addOffset(3, remoteIdOffset);
+          fbb.addOffset(4, notificationTextOffset);
+          fbb.addOffset(5, titleOffset);
+          fbb.addBool(6, object.isRead);
+          fbb.finish(fbb.endTable());
+          return object.localId;
+        },
+        objectFromFB: (obx.Store store, ByteData fbData) {
+          final buffer = fb.BufferContext(fbData);
+          final rootOffset = buffer.derefObject(0);
+          final lastUpdateParam = DateTime.fromMillisecondsSinceEpoch(
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0));
+          final localIdParam =
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 8, 0);
+          final remoteIdParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGet(buffer, rootOffset, 10, '');
+          final scheduledTimeParam = DateTime.fromMillisecondsSinceEpoch(
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 6, 0));
+          final notificationTextParam =
+              const fb.StringReader(asciiOptimization: true)
+                  .vTableGet(buffer, rootOffset, 12, '');
+          final titleParam = const fb.StringReader(asciiOptimization: true)
+              .vTableGet(buffer, rootOffset, 14, '');
+          final isReadParam =
+              const fb.BoolReader().vTableGet(buffer, rootOffset, 16, false);
+          final object = NotificationModel(
+              lastUpdate: lastUpdateParam,
+              localId: localIdParam,
+              remoteId: remoteIdParam,
+              scheduledTime: scheduledTimeParam,
+              notificationText: notificationTextParam,
+              title: titleParam,
+              isRead: isReadParam);
+
+          return object;
         })
   };
 
@@ -972,4 +1070,35 @@ class FieldAnswerModel_ {
   /// See [FieldAnswerModel.dateValue].
   static final dateValue =
       obx.QueryDateProperty<FieldAnswerModel>(_entities[5].properties[10]);
+}
+
+/// [NotificationModel] entity fields to define ObjectBox queries.
+class NotificationModel_ {
+  /// See [NotificationModel.lastUpdate].
+  static final lastUpdate =
+      obx.QueryDateProperty<NotificationModel>(_entities[6].properties[0]);
+
+  /// See [NotificationModel.scheduledTime].
+  static final scheduledTime =
+      obx.QueryDateProperty<NotificationModel>(_entities[6].properties[1]);
+
+  /// See [NotificationModel.localId].
+  static final localId =
+      obx.QueryIntegerProperty<NotificationModel>(_entities[6].properties[2]);
+
+  /// See [NotificationModel.remoteId].
+  static final remoteId =
+      obx.QueryStringProperty<NotificationModel>(_entities[6].properties[3]);
+
+  /// See [NotificationModel.notificationText].
+  static final notificationText =
+      obx.QueryStringProperty<NotificationModel>(_entities[6].properties[4]);
+
+  /// See [NotificationModel.title].
+  static final title =
+      obx.QueryStringProperty<NotificationModel>(_entities[6].properties[5]);
+
+  /// See [NotificationModel.isRead].
+  static final isRead =
+      obx.QueryBooleanProperty<NotificationModel>(_entities[6].properties[6]);
 }

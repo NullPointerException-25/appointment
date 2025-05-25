@@ -1,6 +1,6 @@
 import 'package:appointments_manager/features/appointment_templates/data/model/field_answer.dart';
 import 'package:appointments_manager/features/appointment_templates/domain/entities/field.dart';
-import 'package:flutter/cupertino.dart';
+
 
 import '../../../core/utils/global_values.dart';
 import '../domain/entities/field_answer.dart';
@@ -23,7 +23,7 @@ class FieldAnswerMapper {
           textValue: entity.value as String,
         );
       case FormFieldType.number:
-        debugPrint("numberValue: ${entity.value}");
+
         final aux=  FieldAnswerModel(
           localId: entity.localId,
           remoteId: entity.remoteId,
@@ -31,7 +31,6 @@ class FieldAnswerMapper {
           formFieldType: type,
           numberValue: int.tryParse(entity.value.toString()) ?? 10,
         );
-          debugPrint("numberValue: ${aux.numberValue}");
           return aux;
       case FormFieldType.date:
         return FieldAnswerModel(
@@ -96,7 +95,6 @@ class FieldAnswerMapper {
           value: model.textValue,
         );
       case FormFieldType.number:
-        debugPrint("numberValue: ${model.numberValue}");
        final aux=  FieldAnswerEntity<int>(
           localId: model.localId,
           remoteId: model.remoteId,

@@ -53,5 +53,13 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UIBackgroundModes</key>
+    <array>
+      <string>remote-notification</string>
+    </array>
+    <key>NSLocalNotificationUsageDescription</key>
+    <string>This app needs permission to send you notifications.</string>
+    <key>NSUserNotificationUsageDescription</key>
+    <string>This app uses notifications to inform you about updates.</string>
 </dict>
 </plist>

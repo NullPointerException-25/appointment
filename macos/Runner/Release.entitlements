@@ -24,10 +24,10 @@
 	<true/>
 	<key>com.apple.security.device.microphone</key>
     <true/>
+
 	<key>keychain-access-groups</key>
         <array>
             <string>$(AppIdentifierPrefix)com.sublimesoftwares.appointmentsManager</string>
         </array>
-
 </dict>
 </plist>

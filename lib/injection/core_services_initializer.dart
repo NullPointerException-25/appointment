@@ -6,6 +6,7 @@ import 'package:appointments_manager/features/appointment_templates/data/reposit
 import 'package:appointments_manager/features/appointment_templates/data/repositories/template_local_impl.dart';
 import 'package:appointments_manager/features/client/data/datasource/local_client_data_source.dart';
 import 'package:appointments_manager/features/client/data/repositories/clients_repository_impl.dart';
+import 'package:appointments_manager/features/notifications/data/datasources/local_notifications_datasource.dart';
 import 'package:appointments_manager/features/user/data/datasource/device_storage_user_datastore.dart';
 import 'package:appointments_manager/features/user/data/datasource/local_user_datasource.dart';
 import 'package:appointments_manager/features/user/data/datasource/user_firebase_auth_datasource.dart';
@@ -15,6 +16,8 @@ import 'package:get/get_instance/src/extension_instance.dart';
 import 'package:get/route_manager.dart';
 import 'package:jiffy/jiffy.dart';
 
+import '../core/services/background_notifications_service.dart';
+import '../features/notifications/data/respositories/notification_repository_impl.dart';
 import '../features/user/data/datasource/user_remote_firestore_datasource.dart';
 import '../features/user/data/repositories/user_auth_repository_impl.dart';
 import '../features/user/data/repositories/user_repository_firebase_impl.dart';
@@ -26,7 +29,13 @@ class CoreServicesInitializer {
     Jiffy.setLocale(Get.deviceLocale?.languageCode ?? "en");
     if (!kIsWeb) {
       //Set up Repositories and services for mobile and desktop
-
+      //Notifications
+        //Services
+          Get.put(BackgroundNotificationsService());
+      //Datasources
+          Get.put(LocalNotificationsDatasource());
+      //Repositories
+          Get.put(NotificationRepositoryImpl());
       //User
       //Datasources
       Get.put(LocalUserDatasource());

@@ -35,6 +35,9 @@ const double kIconSizeXXL = 60.0;
 
 const double kFontSize = 14.0;
 const double kFontSizeS = 12.0;
+const double kFontSizeXS = 10.0;
+const double kFontSizeXXS = 8.0;
+const double kFontSizeXXXS = 6.0;
 const double kFontSizeM = 16.0;
 const double kFontSizeL = 18.0;
 const double kFontSizeXL = 20.0;

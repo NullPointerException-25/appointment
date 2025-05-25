@@ -6,8 +6,10 @@ import 'package:appointments_manager/features/appointment_templates/data/reposit
 import 'package:appointments_manager/features/appointment_templates/domain/entities/field.dart';
 import 'package:appointments_manager/features/appointment_templates/mappers/field_answer_mapper.dart';
 import 'package:appointments_manager/features/client/domain/entities/client_entity.dart';
+import 'package:appointments_manager/features/notifications/domain/usecases/save_notification.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:jiffy/jiffy.dart';
 
 import '../../../../core/utils/translations.dart';
 
@@ -28,8 +30,8 @@ class CreateAppointmentUseCase extends UseCase<void> {
       LocalCustomFieldsRepositoryImpl? localCustomFieldsRepositoryImpl}) {
     _appointmentsRepository =
         appointmentsRepositoryLocal ?? AppointmentsRepositoryImpLocal.to;
-    for(final field in customFields){
-      field.answer= FieldAnswerMapper.defaultAnswer(field);
+    for (final field in customFields) {
+      field.answer = FieldAnswerMapper.defaultAnswer(field);
     }
     appointment = AppointmentEntity(
         client: client,
@@ -44,10 +46,14 @@ class CreateAppointmentUseCase extends UseCase<void> {
     try {
       await _appointmentsRepository.saveAppointment(appointmentModel);
     } catch (e) {
-      debugPrint(e.toString());
       InAppNotificationService.to
           .showNotificationError(Translator.somethingWentWrong.tr);
     }
+    SaveNotificationUseCase(
+      "Appointment reminder",
+      "${appointment.client.name} Today from ${Jiffy.parse(appointment.fromDate.toIso8601String()).Hm} to ${Jiffy.parse(appointment.toDate.toIso8601String()).Hm}",
+      appointment.fromDate.subtract(const Duration(hours: 1)),
+    ).perform();
 
     return;
   }

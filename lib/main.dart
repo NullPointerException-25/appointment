@@ -27,6 +27,8 @@ import 'features/appointment/presentation/pages/create/create.dart';
 import 'features/appointment_templates/presentation/bindings/create_binding.dart';
 import 'features/user/presentation/bindings/binding.dart';
 import 'firebase_options.dart';
+import 'package:timezone/data/latest_all.dart' as tz;
+import 'package:timezone/timezone.dart' as tz;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -35,6 +37,7 @@ void main() async {
 }
 
 initServices() async {
+  tz.initializeTimeZones();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );

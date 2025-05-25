@@ -19,8 +19,7 @@ class LocalAppointmentsDatasource extends GetxService {
 
   AppointmentModel saveAppointment(AppointmentModel appointment) {
     final box = _objectBoxService.store.value!.box<AppointmentModel>();
-    final answerBox =
-        _objectBoxService.store.value!.box<FieldAnswerModel>();
+    final answerBox = _objectBoxService.store.value!.box<FieldAnswerModel>();
     final fieldBox = _objectBoxService.store.value!.box<FieldModel>();
     for (var field in appointment.fields) {
       if (field.answer.target != null) {
@@ -71,9 +70,17 @@ class LocalAppointmentsDatasource extends GetxService {
 
   Future<List<AppointmentModel>> getAppointmentsByDateRange(
       DateTime from, DateTime to) async {
+    from = DateTime(
+      from.year,
+      from.month,
+      from.day,
+    );
+    to = DateTime(to.year, to.month, to.day, 23, 59, 59);
     final box = _objectBoxService.store.value!.box<AppointmentModel>();
-    final query =
-        box.query(AppointmentModel_.fromDate.betweenDate(from, to)).build();
+    final query = box
+        .query(AppointmentModel_.fromDate.betweenDate(from, to))
+        .order(AppointmentModel_.fromDate)
+        .build();
     return await query.findAsync();
   }
 }

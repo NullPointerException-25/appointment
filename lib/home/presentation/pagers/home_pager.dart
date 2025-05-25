@@ -7,6 +7,7 @@ import 'package:get/get.dart';
 
 import '../../../features/appointment/domain/entities/appointment_entity.dart';
 import '../controllers/timeline_controller.dart';
+import '../widgets/lastweek_plot.dart';
 
 class HomePager extends StatelessWidget {
   const HomePager({super.key});
@@ -21,6 +22,7 @@ class HomePager extends StatelessWidget {
         controller: TimelineController.to.scrollController,
         slivers: [
           const SliverToBoxAdapter(child: WelcomeHomeSection()),
+          const SliverToBoxAdapter(child: const LastWeekPlot()),
          ObxValue<RxList<AppointmentEntity>>(
            (appointments) {
              if(appointments.isEmpty){
