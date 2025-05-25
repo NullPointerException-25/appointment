@@ -13,10 +13,12 @@ import '../../widgets/appointment_item.dart';
 import '../../widgets/appointment_preview_item.dart';
 import '../../widgets/calendar_date_picker.dart';
 import '../../widgets/client_searcher_textfield.dart';
+import '../../widgets/custom_field_dialog.dart';
 import '../../widgets/duration_slider.dart' show DurationSlider;
 
 class NewAppointmentDesktopPage extends GetView<CreateAppointmentController> {
   const NewAppointmentDesktopPage({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,7 +42,6 @@ class NewAppointmentDesktopPage extends GetView<CreateAppointmentController> {
             tooltip: Translator.preview.tr,
             onPressed: () {},
           ),
-
           IconButton(
             icon: const Icon(HugeIcons.strokeRoundedFloppyDisk),
             tooltip: Translator.save.tr,
@@ -75,19 +76,19 @@ class NewAppointmentDesktopPage extends GetView<CreateAppointmentController> {
                               Translator.duration.tr,
                               style: TextStyle(
                                   color: Theme.of(context).brightness ==
-                                      Brightness.dark
+                                          Brightness.dark
                                       ? ThemeColors.white
                                       : ThemeColors.dark),
                             ),
                             const SizedBox(
                               height: kPaddingS,
                             ),
-                            const DurationSlider(),
+                            const DurationSlider<CreateAppointmentController>(),
                             Obx(
-                                  () => Padding(
+                              () => Padding(
                                 padding: const EdgeInsets.all(kPaddingS),
-                                child: Text(controller
-                                    .selectedDurationString.value),
+                                child: Text(
+                                    controller.selectedDurationString.value),
                               ),
                             ),
                           ],
@@ -95,21 +96,21 @@ class NewAppointmentDesktopPage extends GetView<CreateAppointmentController> {
                       ),
                     ),
                     Obx(
-                          () => SliverPadding(
+                      () => SliverPadding(
                         padding: const EdgeInsets.all(kPaddingM),
                         sliver: SliverList.builder(
                             itemCount: controller.todayAppointments.length,
                             itemBuilder: (context, index) {
                               if (controller.todayAppointments[index]
-                              is AppointmentPreview) {
+                                  is AppointmentPreview) {
                                 return AppointmentPreviewItem(
                                     controller.todayAppointments[index]
-                                    as AppointmentPreview);
+                                        as AppointmentPreview);
                               }
                               return AppointmentItem(
                                   appointment:
-                                  controller.todayAppointments[index]
-                                  as AppointmentEntity);
+                                      controller.todayAppointments[index]
+                                          as AppointmentEntity);
                             }),
                       ),
                     ),
@@ -118,60 +119,61 @@ class NewAppointmentDesktopPage extends GetView<CreateAppointmentController> {
               ),
               Expanded(
                   child: CustomScrollView(
-                    slivers: [
-                      SliverToBoxAdapter(
-                        child: Padding(
-                          padding: const EdgeInsets.all(kPaddingM),
-                          child: Text(
-                            textAlign: TextAlign.center,
-                            Translator.customFields.tr,
-                            style: TextStyle(
-                                color: Theme.of(context).brightness == Brightness.dark
+                slivers: [
+                  SliverToBoxAdapter(
+                    child: Padding(
+                      padding: const EdgeInsets.all(kPaddingM),
+                      child: Text(
+                        textAlign: TextAlign.center,
+                        Translator.customFields.tr,
+                        style: TextStyle(
+                            fontWeight: FontWeight.w700,
+                            color:
+                                Theme.of(context).brightness == Brightness.dark
                                     ? ThemeColors.white
                                     : ThemeColors.dark),
-                          ),
-                        ),
                       ),
-                      Obx(
-                            () => SliverPadding(
-                          padding: const EdgeInsets.all(kPaddingM),
-                          sliver: SliverList.builder(
-                              itemCount:
-                              controller.customFields.length + 1,
-                              itemBuilder: (context, index) {
-                                if (index ==
-                                    controller.customFields.length) {
-                                  return Padding(
-                                    padding: const EdgeInsets.all(kPadding),
-                                    child: Row(
-                                      children: [
-                                        ElevatedButton.icon(
-                                          icon: const Icon(
-                                            HugeIcons.strokeRoundedAdd01,
+                    ),
+                  ),
+                  const SliverToBoxAdapter(child: CustomFieldDialog()),
+                  Obx(
+                    () => SliverPadding(
+                      padding: const EdgeInsets.all(kPaddingM),
+                      sliver: SliverList.builder(
+                          itemCount: controller.customFields.length + 1,
+                          itemBuilder: (context, index) {
+                            if (index == controller.customFields.length) {
+                              return Padding(
+                                padding: const EdgeInsets.all(kPadding),
+                                child: Row(
+                                  children: [
+                                    ElevatedButton.icon(
+                                      icon: const Icon(
+                                        HugeIcons.strokeRoundedAdd01,
+                                        color: ThemeColors.white,
+                                      ),
+                                      onPressed: () {
+                                        controller.addNewField();
+                                      },
+                                      label: Text(
+                                        Translator.addNewField.tr,
+                                        style: const TextStyle(
                                             color: ThemeColors.white,
-                                          ),
-                                          onPressed: () {
-                                            controller.addNewField();
-                                          },
-                                          label: Text(
-                                            Translator.addNewField.tr,
-                                            style: const TextStyle(
-                                                color: ThemeColors.white,
-                                                fontSize: kFontSize,
-                                                fontWeight: FontWeight.bold),
-                                          ),
-                                        ),
-                                      ],
+                                            fontSize: kFontSize,
+                                            fontWeight: FontWeight.bold),
+                                      ),
                                     ),
-                                  );
-                                }
-                                return CustomFieldEditing(
-                                    field: controller.customFields[index]);
-                              }),
-                        ),
-                      ),
-                    ],
-                  )),
+                                  ],
+                                ),
+                              );
+                            }
+                            return CustomFieldEditing(
+                                field: controller.customFields[index]);
+                          }),
+                    ),
+                  ),
+                ],
+              )),
             ],
           ),
         ),

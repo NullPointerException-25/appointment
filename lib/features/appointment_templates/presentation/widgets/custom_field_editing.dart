@@ -28,7 +28,7 @@ class CustomFieldEditing extends GetView<CreateAppointmentController> {
               ConstrainedBox(
                 constraints: const BoxConstraints(
                   minWidth: 100,
-                  maxWidth: 200
+                  maxWidth: 250
                 ),
                 child: DropdownButtonFormField<FormFieldType>(
                   style: Theme.of(context).textTheme.bodyMedium,
@@ -131,6 +131,9 @@ class CustomFieldEditing extends GetView<CreateAppointmentController> {
               }
               return null;
             },
+            minLines: 1,
+            maxLines: 2,
+            maxLength: 50,
             hintText: Translator.name.tr,
             controller: controllerText,
             onChanged: (value) {

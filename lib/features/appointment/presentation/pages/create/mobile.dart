@@ -13,11 +13,11 @@ import '../../widgets/appointment_item.dart';
 import '../../widgets/appointment_preview_item.dart';
 import '../../widgets/calendar_date_picker.dart';
 import '../../widgets/client_searcher_textfield.dart';
+import '../../widgets/custom_field_dialog.dart';
 import '../../widgets/duration_slider.dart' show DurationSlider;
 
 class NewAppointmentMobilePage extends GetView<CreateAppointmentController> {
   const NewAppointmentMobilePage({super.key});
-
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,6 @@ class NewAppointmentMobilePage extends GetView<CreateAppointmentController> {
                     SliverAppBar(
                       title: Text(
                         Translator.newAppointment.tr,
-
                         style: TextStyle(
                           color: Theme.of(context).brightness == Brightness.dark
                               ? ThemeColors.white
@@ -44,9 +43,7 @@ class NewAppointmentMobilePage extends GetView<CreateAppointmentController> {
                         IconButton(
                           icon: const Icon(HugeIcons.strokeRoundedView),
                           tooltip: Translator.preview.tr,
-                          onPressed: () {
-
-                          },
+                          onPressed: () {},
                         ),
                       ],
                     ),
@@ -67,7 +64,7 @@ class NewAppointmentMobilePage extends GetView<CreateAppointmentController> {
                               Translator.duration.tr,
                               style: TextStyle(
                                   color: Theme.of(context).brightness ==
-                                      Brightness.dark
+                                          Brightness.dark
                                       ? ThemeColors.white
                                       : ThemeColors.dark),
                             ),
@@ -76,10 +73,10 @@ class NewAppointmentMobilePage extends GetView<CreateAppointmentController> {
                             ),
                             const DurationSlider<CreateAppointmentController>(),
                             Obx(
-                                  () => Padding(
+                              () => Padding(
                                 padding: const EdgeInsets.all(kPaddingS),
-                                child:
-                                Text(controller.selectedDurationString.value),
+                                child: Text(
+                                    controller.selectedDurationString.value),
                               ),
                             ),
                           ],
@@ -87,20 +84,21 @@ class NewAppointmentMobilePage extends GetView<CreateAppointmentController> {
                       ),
                     ),
                     Obx(
-                          () => SliverPadding(
+                      () => SliverPadding(
                         padding: const EdgeInsets.all(kPaddingM),
                         sliver: SliverList.builder(
                             itemCount: controller.todayAppointments.length,
                             itemBuilder: (context, index) {
                               if (controller.todayAppointments[index]
-                              is AppointmentPreview) {
+                                  is AppointmentPreview) {
                                 return AppointmentPreviewItem(
                                     controller.todayAppointments[index]
-                                    as AppointmentPreview);
+                                        as AppointmentPreview);
                               }
                               return AppointmentItem(
-                                  appointment: controller.todayAppointments[index]
-                                  as AppointmentEntity);
+                                  appointment:
+                                      controller.todayAppointments[index]
+                                          as AppointmentEntity);
                             }),
                       ),
                     ),
@@ -111,18 +109,22 @@ class NewAppointmentMobilePage extends GetView<CreateAppointmentController> {
                           textAlign: TextAlign.center,
                           Translator.customFields.tr,
                           style: TextStyle(
+                              fontWeight: FontWeight.w700,
                               color: Theme.of(context).brightness ==
-                                  Brightness.dark
+                                      Brightness.dark
                                   ? ThemeColors.white
                                   : ThemeColors.dark),
                         ),
                       ),
                     ),
+                    const SliverToBoxAdapter(
+                      child: CustomFieldDialog()
+                    ),
                     Obx(
-                          () => SliverPadding(
+                      () => SliverPadding(
                         padding: const EdgeInsets.all(kPaddingM),
                         sliver: SliverList.builder(
-                            itemCount: controller.customFields.length+1,
+                            itemCount: controller.customFields.length + 1,
                             itemBuilder: (context, index) {
                               if (index == controller.customFields.length) {
                                 return Padding(
@@ -130,7 +132,10 @@ class NewAppointmentMobilePage extends GetView<CreateAppointmentController> {
                                   child: Row(
                                     children: [
                                       ElevatedButton.icon(
-                                        icon: const Icon(HugeIcons.strokeRoundedAdd01, color: ThemeColors.white,),
+                                        icon: const Icon(
+                                          HugeIcons.strokeRoundedAdd01,
+                                          color: ThemeColors.white,
+                                        ),
                                         onPressed: () {
                                           controller.addNewField();
                                         },
@@ -146,7 +151,8 @@ class NewAppointmentMobilePage extends GetView<CreateAppointmentController> {
                                   ),
                                 );
                               }
-                              return CustomFieldEditing(field: controller.customFields[index]);
+                              return CustomFieldEditing(
+                                  field: controller.customFields[index]);
                             }),
                       ),
                     ),

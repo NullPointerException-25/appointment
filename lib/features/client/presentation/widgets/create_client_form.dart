@@ -5,6 +5,7 @@ import 'package:appointments_manager/core/widgets/image_picker_form_field_core.d
 import 'package:appointments_manager/core/widgets/text_form_field_core.dart';
 import 'package:appointments_manager/features/client/presentation/controllers/create_client_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:hugeicons/hugeicons.dart';
 
@@ -73,6 +74,9 @@ class CreateClientForm extends GetView<CreateClientController> {
               Scrollable.ensureVisible(focusNodeEmail.context!, duration: const Duration(milliseconds: 500));
 
             },
+            inputFormatters: [
+              FilteringTextInputFormatter.digitsOnly,
+            ],
             validator: (value) {
               if(value!=null){
                 if (!value.trim().isPhoneNumber) {
@@ -85,7 +89,7 @@ class CreateClientForm extends GetView<CreateClientController> {
               controller.phone.value = value;
             },
             prefixIcon: Icon(
-              HugeIcons.strokeRoundedTelephone,
+              HugeIcons.strokeRoundedCall,
               color: Theme.of(context).brightness ==
                   Brightness.dark
                   ? ThemeColors.white
