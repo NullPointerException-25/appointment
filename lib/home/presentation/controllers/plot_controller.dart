@@ -82,7 +82,7 @@ class PlotController extends GetxController {
   }
 
   void getMaxY() {
-    maxY.value = plotDataList.map((e) => e.y).reduce((a, b) => a > b ? a : b) + 90;
+    maxY.value = plotDataList.map((e) => e.y).reduce((a, b) => a > b ? a : b) + 60;
   }
 }
 
