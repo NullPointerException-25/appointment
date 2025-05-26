@@ -31,6 +31,7 @@ class LocalUserDatasource extends GetxService {
   void checkUserSetup(UserModel user) {
     if(!user.isSetupComplete){
       Get.offAllNamed(Routes.setup);
+      return;
     }
     Get.offAllNamed(Routes.home);
   }
@@ -82,7 +83,7 @@ class LocalUserDatasource extends GetxService {
   }
 
   Future<List<UserModel>> getUsers() {
-    final users = _store.value.box<UserModel>().getAll();
+    final users = _store.value.box<UserModel>().query(UserModel_.isSetupComplete.equals(true)).build().find();
     return Future.value(users);
   }
 

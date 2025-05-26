@@ -129,6 +129,7 @@ class Translator extends Translations {
           "customFieldTitle": "Give a name to your custom field",
           "CreateTemplateDialog": "Creating a template will help you fill the custom fields according to your needs",
           "yourTemplates": "Your templates",
+          "workingHoursThisWeek": "Hours worked last week",
         },
         'es': {
           'title': 'Gestor de Citas',
@@ -255,6 +256,7 @@ class Translator extends Translations {
           "customFieldTitle": "Dale un nombre a tu campo personalizado",
           "CreateTemplateDialog": "Crear una plantilla te ayudará a rellear los campos personalizados según tus necesidades",
           "yourTemplates": "Tus plantillas",
+          "workingHoursThisWeek": "Horas trabajadas la semana pasada",
         }
       };
 
@@ -486,4 +488,5 @@ class Translator extends Translations {
   static String get customFieldsDescription => "customFieldsDescription";
   static String get createTemplateDialog => "CreateTemplateDialog";
   static String get yourTemplates => "yourTemplates";
+  static String get workingHoursThisWeek => "workingHoursThisWeek";
 }
