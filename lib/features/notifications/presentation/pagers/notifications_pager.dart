@@ -3,7 +3,6 @@ import 'package:appointments_manager/core/utils/fonts.dart';
 import 'package:appointments_manager/core/utils/global_values.dart';
 import 'package:appointments_manager/features/notifications/domain/entities/notification.dart';
 import 'package:appointments_manager/features/notifications/presentation/controllers/notifications_controller.dart';
-import 'package:appointments_manager/features/notifications/presentation/widgets/enable_notifications_banner.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hugeicons/hugeicons.dart';
