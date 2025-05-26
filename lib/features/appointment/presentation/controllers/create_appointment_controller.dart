@@ -6,8 +6,6 @@ import 'package:appointments_manager/features/appointment/domain/usecases/create
 import 'package:appointments_manager/features/appointment/domain/usecases/create_appointment_use_case.dart';
 import 'package:appointments_manager/features/appointment/domain/usecases/get_appointments_by_date.dart';
 import 'package:appointments_manager/features/appointment/presentation/widgets/select_appointment_buttom_sheet.dart';
-import 'package:appointments_manager/features/appointment_templates/domain/contracts/slidable_controller.dart';
-import 'package:appointments_manager/features/appointment_templates/domain/usecases/delete_template.dart';
 import 'package:appointments_manager/features/client/domain/entities/client_entity.dart';
 import 'package:appointments_manager/features/client/domain/entities/client_query_params.dart';
 import 'package:appointments_manager/features/client/domain/usecases/get_clients_by_params.dart';
@@ -16,9 +14,11 @@ import 'package:get/get.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 import '../../../../core/utils/routes.dart';
-import '../../../appointment_templates/domain/entities/field.dart';
-import '../../../appointment_templates/domain/entities/template.dart';
-import '../../../appointment_templates/domain/usecases/get_templates.dart';
+import '../../templates/domain/contracts/slidable_controller.dart';
+import '../../templates/domain/entities/field.dart';
+import '../../templates/domain/entities/template.dart';
+import '../../templates/domain/usecases/delete_template.dart';
+import '../../templates/domain/usecases/get_templates.dart';
 
 class CreateAppointmentController extends SlidableController{
   static CreateAppointmentController get to =>
@@ -68,7 +68,7 @@ class CreateAppointmentController extends SlidableController{
     if(templates.isEmpty){
       return;
     }
-    Get.bottomSheet(SelectAppointmentBottomSheet(templates));
+    Get.bottomSheet(SelectTemplateBottomSheet(templates));
   }
 
   void loadFields(AppointmentTemplateEntity template) {

@@ -8,7 +8,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hugeicons/hugeicons.dart';
 import 'package:jiffy/jiffy.dart';
-import 'package:mesh_gradient/mesh_gradient.dart';
 
 class NotificationsPager extends GetView<NotificationsController> {
   const NotificationsPager({super.key});
@@ -44,18 +43,23 @@ class NotificationsPager extends GetView<NotificationsController> {
               height: kPaddingM,
             ),
           ),
-          SliverToBoxAdapter(child: EnableNotificationsBanner()),
+         // const SliverToBoxAdapter(child: EnableNotificationsBanner()),
           ObxValue<RxList<NotificationEntity>>(
               (notifications) => SliverList.builder(
                     itemCount: notifications.length,
                     itemBuilder: (context, index) {
                       final notification = notifications[index];
                       return Container(
-                        margin: EdgeInsets.only(bottom: kPadding, top: index==0? kPaddingM : 0),
+                        margin: EdgeInsets.only(
+                            bottom: kPadding,
+                            top: index == 0 ? kPaddingM : 0,
+                            right: kPaddingS,
+                            left: kPaddingS),
                         decoration: BoxDecoration(
                           boxShadow: [
                             BoxShadow(
-                              color: Theme.of(context).brightness == Brightness.dark
+                              color: Theme.of(context).brightness ==
+                                      Brightness.dark
                                   ? ThemeColors.black
                                   : ThemeColors.darkGrey,
                               blurRadius: 2,
@@ -71,19 +75,20 @@ class NotificationsPager extends GetView<NotificationsController> {
                         child: ListTile(
                           leading: Icon(
                             HugeIcons.strokeRoundedNotification01,
-                            color: Theme.of(context).brightness == Brightness.dark
-                                ? ThemeColors.white
-                                : ThemeColors.dark,
+                            color:
+                                Theme.of(context).brightness == Brightness.dark
+                                    ? ThemeColors.white
+                                    : ThemeColors.dark,
                           ),
                           title: Text(
                             notification.title,
                             style: TextStyle(
                               fontWeight: FontWeight.w500,
                               fontSize: kFontSizeL,
-                              color:
-                                  Theme.of(context).brightness == Brightness.dark
-                                      ? ThemeColors.white
-                                      : ThemeColors.dark,
+                              color: Theme.of(context).brightness ==
+                                      Brightness.dark
+                                  ? ThemeColors.white
+                                  : ThemeColors.dark,
                             ),
                           ),
                           subtitle: Text(notification.notificationText,
@@ -94,14 +99,14 @@ class NotificationsPager extends GetView<NotificationsController> {
                                     : ThemeColors.dark,
                               )),
                           trailing: Text(
-                            Jiffy.parse(
-                                    notification.scheduledTime.toIso8601String())
+                            Jiffy.parse(notification.scheduledTime
+                                    .toIso8601String())
                                 .Hm,
                             style: TextStyle(
-                              color:
-                                  Theme.of(context).brightness == Brightness.dark
-                                      ? ThemeColors.white
-                                      : ThemeColors.dark,
+                              color: Theme.of(context).brightness ==
+                                      Brightness.dark
+                                  ? ThemeColors.white
+                                  : ThemeColors.dark,
                             ),
                           ),
                         ),

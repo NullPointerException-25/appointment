@@ -1,14 +1,16 @@
 import 'package:appointments_manager/core/utils/colors.dart';
 import 'package:appointments_manager/core/utils/global_values.dart';
-import 'package:appointments_manager/features/appointment/presentation/controllers/create_appointment_controller.dart';
-import 'package:appointments_manager/features/appointment_templates/domain/entities/template.dart';
+import 'package:appointments_manager/core/utils/translations.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../templates/domain/entities/template.dart';
+import '../controllers/create_appointment_controller.dart';
 
-class SelectAppointmentBottomSheet
+
+class SelectTemplateBottomSheet
     extends GetView<CreateAppointmentController> {
-  const SelectAppointmentBottomSheet(
+  const SelectTemplateBottomSheet(
     this._templates, {
     super.key,
   });
@@ -28,6 +30,7 @@ class SelectAppointmentBottomSheet
         child: Column(
           children: [
             Container(
+              alignment: Alignment.center,
               height: 5,
               width: 50,
               margin: const EdgeInsets.symmetric(vertical: kPadding),
@@ -36,11 +39,12 @@ class SelectAppointmentBottomSheet
                 borderRadius: BorderRadius.circular(kCornerRadiusM),
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.only(bottom: kPadding),
+             Padding(
+              padding: const EdgeInsets.only(bottom: kPadding),
               child: Text(
-                "Your templates",
-                style: TextStyle(
+                textAlign: TextAlign.center,
+                Translator.yourTemplates.tr,
+                style: const TextStyle(
                   fontWeight: FontWeight.w700,
                 ),
               ),

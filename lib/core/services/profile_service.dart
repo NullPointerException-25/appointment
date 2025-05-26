@@ -28,7 +28,7 @@ class ProfileService extends GetxService {
     store = (await openStore(directory: dbPath)).obs;
     final getUsers = store.value.box<UserModel>().getAll();
     if (getUsers.isEmpty) {
-      createDefaultUser();
+     await createDefaultUser();
       return this;
     }
     final currentUser =
@@ -42,7 +42,7 @@ class ProfileService extends GetxService {
   }
 
   Future<void> changeProfile(int id) async {
-    final currentUser = profile.value ==0? null: store.value.box<UserModel>().get(profile.value);
+    final currentUser = profile.value ==0 ? null: store.value.box<UserModel>().get(profile.value);
     if(currentUser != null) {
       currentUser.isCurrentUser = false;
       store.value.box<UserModel>().put(currentUser);

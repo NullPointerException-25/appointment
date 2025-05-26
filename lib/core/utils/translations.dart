@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
 
 class Translator extends Translations {
-
   static String get appName => 'Appointments Manager';
 
   @override
@@ -40,7 +39,8 @@ class Translator extends Translations {
           "viewProfile": "View profile",
           "quickCall": "Quick call",
           "scheduleAppointment": "Schedule appointment",
-          "clientsNotFound":"Your clients must be here, but at least we found a cat",
+          "clientsNotFound":
+              "Your clients must be here, but at least we found a cat",
           "addClient": "Add a client",
           "minutes": "@minutes minutes",
           "hourMinutes": "@hours hours and @minutes minutes",
@@ -77,7 +77,7 @@ class Translator extends Translations {
           "pleaseSelectAClient": "Please select a client",
           "selectAppointment": "Please select an appointment",
           "pleaseEnterATitle": "Please enter a title",
-           "shortText": "Short text",
+          "shortText": "Short text",
           "largeText": "Large text",
           "phoneNumber": "Phone number",
           "images": "Images",
@@ -89,7 +89,8 @@ class Translator extends Translations {
           "passwordTooShort": "Password must be at least 8 characters long",
           "passwordNotMatch": "Passwords do not match",
           "confirmPassword": "Confirm password",
-          "youCanCreateAccountLater": "Don't worry, You can create and link an account later",
+          "youCanCreateAccountLater":
+              "Don't worry, You can create and link an account later",
           "letsGetStarted": "Let's get started",
           "whatsYourName": "What's your name?",
           "savedAccounts": "Saved accounts",
@@ -123,13 +124,140 @@ class Translator extends Translations {
           "longFriday": "Friday",
           "longSaturday": "Saturday",
           "longSunday": "Sunday",
+          "customFieldsDescription":
+              "Add custom fields to your appointment to add more information.",
+          "customFieldTitle": "Give a name to your custom field",
+          "CreateTemplateDialog": "Creating a template will help you fill the custom fields according to your needs",
+          "yourTemplates": "Your templates",
+          "workingHoursThisWeek": "Hours worked last week",
         },
         'es': {
           'title': 'Gestor de Citas',
           'setup': 'Configuración',
           'home': 'Inicio',
-          'login': 'Iniciar Sesión',
-        },
+          'login': 'Iniciar sesión',
+          "Let's String get started": "Empecemos",
+          "What's your name?": "¿Cuál es tu nombre?",
+          "Name": "Nombre",
+          "Next": "Siguiente",
+          "Continue without image": "Continuar sin imagen",
+          "No, thanks": "No, gracias",
+          "Choose you profile image": "Elige tu imagen de perfil",
+          "Receive emails of new features?":
+              "¿Deseas recibir correos con nuevas funciones?",
+          "Please enter some text": "Por favor, ingresa texto",
+          'Please enter a valid email': 'Por favor, ingresa un correo válido',
+          'Email': 'Correo electrónico',
+          "Finish": "Finalizar",
+          "Welcome": "Bienvenido de nuevo,",
+          "Today's total appointments": "Total de citas para hoy",
+          "name": "Nombre",
+          "email": "Correo electrónico",
+          "phone": "Teléfono",
+          "description": "Descripción",
+          "save": "Guardar",
+          "create_client": "Crear cliente",
+          "descriptionHint":
+              "Escribe una descripción general del cliente o cualquier otra información que quieras guardar",
+          "unSelectImage": "Deseleccionar imagen",
+          "selectImage": "Seleccionar imagen",
+          "enterValidPhone": "Por favor, ingresa un número de teléfono válido",
+          "filters": "Filtros",
+          "viewProfile": "Ver perfil",
+          "quickCall": "Llamada rápida",
+          "scheduleAppointment": "Agendar cita",
+          "clientsNotFound":
+              "Tus clientes deberían estar aquí, pero al menos encontramos un gato",
+          "addClient": "Agregar cliente",
+          "minutes": "@minutes minutos",
+          "hourMinutes": "@hours horas y @minutes minutos",
+          "hour": "@hours horas",
+          "newAppointment": "Nueva cita",
+          "noClientsFound": "No se encontraron clientes",
+          "tapToAddClient": "Toca para agregar un cliente",
+          "newClient": "Nuevo cliente",
+          "clientName": "Nombre del cliente",
+          "appointmentsDate": "Fecha de la cita",
+          "addANewField": "Agregar un nuevo campo",
+          "month": "Mes",
+          "week": "Semana",
+          "day": "Día",
+          "today": "Hoy",
+          "tomorrow": "Mañana",
+          "yesterday": "Ayer",
+          "twoWeeks": "Dos semanas",
+          "appointmentCreated": "Cita creada",
+          "today'sAppointments": "Citas de hoy",
+          "calendar": "Calendario",
+          "nameIsRequired": "El nombre no puede estar vacío",
+          "nothingForToday": "No hay citas para hoy",
+          "addNewField": "Agregar nuevo campo",
+          "customFields": "Campos personalizados",
+          "duration": "Duración",
+          "preview": "Vista previa",
+          "number": "Número",
+          "imageList": "Lista de imágenes",
+          "audio": "Audio",
+          "video": "Video",
+          "file": "Archivo",
+          "date": "Fecha",
+          "pleaseSelectAClient": "Por favor, selecciona un cliente",
+          "selectAppointment": "Por favor, selecciona una cita",
+          "pleaseEnterATitle": "Por favor, ingresa un título",
+          "shortText": "Texto corto",
+          "largeText": "Texto largo",
+          "phoneNumber": "Número de teléfono",
+          "images": "Imágenes",
+          "removeField": "Eliminar campo",
+          "somethingWentWrong": "Algo salió mal",
+          "signUp": "Registrarse",
+          "password": "Contraseña",
+          "continueWithoutAccount": "Continuar sin cuenta",
+          "passwordTooShort": "La contraseña debe tener al menos 8 caracteres",
+          "passwordNotMatch": "Las contraseñas no coinciden",
+          "confirmPassword": "Confirmar contraseña",
+          "youCanCreateAccountLater":
+              "No te preocupes, puedes crear y vincular una cuenta más tarde",
+          "letsGetStarted": "Empecemos",
+          "whatsYourName": "¿Cuál es tu nombre?",
+          "savedAccounts": "Cuentas guardadas",
+          "newProfile": "Nuevo perfil",
+          "alreadyHaveAnAccount": "¿Ya tienes una cuenta?",
+          "signInHere": "Inicia sesión aquí",
+          "bySigningIn": "Al iniciar sesión, aceptas nuestros ",
+          "termsOfService": "Términos de servicio",
+          "useProfileLocally": "Usar este perfil localmente",
+          "incorrectCredential": "El correo o la contraseña son incorrectos",
+          "clickToChangeDate": "Haz clic para cambiar la fecha",
+          "notifications": "Notificaciones",
+          "clients": "Clientes",
+          "templates": "Plantillas",
+          "templateName": "Nombre de la plantilla",
+          "exampleTemplateName": "Ej. Plantilla nuevo cliente",
+          "defaultDuration": "Duración predeterminada",
+          "useDefaultDuration": "Usar duración predeterminada",
+          "templateCreated": "Plantilla creada",
+          "shortMonday": "Lun",
+          "shortTuesday": "Mar",
+          "shortWednesday": "Mié",
+          "shortThursday": "Jue",
+          "shortFriday": "Vie",
+          "shortSaturday": "Sáb",
+          "shortSunday": "Dom",
+          "longMonday": "Lunes",
+          "longTuesday": "Martes",
+          "longWednesday": "Miércoles",
+          "longThursday": "Jueves",
+          "longFriday": "Viernes",
+          "longSaturday": "Sábado",
+          "longSunday": "Domingo",
+          "customFieldsDescription":
+              "Agrega campos personalizados a tu cita para añadir más información.",
+          "customFieldTitle": "Dale un nombre a tu campo personalizado",
+          "CreateTemplateDialog": "Crear una plantilla te ayudará a rellear los campos personalizados según tus necesidades",
+          "yourTemplates": "Tus plantillas",
+          "workingHoursThisWeek": "Horas trabajadas la semana pasada",
+        }
       };
 
   static String get title => 'title';
@@ -193,9 +321,9 @@ class Translator extends Translations {
 
   static String get viewProfile => "viewProfile";
 
-  static String get clientsNotFound=>"clientsNotFound";
+  static String get clientsNotFound => "clientsNotFound";
 
-  static String get addClient=>"addClient";
+  static String get addClient => "addClient";
 
   static String get minutes => "minutes";
 
@@ -237,9 +365,9 @@ class Translator extends Translations {
 
   static String get calendar => "calendar";
 
-  static String get nameIsRequired=>"nameIsRequired";
+  static String get nameIsRequired => "nameIsRequired";
 
-  static String get nothingForToday=> "nothingForToday";
+  static String get nothingForToday => "nothingForToday";
 
   static String get addNewField => "addNewField";
 
@@ -307,39 +435,58 @@ class Translator extends Translations {
 
   static String get useProfileLocally => "useProfileLocally";
 
-  static String get incorrectCredential=> "incorrectCredential";
+  static String get incorrectCredential => "incorrectCredential";
 
   static String get clickToChangeDate => "clickToChangeDate";
 
-  static String get notifications=>"notifications";
+  static String get notifications => "notifications";
 
-  static String get clients=>"clients";
+  static String get clients => "clients";
 
-  static String get templates=>"templates";
+  static String get templates => "templates";
 
-  static String get templateName=>"templateName";
+  static String get templateName => "templateName";
 
-  static String get exampleTemplateName=>"exampleTemplateName";
+  static String get exampleTemplateName => "exampleTemplateName";
 
-  static String get defaultDuration=>"defaultDuration";
+  static String get defaultDuration => "defaultDuration";
 
-  static String get useDefaultDuration=>"useDefaultDuration";
+  static String get useDefaultDuration => "useDefaultDuration";
 
-  static String get templateCreated=>"templateCreated";
+  static String get templateCreated => "templateCreated";
 
-  static String get shortMonday=>"shortMonday";
-  static String get shortTuesday=>"shortTuesday";
-  static String get shortWednesday=>"shortWednesday";
-  static String get shortThursday=>"shortThursday";
-  static String get shortFriday=>"shortFriday";
-  static String get shortSaturday=>"shortSaturday";
-  static String get shortSunday=>"shortSunday";
-  static String get longMonday=>"longMonday";
-  static String get longTuesday=>"longTuesday";
-  static String get longWednesday=>"longWednesday";
-  static String get longThursday=>"longThursday";
-  static String get longFriday=>"longFriday";
-  static String get longSaturday=>"longSaturday";
-  static String get longSunday=>"longSunday";
+  static String get shortMonday => "shortMonday";
 
+  static String get shortTuesday => "shortTuesday";
+
+  static String get shortWednesday => "shortWednesday";
+
+  static String get shortThursday => "shortThursday";
+
+  static String get shortFriday => "shortFriday";
+
+  static String get shortSaturday => "shortSaturday";
+
+  static String get shortSunday => "shortSunday";
+
+  static String get longMonday => "longMonday";
+
+  static String get longTuesday => "longTuesday";
+
+  static String get longWednesday => "longWednesday";
+
+  static String get longThursday => "longThursday";
+
+  static String get longFriday => "longFriday";
+
+  static String get longSaturday => "longSaturday";
+
+  static String get longSunday => "longSunday";
+
+  static String get customFieldTitle => "customFieldTitle";
+
+  static String get customFieldsDescription => "customFieldsDescription";
+  static String get createTemplateDialog => "CreateTemplateDialog";
+  static String get yourTemplates => "yourTemplates";
+  static String get workingHoursThisWeek => "workingHoursThisWeek";
 }

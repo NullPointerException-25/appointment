@@ -22,7 +22,7 @@ class HomePager extends StatelessWidget {
         controller: TimelineController.to.scrollController,
         slivers: [
           const SliverToBoxAdapter(child: WelcomeHomeSection()),
-          const SliverToBoxAdapter(child: const LastWeekPlot()),
+          const SliverToBoxAdapter(child: LastWeekPlot()),
          ObxValue<RxList<AppointmentEntity>>(
            (appointments) {
              if(appointments.isEmpty){

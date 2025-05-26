@@ -2,16 +2,17 @@ import 'package:appointments_manager/core/abstractions/usecases.dart';
 import 'package:appointments_manager/core/services/in_app_notification_service.dart';
 import 'package:appointments_manager/features/appointment/data/repositories/appointments_repository_imp_local.dart';
 import 'package:appointments_manager/features/appointment/domain/entities/appointment_entity.dart';
-import 'package:appointments_manager/features/appointment_templates/data/repositories/custom_fields_local_impl.dart';
-import 'package:appointments_manager/features/appointment_templates/domain/entities/field.dart';
-import 'package:appointments_manager/features/appointment_templates/mappers/field_answer_mapper.dart';
+
 import 'package:appointments_manager/features/client/domain/entities/client_entity.dart';
 import 'package:appointments_manager/features/notifications/domain/usecases/save_notification.dart';
-import 'package:flutter/cupertino.dart';
+
 import 'package:get/get.dart';
 import 'package:jiffy/jiffy.dart';
 
 import '../../../../core/utils/translations.dart';
+import '../../templates/data/repositories/custom_fields_local_impl.dart';
+import '../../templates/domain/entities/field.dart';
+import '../../templates/mappers/field_answer_mapper.dart';
 
 class CreateAppointmentUseCase extends UseCase<void> {
   late final AppointmentsRepositoryImpLocal _appointmentsRepository;

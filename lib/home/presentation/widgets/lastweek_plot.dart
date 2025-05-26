@@ -1,5 +1,6 @@
 import 'package:appointments_manager/core/utils/colors.dart';
 import 'package:appointments_manager/core/utils/global_values.dart';
+import 'package:appointments_manager/core/utils/translations.dart';
 import 'package:appointments_manager/home/presentation/controllers/plot_controller.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
@@ -20,15 +21,29 @@ class _LastWeekPlotState extends State<LastWeekPlot> {
   Widget build(BuildContext context) {
     return Obx(() {
       if (plotController.showGraph.value) {
-        return AspectRatio(
-          aspectRatio: 1.70,
-          child: Padding(
-            padding: const EdgeInsets.symmetric(
-                vertical: kPaddingL, horizontal: kPadding),
-            child: LineChart(
-              mainData(),
+        return Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: kPadding),
+              child: Text(Translator.workingHoursThisWeek.tr,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.w700,
+                    fontSize: kFontSizeXL,
+                   
+                  ),),
             ),
-          ),
+            AspectRatio(
+              aspectRatio: 1.70,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                    vertical: kPaddingL, horizontal: kPadding),
+                child: LineChart(
+                  mainData(),
+                ),
+              ),
+            ),
+          ],
         );
       }
       return const SizedBox();
@@ -55,7 +70,7 @@ class _LastWeekPlotState extends State<LastWeekPlot> {
       fontWeight: FontWeight.bold,
       fontSize: 15,
     );
-    String? text = plotController.minutesHoursString[value.toInt()];
+    String? text = plotController.minutesHoursString[value.ceil()];
     if (text == null) {
       return const SizedBox();
     }
@@ -98,7 +113,7 @@ class _LastWeekPlotState extends State<LastWeekPlot> {
               return LineTooltipItem(
                 "${(touchedSpot.y.toInt())}:${(touchedSpot.y % 1 * 60).toInt().toString().padLeft(2, "0")}",
                 const TextStyle(
-                  color: ThemeColors.white, // Cambia aquí el color del valor
+                  color: ThemeColors.white,
                   fontWeight: FontWeight.bold,
                 ),
               );

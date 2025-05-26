@@ -22,4 +22,8 @@ extension DateTimeExtension on DateTime {
       return isAfter(start) && isBefore(end);
     }
   }
+
+  bool isToday() {
+    return getWithoutTime().isAtSameMomentAs(DateTime.now().getWithoutTime());
+  }
 }

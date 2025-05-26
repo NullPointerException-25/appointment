@@ -1,12 +1,11 @@
 import 'dart:io';
 
 import 'package:appointments_manager/features/appointment/domain/entities/appointment_entity.dart';
-import 'package:appointments_manager/features/appointment_templates/domain/entities/field.dart';
-import 'package:appointments_manager/features/appointment_templates/domain/usecases/save_appointment_data.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 import '../../../client/presentation/abstractions/controller_card_previewable.dart';
+import '../../templates/domain/entities/field.dart';
+import '../../templates/domain/usecases/save_appointment_data.dart';
 
 class DetailsAppointmentController extends GetxController
     implements ControllerClientCardPreviewable {

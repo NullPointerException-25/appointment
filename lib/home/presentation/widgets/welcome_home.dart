@@ -2,12 +2,14 @@ import 'package:appointments_manager/home/presentation/controllers/home_controll
 import 'package:appointments_manager/core/utils/colors.dart';
 import 'package:appointments_manager/core/utils/global_values.dart';
 import 'package:appointments_manager/core/utils/translations.dart';
+import 'package:appointments_manager/home/presentation/controllers/timeline_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/rx_flutter/rx_obx_widget.dart';
 import 'package:get/get_utils/get_utils.dart';
 import 'package:mesh_gradient/mesh_gradient.dart';
 
-class WelcomeHomeSection extends StatelessWidget {
+class WelcomeHomeSection extends GetView<TimelineController> {
   const WelcomeHomeSection({super.key});
 
   @override
@@ -63,12 +65,14 @@ class WelcomeHomeSection extends StatelessWidget {
                               ),
                         ),
                         const SizedBox(width: kPaddingS),
-                        Text(
-                          '123',
-                          style: Theme.of(context).textTheme.labelSmall!.copyWith(
-                                color: ThemeColors.white,
-                                fontWeight: FontWeight.w700,
-                              ),
+                        Obx(
+                          ()=> Text(
+                            '${controller.todayAppointmentsCount.value}',
+                            style: Theme.of(context).textTheme.labelSmall!.copyWith(
+                                  color: ThemeColors.white,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                          ),
                         ),
                       ],
                     ),

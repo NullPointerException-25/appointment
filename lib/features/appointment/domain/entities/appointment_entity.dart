@@ -1,8 +1,9 @@
 import 'package:appointments_manager/core/abstractions/entity.dart';
 import 'package:appointments_manager/features/appointment/data/models/appointment.dart';
 import 'package:appointments_manager/features/appointment/domain/contracts/appointment_contract.dart';
-import 'package:appointments_manager/features/appointment_templates/domain/entities/field.dart';
 import 'package:appointments_manager/features/client/domain/entities/client_entity.dart';
+
+import '../../templates/domain/entities/field.dart';
 
 class AppointmentEntity extends CoreEntity<AppointmentModel>
     implements AppointmentContract {

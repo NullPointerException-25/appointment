@@ -6,13 +6,14 @@ import 'package:hugeicons/hugeicons.dart';
 import '../../../../../core/utils/colors.dart';
 import '../../../../../core/utils/global_values.dart';
 import '../../../../../core/utils/translations.dart';
-import '../../../../appointment_templates/presentation/widgets/custom_field_editing.dart';
 import '../../../domain/entities/appointment_entity.dart';
 import '../../../domain/entities/appointment_preview.dart';
+import '../../../templates/presentation/widgets/custom_field_editing.dart';
 import '../../widgets/appointment_item.dart';
 import '../../widgets/appointment_preview_item.dart';
 import '../../widgets/calendar_date_picker.dart';
 import '../../widgets/client_searcher_textfield.dart';
+import '../../widgets/custom_field_dialog.dart';
 import '../../widgets/duration_slider.dart' show DurationSlider;
 
 class NewAppointmentTabletPage extends GetView<CreateAppointmentController> {
@@ -83,7 +84,7 @@ class NewAppointmentTabletPage extends GetView<CreateAppointmentController> {
                             const SizedBox(
                               height: kPaddingS,
                             ),
-                            const DurationSlider(),
+                            const DurationSlider<CreateAppointmentController>(),
                             Obx(
                               () => Padding(
                                 padding: const EdgeInsets.all(kPaddingS),
@@ -127,11 +128,15 @@ class NewAppointmentTabletPage extends GetView<CreateAppointmentController> {
                         textAlign: TextAlign.center,
                         Translator.customFields.tr,
                         style: TextStyle(
+                            fontWeight: FontWeight.w700,
                             color: Theme.of(context).brightness == Brightness.dark
                                 ? ThemeColors.white
                                 : ThemeColors.dark),
                       ),
                     ),
+                  ),
+                  const SliverToBoxAdapter(
+                      child: CustomFieldDialog()
                   ),
                   Obx(
                     () => SliverPadding(

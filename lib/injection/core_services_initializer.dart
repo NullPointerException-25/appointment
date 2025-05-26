@@ -1,9 +1,5 @@
 import 'package:appointments_manager/features/appointment/data/datasource/local_appointments_datasource.dart';
 import 'package:appointments_manager/features/appointment/data/repositories/appointments_repository_imp_local.dart';
-import 'package:appointments_manager/features/appointment_templates/data/datasource/local_custom_fields.dart';
-import 'package:appointments_manager/features/appointment_templates/data/datasource/template_local_datasource.dart';
-import 'package:appointments_manager/features/appointment_templates/data/repositories/custom_fields_local_impl.dart';
-import 'package:appointments_manager/features/appointment_templates/data/repositories/template_local_impl.dart';
 import 'package:appointments_manager/features/client/data/datasource/local_client_data_source.dart';
 import 'package:appointments_manager/features/client/data/repositories/clients_repository_impl.dart';
 import 'package:appointments_manager/features/notifications/data/datasources/local_notifications_datasource.dart';
@@ -17,6 +13,10 @@ import 'package:get/route_manager.dart';
 import 'package:jiffy/jiffy.dart';
 
 import '../core/services/background_notifications_service.dart';
+import '../features/appointment/templates/data/datasource/local_custom_fields.dart';
+import '../features/appointment/templates/data/datasource/template_local_datasource.dart';
+import '../features/appointment/templates/data/repositories/custom_fields_local_impl.dart';
+import '../features/appointment/templates/data/repositories/template_local_impl.dart';
 import '../features/notifications/data/respositories/notification_repository_impl.dart';
 import '../features/user/data/datasource/user_remote_firestore_datasource.dart';
 import '../features/user/data/repositories/user_auth_repository_impl.dart';
