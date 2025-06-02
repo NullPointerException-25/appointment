@@ -36,7 +36,7 @@ class AuthDialog extends StatelessWidget {
                         backgroundImage: FileImage(user.localImage.value!))
                     : Icon(HugeIcons.strokeRoundedUser, color:  Theme.of(context).primaryColor,),
                 Text(
-                  'Authentication Required for \n${user.name}',
+                  'Authentication Required\nfor ${user.name}',
                   style: Theme.of(context).textTheme.titleSmall,
                   softWrap: true,
                 ),

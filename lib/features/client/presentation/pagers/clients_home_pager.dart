@@ -18,6 +18,18 @@ class ClientsHomePager extends GetView<ClientQueryController> {
     return CustomScrollView(
       slivers: [
         const SearchBarHeaderSliver(),
+        SliverToBoxAdapter(
+          child: Padding(
+            padding: const EdgeInsets.all(kPaddingM),
+            child: Text(
+              Translator.clients.tr,
+              style: const TextStyle(
+                fontSize: kFontSizeL,
+                fontWeight: FontWeight.w700,
+              ),
+            ),
+          ),
+        ),
         Obx(
           () {
             if (controller.clients.isEmpty) {
